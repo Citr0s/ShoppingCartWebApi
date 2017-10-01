@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using ShoppingCart.Data.Pizza;
 
 namespace ShoppingCart.Controllers
 {
@@ -7,7 +6,6 @@ namespace ShoppingCart.Controllers
     {
         public ActionResult Index()
         {
-            Program.Main();
             return View();
         }
 
