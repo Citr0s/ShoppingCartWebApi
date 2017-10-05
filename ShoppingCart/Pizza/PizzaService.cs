@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using ShoppingCart.Core.Communication;
-using ShoppingCart.Data.Pizza;
+﻿using ShoppingCart.Data.Pizza;
 
 namespace ShoppingCart.Pizza
 {
-    public class PizzaService
+    public class PizzaService : IPizzaService
     {
         private readonly IGetPizzaRepository _getPizzaRepository;
 
@@ -32,15 +30,5 @@ namespace ShoppingCart.Pizza
 
             return response;
         }
-    }
-
-    public class GetAllPizzasResponse : CommunicationResponse
-    {
-        public GetAllPizzasResponse()
-        {
-            Pizzas = new List<PizzaModel>();
-        }
-
-        public List<PizzaModel> Pizzas { get; set; }
     }
 }
