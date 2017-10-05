@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using ShoppingCart.Core.Communication;
 using ShoppingCart.Data.Database;
 
 namespace ShoppingCart.Data.Pizza
@@ -12,9 +13,24 @@ namespace ShoppingCart.Data.Pizza
             _database = database;
         }
 
-        public List<PizzaRecord> Get()
+        public GetPizzasResponse GetAll()
         {
-            return _database.Select<PizzaRecord>("pizzas");
+            var response = new GetPizzasResponse();
+
+            // TODO: REMEMBER TO ADD TESTS WHEN DATABASE BLOWS UP!!!!!
+            try
+            {
+                response.Pizzas = _database.Select<PizzaRecord>("pizzas");
+            }
+            catch (Exception)
+            {
+                response.AddError(new Error
+                {
+                    Message = "Something went wrong when retrieving PizzaRecords from database."
+                });
+            }
+
+            return response;
         }
     }
 }
