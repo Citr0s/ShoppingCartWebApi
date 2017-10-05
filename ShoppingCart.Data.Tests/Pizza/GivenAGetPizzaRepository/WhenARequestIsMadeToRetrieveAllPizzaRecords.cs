@@ -20,17 +20,17 @@ namespace ShoppingCart.Data.Tests.Pizza.GivenAGetPizzaRepository
             {
                 new PizzaRecord
                 {
-                    Identifier = Guid.NewGuid(),
+                    Identifier = 1,
                     Name = "Original"
                 },
                 new PizzaRecord
                 {
-                    Identifier = Guid.NewGuid(),
-                    Name = "Gimmie the Meat"
+                    Identifier = 2,
+                    Name = "Gimme the Meat"
                 },
             });
 
-            var subject = new GetPizzaRepository(database.Object);
+            var subject = new GetGetPizzaRepository(database.Object);
             _result = subject.Get();
         }
 
@@ -40,15 +40,15 @@ namespace ShoppingCart.Data.Tests.Pizza.GivenAGetPizzaRepository
             Assert.That(_result.Count, Is.EqualTo(2));
         }
 
-        [TestCase(0)]
-        [TestCase(1)]
-        public void ThenThePizzaRecordIdentifierIsMappedCorrectly(int index)
+        [TestCase(0, 1)]
+        [TestCase(1, 2)]
+        public void ThenThePizzaRecordIdentifierIsMappedCorrectly(int index, int identifier)
         {
-            Assert.That(_result[index].Identifier, Is.TypeOf<Guid>());
+            Assert.That(_result[index].Identifier, Is.EqualTo(identifier));
         }
 
         [TestCase(0, "Original")]
-        [TestCase(1, "Gimmie the Meat")]
+        [TestCase(1, "Gimme the Meat")]
         public void ThenThePizzaRecordNameIsMappedCorrectly(int index, string name)
         {
             Assert.That(_result[index].Name, Is.EqualTo(name));

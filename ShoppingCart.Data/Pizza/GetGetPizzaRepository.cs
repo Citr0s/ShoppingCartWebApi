@@ -3,11 +3,11 @@ using ShoppingCart.Data.Database;
 
 namespace ShoppingCart.Data.Pizza
 {
-    public class GetPizzaRepository
+    public class GetGetPizzaRepository : IGetPizzaRepository
     {
         private readonly IDatabase _database;
 
-        public GetPizzaRepository(IDatabase database)
+        public GetGetPizzaRepository(IDatabase database)
         {
             _database = database;
         }
