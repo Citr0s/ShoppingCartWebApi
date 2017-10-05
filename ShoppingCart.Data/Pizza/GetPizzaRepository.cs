@@ -4,11 +4,11 @@ using ShoppingCart.Data.Database;
 
 namespace ShoppingCart.Data.Pizza
 {
-    public class GetGetPizzaRepository : IGetPizzaRepository
+    public class GetPizzaRepository : IGetPizzaRepository
     {
         private readonly IDatabase _database;
 
-        public GetGetPizzaRepository(IDatabase database)
+        public GetPizzaRepository(IDatabase database)
         {
             _database = database;
         }
@@ -17,7 +17,6 @@ namespace ShoppingCart.Data.Pizza
         {
             var response = new GetPizzasResponse();
 
-            // TODO: REMEMBER TO ADD TESTS WHEN DATABASE BLOWS UP!!!!!
             try
             {
                 response.Pizzas = _database.Select<PizzaRecord>("pizzas");

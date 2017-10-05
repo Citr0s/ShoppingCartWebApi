@@ -52,12 +52,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pizza\GivenAGetPizzaRepository\WhenARequestIsMadeToRetrieveAllPizzaRecords.cs" />
+    <Compile Include="Pizza\GivenAGetPizzaRepository\WhenTheDatabaseFailsToRetrieveThePizzaRecords.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\ShoppingCart.Core\ShoppingCart.Core.csproj">
+      <Project>{6652340D-7D15-4318-9C06-159820F9F5ED}</Project>
+      <Name>ShoppingCart.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ShoppingCart.Data\ShoppingCart.Data.csproj">
       <Project>{E4CF6BF8-2F13-448E-8BB7-421D700B6231}</Project>
       <Name>ShoppingCart.Data</Name>

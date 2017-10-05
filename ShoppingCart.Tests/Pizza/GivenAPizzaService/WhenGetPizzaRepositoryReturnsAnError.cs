@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
 using ShoppingCart.Core.Communication;
 using ShoppingCart.Data.Pizza;
@@ -8,7 +7,7 @@ using ShoppingCart.Pizza;
 namespace ShoppingCart.Tests.Pizza.GivenAPizzaService
 {
     [TestFixture]
-    class WhenGetPizzaRepositoryReturnsAnError
+    public class WhenGetPizzaRepositoryReturnsAnError
     {
         private GetAllPizzasResponse _result;
 

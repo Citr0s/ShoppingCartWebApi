@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
 using ShoppingCart.Data.Database;
@@ -8,7 +7,7 @@ using ShoppingCart.Data.Pizza;
 namespace ShoppingCart.Data.Tests.Pizza.GivenAGetPizzaRepository
 {
     [TestFixture]
-    class WhenARequestIsMadeToRetrieveAllPizzaRecords
+    public class WhenARequestIsMadeToRetrieveAllPizzaRecords
     {
         private GetPizzasResponse _result;
 
@@ -30,7 +29,7 @@ namespace ShoppingCart.Data.Tests.Pizza.GivenAGetPizzaRepository
                 },
             });
 
-            var subject = new GetGetPizzaRepository(database.Object);
+            var subject = new GetPizzaRepository(database.Object);
             _result = subject.GetAll();
         }
 

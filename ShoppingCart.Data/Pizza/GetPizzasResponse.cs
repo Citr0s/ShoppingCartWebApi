@@ -5,7 +5,6 @@ namespace ShoppingCart.Data.Pizza
 {
     public class GetPizzasResponse : CommunicationResponse
     {
-        // TODO: ADD ERROR CASE TESTS TO MAKE SURE IT FAILS WHEN LIST IS NOT INITIALISED
         public GetPizzasResponse()
         {
             Pizzas = new List<PizzaRecord>();

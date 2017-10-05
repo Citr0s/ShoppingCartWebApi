@@ -49,7 +49,7 @@
     <Compile Include="Pizza\GetPizzasResponse.cs" />
     <Compile Include="Pizza\IGetPizzaRepository.cs" />
     <Compile Include="Pizza\PizzaRecord.cs" />
-    <Compile Include="Pizza\GetGetPizzaRepository.cs" />
+    <Compile Include="Pizza\GetPizzaRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

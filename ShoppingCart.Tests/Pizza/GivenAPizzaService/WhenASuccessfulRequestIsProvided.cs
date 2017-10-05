@@ -7,7 +7,7 @@ using ShoppingCart.Pizza;
 namespace ShoppingCart.Tests.Pizza.GivenAPizzaService
 {
     [TestFixture]
-    class WhenASuccessfulRequestIsProvided
+    public class WhenASuccessfulRequestIsProvided
     {
         private GetAllPizzasResponse _result;
 
