@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Database\IDatabase.cs" />
     <Compile Include="Pizza\PizzaRecord.cs" />
     <Compile Include="Pizza\GetPizzaRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -47,8 +48,6 @@
   <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
