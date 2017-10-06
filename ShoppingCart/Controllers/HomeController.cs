@@ -21,19 +21,5 @@ namespace ShoppingCart.Controllers
             var pizzas = _pizzaService.GetAll();
             return View(pizzas);
         }
-
-        public ActionResult About()
-        {
-            ViewBag.Message = "Your application description page.";
-
-            return View();
-        }
-
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
-
-            return View();
-        }
     }
 }
