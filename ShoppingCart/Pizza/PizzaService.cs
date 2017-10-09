@@ -1,22 +1,21 @@
-﻿using ShoppingCart.Core.Money;
-using ShoppingCart.Data.PizzaPrice;
+﻿using ShoppingCart.Data.Pizza;
 
 namespace ShoppingCart.Pizza
 {
     public class PizzaService : IPizzaService
     {
-        private readonly IGetPizzaPriceRepository _getPizzaPriceRepository;
+        private readonly IGetPizzaRepository _getPizzaRepository;
 
-        public PizzaService(IGetPizzaPriceRepository getPizzaPriceRepository)
+        public PizzaService(IGetPizzaRepository getPizzaRepository)
         {
-            _getPizzaPriceRepository = getPizzaPriceRepository;
+            _getPizzaRepository = getPizzaRepository;
         }
 
         public GetAllPizzasResponse GetAll()
         {
             var response = new GetAllPizzasResponse();
 
-            var getAllPizzaPricesResponse = _getPizzaPriceRepository.GetAll();
+            var getAllPizzaPricesResponse = _getPizzaRepository.GetAll();
 
             if (getAllPizzaPricesResponse.HasError)
             {
@@ -24,11 +23,9 @@ namespace ShoppingCart.Pizza
                 return response;
             }
 
-            response.Pizzas = getAllPizzaPricesResponse.PizzaPrices.ConvertAll(x => new PizzaPriceModel
+            response.Pizzas = getAllPizzaPricesResponse.Pizzas.ConvertAll(x => new PizzaModel
             {
-                Name = x.Pizza.Name,
-                Size = x.Size.Name,
-                Price = Money.From(x.Price)
+                Name = x.Name
             });
 
             return response;

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ShoppingCart.Core.Money
+﻿namespace ShoppingCart.Core.Money
 {
     public class Money
     {

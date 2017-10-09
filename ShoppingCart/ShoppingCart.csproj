@@ -146,7 +146,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Pizza\PizzaPriceModel.cs" />
+    <Compile Include="PizzaPrice\GetAllPizzaPricesResponse.cs" />
+    <Compile Include="PizzaPrice\IPizzaPriceService.cs" />
+    <Compile Include="PizzaPrice\PizzaPriceModel.cs" />
+    <Compile Include="PizzaPrice\PizzaPriceService.cs" />
     <Compile Include="Topping\GetAllToppingsResponse.cs" />
     <Compile Include="Topping\IToppingService.cs" />
     <Compile Include="Topping\ToppingModel.cs" />

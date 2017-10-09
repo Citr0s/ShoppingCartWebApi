@@ -1,6 +1,6 @@
 ﻿using ShoppingCart.Core.Money;
 
-namespace ShoppingCart.Pizza
+namespace ShoppingCart.PizzaPrice
 {
     public class PizzaPriceModel
     {

@@ -1,14 +1,15 @@
 ﻿@{
     ViewBag.Title = "Home Page";
 }
+
 <h1>Pizzas</h1>
 <ul>
     @foreach (var pizza in Model.Pizzas)
     {
-        <li>@pizza.Name - @pizza.Size = @pizza.Price.InFull</li>
+        <li>@pizza.Name</li>
     }
 </ul>
-   
+
 <h1>Sizes</h1>
 <ul>
     @foreach (var size in Model.Sizes)
@@ -22,5 +23,13 @@
     @foreach (var topping in Model.Toppings)
     {
         <li>@topping.Name</li>
+    }
+</ul>
+
+<h1>Pizza Prices</h1>
+<ul>
+    @foreach (var pizza in Model.PizzaPrices)
+    {
+        <li>@pizza.Name - @pizza.Size = @pizza.Price.InFull</li>
     }
 </ul>

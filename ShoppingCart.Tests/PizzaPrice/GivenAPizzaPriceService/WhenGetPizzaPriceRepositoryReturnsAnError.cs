@@ -1,23 +1,21 @@
 ﻿using Moq;
 using NUnit.Framework;
 using ShoppingCart.Core.Communication;
-using ShoppingCart.Data.Pizza;
 using ShoppingCart.Data.PizzaPrice;
-using ShoppingCart.Pizza;
 using ShoppingCart.PizzaPrice;
 
-namespace ShoppingCart.Tests.Pizza.GivenAPizzaService
+namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaPriceService
 {
     [TestFixture]
-    public class WhenGetPizzaRepositoryReturnsAnError
+    public class WhenGetPizzaPriceRepositoryReturnsAnError
     {
-        private GetAllPizzasResponse _result;
+        private GetAllPizzaPricesResponse _result;
 
         [SetUp]
         public void SetUp()
         {
-            var getPizzaRepository = new Mock<IGetPizzaRepository>();
-            getPizzaRepository.Setup(x => x.GetAll()).Returns(new GetPizzasResponse
+            var getPizzaPriceRepository = new Mock<IGetPizzaPriceRepository>();
+            getPizzaPriceRepository.Setup(x => x.GetAll()).Returns(new GetPizzaPricesResponse
             {
                 HasError = true,
                 Error = new Error
@@ -26,7 +24,7 @@ namespace ShoppingCart.Tests.Pizza.GivenAPizzaService
                 }
             });
 
-            var subject = new PizzaService(getPizzaRepository.Object);
+            var subject = new PizzaPriceService(getPizzaPriceRepository.Object);
             _result = subject.GetAll();
         }
 
@@ -45,7 +43,7 @@ namespace ShoppingCart.Tests.Pizza.GivenAPizzaService
         [Test]
         public void ThenAnEmptyListOfPizzaModelsIsReturned()
         {
-            Assert.That(_result.Pizzas.Count, Is.Zero);
+            Assert.That(_result.PizzaPrices.Count, Is.Zero);
         }
     }
 }

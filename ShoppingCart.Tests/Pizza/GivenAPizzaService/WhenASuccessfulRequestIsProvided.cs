@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
 using ShoppingCart.Data.Pizza;
@@ -16,29 +17,21 @@ namespace ShoppingCart.Tests.Pizza.GivenAPizzaService
         [SetUp]
         public void SetUp()
         {
-            var getPizzaRepository = new Mock<IGetPizzaPriceRepository>();
-            getPizzaRepository.Setup(x => x.GetAll()).Returns(new GetPizzaPricesResponse
+            var getPizzaRepository = new Mock<IGetPizzaRepository>();
+            getPizzaRepository.Setup(x => x.GetAll()).Returns(new GetPizzasResponse
             {
-                PizzaPrices = new List<PizzaPriceRecord>
+                Pizzas = new List<PizzaRecord>
                 {
-                    new PizzaPriceRecord
+                    new PizzaRecord
                     {
-                        Pizza = new PizzaRecord
-                        {
-                            Id = 1,
-                            Name = "Original"
-                        },
-                        Size = new SizeRecord()
+                        Id = 1,
+                        Name = "Original"
                     },
-                    new PizzaPriceRecord
+                    new PizzaRecord
                     {
-                        Pizza = new PizzaRecord
-                        {
-                            Id = 2,
-                            Name = "Veggie Delight"
-                        },
-                        Size = new SizeRecord()
-                    }
+                        Id = 2,
+                        Name = "Veggie Delight"
+                    },
                 }
             });
 
