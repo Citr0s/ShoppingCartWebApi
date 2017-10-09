@@ -62,6 +62,10 @@
   <ItemGroup>
     <Compile Include="Database\IDatabase.cs" />
     <Compile Include="Database\NhibernateDatabase.cs" />
+    <Compile Include="PizzaPrice\GetPizzaPriceRepository.cs" />
+    <Compile Include="PizzaPrice\GetPizzaPricesResponse.cs" />
+    <Compile Include="PizzaPrice\IGetPizzaPriceRepository.cs" />
+    <Compile Include="PizzaPrice\PizzaPriceRecord.cs" />
     <Compile Include="Pizza\GetPizzasResponse.cs" />
     <Compile Include="Pizza\IGetPizzaRepository.cs" />
     <Compile Include="Pizza\PizzaRecord.cs" />
