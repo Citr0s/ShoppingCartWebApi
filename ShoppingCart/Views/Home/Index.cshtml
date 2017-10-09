@@ -3,11 +3,12 @@
 }
 <h1>Pizzas</h1>
 <ul>
-@foreach (var pizza in Model.Pizzas)
-{
-    <li>@pizza.Name</li>
-}
-    
+    @foreach (var pizza in Model.Pizzas)
+    {
+        <li>@pizza.Name</li>
+    }
+</ul>
+   
 <h1>Sizes</h1>
 <ul>
     @foreach (var size in Model.Sizes)

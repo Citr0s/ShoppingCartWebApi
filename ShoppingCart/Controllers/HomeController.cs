@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Dynamic;
+using System.Web.Mvc;
 using ShoppingCart.Data.Pizza;
 using ShoppingCart.Pizza;
 using ShoppingCart.Data.Database;
@@ -22,9 +24,18 @@ namespace ShoppingCart.Controllers
 
         public ActionResult Index()
         {
-            var pizzas = _pizzaService.GetAll();
-            var sizes = _sizeService.GetAll();
-            return View(pizzas);
+            var data = new HomeControllerData
+            {
+                Pizzas = _pizzaService.GetAll().Pizzas,
+                Sizes = _sizeService.GetAll().Sizes
+            };
+            return View(data);
         }
+    }
+
+    public class HomeControllerData
+    {
+        public List<PizzaModel> Pizzas { get; set; }
+        public List<SizeModel> Sizes { get; set; }
     }
 }
