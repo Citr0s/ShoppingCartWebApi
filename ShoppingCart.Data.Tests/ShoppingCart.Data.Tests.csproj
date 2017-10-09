@@ -51,6 +51,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Size\GivenAGetSizeRepository\WhenARequestIsMadeToRetrieveAllSizeRecords.cs" />
+    <Compile Include="Size\GivenAGetSizeRepository\WhenTheDatabaseFailsToRetrieveTheSizeRecords.cs" />
     <Compile Include="Pizza\GivenAGetPizzaRepository\WhenARequestIsMadeToRetrieveAllPizzaRecords.cs" />
     <Compile Include="Pizza\GivenAGetPizzaRepository\WhenTheDatabaseFailsToRetrieveThePizzaRecords.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace ShoppingCart.Data.Pizza
+﻿namespace ShoppingCart.Data.Pizza
 {
     public interface IGetPizzaRepository
     {

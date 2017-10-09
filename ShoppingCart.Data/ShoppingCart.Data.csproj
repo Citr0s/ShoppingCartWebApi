@@ -67,6 +67,10 @@
     <Compile Include="Pizza\PizzaRecord.cs" />
     <Compile Include="Pizza\GetPizzaRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Size\GetSizeRepository.cs" />
+    <Compile Include="Size\GetSizesResponse.cs" />
+    <Compile Include="Size\IGetSizeRepository.cs" />
+    <Compile Include="Size\SizeRecord.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
