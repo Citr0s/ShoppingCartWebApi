@@ -7,4 +7,11 @@
 {
     <li>@pizza.Name</li>
 }
+    
+<h1>Sizes</h1>
+<ul>
+    @foreach (var size in Model.Sizes)
+    {
+        <li>@size.Name</li>
+    }
 </ul>
