@@ -7,6 +7,7 @@ using FluentNHibernate.Cfg.Db;
 using NHibernate;
 using NHibernate.Linq;
 using ShoppingCart.Data.Pizza;
+using ShoppingCart.Data.Size;
 
 namespace ShoppingCart.Data.Database
 {
@@ -21,6 +22,7 @@ namespace ShoppingCart.Data.Database
             _sessionFactory = Fluently.Configure()
                 .Database(MySQLConfiguration.Standard.ConnectionString("server=127.0.0.1;port=3306;uid=root;pwd=;database=shoppingcart;"))
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<PizzaRecordMap>())
+                .Mappings(m => m.FluentMappings.AddFromAssemblyOf<SizeRecordMap>())
                 .BuildSessionFactory();
         }
 
