@@ -73,8 +73,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\GivenARequestToAHomeController\WhenTheIndexPageIsRequested.cs" />
-    <Compile Include="Sizes\GivenASizeService\WhenASuccessfulRequestIsProvided.cs" />
-    <Compile Include="Sizes\GivenASizeService\WhenGetSizeRepositoryReturnsAnError.cs" />
+    <Compile Include="Topping\GivenAToppingService\WhenASuccessfulRequestIsProvided.cs" />
+    <Compile Include="Topping\GivenAToppingService\WhenGetToppingRepositoryReturnsAnError.cs" />
+    <Compile Include="Size\GivenASizeService\WhenASuccessfulRequestIsProvided.cs" />
+    <Compile Include="Size\GivenASizeService\WhenGetSizeRepositoryReturnsAnError.cs" />
     <Compile Include="Pizza\GivenAPizzaService\WhenASuccessfulRequestIsProvided.cs" />
     <Compile Include="Pizza\GivenAPizzaService\WhenGetPizzaRepositoryReturnsAnError.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

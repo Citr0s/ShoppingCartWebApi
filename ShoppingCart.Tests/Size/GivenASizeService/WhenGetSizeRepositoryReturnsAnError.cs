@@ -4,7 +4,7 @@ using ShoppingCart.Core.Communication;
 using ShoppingCart.Data.Size;
 using ShoppingCart.Size;
 
-namespace ShoppingCart.Tests.Sizes.GivenASizeService
+namespace ShoppingCart.Tests.Size.GivenASizeService
 {
     [TestFixture]
     public class WhenGetSizeRepositoryReturnsAnError

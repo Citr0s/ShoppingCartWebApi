@@ -4,6 +4,7 @@ using NUnit.Framework;
 using ShoppingCart.Controllers;
 using ShoppingCart.Pizza;
 using ShoppingCart.Size;
+using ShoppingCart.Topping;
 
 namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeController
 {
@@ -12,6 +13,7 @@ namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeController
     {
         private Mock<IPizzaService> _pizzaService;
         private Mock<ISizeService> _sizeService;
+        private Mock<IToppingService> _toppingService;
 
         [SetUp]
         public void SetUp()
@@ -40,7 +42,19 @@ namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeController
                 }
             });
 
-            var subject = new HomeController(_pizzaService.Object, _sizeService.Object);
+            _toppingService = new Mock<IToppingService>();
+            _toppingService.Setup(x => x.GetAll()).Returns(new GetAllToppingsResponse
+            {
+                Toppings = new List<ToppingModel>
+                {
+                    new ToppingModel
+                    {
+                        Name = "Onion"
+                    }
+                }
+            });
+
+            var subject = new HomeController(_pizzaService.Object, _sizeService.Object, _toppingService.Object);
 
             subject.Index();
         }
@@ -55,6 +69,12 @@ namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeController
         public void ThenTheSizeServiceIsCalled()
         {
             _sizeService.Verify(x => x.GetAll(), Times.Once);
+        }
+
+        [Test]
+        public void ThenTheToppingServiceIsCalled()
+        {
+            _toppingService.Verify(x => x.GetAll(), Times.Once);
         }
     }
 }

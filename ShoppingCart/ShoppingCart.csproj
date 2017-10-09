@@ -146,6 +146,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Topping\GetAllToppingsResponse.cs" />
+    <Compile Include="Topping\IToppingService.cs" />
+    <Compile Include="Topping\ToppingModel.cs" />
+    <Compile Include="Topping\ToppingService.cs" />
     <Compile Include="Size\GetAllSizesResponse.cs" />
     <Compile Include="Size\ISizeService.cs" />
     <Compile Include="Size\SizeModel.cs" />
