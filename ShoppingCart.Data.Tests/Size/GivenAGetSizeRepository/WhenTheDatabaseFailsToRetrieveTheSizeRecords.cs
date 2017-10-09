@@ -15,7 +15,7 @@ namespace ShoppingCart.Data.Tests.Size.GivenAGetSizeRepository
         public void SetUp()
         {
             var database = new Mock<IDatabase>();
-            database.Setup(x => x.Select<SizeRecord>()).Throws<Exception>();
+            database.Setup(x => x.Query<SizeRecord>()).Throws<Exception>();
 
             var subject = new GetSizeRepository(database.Object);
             _result = subject.GetAll();

@@ -26,7 +26,7 @@ namespace ShoppingCart.Data.Database
                 .BuildSessionFactory();
         }
 
-        public List<T> Select<T>()
+        public List<T> Query<T>()
         {
             var response = new List<T>();
 

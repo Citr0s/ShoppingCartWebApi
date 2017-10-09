@@ -19,7 +19,7 @@ namespace ShoppingCart.Data.Size
 
             try
             {
-                response.Sizes = _database.Select<SizeRecord>();
+                response.Sizes = _database.Query<SizeRecord>();
             }
             catch (Exception)
             {
