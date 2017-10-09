@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using ShoppingCart.Core.Communication;
 using ShoppingCart.Data.Pizza;
+using ShoppingCart.Data.PizzaPrice;
 using ShoppingCart.Pizza;
 
 namespace ShoppingCart.Tests.Pizza.GivenAPizzaService
@@ -14,8 +15,8 @@ namespace ShoppingCart.Tests.Pizza.GivenAPizzaService
         [SetUp]
         public void SetUp()
         {
-            var getPizzaRepository = new Mock<IGetPizzaRepository>();
-            getPizzaRepository.Setup(x => x.GetAll()).Returns(new GetPizzasResponse
+            var getPizzaRepository = new Mock<IGetPizzaPriceRepository>();
+            getPizzaRepository.Setup(x => x.GetAll()).Returns(new GetPizzaPricesResponse
             {
                 HasError = true,
                 Error = new Error

@@ -21,9 +21,9 @@ namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeController
             _pizzaService = new Mock<IPizzaService>();
             _pizzaService.Setup(x => x.GetAll()).Returns(new GetAllPizzasResponse
             {
-                Pizzas = new List<PizzaModel>
+                Pizzas = new List<PizzaPriceModel>
                 {
-                    new PizzaModel
+                    new PizzaPriceModel
                     {
                         Name = "Original"
                     }

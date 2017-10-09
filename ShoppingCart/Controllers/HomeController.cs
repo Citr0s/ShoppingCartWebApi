@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
-using ShoppingCart.Data.Pizza;
 using ShoppingCart.Pizza;
 using ShoppingCart.Data.Database;
+using ShoppingCart.Data.PizzaPrice;
 using ShoppingCart.Data.Size;
 using ShoppingCart.Data.Topping;
 using ShoppingCart.Size;
@@ -17,7 +17,7 @@ namespace ShoppingCart.Controllers
         private readonly IToppingService _toppingService;
 
         public HomeController() 
-            : this(new PizzaService(new GetPizzaRepository(new NhibernateDatabase())),
+            : this(new PizzaService(new GetPizzaPriceRepository(new NhibernateDatabase())),
                   new SizeService(new GetSizeRepository(new NhibernateDatabase())),
                 new ToppingService(new GetToppingRepository(new NhibernateDatabase()))) { }
 
@@ -42,7 +42,7 @@ namespace ShoppingCart.Controllers
 
     public class HomeControllerData
     {
-        public List<PizzaModel> Pizzas { get; set; }
+        public List<PizzaPriceModel> Pizzas { get; set; }
         public List<SizeModel> Sizes { get; set; }
         public List<ToppingModel> Toppings { get; set; }
     }

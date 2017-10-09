@@ -7,9 +7,9 @@ namespace ShoppingCart.Pizza
     {
         public GetAllPizzasResponse()
         {
-            Pizzas = new List<PizzaModel>();
+            Pizzas = new List<PizzaPriceModel>();
         }
 
-        public List<PizzaModel> Pizzas { get; set; }
+        public List<PizzaPriceModel> Pizzas { get; set; }
     }
 }
