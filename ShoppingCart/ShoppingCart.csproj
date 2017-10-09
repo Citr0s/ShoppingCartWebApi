@@ -146,6 +146,10 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Size\GetAllSizesResponse.cs" />
+    <Compile Include="Size\ISizeService.cs" />
+    <Compile Include="Size\SizeModel.cs" />
+    <Compile Include="Size\SizeService.cs" />
     <Compile Include="Pizza\GetAllPizzasResponse.cs" />
     <Compile Include="Pizza\IPizzaService.cs" />
     <Compile Include="Pizza\PizzaModel.cs" />
