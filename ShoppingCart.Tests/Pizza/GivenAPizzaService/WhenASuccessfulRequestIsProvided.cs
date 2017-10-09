@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
 using ShoppingCart.Data.Pizza;
-using ShoppingCart.Data.PizzaPrice;
-using ShoppingCart.Data.Size;
 using ShoppingCart.Pizza;
 
 namespace ShoppingCart.Tests.Pizza.GivenAPizzaService

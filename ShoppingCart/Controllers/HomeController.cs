@@ -1,11 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using ShoppingCart.Pizza;
-using ShoppingCart.Data.Database;
-using ShoppingCart.Data.Pizza;
-using ShoppingCart.Data.PizzaPrice;
-using ShoppingCart.Data.Size;
-using ShoppingCart.Data.Topping;
+using ShoppingCart.Factories;
 using ShoppingCart.PizzaPrice;
 using ShoppingCart.Size;
 using ShoppingCart.Topping;
@@ -19,14 +15,14 @@ namespace ShoppingCart.Controllers
         private readonly IToppingService _toppingService;
         private readonly IPizzaPriceService _pizzaPriceService;
 
-        public HomeController() : this(new PizzaService(new PizzaRepository(new NhibernateDatabase())), new SizeService(new SizeRepository(new NhibernateDatabase())), new ToppingService(new ToppingRepository(new NhibernateDatabase())), new PizzaPriceService(new PizzaPriceRepository(new NhibernateDatabase()))) { }
+        public HomeController() : this(new HomeControllerFactory()) { }
 
-        public HomeController(IPizzaService pizzaService, ISizeService sizeService, IToppingService toppingService, IPizzaPriceService pizzaPriceService)
+        public HomeController(IHomeControllerFactory homeControllerFactory)
         {
-            _sizeService = sizeService;
-            _toppingService = toppingService;
-            _pizzaPriceService = pizzaPriceService;
-            _pizzaService = pizzaService;
+            _pizzaService = homeControllerFactory.PizzaService;
+            _sizeService = homeControllerFactory.SizeService;
+            _toppingService = homeControllerFactory.ToppingService;
+            _pizzaPriceService = homeControllerFactory.PizzaPriceService;
         }
 
         public ActionResult Index()
