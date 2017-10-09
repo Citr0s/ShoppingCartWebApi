@@ -61,7 +61,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Database\IDatabase.cs" />
-    <Compile Include="Database\JsonDatabase.cs" />
     <Compile Include="Database\NhibernateDatabase.cs" />
     <Compile Include="Pizza\GetPizzasResponse.cs" />
     <Compile Include="Pizza\IGetPizzaRepository.cs" />

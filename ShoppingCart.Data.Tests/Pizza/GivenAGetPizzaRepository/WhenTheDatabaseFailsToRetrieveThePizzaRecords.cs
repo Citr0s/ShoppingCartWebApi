@@ -15,7 +15,7 @@ namespace ShoppingCart.Data.Tests.Pizza.GivenAGetPizzaRepository
         public void SetUp()
         {
             var database = new Mock<IDatabase>();
-            database.Setup(x => x.Select<PizzaRecord>("pizzas")).Throws<Exception>();
+            database.Setup(x => x.Select<PizzaRecord>()).Throws<Exception>();
 
             var subject = new GetPizzaRepository(database.Object);
             _result = subject.GetAll();

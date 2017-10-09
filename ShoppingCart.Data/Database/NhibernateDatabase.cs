@@ -1,39 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using FluentNHibernate.Cfg;
 using FluentNHibernate.Cfg.Db;
 using MySql.Data.MySqlClient;
+using NHibernate;
+using NHibernate.Linq;
 using ShoppingCart.Data.Pizza;
 
 namespace ShoppingCart.Data.Database
 {
     public class NhibernateDatabase : IDatabase
     {
+        private readonly ISessionFactory _sessionFactory;
+
         public NhibernateDatabase()
         {
             AppDomain.CurrentDomain.AssemblyResolve += (sender, e) => Assembly.GetCallingAssembly();
 
-            var sessionFactory = Fluently.Configure()
+            _sessionFactory = Fluently.Configure()
                 .Database(MySQLConfiguration.Standard.ConnectionString("server=127.0.0.1;port=3306;uid=root;pwd=;database=shoppingcart;"))
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<PizzaRecordMap>())
                 .BuildSessionFactory();
-
-            using (var session = sessionFactory.OpenSession())
-            {
-                session.Save(new PizzaRecord
-                {
-                    Id = 1,
-                    Name = "Hello there!"
-                });
-
-                var pizza = session.Get<PizzaRecord>(1);
-            }
         }
 
-        public List<T> Select<T>(string tableName)
+        public List<T> Select<T>()
         {
-            return new List<T>();
+            var response = new List<T>();
+
+            using (var session = _sessionFactory.OpenSession())
+            {
+                response = session.Query<T>().ToList();
+            }
+
+            return response;
         }
     }
 

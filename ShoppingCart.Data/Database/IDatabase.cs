@@ -4,6 +4,6 @@ namespace ShoppingCart.Data.Database
 {
     public interface IDatabase
     {
-        List<T> Select<T>(string tableName);
+        List<T> Select<T>();
     }
 }
