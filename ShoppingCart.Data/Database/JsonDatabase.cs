@@ -18,27 +18,27 @@ namespace ShoppingCart.Data.Database
                     {
                         new PizzaRecord
                         {
-                            Identifier = 1,
+                            Id = 1,
                             Name = "Original"
                         },
                         new PizzaRecord
                         {
-                            Identifier = 2,
+                            Id = 2,
                             Name = "Gimme the Meat"
                         },
                         new PizzaRecord
                         {
-                            Identifier = 3,
+                            Id = 3,
                             Name = "Veggie Delight"
                         },
                         new PizzaRecord
                         {
-                            Identifier = 4,
+                            Id = 4,
                             Name = "Make Mine Hot"
                         },
                         new PizzaRecord
                         {
-                            Identifier = 5,
+                            Id = 5,
                             Name = "Create Your Own"
                         }
                     })

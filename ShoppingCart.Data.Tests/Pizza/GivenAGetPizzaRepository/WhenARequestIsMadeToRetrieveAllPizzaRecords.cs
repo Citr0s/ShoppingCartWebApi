@@ -19,12 +19,12 @@ namespace ShoppingCart.Data.Tests.Pizza.GivenAGetPizzaRepository
             {
                 new PizzaRecord
                 {
-                    Identifier = 1,
+                    Id = 1,
                     Name = "Original"
                 },
                 new PizzaRecord
                 {
-                    Identifier = 2,
+                    Id = 2,
                     Name = "Gimme the Meat"
                 },
             });
@@ -43,7 +43,7 @@ namespace ShoppingCart.Data.Tests.Pizza.GivenAGetPizzaRepository
         [TestCase(1, 2)]
         public void ThenThePizzaRecordIdentifierIsMappedCorrectly(int index, int identifier)
         {
-            Assert.That(_result.Pizzas[index].Identifier, Is.EqualTo(identifier));
+            Assert.That(_result.Pizzas[index].Id, Is.EqualTo(identifier));
         }
 
         [TestCase(0, "Original")]

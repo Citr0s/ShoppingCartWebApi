@@ -9,7 +9,7 @@ namespace ShoppingCart.Controllers
     {
         private readonly IPizzaService _pizzaService;
 
-        public HomeController() : this(new PizzaService(new GetPizzaRepository(new JsonDatabase()))) { }
+        public HomeController() : this(new PizzaService(new GetPizzaRepository(new NhibernateDatabase()))) { }
 
         public HomeController(IPizzaService pizzaService)
         {

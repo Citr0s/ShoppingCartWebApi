@@ -21,12 +21,12 @@ namespace ShoppingCart.Tests.Pizza.GivenAPizzaService
                 {
                     new PizzaRecord
                     {
-                        Identifier = 1,
+                        Id = 1,
                         Name = "Original"
                     },
                     new PizzaRecord
                     {
-                        Identifier = 2,
+                        Id = 2,
                         Name = "Veggie Delight"
                     }
                 }
