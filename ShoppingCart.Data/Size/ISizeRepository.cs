@@ -1,6 +1,6 @@
 ﻿namespace ShoppingCart.Data.Size
 {
-    public interface IGetSizeRepository
+    public interface ISizeRepository
     {
         GetSizesResponse GetAll();
     }

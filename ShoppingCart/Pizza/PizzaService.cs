@@ -4,18 +4,18 @@ namespace ShoppingCart.Pizza
 {
     public class PizzaService : IPizzaService
     {
-        private readonly IGetPizzaRepository _getPizzaRepository;
+        private readonly IPizzaRepository _pizzaRepository;
 
-        public PizzaService(IGetPizzaRepository getPizzaRepository)
+        public PizzaService(IPizzaRepository pizzaRepository)
         {
-            _getPizzaRepository = getPizzaRepository;
+            _pizzaRepository = pizzaRepository;
         }
 
         public GetAllPizzasResponse GetAll()
         {
             var response = new GetAllPizzasResponse();
 
-            var getAllPizzaPricesResponse = _getPizzaRepository.GetAll();
+            var getAllPizzaPricesResponse = _pizzaRepository.GetAll();
 
             if (getAllPizzaPricesResponse.HasError)
             {

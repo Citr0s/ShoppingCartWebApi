@@ -2,30 +2,30 @@
 using ShoppingCart.Core.Communication;
 using ShoppingCart.Data.Database;
 
-namespace ShoppingCart.Data.Size
+namespace ShoppingCart.Data.Topping
 {
-    public class GetSizeRepository : IGetSizeRepository
+    public class ToppingRepository : IToppingRepository
     {
         private readonly IDatabase _database;
 
-        public GetSizeRepository(IDatabase database)
+        public ToppingRepository(IDatabase database)
         {
             _database = database;
         }
 
-        public GetSizesResponse GetAll()
+        public GetToppingsResponse GetAll()
         {
-            var response = new GetSizesResponse();
+            var response = new GetToppingsResponse();
 
             try
             {
-                response.Sizes = _database.Query<SizeRecord>();
+                response.Toppings = _database.Query<ToppingRecord>();
             }
             catch (Exception)
             {
                 response.AddError(new Error
                 {
-                    Message = "Something went wrong when retrieving SizeRecords from database."
+                    Message = "Something went wrong when retrieving ToppingRecord from database."
                 });
             }
 

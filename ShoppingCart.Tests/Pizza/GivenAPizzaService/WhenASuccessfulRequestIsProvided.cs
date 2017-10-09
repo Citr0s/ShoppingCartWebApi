@@ -17,7 +17,7 @@ namespace ShoppingCart.Tests.Pizza.GivenAPizzaService
         [SetUp]
         public void SetUp()
         {
-            var getPizzaRepository = new Mock<IGetPizzaRepository>();
+            var getPizzaRepository = new Mock<IPizzaRepository>();
             getPizzaRepository.Setup(x => x.GetAll()).Returns(new GetPizzasResponse
             {
                 Pizzas = new List<PizzaRecord>

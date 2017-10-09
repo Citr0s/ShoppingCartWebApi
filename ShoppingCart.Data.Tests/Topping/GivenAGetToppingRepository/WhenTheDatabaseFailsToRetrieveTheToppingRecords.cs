@@ -17,7 +17,7 @@ namespace ShoppingCart.Data.Tests.Topping.GivenAGetToppingRepository
             var database = new Mock<IDatabase>();
             database.Setup(x => x.Query<ToppingRecord>()).Throws<Exception>();
 
-            var subject = new GetToppingRepository(database.Object);
+            var subject = new ToppingRepository(database.Object);
             _result = subject.GetAll();
         }
 

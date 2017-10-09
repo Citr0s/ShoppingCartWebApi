@@ -62,22 +62,22 @@
   <ItemGroup>
     <Compile Include="Database\IDatabase.cs" />
     <Compile Include="Database\NhibernateDatabase.cs" />
-    <Compile Include="PizzaPrice\GetPizzaPriceRepository.cs" />
+    <Compile Include="PizzaPrice\PizzaPriceRepository.cs" />
     <Compile Include="PizzaPrice\GetPizzaPricesResponse.cs" />
-    <Compile Include="PizzaPrice\IGetPizzaPriceRepository.cs" />
+    <Compile Include="PizzaPrice\IPizzaPriceRepository.cs" />
     <Compile Include="PizzaPrice\PizzaPriceRecord.cs" />
     <Compile Include="Pizza\GetPizzasResponse.cs" />
-    <Compile Include="Pizza\IGetPizzaRepository.cs" />
+    <Compile Include="Pizza\IPizzaRepository.cs" />
     <Compile Include="Pizza\PizzaRecord.cs" />
-    <Compile Include="Pizza\GetPizzaRepository.cs" />
+    <Compile Include="Pizza\PizzaRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Topping\GetToppingRepository.cs" />
+    <Compile Include="Topping\ToppingRepository.cs" />
     <Compile Include="Topping\GetToppingsResponse.cs" />
-    <Compile Include="Topping\IGetToppingRepository.cs" />
+    <Compile Include="Topping\IToppingRepository.cs" />
     <Compile Include="Topping\ToppingRecord.cs" />
-    <Compile Include="Size\GetSizeRepository.cs" />
+    <Compile Include="Size\SizeRepository.cs" />
     <Compile Include="Size\GetSizesResponse.cs" />
-    <Compile Include="Size\IGetSizeRepository.cs" />
+    <Compile Include="Size\ISizeRepository.cs" />
     <Compile Include="Size\SizeRecord.cs" />
   </ItemGroup>
   <ItemGroup>

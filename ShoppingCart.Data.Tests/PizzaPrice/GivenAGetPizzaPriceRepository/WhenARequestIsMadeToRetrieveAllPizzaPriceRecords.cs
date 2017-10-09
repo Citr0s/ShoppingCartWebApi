@@ -51,7 +51,7 @@ namespace ShoppingCart.Data.Tests.PizzaPrice.GivenAGetPizzaPriceRepository
                 }
             });
 
-            var subject = new GetPizzaPriceRepository(database.Object);
+            var subject = new PizzaPriceRepository(database.Object);
             _result = subject.GetAll();
         }
 

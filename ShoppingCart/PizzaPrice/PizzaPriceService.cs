@@ -5,18 +5,18 @@ namespace ShoppingCart.PizzaPrice
 {
     public class PizzaPriceService : IPizzaPriceService
     {
-        private readonly IGetPizzaPriceRepository _getPizzaPriceRepository;
+        private readonly IPizzaPriceRepository _pizzaPriceRepository;
 
-        public PizzaPriceService(IGetPizzaPriceRepository getPizzaPriceRepository)
+        public PizzaPriceService(IPizzaPriceRepository pizzaPriceRepository)
         {
-            _getPizzaPriceRepository = getPizzaPriceRepository;
+            _pizzaPriceRepository = pizzaPriceRepository;
         }
 
         public GetAllPizzaPricesResponse GetAll()
         {
             var response = new GetAllPizzaPricesResponse();
 
-            var getAllPizzaPricesResponse = _getPizzaPriceRepository.GetAll();
+            var getAllPizzaPricesResponse = _pizzaPriceRepository.GetAll();
 
             if (getAllPizzaPricesResponse.HasError)
             {

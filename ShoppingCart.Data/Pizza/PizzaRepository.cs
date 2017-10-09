@@ -2,30 +2,30 @@
 using ShoppingCart.Core.Communication;
 using ShoppingCart.Data.Database;
 
-namespace ShoppingCart.Data.Topping
+namespace ShoppingCart.Data.Pizza
 {
-    public class GetToppingRepository : IGetToppingRepository
+    public class PizzaRepository : IPizzaRepository
     {
         private readonly IDatabase _database;
 
-        public GetToppingRepository(IDatabase database)
+        public PizzaRepository(IDatabase database)
         {
             _database = database;
         }
 
-        public GetToppingsResponse GetAll()
+        public GetPizzasResponse GetAll()
         {
-            var response = new GetToppingsResponse();
+            var response = new GetPizzasResponse();
 
             try
             {
-                response.Toppings = _database.Query<ToppingRecord>();
+                response.Pizzas = _database.Query<PizzaRecord>();
             }
             catch (Exception)
             {
                 response.AddError(new Error
                 {
-                    Message = "Something went wrong when retrieving ToppingRecord from database."
+                    Message = "Something went wrong when retrieving PizzaRecords from database."
                 });
             }
 

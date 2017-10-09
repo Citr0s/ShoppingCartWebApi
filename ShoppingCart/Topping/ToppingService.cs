@@ -4,18 +4,18 @@ namespace ShoppingCart.Topping
 {
     public class ToppingService : IToppingService
     {
-        private readonly IGetToppingRepository _getToppingRepository;
+        private readonly IToppingRepository _toppingRepository;
 
-        public ToppingService(IGetToppingRepository getToppingRepository)
+        public ToppingService(IToppingRepository toppingRepository)
         {
-            _getToppingRepository = getToppingRepository;
+            _toppingRepository = toppingRepository;
         }
 
         public GetAllToppingsResponse GetAll()
         {
             var response = new GetAllToppingsResponse();
 
-            var getAllToppingsResponse = _getToppingRepository.GetAll();
+            var getAllToppingsResponse = _toppingRepository.GetAll();
 
             if (getAllToppingsResponse.HasError)
             {

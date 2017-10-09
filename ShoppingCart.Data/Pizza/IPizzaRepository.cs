@@ -1,6 +1,6 @@
 ﻿namespace ShoppingCart.Data.Pizza
 {
-    public interface IGetPizzaRepository
+    public interface IPizzaRepository
     {
         GetPizzasResponse GetAll();
     }

@@ -4,18 +4,18 @@ namespace ShoppingCart.Size
 {
     public class SizeService : ISizeService
     {
-        private readonly IGetSizeRepository _getSizeRepository;
+        private readonly ISizeRepository _sizeRepository;
 
-        public SizeService(IGetSizeRepository getSizeRepository)
+        public SizeService(ISizeRepository sizeRepository)
         {
-            _getSizeRepository = getSizeRepository;
+            _sizeRepository = sizeRepository;
         }
 
         public GetAllSizesResponse GetAll()
         {
             var response = new GetAllSizesResponse();
 
-            var getAllSizesResponse = _getSizeRepository.GetAll();
+            var getAllSizesResponse = _sizeRepository.GetAll();
 
             if (getAllSizesResponse.HasError)
             {

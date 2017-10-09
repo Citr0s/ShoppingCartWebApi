@@ -29,7 +29,7 @@ namespace ShoppingCart.Data.Tests.Pizza.GivenAGetPizzaRepository
                 }
             });
 
-            var subject = new GetPizzaRepository(database.Object);
+            var subject = new PizzaRepository(database.Object);
             _result = subject.GetAll();
         }
 

@@ -29,7 +29,7 @@ namespace ShoppingCart.Data.Tests.Topping.GivenAGetToppingRepository
                 }
             });
 
-            var subject = new GetToppingRepository(database.Object);
+            var subject = new ToppingRepository(database.Object);
             _result = subject.GetAll();
         }
 

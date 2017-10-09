@@ -14,7 +14,7 @@ namespace ShoppingCart.Tests.Topping.GivenAToppingService
         [SetUp]
         public void SetUp()
         {
-            var getToppingRepository = new Mock<IGetToppingRepository>();
+            var getToppingRepository = new Mock<IToppingRepository>();
             getToppingRepository.Setup(x => x.GetAll()).Returns(new GetToppingsResponse
             {
                 HasError = true,

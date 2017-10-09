@@ -19,11 +19,7 @@ namespace ShoppingCart.Controllers
         private readonly IToppingService _toppingService;
         private readonly IPizzaPriceService _pizzaPriceService;
 
-        public HomeController() 
-            : this(new PizzaService(new GetPizzaRepository(new NhibernateDatabase())),
-                  new SizeService(new GetSizeRepository(new NhibernateDatabase())),
-                new ToppingService(new GetToppingRepository(new NhibernateDatabase())),
-                new PizzaPriceService(new GetPizzaPriceRepository(new NhibernateDatabase()))) { }
+        public HomeController() : this(new PizzaService(new PizzaRepository(new NhibernateDatabase())), new SizeService(new SizeRepository(new NhibernateDatabase())), new ToppingService(new ToppingRepository(new NhibernateDatabase())), new PizzaPriceService(new PizzaPriceRepository(new NhibernateDatabase()))) { }
 
         public HomeController(IPizzaService pizzaService, ISizeService sizeService, IToppingService toppingService, IPizzaPriceService pizzaPriceService)
         {

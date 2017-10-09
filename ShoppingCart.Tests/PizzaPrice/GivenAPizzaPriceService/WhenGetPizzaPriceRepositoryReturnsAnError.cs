@@ -14,7 +14,7 @@ namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaPriceService
         [SetUp]
         public void SetUp()
         {
-            var getPizzaPriceRepository = new Mock<IGetPizzaPriceRepository>();
+            var getPizzaPriceRepository = new Mock<IPizzaPriceRepository>();
             getPizzaPriceRepository.Setup(x => x.GetAll()).Returns(new GetPizzaPricesResponse
             {
                 HasError = true,

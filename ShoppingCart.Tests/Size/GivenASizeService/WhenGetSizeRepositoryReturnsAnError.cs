@@ -14,7 +14,7 @@ namespace ShoppingCart.Tests.Size.GivenASizeService
         [SetUp]
         public void SetUp()
         {
-            var getSizeRespository = new Mock<IGetSizeRepository>();
+            var getSizeRespository = new Mock<ISizeRepository>();
             getSizeRespository.Setup(x => x.GetAll()).Returns(new GetSizesResponse
             {
                 HasError = true,

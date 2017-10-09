@@ -34,7 +34,7 @@ namespace ShoppingCart.Data.Tests.Size.GivenAGetSizeRepository
                 }
             });
 
-            var subject = new GetSizeRepository(database.Object);
+            var subject = new SizeRepository(database.Object);
             _result = subject.GetAll();
         }
 

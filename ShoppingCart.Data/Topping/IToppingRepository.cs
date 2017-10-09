@@ -1,6 +1,6 @@
 ﻿namespace ShoppingCart.Data.Topping
 {
-    public interface IGetToppingRepository
+    public interface IToppingRepository
     {
         GetToppingsResponse GetAll();
     }
