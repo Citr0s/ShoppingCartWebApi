@@ -3,6 +3,7 @@ using ShoppingCart.Data.Database;
 using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.PizzaTopping;
 using ShoppingCart.PizzaPrice;
+using ShoppingCart.UserSession;
 
 namespace ShoppingCart.Controllers
 {
@@ -19,6 +20,9 @@ namespace ShoppingCart.Controllers
 
         public ActionResult Index()
         {
+            if (Session["UserId"] == null)
+                Session["UserId"] = UserSessionService.Instance().NewUser();
+
             return View(_pizzaSizeService.GetAll().Pizzas);
         }
     }
