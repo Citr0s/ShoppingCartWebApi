@@ -6,10 +6,10 @@ using ShoppingCart.Data.Pizza;
 using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.Size;
 
-namespace ShoppingCart.Data.Tests.PizzaPrice.GivenAGetPizzaPriceRepository
+namespace ShoppingCart.Data.Tests.PizzaPrice.GivenAGetPizzaSizeRepository
 {
     [TestFixture]
-    public class WhenARequestIsMadeToRetrieveAllPizzaPriceRecords
+    public class WhenARequestIsMadeToRetrieveAllPizzaSizeRecords
     {
         private GetPizzaSizesResponse _result;
 
@@ -58,42 +58,42 @@ namespace ShoppingCart.Data.Tests.PizzaPrice.GivenAGetPizzaPriceRepository
         [Test]
         public void ThenAllPizzaRecordsAreReturned()
         {
-            Assert.That(_result.PizzaPrices.Count, Is.EqualTo(2));
+            Assert.That(_result.PizzaSizes.Count, Is.EqualTo(2));
         }
 
         [TestCase(0, 1)]
         [TestCase(1, 2)]
         public void ThenThePizzaPriceRecordIdentifierIsMappedCorrectly(int index, int identifier)
         {
-            Assert.That(_result.PizzaPrices[index].Id, Is.EqualTo(identifier));
+            Assert.That(_result.PizzaSizes[index].Id, Is.EqualTo(identifier));
         }
 
         [TestCase(0, 1)]
         [TestCase(1, 2)]
         public void ThenThePizzaRecordIdentifierIsMappedCorrectly(int index, int identifier)
         {
-            Assert.That(_result.PizzaPrices[index].Pizza.Id, Is.EqualTo(identifier));
+            Assert.That(_result.PizzaSizes[index].Pizza.Id, Is.EqualTo(identifier));
         }
 
         [TestCase(0, 1)]
         [TestCase(1, 2)]
         public void ThenTheSizeRecordIdentifierIsMappedCorrectly(int index, int identifier)
         {
-            Assert.That(_result.PizzaPrices[index].Size.Id, Is.EqualTo(identifier));
+            Assert.That(_result.PizzaSizes[index].Size.Id, Is.EqualTo(identifier));
         }
 
         [TestCase(0, "Original")]
         [TestCase(1, "Gimme the Meat")]
         public void ThenThePizzaRecordNameIsMappedCorrectly(int index, string name)
         {
-            Assert.That(_result.PizzaPrices[index].Pizza.Name, Is.EqualTo(name));
+            Assert.That(_result.PizzaSizes[index].Pizza.Name, Is.EqualTo(name));
         }
 
         [TestCase(0, "Small")]
         [TestCase(1, "Medium")]
         public void ThenThSizeRecordNameIsMappedCorrectly(int index, string name)
         {
-            Assert.That(_result.PizzaPrices[index].Size.Name, Is.EqualTo(name));
+            Assert.That(_result.PizzaSizes[index].Size.Name, Is.EqualTo(name));
         }
     }
 }

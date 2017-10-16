@@ -15,7 +15,7 @@ namespace ShoppingCart.Data.PizzaTopping
     {
         public PizzaToppingRecordMap()
         {
-            Table("pizza_topping");
+            Table("pizza_toppings");
             Id(x => x.Id);
             References(x => x.Pizza).Column("pizza_id").Not.LazyLoad();
             References(x => x.Topping).Column("topping_id").Not.LazyLoad();

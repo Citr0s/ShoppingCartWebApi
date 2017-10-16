@@ -4,10 +4,10 @@ using NUnit.Framework;
 using ShoppingCart.Data.Database;
 using ShoppingCart.Data.PizzaSize;
 
-namespace ShoppingCart.Data.Tests.PizzaPrice.GivenAGetPizzaPriceRepository
+namespace ShoppingCart.Data.Tests.PizzaPrice.GivenAGetPizzaSizeRepository
 {
     [TestFixture]
-    public class WhenTheDatabaseFailsToRetrieveThePizzaPriceRecords
+    public class WhenTheDatabaseFailsToRetrieveThePizzaSizeRecords
     {
         private GetPizzaSizesResponse _result;
 
@@ -36,7 +36,7 @@ namespace ShoppingCart.Data.Tests.PizzaPrice.GivenAGetPizzaPriceRepository
         [Test]
         public void ThenAnEmptyListOfPizzaRecordsIsReturned()
         {
-            Assert.That(_result.PizzaPrices.Count, Is.Zero);
+            Assert.That(_result.PizzaSizes.Count, Is.Zero);
         }
     }
 }

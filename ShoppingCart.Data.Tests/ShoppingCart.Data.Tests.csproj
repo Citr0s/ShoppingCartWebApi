@@ -53,8 +53,10 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="PizzaPrice\GivenAGetPizzaPriceRepository\WhenARequestIsMadeToRetrieveAllPizzaPriceRecords.cs" />
-    <Compile Include="PizzaPrice\GivenAGetPizzaPriceRepository\WhenTheDatabaseFailsToRetrieveThePizzaPriceRecords.cs" />
+    <Compile Include="PizzaPrice\GivenAGetPizzaSizeRepository\WhenARequestIsMadeToRetrieveAllPizzaSizeRecords.cs" />
+    <Compile Include="PizzaPrice\GivenAGetPizzaSizeRepository\WhenTheDatabaseFailsToRetrieveThePizzaSizeRecords.cs" />
+    <Compile Include="PizzaTopping\GivenAPizzaToppingRepository\WhenARequestIsMadeToRetrieveAllPizzaToppingRecords.cs" />
+    <Compile Include="PizzaTopping\GivenAPizzaToppingRepository\WhenTheDatabaseFailsToRetrieveThePizzaToppingRecords.cs" />
     <Compile Include="Topping\GivenAGetToppingRepository\WhenARequestIsMadeToRetrieveAllToppingRecords.cs" />
     <Compile Include="Topping\GivenAGetToppingRepository\WhenTheDatabaseFailsToRetrieveTheToppingRecords.cs" />
     <Compile Include="Size\GivenAGetSizeRepository\WhenARequestIsMadeToRetrieveAllSizeRecords.cs" />

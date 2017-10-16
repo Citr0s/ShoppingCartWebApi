@@ -4,7 +4,9 @@ using Moq;
 using NUnit.Framework;
 using ShoppingCart.Data.Pizza;
 using ShoppingCart.Data.PizzaSize;
+using ShoppingCart.Data.PizzaTopping;
 using ShoppingCart.Data.Size;
+using ShoppingCart.Data.Topping;
 using ShoppingCart.PizzaPrice;
 
 namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaPriceService
@@ -20,7 +22,7 @@ namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaPriceService
             var getPizzaPriceRepository = new Mock<IPizzaSizeRepository>();
             getPizzaPriceRepository.Setup(x => x.GetAll()).Returns(new GetPizzaSizesResponse
             {
-                PizzaPrices = new List<PizzaSizeRecord>
+                PizzaSizes = new List<PizzaSizeRecord>
                 {
                     new PizzaSizeRecord
                     {
@@ -53,7 +55,41 @@ namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaPriceService
                 }
             });
 
-            var subject = new PizzaSizeService(getPizzaPriceRepository.Object);
+            var pizzaToppingRepository = new Mock<IPizzaToppingRepository>();
+            pizzaToppingRepository.Setup(x => x.GetAll()).Returns(new GetPizzaToppingResponse
+            {
+                PizzaToppings = new List<PizzaToppingRecord>
+                {
+                    new PizzaToppingRecord
+                    {
+                        Pizza = new PizzaRecord
+                        {
+                            Id = 1,
+                            Name = "Original"
+                        },
+                        Topping = new ToppingRecord
+                        {
+                            Id = 1,
+                            Name = "Cheese"
+                        }
+                    },
+                    new PizzaToppingRecord
+                    {
+                        Pizza = new PizzaRecord
+                        {
+                            Id = 1,
+                            Name = "Original"
+                        },
+                        Topping = new ToppingRecord
+                        {
+                            Id = 2,
+                            Name = "Bacon"
+                        }
+                    }
+                }
+            });
+
+            var subject = new PizzaSizeService(getPizzaPriceRepository.Object, pizzaToppingRepository.Object);
             _result = subject.GetAll();
         }
 
@@ -82,6 +118,13 @@ namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaPriceService
         public void ThenThePizzaPriceIsMappedThroughCorrectly(int index, int price)
         {
             Assert.That(_result.Pizzas[index].Sizes.Any(x => x.Value.InPence == price), Is.True);
+        }
+
+        [TestCase("Cheese")]
+        [TestCase("Bacon")]
+        public void ThenThePizzaToppingIsMappedThroughCorrectly(string name)
+        {
+            Assert.That(_result.Pizzas[0].Toppings.Any(x => x.Name == name), Is.True);
         }
     }
 }

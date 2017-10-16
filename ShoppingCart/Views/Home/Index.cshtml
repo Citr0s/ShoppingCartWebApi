@@ -8,7 +8,7 @@
     @foreach (var pizza in Model)
     {
         <div class="col-md-4">
-            <div class="panel panel-default">
+            <div class="panel panel-default" style="height:360px">
                 <div class="panel-heading">
                     <h3 class="panel-title">@pizza.Name</h3>
                 </div>
@@ -22,9 +22,9 @@
                     
                     <h4>Toppings</h4>
                     <ul>
-                        @foreach (var ingredients in pizza.Toppings)
+                        @foreach (var topping in pizza.Toppings)
                         {
-                            <li>@ingredients.Key.Name - @ingredients.Value.InFull</li>
+                            <li>@topping.Name</li>
                         }
                     </ul>
                 </div>

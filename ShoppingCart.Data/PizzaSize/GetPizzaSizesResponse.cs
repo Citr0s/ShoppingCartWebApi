@@ -7,9 +7,9 @@ namespace ShoppingCart.Data.PizzaSize
     {
         public GetPizzaSizesResponse()
         {
-            PizzaPrices = new List<PizzaSizeRecord>();
+            PizzaSizes = new List<PizzaSizeRecord>();
         }
 
-        public List<PizzaSizeRecord> PizzaPrices { get; set; }
+        public List<PizzaSizeRecord> PizzaSizes { get; set; }
     }
 }

@@ -19,7 +19,7 @@ namespace ShoppingCart.Data.PizzaSize
 
             try
             {
-                response.PizzaPrices = _database.Query<PizzaSizeRecord>();
+                response.PizzaSizes = _database.Query<PizzaSizeRecord>();
             }
             catch (Exception)
             {

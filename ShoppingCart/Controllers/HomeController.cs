@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using ShoppingCart.Data.Database;
 using ShoppingCart.Data.PizzaSize;
+using ShoppingCart.Data.PizzaTopping;
 using ShoppingCart.PizzaPrice;
 
 namespace ShoppingCart.Controllers
@@ -10,7 +10,7 @@ namespace ShoppingCart.Controllers
     {
         private readonly IPizzaSizeService _pizzaSizeService;
 
-        public HomeController() : this(new PizzaSizeService(new PizzaSizeRepository(new NhibernateDatabase()))) { }
+        public HomeController() : this(new PizzaSizeService(new PizzaSizeRepository(new NhibernateDatabase()), new PizzaToppingRepository(new NhibernateDatabase()))) { }
 
         public HomeController(IPizzaSizeService pizzaSizeService)
         {

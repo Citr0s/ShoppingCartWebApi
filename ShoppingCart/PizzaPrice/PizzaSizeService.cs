@@ -1,14 +1,17 @@
 ﻿using ShoppingCart.Data.PizzaSize;
+using ShoppingCart.Data.PizzaTopping;
 
 namespace ShoppingCart.PizzaPrice
 {
     public class PizzaSizeService : IPizzaSizeService
     {
         private readonly IPizzaSizeRepository _pizzaSizeRepository;
+        private readonly IPizzaToppingRepository _pizzaToppingRepository;
 
-        public PizzaSizeService(IPizzaSizeRepository pizzaSizeRepository)
+        public PizzaSizeService(IPizzaSizeRepository pizzaSizeRepository, IPizzaToppingRepository pizzaToppingRepository)
         {
             _pizzaSizeRepository = pizzaSizeRepository;
+            _pizzaToppingRepository = pizzaToppingRepository;
         }
 
         public GetAllPizzaSizesResponse GetAll()
@@ -23,7 +26,15 @@ namespace ShoppingCart.PizzaPrice
                 return response;
             }
 
-            response.Pizzas = PizzaSizeMapper.Map(getAllPizzaPricesResponse.PizzaPrices);
+            var getAllPizzaToppingsResponse = _pizzaToppingRepository.GetAll();
+
+            if (getAllPizzaToppingsResponse.HasError)
+            {
+                response.AddError(getAllPizzaToppingsResponse.Error);
+                return response;
+            }
+
+            response.Pizzas = PizzaSizeMapper.Map(getAllPizzaPricesResponse.PizzaSizes, getAllPizzaToppingsResponse.PizzaToppings);
             
             return response;
         }

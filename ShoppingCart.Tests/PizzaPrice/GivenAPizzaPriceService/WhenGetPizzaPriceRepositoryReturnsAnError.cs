@@ -24,7 +24,7 @@ namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaPriceService
                 }
             });
 
-            var subject = new PizzaSizeService(getPizzaPriceRepository.Object);
+            var subject = new PizzaSizeService(getPizzaPriceRepository.Object, null);
             _result = subject.GetAll();
         }
 

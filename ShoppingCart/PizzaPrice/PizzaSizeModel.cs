@@ -10,10 +10,11 @@ namespace ShoppingCart.PizzaPrice
         public PizzaSizeModel()
         {
             Sizes = new Dictionary<SizeModel, Money>();
+            Toppings = new List<ToppingModel>();
         }
 
         public string Name { get; set; }
         public Dictionary<SizeModel, Money> Sizes { get; set; }
-        public Dictionary<ToppingModel, Money> Toppings { get; set; }
+        public List<ToppingModel> Toppings { get; set; }
     }
 }

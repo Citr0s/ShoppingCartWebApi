@@ -3,7 +3,9 @@ using System.Linq;
 using NUnit.Framework;
 using ShoppingCart.Data.Pizza;
 using ShoppingCart.Data.PizzaSize;
+using ShoppingCart.Data.PizzaTopping;
 using ShoppingCart.Data.Size;
+using ShoppingCart.Data.Topping;
 using ShoppingCart.PizzaPrice;
 
 namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaSizeMapper
@@ -56,7 +58,39 @@ namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaSizeMapper
                 }
             };
 
-            _result = PizzaSizeMapper.Map(pizzaPrices);
+            var pizzaToppings = new List<PizzaToppingRecord>
+            {
+                new PizzaToppingRecord
+                {
+                    Id = 1,
+                    Pizza = new PizzaRecord
+                    {
+                        Id = 1,
+                        Name = "Original"
+                    },
+                    Topping = new ToppingRecord
+                    {
+                        Id = 1,
+                        Name = "Cheese"
+                    }
+                },
+                new PizzaToppingRecord
+                {
+                    Id = 1,
+                    Pizza = new PizzaRecord
+                    {
+                        Id = 1,
+                        Name = "Original"
+                    },
+                    Topping = new ToppingRecord
+                    {
+                        Id = 2,
+                        Name = "Bacon"
+                    }
+                }
+            };
+
+            _result = PizzaSizeMapper.Map(pizzaPrices, pizzaToppings);
         }
 
         [TestCase("Small", 900)]
@@ -64,6 +98,13 @@ namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaSizeMapper
         public void ThenTheSizePricesAreCorrectlyAddedUnderTheSamePizzaName(string sizeName, int priceInPence)
         {
             Assert.That(_result.First(x => x.Name == "Original").Sizes.Any(x => x.Key.Name == sizeName && x.Value.InPence == priceInPence), Is.True);
+        }
+
+        [TestCase("Cheese")]
+        [TestCase("Bacon")]
+        public void ThenThePizzaToppingsAreCorrectlyAddedUnderTheSamePizzaName(string name)
+        {
+            Assert.That(_result.First(x => x.Name == "Original").Toppings.Any(x => x.Name == name), Is.True);
         }
 
         [Test]
