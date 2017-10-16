@@ -6,11 +6,11 @@ namespace ShoppingCart.UserSession
     public class UserSessionService
     {
         private static UserSessionService _instance;
-        private readonly Dictionary<Guid, UserSessionData> _userSessions;
+        private readonly Dictionary<Guid, Basket> _userSessions;
 
         public UserSessionService()
         {
-            _userSessions = new Dictionary<Guid, UserSessionData>();
+            _userSessions = new Dictionary<Guid, Basket>();
         }
 
         public static UserSessionService Instance()
@@ -24,19 +24,19 @@ namespace ShoppingCart.UserSession
         public string NewUser()
         {
             var userToken = Guid.NewGuid();
-            _userSessions.Add(userToken, new UserSessionData());
+            _userSessions.Add(userToken, new Basket());
 
             return userToken.ToString();
         }
 
         public void AddItemToBasket(string userToken, BasketItem basket)
         {
-            _userSessions[Guid.Parse(userToken)].Basket.Add(basket);
+            _userSessions[Guid.Parse(userToken)].Items.Add(basket);
         }
 
         public List<BasketItem> GetBasketForUser(string userToken)
         {
-            return _userSessions[Guid.Parse(userToken)].Basket;
+            return _userSessions[Guid.Parse(userToken)].Items;
         }
     }
 }
