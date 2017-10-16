@@ -2,7 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using ShoppingCart.Data.Pizza;
-using ShoppingCart.Data.PizzaPrice;
+using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.Size;
 using ShoppingCart.PizzaPrice;
 
@@ -16,12 +16,12 @@ namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaPriceService
         [SetUp]
         public void SetUp()
         {
-            var getPizzaPriceRepository = new Mock<IPizzaPriceRepository>();
-            getPizzaPriceRepository.Setup(x => x.GetAll()).Returns(new GetPizzaPricesResponse
+            var getPizzaPriceRepository = new Mock<IPizzaSizeRepository>();
+            getPizzaPriceRepository.Setup(x => x.GetAll()).Returns(new GetPizzaSizesResponse
             {
-                PizzaPrices = new List<PizzaPriceRecord>
+                PizzaPrices = new List<PizzaSizeRecord>
                 {
-                    new PizzaPriceRecord
+                    new PizzaSizeRecord
                     {
                         Pizza = new PizzaRecord
                         {
@@ -35,7 +35,7 @@ namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaPriceService
                         },
                         Price = 800
                     },
-                    new PizzaPriceRecord
+                    new PizzaSizeRecord
                     {
                         Pizza = new PizzaRecord
                         {

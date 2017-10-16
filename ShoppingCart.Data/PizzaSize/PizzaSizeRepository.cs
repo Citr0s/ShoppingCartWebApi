@@ -2,24 +2,24 @@
 using ShoppingCart.Core.Communication;
 using ShoppingCart.Data.Database;
 
-namespace ShoppingCart.Data.PizzaPrice
+namespace ShoppingCart.Data.PizzaSize
 {
-    public class PizzaPriceRepository : IPizzaPriceRepository
+    public class PizzaSizeRepository : IPizzaSizeRepository
     {
         private readonly IDatabase _database;
 
-        public PizzaPriceRepository(IDatabase database)
+        public PizzaSizeRepository(IDatabase database)
         {
             _database = database;
         }
 
-        public GetPizzaPricesResponse GetAll()
+        public GetPizzaSizesResponse GetAll()
         {
-            var response = new GetPizzaPricesResponse();
+            var response = new GetPizzaSizesResponse();
 
             try
             {
-                response.PizzaPrices = _database.Query<PizzaPriceRecord>();
+                response.PizzaPrices = _database.Query<PizzaSizeRecord>();
             }
             catch (Exception)
             {

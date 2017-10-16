@@ -2,9 +2,9 @@
 using ShoppingCart.Data.Pizza;
 using ShoppingCart.Data.Size;
 
-namespace ShoppingCart.Data.PizzaPrice
+namespace ShoppingCart.Data.PizzaSize
 {
-    public class PizzaPriceRecord
+    public class PizzaSizeRecord
     {
         public virtual int Id { get; set; }
         public virtual int Price { get; set; }
@@ -12,11 +12,11 @@ namespace ShoppingCart.Data.PizzaPrice
         public virtual SizeRecord Size { get; set; }
     }
 
-    public class PizzaSizeRecordMap : ClassMap<PizzaPriceRecord>
+    public class PizzaSizeRecordMap : ClassMap<PizzaSizeRecord>
     {
         public PizzaSizeRecordMap()
         {
-            Table("pizza_prices");
+            Table("pizza_sizes");
             Id(x => x.Id);
             Map(p => p.Price);
             References(x => x.Pizza).Column("pizza_id").Not.LazyLoad();

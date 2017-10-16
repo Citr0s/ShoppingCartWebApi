@@ -1,22 +1,22 @@
 ﻿using ShoppingCart.Core.Money;
-using ShoppingCart.Data.PizzaPrice;
+using ShoppingCart.Data.PizzaSize;
 
 namespace ShoppingCart.PizzaPrice
 {
     public class PizzaPriceService : IPizzaPriceService
     {
-        private readonly IPizzaPriceRepository _pizzaPriceRepository;
+        private readonly IPizzaSizeRepository _pizzaSizeRepository;
 
-        public PizzaPriceService(IPizzaPriceRepository pizzaPriceRepository)
+        public PizzaPriceService(IPizzaSizeRepository pizzaSizeRepository)
         {
-            _pizzaPriceRepository = pizzaPriceRepository;
+            _pizzaSizeRepository = pizzaSizeRepository;
         }
 
         public GetAllPizzaPricesResponse GetAll()
         {
             var response = new GetAllPizzaPricesResponse();
 
-            var getAllPizzaPricesResponse = _pizzaPriceRepository.GetAll();
+            var getAllPizzaPricesResponse = _pizzaSizeRepository.GetAll();
 
             if (getAllPizzaPricesResponse.HasError)
             {

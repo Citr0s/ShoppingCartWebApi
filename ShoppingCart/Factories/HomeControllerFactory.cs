@@ -1,6 +1,6 @@
 ﻿using ShoppingCart.Data.Database;
 using ShoppingCart.Data.Pizza;
-using ShoppingCart.Data.PizzaPrice;
+using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.Size;
 using ShoppingCart.Data.Topping;
 using ShoppingCart.Pizza;
@@ -22,7 +22,7 @@ namespace ShoppingCart.Factories
             PizzaService = new PizzaService(new PizzaRepository(new NhibernateDatabase()));
             SizeService = new SizeService(new SizeRepository(new NhibernateDatabase()));
             ToppingService = new ToppingService(new ToppingRepository(new NhibernateDatabase()));
-            PizzaPriceService = new PizzaPriceService(new PizzaPriceRepository(new NhibernateDatabase()));
+            PizzaPriceService = new PizzaPriceService(new PizzaSizeRepository(new NhibernateDatabase()));
         }
     }
 }

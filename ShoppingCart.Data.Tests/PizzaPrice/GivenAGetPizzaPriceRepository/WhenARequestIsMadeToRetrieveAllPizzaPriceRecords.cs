@@ -3,7 +3,7 @@ using Moq;
 using NUnit.Framework;
 using ShoppingCart.Data.Database;
 using ShoppingCart.Data.Pizza;
-using ShoppingCart.Data.PizzaPrice;
+using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.Size;
 
 namespace ShoppingCart.Data.Tests.PizzaPrice.GivenAGetPizzaPriceRepository
@@ -11,15 +11,15 @@ namespace ShoppingCart.Data.Tests.PizzaPrice.GivenAGetPizzaPriceRepository
     [TestFixture]
     public class WhenARequestIsMadeToRetrieveAllPizzaPriceRecords
     {
-        private GetPizzaPricesResponse _result;
+        private GetPizzaSizesResponse _result;
 
         [OneTimeSetUp]
         public void SetUp()
         {
             var database = new Mock<IDatabase>();
-            database.Setup(x => x.Query<PizzaPriceRecord>()).Returns(new List<PizzaPriceRecord>
+            database.Setup(x => x.Query<PizzaSizeRecord>()).Returns(new List<PizzaSizeRecord>
             {
-                new PizzaPriceRecord
+                new PizzaSizeRecord
                 {
                     Id = 1,
                     Pizza = new PizzaRecord
@@ -34,7 +34,7 @@ namespace ShoppingCart.Data.Tests.PizzaPrice.GivenAGetPizzaPriceRepository
                     },
                     Price = 800
                 },
-                new PizzaPriceRecord
+                new PizzaSizeRecord
                 {
                     Id = 2,
                     Pizza = new PizzaRecord
@@ -51,7 +51,7 @@ namespace ShoppingCart.Data.Tests.PizzaPrice.GivenAGetPizzaPriceRepository
                 }
             });
 
-            var subject = new PizzaPriceRepository(database.Object);
+            var subject = new PizzaSizeRepository(database.Object);
             _result = subject.GetAll();
         }
 

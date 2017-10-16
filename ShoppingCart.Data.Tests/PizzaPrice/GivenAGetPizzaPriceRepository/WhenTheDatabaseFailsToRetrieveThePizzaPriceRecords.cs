@@ -2,22 +2,22 @@
 using Moq;
 using NUnit.Framework;
 using ShoppingCart.Data.Database;
-using ShoppingCart.Data.PizzaPrice;
+using ShoppingCart.Data.PizzaSize;
 
 namespace ShoppingCart.Data.Tests.PizzaPrice.GivenAGetPizzaPriceRepository
 {
     [TestFixture]
     public class WhenTheDatabaseFailsToRetrieveThePizzaPriceRecords
     {
-        private GetPizzaPricesResponse _result;
+        private GetPizzaSizesResponse _result;
 
         [SetUp]
         public void SetUp()
         {
             var database = new Mock<IDatabase>();
-            database.Setup(x => x.Query<PizzaPriceRecord>()).Throws<Exception>();
+            database.Setup(x => x.Query<PizzaSizeRecord>()).Throws<Exception>();
 
-            var subject = new PizzaPriceRepository(database.Object);
+            var subject = new PizzaSizeRepository(database.Object);
             _result = subject.GetAll();
         }
 
