@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using ShoppingCart.Core.Money;
 using ShoppingCart.Size;
+using ShoppingCart.Topping;
 
 namespace ShoppingCart.PizzaPrice
 {
@@ -13,5 +14,6 @@ namespace ShoppingCart.PizzaPrice
 
         public string Name { get; set; }
         public Dictionary<SizeModel, Money> Sizes { get; set; }
+        public Dictionary<ToppingModel, Money> Toppings { get; set; }
     }
 }

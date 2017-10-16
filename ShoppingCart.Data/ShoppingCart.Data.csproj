@@ -71,6 +71,7 @@
     <Compile Include="Pizza\PizzaRecord.cs" />
     <Compile Include="Pizza\PizzaRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToppingSize\ToppingSizeRecord.cs" />
     <Compile Include="Topping\ToppingRepository.cs" />
     <Compile Include="Topping\GetToppingsResponse.cs" />
     <Compile Include="Topping\IToppingRepository.cs" />

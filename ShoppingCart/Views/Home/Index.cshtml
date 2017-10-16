@@ -19,6 +19,14 @@
                             <li>@size.Key.Name - @size.Value.InFull</li>
                         }
                     </ul>
+                    
+                    <h4>Toppings</h4>
+                    <ul>
+                        @foreach (var ingredients in pizza.Toppings)
+                        {
+                            <li>@ingredients.Key.Name - @ingredients.Value.InFull</li>
+                        }
+                    </ul>
                 </div>
             </div>
         </div>
