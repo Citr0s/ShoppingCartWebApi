@@ -65,5 +65,11 @@ namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaSizeMapper
         {
             Assert.That(_result.First(x => x.Name == "Original").Sizes.Any(x => x.Key.Name == sizeName && x.Value.InPence == priceInPence), Is.True);
         }
+
+        [Test]
+        public void ThenOnlyOnePizzaIsAdded()
+        {
+            Assert.That(_result.Count(x => x.Name == "Original"), Is.EqualTo(1));
+        }
     }
 }

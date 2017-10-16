@@ -4,19 +4,23 @@
 }
 
 <h1>Pizzas</h1>
+<div class="row">
     @foreach (var pizza in Model)
     {
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                <h3 class="panel-title">@pizza.Name</h3>
-            </div>
-            <div class="panel-body">
-                <ul>
-                    @foreach(var size in pizza.Sizes)
-                    {
-                        <li>@size.Key - @size.Value.InFull</li>
-                    }
-                </ul>
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@pizza.Name</h3>
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        @foreach (var size in pizza.Sizes)
+                        {
+                            <li>@size.Key.Name - @size.Value.InFull</li>
+                        }
+                    </ul>
+                </div>
             </div>
         </div>
     }
+</div>

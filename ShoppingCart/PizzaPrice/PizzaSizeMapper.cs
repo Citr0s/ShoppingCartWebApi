@@ -14,17 +14,15 @@ namespace ShoppingCart.PizzaPrice
 
             foreach (var pizzaPrice in pizzaPrices)
             {
-                var pizzaSizeModel = new PizzaSizeModel
+                var pizzaSizeModel = response.FirstOrDefault(x => x.Name == pizzaPrice.Pizza.Name) ?? new PizzaSizeModel
                 {
                     Name = pizzaPrice.Pizza.Name
                 };
 
-                if (response.Any(x => x.Name == pizzaPrice.Pizza.Name))
-                    pizzaSizeModel = response.First(x => x.Name == pizzaPrice.Pizza.Name);
-
                 pizzaSizeModel.Sizes.Add(new SizeModel { Name = pizzaPrice.Size.Name }, Money.From(pizzaPrice.Price));
 
-                response.Add(pizzaSizeModel);
+                if (response.All(x => x.Name != pizzaPrice.Pizza.Name))
+                    response.Add(pizzaSizeModel);
             }
 
             return response;
