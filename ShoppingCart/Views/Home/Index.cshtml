@@ -1,35 +1,22 @@
-﻿@{
+﻿@model List<ShoppingCart.PizzaPrice.PizzaSizeModel>
+@{
     ViewBag.Title = "Home Page";
 }
 
 <h1>Pizzas</h1>
-<ul>
-    @foreach (var pizza in Model.Pizzas)
+    @foreach (var pizza in Model)
     {
-        <li>@pizza.Name</li>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">@pizza.Name</h3>
+            </div>
+            <div class="panel-body">
+                <ul>
+                    @foreach(var size in pizza.Sizes)
+                    {
+                        <li>@size.Key - @size.Value.InFull</li>
+                    }
+                </ul>
+            </div>
+        </div>
     }
-</ul>
-
-<h1>Sizes</h1>
-<ul>
-    @foreach (var size in Model.Sizes)
-    {
-        <li>@size.Name</li>
-    }
-</ul>
-
-<h1>Toppings</h1>
-<ul>
-    @foreach (var topping in Model.Toppings)
-    {
-        <li>@topping.Name</li>
-    }
-</ul>
-
-<h1>Pizza Prices</h1>
-<ul>
-    @foreach (var pizza in Model.PizzaPrices)
-    {
-        <li>@pizza.Name - @pizza.Size = @pizza.Price.InFull</li>
-    }
-</ul>

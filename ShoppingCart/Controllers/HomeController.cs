@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using ShoppingCart.Data.Database;
 using ShoppingCart.Data.PizzaSize;
-using ShoppingCart.Pizza;
 using ShoppingCart.PizzaPrice;
 
 namespace ShoppingCart.Controllers
@@ -20,16 +19,7 @@ namespace ShoppingCart.Controllers
 
         public ActionResult Index()
         {
-            var data = new HomeControllerData
-            {
-                Pizzas = _pizzaService.GetAll().Pizzas
-            };
-            return View(data);
+            return View(_pizzaService.GetAll().Pizzas);
         }
-    }
-
-    public class HomeControllerData
-    {
-        public List<PizzaSizeModel> Pizzas { get; set; }
     }
 }

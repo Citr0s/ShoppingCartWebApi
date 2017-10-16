@@ -1,5 +1,4 @@
-﻿using ShoppingCart.Core.Money;
-using ShoppingCart.Data.PizzaSize;
+﻿using ShoppingCart.Data.PizzaSize;
 
 namespace ShoppingCart.PizzaPrice
 {
