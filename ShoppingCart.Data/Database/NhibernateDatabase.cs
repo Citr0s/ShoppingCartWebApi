@@ -28,7 +28,7 @@ namespace ShoppingCart.Data.Database
 
         public List<T> Query<T>()
         {
-            var response = new List<T>();
+            List<T> response;
 
             using (var session = _sessionFactory.OpenSession())
             {

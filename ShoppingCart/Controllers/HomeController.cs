@@ -1,38 +1,27 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using ShoppingCart.Data.Database;
+using ShoppingCart.Data.Pizza;
 using ShoppingCart.Pizza;
-using ShoppingCart.Factories;
-using ShoppingCart.PizzaPrice;
-using ShoppingCart.Size;
-using ShoppingCart.Topping;
 
 namespace ShoppingCart.Controllers
 {
     public class HomeController : Controller
     {
         private readonly IPizzaService _pizzaService;
-        private readonly ISizeService _sizeService;
-        private readonly IToppingService _toppingService;
-        private readonly IPizzaPriceService _pizzaPriceService;
 
-        public HomeController() : this(new HomeControllerFactory()) { }
+        public HomeController() : this(new PizzaService(new PizzaRepository(new NhibernateDatabase()))) { }
 
-        public HomeController(IHomeControllerFactory homeControllerFactory)
+        public HomeController(IPizzaService pizzaService)
         {
-            _pizzaService = homeControllerFactory.PizzaService;
-            _sizeService = homeControllerFactory.SizeService;
-            _toppingService = homeControllerFactory.ToppingService;
-            _pizzaPriceService = homeControllerFactory.PizzaPriceService;
+            _pizzaService = pizzaService;
         }
 
         public ActionResult Index()
         {
             var data = new HomeControllerData
             {
-                Pizzas = _pizzaService.GetAll().Pizzas,
-                Sizes = _sizeService.GetAll().Sizes,
-                Toppings = _toppingService.GetAll().Toppings,
-                PizzaPrices = _pizzaPriceService.GetAll().PizzaPrices,
+                Pizzas = _pizzaService.GetAll().Pizzas
             };
             return View(data);
         }
@@ -41,8 +30,5 @@ namespace ShoppingCart.Controllers
     public class HomeControllerData
     {
         public List<PizzaModel> Pizzas { get; set; }
-        public List<PizzaPriceModel> PizzaPrices { get; set; }
-        public List<SizeModel> Sizes { get; set; }
-        public List<ToppingModel> Toppings { get; set; }
     }
 }
