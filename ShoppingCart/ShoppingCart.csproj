@@ -53,12 +53,9 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -71,10 +68,6 @@
     <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Net.Http">
-    </Reference>
-    <Reference Include="System.Net.Http.WebRequest">
     </Reference>
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
@@ -143,15 +136,14 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Factories\HomeControllerFactory.cs" />
-    <Compile Include="Factories\IHomeControllerFactory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="PizzaPrice\GetAllPizzaPricesResponse.cs" />
-    <Compile Include="PizzaPrice\IPizzaPriceService.cs" />
-    <Compile Include="PizzaPrice\PizzaPriceModel.cs" />
-    <Compile Include="PizzaPrice\PizzaPriceService.cs" />
+    <Compile Include="PizzaPrice\GetAllPizzaSizesResponse.cs" />
+    <Compile Include="PizzaPrice\IPizzaSizeService.cs" />
+    <Compile Include="PizzaPrice\PizzaSizeMapper.cs" />
+    <Compile Include="PizzaPrice\PizzaSizeModel.cs" />
+    <Compile Include="PizzaPrice\PizzaSizeService.cs" />
     <Compile Include="Topping\GetAllToppingsResponse.cs" />
     <Compile Include="Topping\IToppingService.cs" />
     <Compile Include="Topping\ToppingModel.cs" />

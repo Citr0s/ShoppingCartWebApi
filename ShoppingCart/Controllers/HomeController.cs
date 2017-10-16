@@ -1,18 +1,19 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
 using ShoppingCart.Data.Database;
-using ShoppingCart.Data.Pizza;
+using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Pizza;
+using ShoppingCart.PizzaPrice;
 
 namespace ShoppingCart.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IPizzaService _pizzaService;
+        private readonly IPizzaSizeService _pizzaService;
 
-        public HomeController() : this(new PizzaService(new PizzaRepository(new NhibernateDatabase()))) { }
+        public HomeController() : this(new PizzaSizeService(new PizzaSizeRepository(new NhibernateDatabase()))) { }
 
-        public HomeController(IPizzaService pizzaService)
+        public HomeController(IPizzaSizeService pizzaService)
         {
             _pizzaService = pizzaService;
         }
@@ -29,6 +30,6 @@ namespace ShoppingCart.Controllers
 
     public class HomeControllerData
     {
-        public List<PizzaModel> Pizzas { get; set; }
+        public List<PizzaSizeModel> Pizzas { get; set; }
     }
 }

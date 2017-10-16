@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Moq;
 using NUnit.Framework;
 using ShoppingCart.Data.Pizza;
@@ -11,7 +12,7 @@ namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaPriceService
     [TestFixture]
     public class WhenASuccessfulRequestIsProvided
     {
-        private GetAllPizzaPricesResponse _result;
+        private GetAllPizzaSizesResponse _result;
 
         [SetUp]
         public void SetUp()
@@ -52,35 +53,35 @@ namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaPriceService
                 }
             });
 
-            var subject = new PizzaPriceService(getPizzaPriceRepository.Object);
+            var subject = new PizzaSizeService(getPizzaPriceRepository.Object);
             _result = subject.GetAll();
         }
 
         [Test]
         public void ThenAListOfPizzaModelsIsReturned()
         {
-            Assert.That(_result.PizzaPrices.Count, Is.EqualTo(2));
+            Assert.That(_result.Pizzas.Count, Is.EqualTo(2));
         }
 
         [TestCase(0, "Original")]
         [TestCase(1, "Veggie Delight")]
         public void ThenThePizzaNameIsMappedThroughCorrectly(int index, string name)
         {
-            Assert.That(_result.PizzaPrices[index].Name, Is.EqualTo(name));
+            Assert.That(_result.Pizzas[index].Name, Is.EqualTo(name));
         }
 
         [TestCase(0, "Small")]
         [TestCase(1, "Medium")]
         public void ThenThePizzaSizeIsMappedThroughCorrectly(int index, string name)
         {
-            Assert.That(_result.PizzaPrices[index].Size, Is.EqualTo(name));
+            Assert.That(_result.Pizzas[index].Sizes.Any(x => x.Key.Name == name), Is.True);
         }
 
         [TestCase(0, 800)]
         [TestCase(1, 1100)]
         public void ThenThePizzaPriceIsMappedThroughCorrectly(int index, int price)
         {
-            Assert.That(_result.PizzaPrices[index].Price.InPence, Is.EqualTo(price));
+            Assert.That(_result.Pizzas[index].Sizes.Any(x => x.Value.InPence == price), Is.True);
         }
     }
 }

@@ -9,7 +9,7 @@ namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaPriceService
     [TestFixture]
     public class WhenGetPizzaPriceRepositoryReturnsAnError
     {
-        private GetAllPizzaPricesResponse _result;
+        private GetAllPizzaSizesResponse _result;
 
         [SetUp]
         public void SetUp()
@@ -24,7 +24,7 @@ namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaPriceService
                 }
             });
 
-            var subject = new PizzaPriceService(getPizzaPriceRepository.Object);
+            var subject = new PizzaSizeService(getPizzaPriceRepository.Object);
             _result = subject.GetAll();
         }
 
@@ -43,7 +43,7 @@ namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaPriceService
         [Test]
         public void ThenAnEmptyListOfPizzaModelsIsReturned()
         {
-            Assert.That(_result.PizzaPrices.Count, Is.Zero);
+            Assert.That(_result.Pizzas.Count, Is.Zero);
         }
     }
 }

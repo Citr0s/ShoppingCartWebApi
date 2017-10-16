@@ -75,6 +75,7 @@
     <Compile Include="Controllers\GivenARequestToAHomeController\WhenTheIndexPageIsRequested.cs" />
     <Compile Include="PizzaPrice\GivenAPizzaPriceService\WhenASuccessfulRequestIsProvided.cs" />
     <Compile Include="PizzaPrice\GivenAPizzaPriceService\WhenGetPizzaPriceRepositoryReturnsAnError.cs" />
+    <Compile Include="PizzaPrice\GivenAPizzaSizeMapper\WhenAListOfPizzaSizeRecordsIsProvided.cs" />
     <Compile Include="Topping\GivenAToppingService\WhenASuccessfulRequestIsProvided.cs" />
     <Compile Include="Topping\GivenAToppingService\WhenGetToppingRepositoryReturnsAnError.cs" />
     <Compile Include="Size\GivenASizeService\WhenASuccessfulRequestIsProvided.cs" />
