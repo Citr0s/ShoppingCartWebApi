@@ -66,6 +66,7 @@
     <Compile Include="PizzaSize\GetPizzaSizesResponse.cs" />
     <Compile Include="PizzaSize\IPizzaSizeRepository.cs" />
     <Compile Include="PizzaSize\PizzaSizeRecord.cs" />
+    <Compile Include="PizzaTopping\PizzaToppingRecord.cs" />
     <Compile Include="Pizza\GetPizzasResponse.cs" />
     <Compile Include="Pizza\IPizzaRepository.cs" />
     <Compile Include="Pizza\PizzaRecord.cs" />
