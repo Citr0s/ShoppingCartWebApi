@@ -1,7 +1,6 @@
 ﻿using Moq;
 using NUnit.Framework;
 using ShoppingCart.Controllers;
-using ShoppingCart.Pizza;
 using ShoppingCart.PizzaPrice;
 
 namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeController

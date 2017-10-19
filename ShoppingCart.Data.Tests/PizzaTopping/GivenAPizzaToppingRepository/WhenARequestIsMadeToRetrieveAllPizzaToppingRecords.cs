@@ -3,9 +3,7 @@ using Moq;
 using NUnit.Framework;
 using ShoppingCart.Data.Database;
 using ShoppingCart.Data.Pizza;
-using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.PizzaTopping;
-using ShoppingCart.Data.Size;
 using ShoppingCart.Data.Topping;
 
 namespace ShoppingCart.Data.Tests.PizzaTopping.GivenAPizzaToppingRepository

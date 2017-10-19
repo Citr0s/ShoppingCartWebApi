@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using ShoppingCart.Data.Database;
 using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.PizzaTopping;
-using ShoppingCart.Pizza;
 using ShoppingCart.PizzaPrice;
 using ShoppingCart.UserSession;
 
