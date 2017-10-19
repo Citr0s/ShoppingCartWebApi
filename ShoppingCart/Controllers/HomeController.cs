@@ -11,18 +11,20 @@ namespace ShoppingCart.Controllers
     public class HomeController : Controller
     {
         private readonly IPizzaSizeService _pizzaSizeService;
+        private readonly IUserSessionService _userSessionService;
 
-        public HomeController() : this(new PizzaSizeService(new PizzaSizeRepository(new NhibernateDatabase()), new PizzaToppingRepository(new NhibernateDatabase()))) { }
+        public HomeController() : this(new PizzaSizeService(new PizzaSizeRepository(new NhibernateDatabase()), new PizzaToppingRepository(new NhibernateDatabase())), UserSessionService.Instance()) { }
 
-        public HomeController(IPizzaSizeService pizzaSizeService)
+        public HomeController(IPizzaSizeService pizzaSizeService, IUserSessionService userSessionService)
         {
             _pizzaSizeService = pizzaSizeService;
+            _userSessionService = userSessionService;
         }
 
         public ActionResult Index()
         {
             if (Session["UserId"] == null)
-                Session["UserId"] = UserSessionService.Instance().NewUser();
+                Session["UserId"] = _userSessionService.NewUser();
 
             return View(_pizzaSizeService.GetAll().Pizzas);
         }
@@ -38,7 +40,7 @@ namespace ShoppingCart.Controllers
             if (extraToppings != null)
                 basketItem.ExtraToppings = extraToppings;
 
-            UserSessionService.Instance().AddItemToBasket(Session["UserId"].ToString(), basketItem);
+            _userSessionService.AddItemToBasket(Session["UserId"].ToString(), basketItem);
 
             return new RedirectResult("/");
         }

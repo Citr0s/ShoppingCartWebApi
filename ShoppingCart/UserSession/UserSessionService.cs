@@ -3,12 +3,12 @@ using System.Collections.Generic;
 
 namespace ShoppingCart.UserSession
 {
-    public class UserSessionService
+    public class UserSessionService : IUserSessionService
     {
         private static UserSessionService _instance;
         private readonly Dictionary<Guid, Basket> _userSessions;
 
-        public UserSessionService()
+        private UserSessionService()
         {
             _userSessions = new Dictionary<Guid, Basket>();
         }
