@@ -74,6 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\GivenARequestToAHomeController\WhenTheIndexPageIsRequested.cs" />
+    <Compile Include="Controllers\GivenARequestToAHomeController\WhenTheIndexPageIsRequestedForTheFirstTime.cs" />
     <Compile Include="PizzaPrice\GivenAPizzaPriceService\WhenASuccessfulRequestIsProvided.cs" />
     <Compile Include="PizzaPrice\GivenAPizzaPriceService\WhenGetPizzaPriceRepositoryReturnsAnError.cs" />
     <Compile Include="PizzaPrice\GivenAPizzaSizeMapper\WhenAListOfPizzaSizeRecordsIsProvided.cs" />

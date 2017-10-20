@@ -23,14 +23,15 @@ namespace ShoppingCart.Controllers
 
         public ActionResult Index()
         {
-            if (Session["UserId"] == null)
-                Session["UserId"] = _userSessionService.NewUser();
-
             var response = new HomeControllerIndexData
             {
-                Pizzas = _pizzaSizeService.GetAll().Pizzas,
-                BasketItems = _userSessionService.GetBasketForUser(Session["UserId"].ToString())
+                Pizzas = _pizzaSizeService.GetAll().Pizzas
             };
+
+            if (Session["UserId"] == null)
+                Session["UserId"] = _userSessionService.NewUser();
+            else
+                response.BasketItems = _userSessionService.GetBasketForUser(Session["UserId"].ToString());
 
             return View(response);
         }
