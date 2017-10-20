@@ -1,34 +1,35 @@
-﻿@model List<ShoppingCart.PizzaPrice.PizzaSizeModel>
+﻿@model ShoppingCart.Controllers.HomeControllerIndexData
 @{
     ViewBag.Title = "Home Page";
 }
 
 <h1>Pizzas</h1>
 <div class="row">
-    @foreach (var pizza in Model)
+    @foreach (var pizza in Model.Pizzas)
     {
         <div class="col-md-4">
-            <div class="panel panel-default" style="height:360px">
-                <div class="panel-heading">
-                    <h3 class="panel-title">@pizza.Name</h3>
+                <div class="panel panel-default" style="height: 360px">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@pizza.Name</h3>
+                    </div>
+                    <div class="panel-body">
+                        <ul>
+                            @foreach (var size in pizza.Sizes)
+                            {
+                                <li>@size.Key.Name - 
+                                    <a href="@Url.Action("AddPizzaToBasket", "Home", new { pizzaName = pizza.Name, pizzaSize = size.Key.Name })">@size.Value.InFull</a></li>
+                            }
+                        </ul>
+
+                        <h4>Toppings</h4>
+                        <ul>
+                            @foreach (var topping in pizza.Toppings)
+                            {
+                                <li>@topping.Name</li>
+                            }
+                        </ul>
+                    </div>
                 </div>
-                <div class="panel-body">
-                    <ul>
-                        @foreach (var size in pizza.Sizes)
-                        {
-                            <li>@size.Key.Name - @size.Value.InFull</li>
-                        }
-                    </ul>
-                    
-                    <h4>Toppings</h4>
-                    <ul>
-                        @foreach (var topping in pizza.Toppings)
-                        {
-                            <li>@topping.Name</li>
-                        }
-                    </ul>
-                </div>
-            </div>
         </div>
     }
 </div>

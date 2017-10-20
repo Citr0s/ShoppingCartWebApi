@@ -26,10 +26,16 @@ namespace ShoppingCart.Controllers
             if (Session["UserId"] == null)
                 Session["UserId"] = _userSessionService.NewUser();
 
-            return View(_pizzaSizeService.GetAll().Pizzas);
+            var response = new HomeControllerIndexData
+            {
+                Pizzas = _pizzaSizeService.GetAll().Pizzas,
+                BasketItems = _userSessionService.GetBasketForUser(Session["UserId"].ToString())
+            };
+
+            return View(response);
         }
 
-        public ActionResult AddPizzaToBasket(string pizzaName, string pizzaSize, List<string> extraToppings = null)
+        public ActionResult AddPizzaToBasket(string pizzaName, string pizzaSize)
         {
             var basketItem = new BasketItem
             {
@@ -37,12 +43,15 @@ namespace ShoppingCart.Controllers
                 Size = pizzaSize
             };
 
-            if (extraToppings != null)
-                basketItem.ExtraToppings = extraToppings;
-
             _userSessionService.AddItemToBasket(Session["UserId"].ToString(), basketItem);
 
             return new RedirectResult("/");
         }
+    }
+
+    public class HomeControllerIndexData 
+    {
+        public List<PizzaSizeModel> Pizzas { get; set; }
+        public List<BasketItem> BasketItems { get; set; }
     }
 }
