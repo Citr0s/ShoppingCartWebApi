@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using Moq;
 using NUnit.Framework;
-using ShoppingCart.Controllers;
+using ShoppingCart.HomePage;
 using ShoppingCart.PizzaPrice;
 using ShoppingCart.UserSession;
 

@@ -136,7 +136,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="HomePage\HomeController.cs" />
+    <Compile Include="HomePage\HomeControllerIndexData.cs" />
     <Compile Include="UserSession\BasketItem.cs" />
     <Compile Include="UserSession\Basket.cs" />
     <Compile Include="UserSession\IUserSessionService.cs" />

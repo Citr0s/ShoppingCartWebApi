@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using ShoppingCart.Data.Database;
 using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.PizzaTopping;
 using ShoppingCart.PizzaPrice;
 using ShoppingCart.UserSession;
 
-namespace ShoppingCart.Controllers
+namespace ShoppingCart.HomePage
 {
     public class HomeController : Controller
     {
@@ -48,11 +47,5 @@ namespace ShoppingCart.Controllers
 
             return new RedirectResult("/");
         }
-    }
-
-    public class HomeControllerIndexData 
-    {
-        public List<PizzaSizeModel> Pizzas { get; set; }
-        public List<BasketItem> BasketItems { get; set; }
     }
 }
