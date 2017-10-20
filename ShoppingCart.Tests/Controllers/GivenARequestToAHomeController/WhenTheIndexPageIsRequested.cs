@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using Moq;
 using NUnit.Framework;
 using ShoppingCart.Controllers;
@@ -20,11 +21,12 @@ namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeController
             _pizzaService.Setup(x => x.GetAll()).Returns(new GetAllPizzaSizesResponse());
 
             _userSessionService = new Mock<IUserSessionService>();
-            _userSessionService.Setup(x => x.NewUser()).Returns("");
+            _userSessionService.Setup(x => x.NewUser()).Returns("SomeUserIdentifier");
+            _userSessionService.Setup(x => x.GetBasketForUser(It.IsAny<string>())).Returns(new List<BasketItem>());
             
             var subject = new HomeController(_pizzaService.Object, _userSessionService.Object);
             var context = new Mock<ControllerContext>();
-            context.Setup(x => x.HttpContext.Session["UserId"]);
+            context.Setup(x => x.HttpContext.Session["UserId"]).Returns<string>(x => "SomeUserIdentifier");
             subject.ControllerContext = context.Object;
 
             subject.Index();
@@ -37,9 +39,15 @@ namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeController
         }
 
         [Test]
-        public void ThenTheUserSessionServiceIsCalled()
+        public void ThenTheUserSessionServiceIsNeverCalled()
         {
-            _userSessionService.Verify(x => x.NewUser(), Times.Once);
+            _userSessionService.Verify(x => x.NewUser(), Times.Never);
+        }
+
+        [Test]
+        public void ThenTheGetUserPizzaServiceIsCalledWithCorrectUserToken()
+        {
+            _userSessionService.Verify(x => x.GetBasketForUser(It.Is<string>(y => y == "SomeUserIdentifier")), Times.Once);
         }
     }
 }
