@@ -36,13 +36,13 @@ namespace ShoppingCart.HomePage
             return View(response);
         }
 
-        public ActionResult AddPizzaToBasket(string pizzaName, string pizzaSize, Money pizzaPrice)
+        public ActionResult AddPizzaToBasket(string pizzaName, string pizzaSize, int pizzaPriceInPence)
         {
             var basketItem = new BasketItem
             {
                 Name = pizzaName,
                 Size = pizzaSize,
-                Price = pizzaPrice
+                Price = Money.From(pizzaPriceInPence)
             };
 
             _userSessionService.AddItemToBasket(Session["UserId"].ToString(), basketItem);

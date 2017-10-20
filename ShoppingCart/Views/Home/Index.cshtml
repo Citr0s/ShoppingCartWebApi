@@ -12,7 +12,7 @@
                 @foreach (var basketItem in Model.BasketItems)
                 {
                     <li>
-                        @basketItem.Size @basketItem.Name
+                        @basketItem.Name - @basketItem.Size - @basketItem.Price.InFull
                         @if (basketItem.ExtraToppings.Count > 0)
                         {
                             <p>(@string.Join(",", basketItem.ExtraToppings);)</p>
@@ -39,7 +39,7 @@
                         {
                             <li>
                                 @size.Key.Name -
-                                <a href="@Url.Action("AddPizzaToBasket", "Home", new { pizzaName = pizza.Name, pizzaSize = size.Key.Name, pizzaPrice = size.Value })">@size.Value.InFull</a>
+                                <a href="@Url.Action("AddPizzaToBasket", "Home", new { pizzaName = pizza.Name, pizzaSize = size.Key.Name, pizzaPriceInPence = size.Value.InPence })">@size.Value.InFull</a>
                             </li>
                         }
                     </ul>

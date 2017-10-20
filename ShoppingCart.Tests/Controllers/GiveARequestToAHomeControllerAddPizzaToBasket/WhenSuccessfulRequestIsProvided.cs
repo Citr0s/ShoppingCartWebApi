@@ -1,7 +1,6 @@
 ﻿using System.Web.Mvc;
 using Moq;
 using NUnit.Framework;
-using ShoppingCart.Core.Money;
 using ShoppingCart.HomePage;
 using ShoppingCart.UserSession;
 
@@ -23,7 +22,7 @@ namespace ShoppingCart.Tests.Controllers.GiveARequestToAHomeControllerAddPizzaTo
             context.Setup(x => x.HttpContext.Session["UserId"]).Returns<string>(x => "SomeUserIdentifier");
             subject.ControllerContext = context.Object;
 
-            subject.AddPizzaToBasket("Original", "Small", Money.From(900));
+            subject.AddPizzaToBasket("Original", "Small", 900);
         }
 
         [Test]
