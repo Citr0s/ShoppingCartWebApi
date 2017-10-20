@@ -11,7 +11,7 @@ namespace ShoppingCart.Data.Tests.Pizza.GivenAGetPizzaRepository
     {
         private GetPizzasResponse _result;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             var database = new Mock<IDatabase>();

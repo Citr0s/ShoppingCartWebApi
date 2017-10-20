@@ -11,7 +11,7 @@ namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaPriceService
     {
         private GetAllPizzaSizesResponse _result;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             var getPizzaPriceRepository = new Mock<IPizzaSizeRepository>();

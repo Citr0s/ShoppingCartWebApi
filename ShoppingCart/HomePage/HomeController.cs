@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using ShoppingCart.Core.Money;
 using ShoppingCart.Data.Database;
 using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.PizzaTopping;
@@ -35,12 +36,13 @@ namespace ShoppingCart.HomePage
             return View(response);
         }
 
-        public ActionResult AddPizzaToBasket(string pizzaName, string pizzaSize)
+        public ActionResult AddPizzaToBasket(string pizzaName, string pizzaSize, Money pizzaPrice)
         {
             var basketItem = new BasketItem
             {
                 Name = pizzaName,
-                Size = pizzaSize
+                Size = pizzaSize,
+                Price = pizzaPrice
             };
 
             _userSessionService.AddItemToBasket(Session["UserId"].ToString(), basketItem);

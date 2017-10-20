@@ -6,15 +6,15 @@ using ShoppingCart.HomePage;
 using ShoppingCart.PizzaPrice;
 using ShoppingCart.UserSession;
 
-namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeController
+namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeControllerIndex
 {
     [TestFixture]
-    public class WhenTheIndexPageIsRequestedForTheFirstTime
+    public class WhenRequestDoesNotContainSessionToken
     {
         private Mock<IPizzaSizeService> _pizzaService;
         private Mock<IUserSessionService> _userSessionService;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             _pizzaService = new Mock<IPizzaSizeService>();

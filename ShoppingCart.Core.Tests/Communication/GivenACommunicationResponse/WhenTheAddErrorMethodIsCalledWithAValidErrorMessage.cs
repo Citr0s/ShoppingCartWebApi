@@ -8,7 +8,7 @@ namespace ShoppingCart.Core.Tests.Communication.GivenACommunicationResponse
     {
         private CommunicationResponse _subject;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             _subject = new CommunicationResponse();

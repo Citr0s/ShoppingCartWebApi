@@ -11,7 +11,7 @@ namespace ShoppingCart.Tests.Size.GivenASizeService
     {
         private GetAllSizesResponse _result;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             var getSizeRepository = new Mock<ISizeRepository>();

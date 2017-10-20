@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ShoppingCart.Core.Money;
 
 namespace ShoppingCart.UserSession
 {
@@ -11,6 +12,7 @@ namespace ShoppingCart.UserSession
 
         public string Name { get; set; }
         public string Size { get; set; }
+        public Money Price { get; set; }
         public List<string> ExtraToppings { get; set; }
     }
 }

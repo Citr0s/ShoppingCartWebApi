@@ -11,7 +11,7 @@ namespace ShoppingCart.Tests.Topping.GivenAToppingService
     {
         private GetAllToppingsResponse _result;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             var getToppingRepository = new Mock<IToppingRepository>();

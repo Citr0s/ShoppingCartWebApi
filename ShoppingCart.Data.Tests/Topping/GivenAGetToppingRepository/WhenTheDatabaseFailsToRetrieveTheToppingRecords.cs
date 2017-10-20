@@ -11,7 +11,7 @@ namespace ShoppingCart.Data.Tests.Topping.GivenAGetToppingRepository
     {
         private GetToppingsResponse _result;
 
-        [SetUp]
+        [OneTimeSetUp]
         public void SetUp()
         {
             var database = new Mock<IDatabase>();
