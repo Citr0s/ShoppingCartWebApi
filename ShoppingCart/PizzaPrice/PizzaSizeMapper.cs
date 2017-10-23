@@ -34,7 +34,7 @@ namespace ShoppingCart.PizzaPrice
 
                 pizzaSizeModel.Sizes.Add(new SizeModel { Name = pizzaPrice.Size.Name }, Money.From(pizzaPrice.Price));
 
-                if (response.All(x => x.Name != pizzaPrice.Pizza.Name))
+                if (response.All(x => x.Id != pizzaPrice.Pizza.Id))
                     response.Add(pizzaSizeModel);
             }
 

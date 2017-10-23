@@ -12,7 +12,7 @@
                 @foreach (var basketItem in Model.BasketItems)
                 {
                     <li>
-                        @basketItem.PizzaId - @basketItem.Size - @basketItem.Price.InFull
+                        @basketItem.PizzaId - @basketItem.Size
                         @if (basketItem.ExtraToppings.Count > 0)
                         {
                             <p>(@string.Join(",", basketItem.ExtraToppings);)</p>

@@ -24,10 +24,12 @@ namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaSizeMapper
                 {
                     Pizza = new PizzaRecord
                     {
+                        Id = 1,
                         Name = "Original"
                     },
                     Size = new SizeRecord
                     {
+                        Id = 1,
                         Name = "Small"
                     },
                     Price = 900
@@ -36,10 +38,12 @@ namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaSizeMapper
                 {
                     Pizza = new PizzaRecord
                     {
+                        Id = 1,
                         Name = "Original"
                     },
                     Size = new SizeRecord
                     {
+                        Id = 2,
                         Name = "Medium"
                     },
                     Price = 1100
@@ -48,10 +52,12 @@ namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaSizeMapper
                 {
                     Pizza = new PizzaRecord
                     {
+                        Id = 2,
                         Name = "Veggie Delight"
                     },
                     Size = new SizeRecord
                     {
+                        Id = 3,
                         Name = "Large"
                     },
                     Price = 1100

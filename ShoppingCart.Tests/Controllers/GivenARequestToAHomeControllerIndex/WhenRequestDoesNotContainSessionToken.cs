@@ -4,6 +4,8 @@ using Moq;
 using NUnit.Framework;
 using ShoppingCart.HomePage;
 using ShoppingCart.PizzaPrice;
+using ShoppingCart.Size;
+using ShoppingCart.Topping;
 using ShoppingCart.UserSession;
 
 namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeControllerIndex
@@ -13,6 +15,8 @@ namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeControllerIndex
     {
         private Mock<IPizzaSizeService> _pizzaService;
         private Mock<IUserSessionService> _userSessionService;
+        private Mock<IToppingService> _toppingService;
+        private Mock<ISizeService> _sizeService;
 
         [OneTimeSetUp]
         public void SetUp()
@@ -24,7 +28,13 @@ namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeControllerIndex
             _userSessionService.Setup(x => x.NewUser()).Returns("SomeUserIdentifier");
             _userSessionService.Setup(x => x.GetBasketForUser(It.IsAny<string>())).Returns(new List<BasketItem>());
 
-            var subject = new HomeController(_pizzaService.Object, _userSessionService.Object);
+            _toppingService = new Mock<IToppingService>();
+            _toppingService.Setup(x => x.GetAll()).Returns(new GetAllToppingsResponse());
+
+            _sizeService = new Mock<ISizeService>();
+            _sizeService.Setup(x => x.GetAll()).Returns(() => new GetAllSizesResponse());
+
+            var subject = new HomeController(_pizzaService.Object, _toppingService.Object, _sizeService.Object, _userSessionService.Object);
             var context = new Mock<ControllerContext>();
             context.Setup(x => x.HttpContext.Session["UserId"]);
             subject.ControllerContext = context.Object;

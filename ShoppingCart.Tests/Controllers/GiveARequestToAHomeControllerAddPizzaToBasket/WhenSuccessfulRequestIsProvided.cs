@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Collections.Generic;
+using System.Web.Mvc;
 using Moq;
 using NUnit.Framework;
 using ShoppingCart.HomePage;
@@ -17,12 +18,12 @@ namespace ShoppingCart.Tests.Controllers.GiveARequestToAHomeControllerAddPizzaTo
             _userSessionService = new Mock<IUserSessionService>();
             _userSessionService.Setup(x => x.AddItemToBasket(It.IsAny<string>(), It.IsAny<BasketItem>()));   
 
-            var subject = new HomeController(null, _userSessionService.Object);
+            var subject = new HomeController(null, null, null, _userSessionService.Object);
             var context = new Mock<ControllerContext>();
             context.Setup(x => x.HttpContext.Session["UserId"]).Returns<string>(x => "SomeUserIdentifier");
             subject.ControllerContext = context.Object;
 
-            subject.AddPizzaToBasket("Original", "Small", 900);
+            subject.AddPizzaToBasket(1, 1, new List<string>{ "1", "true", "12" });
         }
 
         [Test]
@@ -34,19 +35,20 @@ namespace ShoppingCart.Tests.Controllers.GiveARequestToAHomeControllerAddPizzaTo
         [Test]
         public void ThenTheUserSessionServiceIsCalledWithCorrectlyappedPizzaName()
         {
-            _userSessionService.Verify(x => x.AddItemToBasket(It.IsAny<string>(), It.Is<BasketItem>(y => y.PizzaId == "Original")), Times.Once);
+            _userSessionService.Verify(x => x.AddItemToBasket(It.IsAny<string>(), It.Is<BasketItem>(y => y.PizzaId == 1)), Times.Once);
         }
 
         [Test]
         public void ThenTheUserSessionServiceIsCalledWithCorrectlyappedPizzaSize()
         {
-            _userSessionService.Verify(x => x.AddItemToBasket(It.IsAny<string>(), It.Is<BasketItem>(y => y.Size == "Small")), Times.Once);
+            _userSessionService.Verify(x => x.AddItemToBasket(It.IsAny<string>(), It.Is<BasketItem>(y => y.Size == 1)), Times.Once);
         }
 
-        [Test]
-        public void ThenTheUserSessionServiceIsCalledWithCorrectlyappedPizzaPrice()
+        [TestCase(1)]
+        [TestCase(12)]
+        public void ThenTheToppingIdsAreFilteredOutFromTheRequest(int value)
         {
-            _userSessionService.Verify(x => x.AddItemToBasket(It.IsAny<string>(), It.Is<BasketItem>(y => y.Price.InPence == 900)), Times.Once);
+            _userSessionService.Verify(x => x.AddItemToBasket(It.IsAny<string>(), It.Is<BasketItem>(y => y.ExtraToppings.Contains(value))), Times.Once);
         }
     }
 }

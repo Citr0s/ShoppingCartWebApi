@@ -12,7 +12,6 @@ namespace ShoppingCart.UserSession
 
         public int PizzaId { get; set; }
         public int Size { get; set; }
-        public Money Price { get; set; }
         public List<int> ExtraToppings { get; set; }
     }
 }
