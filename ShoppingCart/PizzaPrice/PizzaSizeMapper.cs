@@ -16,16 +16,17 @@ namespace ShoppingCart.PizzaPrice
 
             foreach (var pizzaPrice in pizzaSizeRecord)
             {
-                var pizzaSizeModel = response.FirstOrDefault(x => x.Name == pizzaPrice.Pizza.Name);
+                var pizzaSizeModel = response.FirstOrDefault(x => x.Id == pizzaPrice.Pizza.Id);
 
                 if (pizzaSizeModel == null)
                 {
                     pizzaSizeModel = new PizzaSizeModel
                     {
+                        Id = pizzaPrice.Pizza.Id,
                         Name = pizzaPrice.Pizza.Name
                     };
 
-                    var pizzaToppings = toppingRecord.Where(x => x.Pizza.Name == pizzaSizeModel.Name).ToList();
+                    var pizzaToppings = toppingRecord.Where(x => x.Pizza.Id == pizzaSizeModel.Id).ToList();
 
                     foreach (var pizzaTopping in pizzaToppings)
                         pizzaSizeModel.Toppings.Add(new ToppingModel { Name = pizzaTopping.Topping.Name });

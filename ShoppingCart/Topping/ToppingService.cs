@@ -25,6 +25,7 @@ namespace ShoppingCart.Topping
 
             response.Toppings = getAllToppingsResponse.Toppings.ConvertAll(x => new ToppingModel
             {
+                Id = x.Id,
                 Name = x.Name
             });
 

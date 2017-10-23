@@ -13,6 +13,7 @@ namespace ShoppingCart.PizzaPrice
             Toppings = new List<ToppingModel>();
         }
 
+        public int Id { get; set; }
         public string Name { get; set; }
         public Dictionary<SizeModel, Money> Sizes { get; set; }
         public List<ToppingModel> Toppings { get; set; }

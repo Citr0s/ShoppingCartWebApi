@@ -25,6 +25,7 @@ namespace ShoppingCart.Size
 
             response.Sizes = getAllSizesResponse.Sizes.ConvertAll(x => new SizeModel
             {
+                Id = x.Id,
                 Name = x.Name
             });
 

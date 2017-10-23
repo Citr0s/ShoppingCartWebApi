@@ -34,7 +34,7 @@ namespace ShoppingCart.Tests.Controllers.GiveARequestToAHomeControllerAddPizzaTo
         [Test]
         public void ThenTheUserSessionServiceIsCalledWithCorrectlyappedPizzaName()
         {
-            _userSessionService.Verify(x => x.AddItemToBasket(It.IsAny<string>(), It.Is<BasketItem>(y => y.Name == "Original")), Times.Once);
+            _userSessionService.Verify(x => x.AddItemToBasket(It.IsAny<string>(), It.Is<BasketItem>(y => y.PizzaId == "Original")), Times.Once);
         }
 
         [Test]

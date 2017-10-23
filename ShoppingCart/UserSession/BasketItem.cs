@@ -7,12 +7,12 @@ namespace ShoppingCart.UserSession
     {
         public BasketItem()
         {
-            ExtraToppings = new List<string>();
+            ExtraToppings = new List<int>();
         }
 
-        public string Name { get; set; }
-        public string Size { get; set; }
+        public int PizzaId { get; set; }
+        public int Size { get; set; }
         public Money Price { get; set; }
-        public List<string> ExtraToppings { get; set; }
+        public List<int> ExtraToppings { get; set; }
     }
 }

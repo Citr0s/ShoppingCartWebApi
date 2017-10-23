@@ -12,7 +12,7 @@
                 @foreach (var basketItem in Model.BasketItems)
                 {
                     <li>
-                        @basketItem.Name - @basketItem.Size - @basketItem.Price.InFull
+                        @basketItem.PizzaId - @basketItem.Size - @basketItem.Price.InFull
                         @if (basketItem.ExtraToppings.Count > 0)
                         {
                             <p>(@string.Join(",", basketItem.ExtraToppings);)</p>
@@ -41,8 +41,7 @@
                                 @foreach (var size in pizza.Sizes)
                                 {
                                     <li>
-                                        @size.Key.Name -
-                                        <a href="@Url.Action("AddPizzaToBasket", "Home", new {pizzaName = pizza.Name, pizzaSize = size.Key.Name, pizzaPriceInPence = size.Value.InPence})">@size.Value.InFull</a>
+                                        @size.Key.Name - @size.Value.InFull
                                     </li>
                                 }
                             </ul>
@@ -55,6 +54,43 @@
                                     <li>@topping.Name</li>
                                 }
                             </ul>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+
+                            @using (Html.BeginForm("AddPizzaToBasket", "Home", FormMethod.Post))
+                            {
+                                <fieldset>
+                                    <h5>Extra Toppings</h5>
+                                    @foreach (var topping in Model.Form.ExtraToppings)
+                                    {
+                                        <label class="custom-control custom-checkbox" style="margin-right: 15px;">
+                                            @Html.CheckBox("extraToppings", topping.Value, new { value = topping.Key.Id, @class = "custom-control-input" })
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">@topping.Key.Name</span>
+                                        </label>
+                                    }
+
+                                    <br />
+
+                                    <h5>Size</h5>
+                                    @foreach (var size in Model.Form.Sizes)
+                                    {
+                                        <label class="custom-control custom-checkbox" style="margin-right: 15px;">
+                                            @Html.RadioButton("sizeId", size.Key.Id, new { @class = "custom-control-input" })
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">@size.Key.Name</span>
+                                        </label>
+                                    }
+                                    @Html.Hidden("pizzaId", pizza.Id)
+
+                                    <br />
+                                    <br />
+
+                                    <input type="submit" value="Add to Basket" />
+                                </fieldset>
+                            }
                         </div>
                     </div>
                 </div>
