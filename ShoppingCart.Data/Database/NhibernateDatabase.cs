@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Reflection;
 using FluentNHibernate.Cfg;
@@ -11,6 +12,7 @@ using ShoppingCart.Data.Size;
 
 namespace ShoppingCart.Data.Database
 {
+    [ExcludeFromCodeCoverage]
     public class NhibernateDatabase : IDatabase
     {
         private readonly ISessionFactory _sessionFactory;

@@ -1,4 +1,5 @@
-﻿using FluentNHibernate.Mapping;
+﻿using System.Diagnostics.CodeAnalysis;
+using FluentNHibernate.Mapping;
 using ShoppingCart.Data.Size;
 using ShoppingCart.Data.Topping;
 
@@ -12,6 +13,7 @@ namespace ShoppingCart.Data.ToppingSize
         public virtual SizeRecord Size { get; set; }
     }
 
+    [ExcludeFromCodeCoverage]
     public class ToppingSizeRecordMap : ClassMap<ToppingSizeRecord>
     {
         public ToppingSizeRecordMap()

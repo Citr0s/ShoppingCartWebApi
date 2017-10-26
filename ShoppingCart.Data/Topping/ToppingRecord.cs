@@ -1,4 +1,5 @@
-﻿using FluentNHibernate.Mapping;
+﻿using System.Diagnostics.CodeAnalysis;
+using FluentNHibernate.Mapping;
 
 namespace ShoppingCart.Data.Topping
 {
@@ -8,6 +9,7 @@ namespace ShoppingCart.Data.Topping
         public virtual string Name { get; set; }
     }
 
+    [ExcludeFromCodeCoverage]
     public class ToppingRecordMap : ClassMap<ToppingRecord>
     {
         public ToppingRecordMap()

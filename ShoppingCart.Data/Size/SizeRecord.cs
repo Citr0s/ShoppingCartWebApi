@@ -1,4 +1,5 @@
-﻿using FluentNHibernate.Mapping;
+﻿using System.Diagnostics.CodeAnalysis;
+using FluentNHibernate.Mapping;
 
 namespace ShoppingCart.Data.Size
 {
@@ -8,6 +9,7 @@ namespace ShoppingCart.Data.Size
         public virtual string Name { get; set; }
     }
 
+    [ExcludeFromCodeCoverage]
     public class SizeRecordMap : ClassMap<SizeRecord>
     {
         public SizeRecordMap()

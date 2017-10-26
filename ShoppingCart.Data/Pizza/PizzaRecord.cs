@@ -1,4 +1,5 @@
-﻿using FluentNHibernate.Mapping;
+﻿using System.Diagnostics.CodeAnalysis;
+using FluentNHibernate.Mapping;
 using ShoppingCart.Data.PizzaSize;
 
 namespace ShoppingCart.Data.Pizza
@@ -10,6 +11,7 @@ namespace ShoppingCart.Data.Pizza
         public virtual PizzaSizeRecord PizzaSize { get; set; }
     }
 
+    [ExcludeFromCodeCoverage]
     public class PizzaRecordMap : ClassMap<PizzaRecord>
     {
         public PizzaRecordMap()
