@@ -10,13 +10,16 @@
     <div class="col-md-12">
         @if (Model.Basket.Items.Any())
         {
-            <ul>
-                @foreach (var basketItem in Model.Basket.Items)
-                {
-                    <li>
-                        @basketItem.Pizza.Name - @basketItem.Size.Name
+            foreach (var basketItem in Model.Basket.Items)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">@basketItem.Pizza.Name <small>@basketItem.Size.Name</small></h3>
+                    </div>
+                    <div class="panel-body">
                         @if (basketItem.ExtraToppings.Count > 0)
                         {
+                            <p>Extra Toppings</p>
                             <ul>
                                 @foreach (var extraTopping in basketItem.ExtraToppings)
                                 {
@@ -24,9 +27,9 @@
                                 }
                             </ul>
                         }
-                    </li>
-                }
-            </ul>
+                    </div>
+                </div>
+            }
         }
     </div>
 </div>
