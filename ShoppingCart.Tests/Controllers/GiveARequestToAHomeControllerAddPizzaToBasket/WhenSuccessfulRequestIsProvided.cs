@@ -41,14 +41,14 @@ namespace ShoppingCart.Tests.Controllers.GiveARequestToAHomeControllerAddPizzaTo
         [Test]
         public void ThenTheUserSessionServiceIsCalledWithCorrectlyappedPizzaSize()
         {
-            _userSessionService.Verify(x => x.AddItemToBasket(It.IsAny<string>(), It.Is<BasketData>(y => y.Size == 1)), Times.Once);
+            _userSessionService.Verify(x => x.AddItemToBasket(It.IsAny<string>(), It.Is<BasketData>(y => y.SizeId == 1)), Times.Once);
         }
 
         [TestCase(1)]
         [TestCase(12)]
         public void ThenTheToppingIdsAreFilteredOutFromTheRequest(int value)
         {
-            _userSessionService.Verify(x => x.AddItemToBasket(It.IsAny<string>(), It.Is<BasketData>(y => y.ExtraToppings.Contains(value))), Times.Once);
+            _userSessionService.Verify(x => x.AddItemToBasket(It.IsAny<string>(), It.Is<BasketData>(y => y.ExtraToppingIds.Contains(value))), Times.Once);
         }
     }
 }

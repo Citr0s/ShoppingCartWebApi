@@ -57,8 +57,8 @@ namespace ShoppingCart.HomePage
             var basketItem = new BasketData
             {
                 PizzaId = pizzaId,
-                Size = sizeId,
-                ExtraToppings = parsedExtraToppings
+                SizeId = sizeId,
+                ExtraToppingIds = parsedExtraToppings
             };
 
             _userSessionService.AddItemToBasket(Session["UserId"].ToString(), basketItem);

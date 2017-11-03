@@ -6,11 +6,11 @@ namespace ShoppingCart.UserSession
     {
         public BasketData()
         {
-            ExtraToppings = new List<int>();
+            ExtraToppingIds = new List<int>();
         }
 
         public int PizzaId { get; set; }
-        public int Size { get; set; }
-        public List<int> ExtraToppings { get; set; }
+        public int SizeId { get; set; }
+        public List<int> ExtraToppingIds { get; set; }
     }
 }
