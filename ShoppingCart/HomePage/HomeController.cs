@@ -44,7 +44,7 @@ namespace ShoppingCart.HomePage
             if (Session["UserId"] == null)
                 Session["UserId"] = _userSessionService.NewUser();
             else
-                response.BasketItems = _userSessionService.GetBasketForUser(Session["UserId"].ToString());
+                response.Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString());
 
             return View(response);
         }
@@ -54,7 +54,7 @@ namespace ShoppingCart.HomePage
         {
             var parsedExtraToppings = extraToppings.Where(x => int.TryParse(x, out _)).Select(int.Parse).ToList();
 
-            var basketItem = new BasketItem
+            var basketItem = new BasketData
             {
                 PizzaId = pizzaId,
                 Size = sizeId,

@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
-using ShoppingCart.Core.Money;
+using ShoppingCart.Data.Pizza;
+using ShoppingCart.Data.Size;
+using ShoppingCart.Data.Topping;
 
 namespace ShoppingCart.UserSession
 {
@@ -7,13 +9,11 @@ namespace ShoppingCart.UserSession
     {
         public BasketItem()
         {
-            ExtraToppings = new List<int>();
-            Total = Money.From(0);
+            ExtraToppings = new List<ToppingRecord>();
         }
 
-        public int PizzaId { get; set; }
-        public int Size { get; set; }
-        public List<int> ExtraToppings { get; set; }
-        public Money Total { get; set; }
+        public PizzaRecord Pizza { get; set; }
+        public SizeRecord Size { get; set; }
+        public List<ToppingRecord> ExtraToppings { get; set; }
     }
 }

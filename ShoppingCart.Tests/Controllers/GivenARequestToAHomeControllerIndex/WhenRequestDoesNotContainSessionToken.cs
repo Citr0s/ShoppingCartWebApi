@@ -26,7 +26,7 @@ namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeControllerIndex
 
             _userSessionService = new Mock<IUserSessionService>();
             _userSessionService.Setup(x => x.NewUser()).Returns("SomeUserIdentifier");
-            _userSessionService.Setup(x => x.GetBasketForUser(It.IsAny<string>())).Returns(new List<BasketItem>());
+            _userSessionService.Setup(x => x.GetBasketForUser(It.IsAny<string>())).Returns(new List<BasketData>());
 
             _toppingService = new Mock<IToppingService>();
             _toppingService.Setup(x => x.GetAll()).Returns(new GetAllToppingsResponse());

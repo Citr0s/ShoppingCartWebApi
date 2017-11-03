@@ -16,7 +16,7 @@ namespace ShoppingCart.Tests.Controllers.GiveARequestToAHomeControllerAddPizzaTo
         public void SetUp()
         {
             _userSessionService = new Mock<IUserSessionService>();
-            _userSessionService.Setup(x => x.AddItemToBasket(It.IsAny<string>(), It.IsAny<BasketItem>()));   
+            _userSessionService.Setup(x => x.AddItemToBasket(It.IsAny<string>(), It.IsAny<BasketData>()));   
 
             var subject = new HomeController(null, null, null, _userSessionService.Object);
             var context = new Mock<ControllerContext>();
@@ -29,26 +29,26 @@ namespace ShoppingCart.Tests.Controllers.GiveARequestToAHomeControllerAddPizzaTo
         [Test]
         public void ThenTheUserSessionServiceIsCalledWithCorrectlyMappedUserToken()
         {
-            _userSessionService.Verify(x => x.AddItemToBasket(It.Is<string>(y => y == "SomeUserIdentifier"), It.IsAny<BasketItem>()), Times.Once);
+            _userSessionService.Verify(x => x.AddItemToBasket(It.Is<string>(y => y == "SomeUserIdentifier"), It.IsAny<BasketData>()), Times.Once);
         }
 
         [Test]
         public void ThenTheUserSessionServiceIsCalledWithCorrectlyappedPizzaName()
         {
-            _userSessionService.Verify(x => x.AddItemToBasket(It.IsAny<string>(), It.Is<BasketItem>(y => y.PizzaId == 1)), Times.Once);
+            _userSessionService.Verify(x => x.AddItemToBasket(It.IsAny<string>(), It.Is<BasketData>(y => y.PizzaId == 1)), Times.Once);
         }
 
         [Test]
         public void ThenTheUserSessionServiceIsCalledWithCorrectlyappedPizzaSize()
         {
-            _userSessionService.Verify(x => x.AddItemToBasket(It.IsAny<string>(), It.Is<BasketItem>(y => y.Size == 1)), Times.Once);
+            _userSessionService.Verify(x => x.AddItemToBasket(It.IsAny<string>(), It.Is<BasketData>(y => y.Size == 1)), Times.Once);
         }
 
         [TestCase(1)]
         [TestCase(12)]
         public void ThenTheToppingIdsAreFilteredOutFromTheRequest(int value)
         {
-            _userSessionService.Verify(x => x.AddItemToBasket(It.IsAny<string>(), It.Is<BasketItem>(y => y.ExtraToppings.Contains(value))), Times.Once);
+            _userSessionService.Verify(x => x.AddItemToBasket(It.IsAny<string>(), It.Is<BasketData>(y => y.ExtraToppings.Contains(value))), Times.Once);
         }
     }
 }

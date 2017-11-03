@@ -139,8 +139,9 @@
     <Compile Include="BasketPage\BasketController.cs" />
     <Compile Include="HomePage\HomeController.cs" />
     <Compile Include="HomePage\HomeControllerIndexData.cs" />
-    <Compile Include="UserSession\BasketItem.cs" />
+    <Compile Include="UserSession\BasketData.cs" />
     <Compile Include="UserSession\Basket.cs" />
+    <Compile Include="UserSession\BasketItem.cs" />
     <Compile Include="UserSession\IUserSessionService.cs" />
     <Compile Include="UserSession\UserSessionService.cs" />
     <Compile Include="Global.asax.cs">
