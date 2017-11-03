@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using ShoppingCart.Core.Money;
 using ShoppingCart.Data.PizzaSize;
-using ShoppingCart.Data.Topping;
 using ShoppingCart.Data.ToppingSize;
 
 namespace ShoppingCart.UserSession
@@ -68,9 +67,9 @@ namespace ShoppingCart.UserSession
             return _userSessions[Guid.Parse(userToken)].Total;
         }
 
-        public List<BasketItem> GetBasketForUser(string userToken)
+        public Basket GetBasketForUser(string userToken)
         {
-            return _userSessions[Guid.Parse(userToken)].Items;
+            return _userSessions[Guid.Parse(userToken)];
         }
     }
 }

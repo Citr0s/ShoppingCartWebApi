@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using ShoppingCart.Core.Communication;
 using ShoppingCart.Data.Database;
-using ShoppingCart.Data.Topping;
 
 namespace ShoppingCart.Data.ToppingSize
 {

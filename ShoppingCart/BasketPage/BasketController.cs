@@ -16,8 +16,12 @@ namespace ShoppingCart.BasketPage
 
         public ActionResult Index()
         {
+            if (Session["UserId"] == null)
+                Session["UserId"] = _userSessionService.NewUser();
+
             var response = new BasketControllerIndexData
             {
+                Basket = _userSessionService.GetBasketForUser(Session["UserId"].ToString()),
                 Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString())
             };
 

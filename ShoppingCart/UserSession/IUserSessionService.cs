@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using ShoppingCart.Core.Money;
+﻿using ShoppingCart.Core.Money;
 
 namespace ShoppingCart.UserSession
 {
@@ -8,6 +7,6 @@ namespace ShoppingCart.UserSession
         string NewUser();
         void AddItemToBasket(string userToken, BasketData basket);
         Money GetBasketTotalForUser(string userToken);
-        List<BasketItem> GetBasketForUser(string userToken);
+        Basket GetBasketForUser(string userToken);
     }
 }

@@ -8,17 +8,21 @@
 
 <div class="row">
     <div class="col-md-12">
-        @if (Model.BasketItems.Any())
+        @if (Model.Basket.Items.Any())
         {
             <ul>
-                @foreach (var basketItem in Model.BasketItems)
+                @foreach (var basketItem in Model.Basket.Items)
                 {
                     <li>
-                        Pizza ID: @basketItem.PizzaId - Size ID: @basketItem.Size
+                        @basketItem.Pizza.Name - @basketItem.Size.Name
                         @if (basketItem.ExtraToppings.Count > 0)
                         {
-                            <p>Toppings IDs:</p>
-                            <p>(@string.Join(",", basketItem.ExtraToppings))</p>
+                            <ul>
+                                @foreach (var extraTopping in basketItem.ExtraToppings)
+                                {
+                                    <li>@extraTopping.Name</li>
+                                }
+                            </ul>
                         }
                     </li>
                 }
