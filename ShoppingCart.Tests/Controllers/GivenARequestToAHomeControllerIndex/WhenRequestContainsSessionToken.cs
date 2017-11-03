@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using Moq;
 using NUnit.Framework;
+using ShoppingCart.Core.Money;
 using ShoppingCart.HomePage;
 using ShoppingCart.PizzaPrice;
 using ShoppingCart.Size;
@@ -26,7 +27,7 @@ namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeControllerIndex
 
             _userSessionService = new Mock<IUserSessionService>();
             _userSessionService.Setup(x => x.NewUser()).Returns("SomeUserIdentifier");
-            _userSessionService.Setup(x => x.GetBasketForUser(It.IsAny<string>())).Returns(new List<BasketData>());
+            _userSessionService.Setup(x => x.GetBasketTotalForUser(It.IsAny<string>())).Returns(Money.From(1500));
 
             _toppingService = new Mock<IToppingService>();
             _toppingService.Setup(x => x.GetAll()).Returns(new GetAllToppingsResponse());
@@ -69,7 +70,7 @@ namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeControllerIndex
         [Test]
         public void ThenTheGetUserPizzaServiceIsCalledWithCorrectUserToken()
         {
-            _userSessionService.Verify(x => x.GetBasketForUser(It.Is<string>(y => y == "SomeUserIdentifier")), Times.Once);
+            _userSessionService.Verify(x => x.GetBasketTotalForUser(It.Is<string>(y => y == "SomeUserIdentifier")), Times.Once);
         }
     }
 }
