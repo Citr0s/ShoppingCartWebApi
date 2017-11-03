@@ -1,6 +1,8 @@
-﻿namespace ShoppingCart.BasketPage
+﻿using ShoppingCart.Views;
+
+namespace ShoppingCart.BasketPage
 {
-    public class BasketControllerIndexData
+    public class BasketControllerIndexData : BaseControllerData
     {
     }
 }

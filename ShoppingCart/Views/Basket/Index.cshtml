@@ -4,4 +4,25 @@
     ViewBag.Title = "Basket";
 }
 
-<h2>Basket</h2>
+<h1>Basket</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        @if (Model.BasketItems.Any())
+        {
+            <ul>
+                @foreach (var basketItem in Model.BasketItems)
+                {
+                    <li>
+                        Pizza ID: @basketItem.PizzaId - Size ID: @basketItem.Size
+                        @if (basketItem.ExtraToppings.Count > 0)
+                        {
+                            <p>Toppings IDs:</p>
+                            <p>(@string.Join(",", basketItem.ExtraToppings))</p>
+                        }
+                    </li>
+                }
+            </ul>
+        }
+    </div>
+</div>

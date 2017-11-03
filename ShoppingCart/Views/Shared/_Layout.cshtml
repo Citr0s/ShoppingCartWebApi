@@ -1,4 +1,5 @@
-﻿@using ShoppingCart.UserSession
+﻿@model ShoppingCart.Views.BaseControllerData
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +30,7 @@
                 </div>
                 <div class="col-md-6">
                     <div class="basket-wrapper">
-                        @Model.BasketItems.Count <a href="@Url.Action("Index", "Basket")"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
+                        @Model.Total.InFull <a href="@Url.Action("Index", "Basket")"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
                     </div>
                 </div>
             </div>

@@ -8,10 +8,12 @@ namespace ShoppingCart.UserSession
         public BasketItem()
         {
             ExtraToppings = new List<int>();
+            Total = Money.From(0);
         }
 
         public int PizzaId { get; set; }
         public int Size { get; set; }
         public List<int> ExtraToppings { get; set; }
+        public Money Total { get; set; }
     }
 }

@@ -3,27 +3,6 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="row">
-    <div class="col-md-12">
-        @if (Model.BasketItems.Any())
-        {
-            <h1>Basket</h1>
-            <ul>
-                @foreach (var basketItem in Model.BasketItems)
-                {
-                    <li>
-                        @basketItem.PizzaId - @basketItem.Size
-                        @if (basketItem.ExtraToppings.Count > 0)
-                        {
-                            <p>(@string.Join(",", basketItem.ExtraToppings))</p>
-                        }
-                    </li>
-                }
-            </ul>
-        }
-    </div>
-</div>
-
 <h1>Pizzas</h1>
 <div class="row">
     @foreach (var pizza in Model.Pizzas)
@@ -78,7 +57,7 @@
                                     @foreach (var size in Model.Form.Sizes)
                                     {
                                         <label class="custom-control custom-checkbox" style="margin-right: 15px;">
-                                            @Html.RadioButton("sizeId", size.Key.Id, new { @class = "custom-control-input" })
+                                            @Html.RadioButton("sizeId", size.Key.Id, new { @class = "custom-control-input", @checked = true })
                                             <span class="custom-control-indicator"></span>
                                             <span class="custom-control-description">@size.Key.Name</span>
                                         </label>
