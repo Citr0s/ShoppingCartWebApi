@@ -22,3 +22,23 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.basket-wrapper {
+    color: #fff;
+    text-align: right;
+}
+
+.basket-wrapper a {
+    color: #fff;
+}
+
+.basket-wrapper span {
+    padding: 10px;
+    margin-top: 7px;
+    cursor: pointer;
+}
+
+.basket-wrapper span:hover {
+    background-color: #ffffff;
+    color: #000;
+}
