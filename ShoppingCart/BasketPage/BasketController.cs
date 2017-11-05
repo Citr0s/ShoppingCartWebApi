@@ -27,5 +27,10 @@ namespace ShoppingCart.BasketPage
 
             return View(response);
         }
+
+        public ActionResult Checkout()
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

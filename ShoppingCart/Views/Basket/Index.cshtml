@@ -40,9 +40,40 @@
                 </div>
             }
             <div class="row">
-                <div class="col-md-12" style="text-align: right;">
-                    <hr/>
-                    <h1><small>Total</small> <span style="color: #27ae60;">@Model.Total.InFull</span>
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            @using (Html.BeginForm("Checkout", "Basket", FormMethod.Post))
+                            {
+                                <fieldset>
+                                    <h4>Delivery</h4>
+                                    <div class="form-group">
+                                        <label class="custom-control custom-checkbox" style="margin-right: 15px;">
+                                            @Html.RadioButton("delivery", "delivery", new { @class = "custom-control-input", @checked = true })
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">Delivery</span>
+                                        </label>
+
+                                        <label class="custom-control custom-checkbox" style="margin-right: 15px;">
+                                            @Html.RadioButton("delivery", "collecion", new { @class = "custom-control-input", @checked = false })
+                                            <span class="custom-control-indicator"></span>
+                                            <span class="custom-control-description">Collection</span>
+                                        </label>
+                                    </div>
+
+                                    <div class="form-group">
+                                        @Html.TextBox("voucher", "", new { @class = "form-control", placeholder = "Voucher Code" })
+                                    </div>
+                                    <input type="submit" value="Checkout" class="btn btn-primary" />
+                                </fieldset>
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" style="text-align: right;">
+                    <hr />
+                    <h1>
+                        <small>Total</small> <span style="color: #27ae60;">@Model.Total.InFull</span>
                     </h1>
                 </div>
             </div>
@@ -54,7 +85,6 @@
                     <h4>There are no items in the basket!</h4>
                 </div>
             </div>
-            
         }
     </div>
 </div>
