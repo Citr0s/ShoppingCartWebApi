@@ -14,7 +14,7 @@ namespace ShoppingCart.UserSession
         private static UserSessionService _instance;
         private readonly Dictionary<Guid, Basket> _userSessions;
 
-        private UserSessionService(IPizzaSizeRepository pizzaSizeRepository, IToppingSizeRepository toppingSizeRepository)
+        public UserSessionService(IPizzaSizeRepository pizzaSizeRepository, IToppingSizeRepository toppingSizeRepository)
         {
             _pizzaSizeRepository = pizzaSizeRepository;
             _toppingSizeRepository = toppingSizeRepository;
