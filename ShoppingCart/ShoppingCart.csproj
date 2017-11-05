@@ -137,6 +137,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="BasketPage\BasketController.cs" />
+    <Compile Include="BasketPage\DeliveryType.cs" />
     <Compile Include="HomePage\HomeController.cs" />
     <Compile Include="HomePage\HomeControllerIndexData.cs" />
     <Compile Include="UserSession\BasketData.cs" />

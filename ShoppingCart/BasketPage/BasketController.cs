@@ -28,7 +28,8 @@ namespace ShoppingCart.BasketPage
             return View(response);
         }
 
-        public ActionResult Checkout()
+        [HttpPost]
+        public ActionResult Checkout(DeliveryType delivery, string voucher)
         {
             throw new System.NotImplementedException();
         }
