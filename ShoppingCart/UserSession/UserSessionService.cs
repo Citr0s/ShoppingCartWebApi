@@ -39,6 +39,9 @@ namespace ShoppingCart.UserSession
 
         public void AddItemToBasket(string userToken, BasketData basket)
         {
+            if (!Guid.TryParse(userToken, out _) || !_userSessions.ContainsKey(Guid.Parse(userToken)))
+                return;
+
             var pizzaSizeResponse = _pizzaSizeRepository.GetByIds(basket.PizzaId, basket.SizeId);
 
             if (pizzaSizeResponse.HasError)
@@ -49,26 +52,35 @@ namespace ShoppingCart.UserSession
             if (toppingResponse.HasError)
                 return;
 
+            var currentItemPrice = pizzaSizeResponse.PizzaSize.Price + toppingResponse.ToppingSize.Sum(x => x.Price);
+
             var basketItem = new BasketItem
             {
                 Pizza = pizzaSizeResponse.PizzaSize.Pizza,
                 Size = pizzaSizeResponse.PizzaSize.Size,
-                ExtraToppings = toppingResponse.ToppingSize.Select(x => x.Topping).ToList()
+                ExtraToppings = toppingResponse.ToppingSize.Select(x => x.Topping).ToList(),
+                Total = Money.From(currentItemPrice)
             };
 
             var userSession = _userSessions[Guid.Parse(userToken)];
 
-            userSession.Total = Money.From(userSession.Total.InPence + pizzaSizeResponse.PizzaSize.Price + toppingResponse.ToppingSize.Sum(x => x.Price));
+            userSession.Total = Money.From(userSession.Total.InPence + currentItemPrice);
             userSession.Items.Add(basketItem);
         }
 
         public Money GetBasketTotalForUser(string userToken)
         {
+            if (!Guid.TryParse(userToken, out _) || !_userSessions.ContainsKey(Guid.Parse(userToken)))
+                return Money.From(0);
+
             return _userSessions[Guid.Parse(userToken)].Total;
         }
 
         public Basket GetBasketForUser(string userToken)
         {
+            if(!Guid.TryParse(userToken, out _) || !_userSessions.ContainsKey(Guid.Parse(userToken)))
+                return new Basket();
+
             return _userSessions[Guid.Parse(userToken)];
         }
     }
