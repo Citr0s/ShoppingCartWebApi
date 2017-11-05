@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Moq;
 using NUnit.Framework;
 using ShoppingCart.Data.Pizza;
@@ -18,6 +19,7 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
         private UserSessionService _subject;
         private Mock<IPizzaSizeRepository> _pizzaSizeRepository;
         private Mock<IToppingSizeRepository> _toppingSizeRepository;
+        private Basket _basket;
 
         [OneTimeSetUp]
         public void SetUp()
@@ -58,7 +60,8 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
                         {
                             Id = 2,
                             Name = "Medium"
-                        }
+                        },
+                        Price = 100
                     },
                     new ToppingSizeRecord
                     {
@@ -71,7 +74,8 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
                         {
                             Id = 2,
                             Name = "Medium"
-                        }
+                        },
+                        Price = 100
                     }
                 }
             });
@@ -90,6 +94,8 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
                 }
             };
             _subject.AddItemToBasket(_result, basketData);
+
+            _basket = _subject.GetBasketForUser(_result);
         }
 
         [Test]
@@ -104,16 +110,48 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
             _pizzaSizeRepository.Verify(x => x.GetByIds(It.IsAny<int>(), It.Is<int>(y => y == 2)), Times.Once);
         }
 
-        [Test]
-        public void ThenToppingSizeRepositoryIsCalledWithCorrectlyMappedToppingId()
+        [TestCase(3)]
+        [TestCase(4)]
+        public void ThenToppingSizeRepositoryIsCalledWithCorrectlyMappedToppingId(int identifier)
         {
-            _toppingSizeRepository.Verify(x => x.GetByIds(It.Is<List<int>>(y => y.Contains(3) && y.Contains(4)), It.IsAny<int>()), Times.Once);
+            _toppingSizeRepository.Verify(x => x.GetByIds(It.Is<List<int>>(y => y.Contains(identifier)), It.IsAny<int>()), Times.Once);
         }
 
         [Test]
         public void ThenToppingSizeRepositoryIsCalledWithCorrectlyMappedSizeId()
         {
             _toppingSizeRepository.Verify(x => x.GetByIds(It.IsAny<List<int>>(), It.Is<int>(y => y == 2)), Times.Once);
+        }
+
+        [Test]
+        public void ThenTotalIsCorrectlyAddedUnderTheCorrectUserIdentifier()
+        {
+            Assert.That(_basket.Total.InPence, Is.EqualTo(1400));
+        }
+
+        [Test]
+        public void ThenPizzaIsCorrectlyAddedUnderTheCorrectUserIdentifier()
+        {
+            Assert.That(_basket.Items.Any(x => x.Pizza.Id == 1 && x.Pizza.Name == "Original"), Is.True);
+        }
+
+        [Test]
+        public void ThenSizeIsCorrectlyAddedUnderTheCorrectUserIdentifier()
+        {
+            Assert.That(_basket.Items.Any(x => x.Size.Id == 2 && x.Size.Name == "Medium"), Is.True);
+        }
+
+        [TestCase(3, "Cheese")]
+        [TestCase(4, "Tomato Sauce")]
+        public void ThenExtraToppingsIsCorrectlyAddedUnderTheCorrectUserIdentifier(int identifier, string toppingName)
+        {
+            Assert.That(_basket.Items.Any(x => x.ExtraToppings.Any(y => y.Id == identifier) && x.ExtraToppings.Any(y => y.Name == toppingName)), Is.True);
+        }
+
+        [Test]
+        public void ThenTotalIsCorrectlyAddedUnderTheCorrectBasketItem()
+        {
+            Assert.That(_basket.Items[0].Total.InPence, Is.EqualTo(1400));
         }
     }
 }
