@@ -1,18 +1,17 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Moq;
 using NUnit.Framework;
+using ShoppingCart.Core.Communication;
 using ShoppingCart.Data.Pizza;
 using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.Size;
-using ShoppingCart.Data.Topping;
 using ShoppingCart.Data.ToppingSize;
 using ShoppingCart.UserSession;
 
 namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
 {
     [TestFixture]
-    public class WhenValidIdentifiersAreProvided
+    public class WhenToppingSizeRepositoryReturnsAnError
     {
         private string _result;
         private UserSessionService _subject;
@@ -46,36 +45,10 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
             _toppingSizeRepository = new Mock<IToppingSizeRepository>();
             _toppingSizeRepository.Setup(x => x.GetByIds(It.IsAny<List<int>>(), It.IsAny<int>())).Returns(() => new GetToppingSizeResponse
             {
-                ToppingSize = new List<ToppingSizeRecord>
+                HasError = true,
+                Error = new Error
                 {
-                    new ToppingSizeRecord
-                    {
-                        Topping = new ToppingRecord
-                        {
-                            Id = 3,
-                            Name = "Cheese"
-                        },
-                        Size = new SizeRecord
-                        {
-                            Id = 2,
-                            Name = "Medium"
-                        },
-                        Price = 100
-                    },
-                    new ToppingSizeRecord
-                    {
-                        Topping = new ToppingRecord
-                        {
-                            Id = 4,
-                            Name = "Tomato Sauce"
-                        },
-                        Size = new SizeRecord
-                        {
-                            Id = 2,
-                            Name = "Medium"
-                        },
-                        Price = 100
-                    }
+                    Message = "An Error Occurred"
                 }
             });
 
@@ -122,34 +95,15 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
         }
 
         [Test]
-        public void ThenTotalIsCorrectlyAddedUnderTheCorrectUserIdentifier()
+        public void ThenTotalDoesNotChange()
         {
-            Assert.That(_basket.Total.InPence, Is.EqualTo(1400));
+            Assert.That(_basket.Total.InPence, Is.EqualTo(0));
         }
 
         [Test]
-        public void ThenPizzaIsCorrectlyAddedUnderTheCorrectUserIdentifier()
+        public void ThenNoItemsAreAdded()
         {
-            Assert.That(_basket.Items.Any(x => x.Pizza.Id == 1 && x.Pizza.Name == "Original"), Is.True);
-        }
-
-        [Test]
-        public void ThenSizeIsCorrectlyAddedUnderTheCorrectUserIdentifier()
-        {
-            Assert.That(_basket.Items.Any(x => x.Size.Id == 2 && x.Size.Name == "Medium"), Is.True);
-        }
-
-        [TestCase(3, "Cheese")]
-        [TestCase(4, "Tomato Sauce")]
-        public void ThenExtraToppingsIsCorrectlyAddedUnderTheCorrectUserIdentifier(int identifier, string toppingName)
-        {
-            Assert.That(_basket.Items.Any(x => x.ExtraToppings.Any(y => y.Id == identifier) && x.ExtraToppings.Any(y => y.Name == toppingName)), Is.True);
-        }
-
-        [Test]
-        public void ThenTotalIsCorrectlyAddedUnderTheCorrectBasketItem()
-        {
-            Assert.That(_basket.Items[0].Total.InPence, Is.EqualTo(1400));
+            Assert.That(_basket.Items.Count, Is.Zero);
         }
     }
 }
