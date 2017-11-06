@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using ShoppingCart.Core.Hasher;
 using ShoppingCart.Services.UserSession;
 
 namespace ShoppingCart.Pages.UserPage

@@ -6,5 +6,6 @@ namespace ShoppingCart.Data.Database
     {
         List<T> Query<T>();
         void SaveOrUpdate<T>(T record);
+        void Save<T>(T record);
     }
 }

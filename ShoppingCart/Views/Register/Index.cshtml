@@ -1,0 +1,55 @@
+﻿@model ShoppingCart.Pages.UserPage.LoginControllerIndexData
+
+@{
+    ViewBag.Title = "title";
+}
+
+<h1>Register</h1>
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                @if (!Model.Message.IsEmpty())
+                {
+                    if (Model.HasError)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @Model.Message
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-success" role="alert">
+                            @Model.Message
+                        </div>
+                    }
+                }
+
+                @using (Html.BeginForm("Register", "Register", FormMethod.Post))
+                {
+                    <fieldset>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="email">Email address</label>
+                                    @Html.TextBox("email", "", new {@class = "form-control", placeholder = "Email", id = "email"})
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    @Html.Password("password", "", new {@class = "form-control", placeholder = "Password", id = "password"})
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group" style="margin-top: 25px;">
+                                    <button type="submit" class="btn btn-primary">Register</button>
+                                </div>
+                            </div>
+                        </div>
+                    </fieldset>
+                }
+            </div>
+        </div>
+    </div>
+</div>

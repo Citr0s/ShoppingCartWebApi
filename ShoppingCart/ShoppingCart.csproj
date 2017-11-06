@@ -141,6 +141,7 @@
     <Compile Include="Pages\HomePage\HomeController.cs" />
     <Compile Include="Pages\HomePage\HomeControllerIndexData.cs" />
     <Compile Include="Pages\UserPage\LoginControllerIndexData.cs" />
+    <Compile Include="Pages\UserPage\RegisterController.cs" />
     <Compile Include="Services\User\CreateUserResponse.cs" />
     <Compile Include="Pages\UserPage\LoginController.cs" />
     <Compile Include="Services\User\UserService.cs" />
@@ -210,6 +211,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Basket\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
+    <Content Include="Views\Register\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

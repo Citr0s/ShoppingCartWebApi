@@ -6,9 +6,11 @@ using ShoppingCart.Data.Database;
 
 namespace ShoppingCart.Data.User
 {
-    public class UserRepository
+    public class UserRepository : IUserRepository
     {
         private readonly IDatabase _database;
+
+        public UserRepository() : this(new NhibernateDatabase()) { }
 
         public UserRepository(IDatabase database)
         {
@@ -45,7 +47,7 @@ namespace ShoppingCart.Data.User
                     Email = request.Email,
                     Password = Hasher.Hash(request.Password)
                 };
-                _database.SaveOrUpdate(userRecord);
+                _database.Save(userRecord);
             }
             catch (Exception)
             {
