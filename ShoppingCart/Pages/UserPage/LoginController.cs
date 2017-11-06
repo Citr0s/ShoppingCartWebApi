@@ -1,21 +1,36 @@
 ﻿using System.Web.Mvc;
+using ShoppingCart.Services.UserSession;
 
 namespace ShoppingCart.Pages.UserPage
 {
     public class LoginController : Controller
     {
-        public LoginController()
+        private readonly IUserSessionService _userSessionService;
+
+        public LoginController() : this(UserSessionService.Instance()) { }
+
+        public LoginController(IUserSessionService userSessionService)
         {
-            
+            _userSessionService = userSessionService;
         }
 
         public ActionResult Index()
         {
-            return View();
+            if (Session["UserId"] == null)
+                Session["UserId"] = _userSessionService.NewUser();
+
+            var response = new LoginControllerIndexData
+            {
+                Basket = _userSessionService.GetBasketForUser(Session["UserId"].ToString()),
+                Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString())
+            };
+
+            return View(response);
         }
 
-        public ActionResult Create()
+        public ActionResult Login()
         {
+            // TODO: Call UserService
             return Json("");
         }
     }

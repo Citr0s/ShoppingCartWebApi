@@ -140,6 +140,7 @@
     <Compile Include="Pages\BasketPage\DeliveryType.cs" />
     <Compile Include="Pages\HomePage\HomeController.cs" />
     <Compile Include="Pages\HomePage\HomeControllerIndexData.cs" />
+    <Compile Include="Pages\UserPage\LoginControllerIndexData.cs" />
     <Compile Include="Services\User\CreateUserResponse.cs" />
     <Compile Include="Pages\UserPage\LoginController.cs" />
     <Compile Include="Services\User\UserService.cs" />
