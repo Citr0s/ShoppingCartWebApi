@@ -1,11 +1,12 @@
 ﻿using System.Web.Mvc;
 using System.Web.WebPages;
+using ShoppingCart.Core.Email;
 using ShoppingCart.Data.User;
 using ShoppingCart.Services.UserSession;
 
 namespace ShoppingCart.Pages.UserPage
 {
-    public class RegisterController : Controller
+    public class  RegisterController : Controller
     {
         private readonly IUserSessionService _userSessionService;
         private readonly IUserRepository _userRepository;
@@ -47,7 +48,15 @@ namespace ShoppingCart.Pages.UserPage
             if (email.IsEmpty() || password.IsEmpty())
             {
                 response.HasError = true;
-                response.Message = "Email and password are required";
+                response.Message = "Email and password are required.";
+
+                return View("Index", response);
+            }
+
+            if(!EmailValidator.IsValid(email))
+            {
+                response.HasError = true;
+                response.Message = "Please provide a valid email address.";
 
                 return View("Index", response);
             }
