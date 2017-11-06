@@ -143,6 +143,7 @@
     <Compile Include="Pages\UserPage\LoginControllerIndexData.cs" />
     <Compile Include="Pages\UserPage\RegisterController.cs" />
     <Compile Include="Pages\UserPage\RegisterControllerIndexData.cs" />
+    <Compile Include="Services\UserSession\UserSessionData.cs" />
     <Compile Include="Services\User\CreateUserResponse.cs" />
     <Compile Include="Pages\UserPage\LoginController.cs" />
     <Compile Include="Services\User\IUserService.cs" />

@@ -1,8 +1,8 @@
 ﻿using ShoppingCart.Core.Communication;
 
-namespace ShoppingCart.Services.User
+namespace ShoppingCart.Data.User
 {
-    public class CreateUserResponse : CommunicationResponse
+    public class SaveUserResponse : CommunicationResponse
     {
         public int UserId { get; set; }
     }

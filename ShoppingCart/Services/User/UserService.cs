@@ -43,6 +43,8 @@ namespace ShoppingCart.Services.User
                 return response;
             }
 
+            response.UserId = saveOrUpdateResponse.UserId;
+
             return response;
         }
     }

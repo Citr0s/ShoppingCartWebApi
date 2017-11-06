@@ -36,9 +36,9 @@ namespace ShoppingCart.Data.User
             return response;
         }
 
-        public SaveOrUpdateResponse Save(SaveOrUpdateRequest request)
+        public SaveUserResponse Save(SaveOrUpdateRequest request)
         {
-            var response = new SaveOrUpdateResponse();
+            var response = new SaveUserResponse();
 
             try
             {
@@ -48,6 +48,9 @@ namespace ShoppingCart.Data.User
                     Password = Hasher.Hash(request.Password)
                 };
                 _database.Save(userRecord);
+
+                var userData = _database.Query<UserRecord>().First(x => x.Email == request.Email);
+                response.UserId = userData.Id;
             }
             catch (Exception)
             {

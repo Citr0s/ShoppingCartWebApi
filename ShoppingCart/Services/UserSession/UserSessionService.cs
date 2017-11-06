@@ -12,13 +12,13 @@ namespace ShoppingCart.Services.UserSession
         private readonly IPizzaSizeRepository _pizzaSizeRepository;
         private readonly IToppingSizeRepository _toppingSizeRepository;
         private static UserSessionService _instance;
-        private readonly Dictionary<Guid, Basket> _userSessions;
+        private readonly Dictionary<Guid, UserSessionData> _userSessions;
 
         public UserSessionService(IPizzaSizeRepository pizzaSizeRepository, IToppingSizeRepository toppingSizeRepository)
         {
             _pizzaSizeRepository = pizzaSizeRepository;
             _toppingSizeRepository = toppingSizeRepository;
-            _userSessions = new Dictionary<Guid, Basket>();
+            _userSessions = new Dictionary<Guid, UserSessionData>();
         }
 
         public static UserSessionService Instance()
@@ -32,7 +32,7 @@ namespace ShoppingCart.Services.UserSession
         public string NewUser()
         {
             var userToken = Guid.NewGuid();
-            _userSessions.Add(userToken, new Basket());
+            _userSessions.Add(userToken, new UserSessionData());
 
             return userToken.ToString();
         }
@@ -64,8 +64,8 @@ namespace ShoppingCart.Services.UserSession
 
             var userSession = _userSessions[Guid.Parse(userToken)];
 
-            userSession.Total = Money.From(userSession.Total.InPence + currentItemPrice);
-            userSession.Items.Add(basketItem);
+            userSession.Basket.Total = Money.From(userSession.Basket.Total.InPence + currentItemPrice);
+            userSession.Basket.Items.Add(basketItem);
         }
 
         public Money GetBasketTotalForUser(string userToken)
@@ -73,7 +73,7 @@ namespace ShoppingCart.Services.UserSession
             if (!Guid.TryParse(userToken, out _) || !_userSessions.ContainsKey(Guid.Parse(userToken)))
                 return Money.From(0);
 
-            return _userSessions[Guid.Parse(userToken)].Total;
+            return _userSessions[Guid.Parse(userToken)].Basket.Total;
         }
 
         public Basket GetBasketForUser(string userToken)
@@ -81,7 +81,15 @@ namespace ShoppingCart.Services.UserSession
             if(!Guid.TryParse(userToken, out _) || !_userSessions.ContainsKey(Guid.Parse(userToken)))
                 return new Basket();
 
-            return _userSessions[Guid.Parse(userToken)];
+            return _userSessions[Guid.Parse(userToken)].Basket;
+        }
+
+        public void LogUserIn(string userToken, int userId)
+        {
+            if (!Guid.TryParse(userToken, out _) || !_userSessions.ContainsKey(Guid.Parse(userToken)))
+                return;
+
+            _userSessions[Guid.Parse(userToken)].LogIn(userId);
         }
     }
 }

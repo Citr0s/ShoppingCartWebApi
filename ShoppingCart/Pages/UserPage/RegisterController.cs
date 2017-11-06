@@ -1,6 +1,4 @@
 ﻿using System.Web.Mvc;
-using System.Web.WebPages;
-using ShoppingCart.Core.Email;
 using ShoppingCart.Data.User;
 using ShoppingCart.Services.User;
 using ShoppingCart.Services.UserSession;
@@ -54,6 +52,8 @@ namespace ShoppingCart.Pages.UserPage
                 response.Message = registerUserResponse.Error.Message;
                 return View("Index", response);
             }
+
+            _userSessionService.LogUserIn(Session["UserId"].ToString(), registerUserResponse.UserId);
 
             response.Message = "Account created successfully.";
             return View("Index", response);
