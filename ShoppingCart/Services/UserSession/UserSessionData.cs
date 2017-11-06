@@ -16,5 +16,11 @@
             LoggedIn = true;
             UserId = userId;
         }
+
+        public void LogOut()
+        {
+            LoggedIn = false;
+            UserId = 0;
+        }
     }
 }

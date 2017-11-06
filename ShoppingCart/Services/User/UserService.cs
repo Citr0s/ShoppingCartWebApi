@@ -47,5 +47,28 @@ namespace ShoppingCart.Services.User
 
             return response;
         }
+
+        public LoginUserResponse Login(string email, string password)
+        {
+            var response = new LoginUserResponse();
+
+            if (email.IsEmpty() || password.IsEmpty())
+            {
+                response.AddError(new Error { Message = "Email and password are required." });
+                return response;
+            }
+
+            var saveOrUpdateResponse = _userRepository.GetByEmail(email, password);
+
+            if (saveOrUpdateResponse.HasError)
+            {
+                response.AddError(new Error { Message = "Could not find account. Please try again later." });
+                return response;
+            }
+
+            response.UserId = saveOrUpdateResponse.User.Id;
+
+            return response;
+        }
     }
 }

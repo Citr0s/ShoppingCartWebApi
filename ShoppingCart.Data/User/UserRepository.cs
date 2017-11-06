@@ -36,6 +36,25 @@ namespace ShoppingCart.Data.User
             return response;
         }
 
+        public GetUserResponse GetByEmail(string email, string password)
+        {
+            var response = new GetUserResponse();
+
+            try
+            {
+                response.User = _database.Query<UserRecord>().First(x => x.Email == email && x.Password == Hasher.Hash(password));
+            }
+            catch (Exception)
+            {
+                response.AddError(new Error
+                {
+                    Message = "Something went wrong when retrieving UserRecords from database."
+                });
+            }
+
+            return response;
+        }
+
         public SaveUserResponse Save(SaveOrUpdateRequest request)
         {
             var response = new SaveUserResponse();

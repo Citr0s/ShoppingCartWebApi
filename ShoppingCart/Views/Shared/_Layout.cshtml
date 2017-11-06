@@ -26,8 +26,16 @@
                         <ul class="nav navbar-nav">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
                             <li>@Html.ActionLink("Basket", "Index", "Basket")</li>
-                            <li>@Html.ActionLink("Login", "Index", "Login")</li>
-                            <li>@Html.ActionLink("Register", "Index", "Register")</li>
+
+                            @if (Model.LoggedIn)
+                            {
+                                <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
+                            }
+                            else
+                            {
+                                <li>@Html.ActionLink("Login", "Index", "Login")</li>
+                                <li>@Html.ActionLink("Register", "Index", "Register")</li>
+                            }
                         </ul>
                     </div>
                 </div>

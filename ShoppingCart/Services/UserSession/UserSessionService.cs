@@ -84,12 +84,28 @@ namespace ShoppingCart.Services.UserSession
             return _userSessions[Guid.Parse(userToken)].Basket;
         }
 
-        public void LogUserIn(string userToken, int userId)
+        public void LogIn(string userToken, int userId)
         {
             if (!Guid.TryParse(userToken, out _) || !_userSessions.ContainsKey(Guid.Parse(userToken)))
                 return;
 
             _userSessions[Guid.Parse(userToken)].LogIn(userId);
+        }
+
+        public bool IsLoggedIn(string userToken)
+        {
+            if (!Guid.TryParse(userToken, out _) || !_userSessions.ContainsKey(Guid.Parse(userToken)))
+                return false;
+
+            return _userSessions[Guid.Parse(userToken)].LoggedIn;
+        }
+
+        public void LogOut(string userToken)
+        {
+            if (!Guid.TryParse(userToken, out _) || !_userSessions.ContainsKey(Guid.Parse(userToken)))
+                return;
+
+            _userSessions[Guid.Parse(userToken)].LogOut();
         }
     }
 }

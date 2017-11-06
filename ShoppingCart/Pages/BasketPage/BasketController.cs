@@ -22,7 +22,8 @@ namespace ShoppingCart.Pages.BasketPage
             var response = new BasketControllerIndexData
             {
                 Basket = _userSessionService.GetBasketForUser(Session["UserId"].ToString()),
-                Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString())
+                Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString()),
+                LoggedIn = _userSessionService.IsLoggedIn(Session["UserId"].ToString())
             };
 
             return View(response);

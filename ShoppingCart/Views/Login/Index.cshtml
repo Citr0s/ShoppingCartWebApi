@@ -1,4 +1,4 @@
-﻿@model dynamic
+﻿@model ShoppingCart.Pages.UserPage.LoginControllerIndexData
 
 @{
     ViewBag.Title = "Login";
@@ -9,20 +9,36 @@
     <div class="col-md-12">
         <div class="row">
             <div class="col-md-12">
-                @using (Html.BeginForm("CheckCredentials", "Login", FormMethod.Post))
+                @if (!Model.Message.IsEmpty())
+                {
+                    if (Model.HasError)
+                    {
+                        <div class="alert alert-danger" role="alert">
+                            @Model.Message
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert alert-success" role="alert">
+                            @Model.Message
+                        </div>
+                    }
+                }
+
+                @using (Html.BeginForm("Login", "Login", FormMethod.Post))
                 {
                     <fieldset>
                         <div class="row">
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="email">Email address</label>
-                                    @Html.TextBox("email", "", new { @class = "form-control", placeholder = "Email", id = "email" })
+                                    @Html.TextBox("email", "", new {@class = "form-control", placeholder = "Email", id = "email"})
                                 </div>
                             </div>
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label for="password">Password</label>
-                                    @Html.Password("password", "", new { @class = "form-control", placeholder = "Password", id = "password" })
+                                    @Html.Password("password", "", new {@class = "form-control", placeholder = "Password", id = "password"})
                                 </div>
                             </div>
                             <div class="col-md-3">

@@ -8,6 +8,8 @@ namespace ShoppingCart.Services.UserSession
         void AddItemToBasket(string userToken, BasketData basket);
         Money GetBasketTotalForUser(string userToken);
         Basket GetBasketForUser(string userToken);
-        void LogUserIn(string userToken, int userId);
+        void LogIn(string userToken, int userId);
+        bool IsLoggedIn(string toString);
+        void LogOut(string toString);
     }
 }

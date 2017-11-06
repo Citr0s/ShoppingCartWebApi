@@ -2,7 +2,7 @@
 {
     public interface IUserRepository
     {
-        GetUserResponse GetByEmail();
+        GetUserResponse GetByEmail(string email, string password);
         SaveUserResponse Save(SaveOrUpdateRequest request);
     }
 }

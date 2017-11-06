@@ -10,5 +10,6 @@ namespace ShoppingCart.Views
         }
 
         public Money Total { get; set; }
+        public bool LoggedIn { get; set; }
     }
 }

@@ -26,7 +26,8 @@ namespace ShoppingCart.Pages.UserPage
             var response = new RegisterControllerIndexData
             {
                 Basket = _userSessionService.GetBasketForUser(Session["UserId"].ToString()),
-                Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString())
+                Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString()),
+                LoggedIn = _userSessionService.IsLoggedIn(Session["UserId"].ToString())
             };
 
             return View(response);
@@ -53,7 +54,7 @@ namespace ShoppingCart.Pages.UserPage
                 return View("Index", response);
             }
 
-            _userSessionService.LogUserIn(Session["UserId"].ToString(), registerUserResponse.UserId);
+            _userSessionService.LogIn(Session["UserId"].ToString(), registerUserResponse.UserId);
 
             response.Message = "Account created successfully.";
             return View("Index", response);

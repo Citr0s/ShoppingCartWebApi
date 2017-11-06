@@ -147,6 +147,7 @@
     <Compile Include="Services\User\CreateUserResponse.cs" />
     <Compile Include="Pages\UserPage\LoginController.cs" />
     <Compile Include="Services\User\IUserService.cs" />
+    <Compile Include="Services\User\LoginUserResponse.cs" />
     <Compile Include="Services\User\UserService.cs" />
     <Compile Include="Services\UserSession\BasketData.cs" />
     <Compile Include="Services\UserSession\Basket.cs" />
