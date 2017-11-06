@@ -23,6 +23,9 @@ namespace ShoppingCart.Pages.UserPage
             if (Session["UserId"] == null)
                 Session["UserId"] = _userSessionService.NewUser();
 
+            if (_userSessionService.IsLoggedIn(Session["UserId"].ToString()))
+                return Redirect("/");
+
             var response = new RegisterControllerIndexData
             {
                 Basket = _userSessionService.GetBasketForUser(Session["UserId"].ToString()),
@@ -55,9 +58,7 @@ namespace ShoppingCart.Pages.UserPage
             }
 
             _userSessionService.LogIn(Session["UserId"].ToString(), registerUserResponse.UserId);
-
-            response.Message = "Account created successfully.";
-            return View("Index", response);
+            return Redirect("/");
         }
     }
 }

@@ -23,7 +23,10 @@ namespace ShoppingCart.Pages.UserPage
             if (Session["UserId"] == null)
                 Session["UserId"] = _userSessionService.NewUser();
 
-            var response = new LoginControllerIndexData
+            if (_userSessionService.IsLoggedIn(Session["UserId"].ToString()))
+                return Redirect("/");
+
+                var response = new LoginControllerIndexData
             {
                 Basket = _userSessionService.GetBasketForUser(Session["UserId"].ToString()),
                 Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString()),
@@ -53,15 +56,13 @@ namespace ShoppingCart.Pages.UserPage
             }
 
             _userSessionService.LogIn(Session["UserId"].ToString(), userServiceResponse.UserId);
-
-            response.Message = "You have logged in successfully.";
-            return View("Index", response);
+            return Redirect("Index");
         }
 
         public ActionResult Logout()
         {
             _userSessionService.LogOut(Session["UserId"].ToString());
-            return Redirect("Index");
+            return Redirect("/");
         }
     }
 }
