@@ -28,7 +28,8 @@ namespace ShoppingCart.Pages.UserPage
             return View(response);
         }
 
-        public ActionResult Login()
+        [HttpPost]
+        public ActionResult CheckCredentials(string username, string password)
         {
             // TODO: Call UserService
             return Json("");

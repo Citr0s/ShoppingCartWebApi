@@ -1,11 +1,10 @@
-﻿using ShoppingCart.Core.Money;
-using ShoppingCart.Services.UserSession;
+﻿using ShoppingCart.Services.UserSession;
+using ShoppingCart.Views;
 
 namespace ShoppingCart.Pages.UserPage
 {
-    public class LoginControllerIndexData 
+    public class LoginControllerIndexData : BaseControllerData
     {
         public Basket Basket { get; set; }
-        public Money Total { get; set; }
     }
 }
