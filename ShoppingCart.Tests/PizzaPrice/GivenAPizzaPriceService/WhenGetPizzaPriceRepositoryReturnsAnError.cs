@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using ShoppingCart.Core.Communication;
 using ShoppingCart.Data.PizzaSize;
-using ShoppingCart.PizzaPrice;
+using ShoppingCart.Services.PizzaPrice;
 
 namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaPriceService
 {

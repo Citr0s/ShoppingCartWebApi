@@ -7,7 +7,7 @@ using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.PizzaTopping;
 using ShoppingCart.Data.Size;
 using ShoppingCart.Data.Topping;
-using ShoppingCart.PizzaPrice;
+using ShoppingCart.Services.PizzaPrice;
 
 namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaPriceService
 {

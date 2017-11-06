@@ -2,7 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using ShoppingCart.Data.Pizza;
-using ShoppingCart.Pizza;
+using ShoppingCart.Services.Pizza;
 
 namespace ShoppingCart.Tests.Pizza.GivenAPizzaService
 {

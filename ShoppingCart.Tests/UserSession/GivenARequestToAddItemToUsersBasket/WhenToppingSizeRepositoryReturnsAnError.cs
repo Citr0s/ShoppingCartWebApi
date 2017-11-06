@@ -6,7 +6,7 @@ using ShoppingCart.Data.Pizza;
 using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.Size;
 using ShoppingCart.Data.ToppingSize;
-using ShoppingCart.UserSession;
+using ShoppingCart.Services.UserSession;
 
 namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
 {

@@ -136,37 +136,40 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="BasketPage\BasketController.cs" />
-    <Compile Include="BasketPage\DeliveryType.cs" />
-    <Compile Include="HomePage\HomeController.cs" />
-    <Compile Include="HomePage\HomeControllerIndexData.cs" />
-    <Compile Include="UserSession\BasketData.cs" />
-    <Compile Include="UserSession\Basket.cs" />
-    <Compile Include="UserSession\BasketItem.cs" />
-    <Compile Include="UserSession\IUserSessionService.cs" />
-    <Compile Include="UserSession\UserSessionService.cs" />
+    <Compile Include="Pages\BasketPage\BasketController.cs" />
+    <Compile Include="Pages\BasketPage\DeliveryType.cs" />
+    <Compile Include="Pages\HomePage\HomeController.cs" />
+    <Compile Include="Pages\HomePage\HomeControllerIndexData.cs" />
+    <Compile Include="Services\User\CreateUserResponse.cs" />
+    <Compile Include="Pages\UserPage\LoginController.cs" />
+    <Compile Include="Services\User\UserService.cs" />
+    <Compile Include="Services\UserSession\BasketData.cs" />
+    <Compile Include="Services\UserSession\Basket.cs" />
+    <Compile Include="Services\UserSession\BasketItem.cs" />
+    <Compile Include="Services\UserSession\IUserSessionService.cs" />
+    <Compile Include="Services\UserSession\UserSessionService.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="PizzaPrice\GetAllPizzaSizesResponse.cs" />
-    <Compile Include="PizzaPrice\IPizzaSizeService.cs" />
-    <Compile Include="PizzaPrice\PizzaSizeMapper.cs" />
-    <Compile Include="PizzaPrice\PizzaSizeModel.cs" />
-    <Compile Include="PizzaPrice\PizzaSizeService.cs" />
-    <Compile Include="Topping\GetAllToppingsResponse.cs" />
-    <Compile Include="Topping\IToppingService.cs" />
-    <Compile Include="Topping\ToppingModel.cs" />
-    <Compile Include="Topping\ToppingService.cs" />
-    <Compile Include="Size\GetAllSizesResponse.cs" />
-    <Compile Include="Size\ISizeService.cs" />
-    <Compile Include="Size\SizeModel.cs" />
-    <Compile Include="Size\SizeService.cs" />
-    <Compile Include="Pizza\GetAllPizzasResponse.cs" />
-    <Compile Include="Pizza\IPizzaService.cs" />
-    <Compile Include="Pizza\PizzaModel.cs" />
-    <Compile Include="Pizza\PizzaService.cs" />
+    <Compile Include="Services\PizzaPrice\GetAllPizzaSizesResponse.cs" />
+    <Compile Include="Services\PizzaPrice\IPizzaSizeService.cs" />
+    <Compile Include="Services\PizzaPrice\PizzaSizeMapper.cs" />
+    <Compile Include="Services\PizzaPrice\PizzaSizeModel.cs" />
+    <Compile Include="Services\PizzaPrice\PizzaSizeService.cs" />
+    <Compile Include="Services\Topping\GetAllToppingsResponse.cs" />
+    <Compile Include="Services\Topping\IToppingService.cs" />
+    <Compile Include="Services\Topping\ToppingModel.cs" />
+    <Compile Include="Services\Topping\ToppingService.cs" />
+    <Compile Include="Services\Size\GetAllSizesResponse.cs" />
+    <Compile Include="Services\Size\ISizeService.cs" />
+    <Compile Include="Services\Size\SizeModel.cs" />
+    <Compile Include="Services\Size\SizeService.cs" />
+    <Compile Include="Services\Pizza\GetAllPizzasResponse.cs" />
+    <Compile Include="Services\Pizza\IPizzaService.cs" />
+    <Compile Include="Services\Pizza\PizzaModel.cs" />
+    <Compile Include="Services\Pizza\PizzaService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="BasketPage\BasketControllerIndexData.cs" />
+    <Compile Include="Pages\BasketPage\BasketControllerIndexData.cs" />
     <Compile Include="Views\BaseControllerData.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -205,6 +208,7 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Basket\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

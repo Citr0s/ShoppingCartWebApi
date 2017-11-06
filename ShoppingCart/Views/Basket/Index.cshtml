@@ -1,4 +1,4 @@
-﻿@model ShoppingCart.BasketPage.BasketControllerIndexData
+﻿@model ShoppingCart.Pages.BasketPage.BasketControllerIndexData
 
 @{
     ViewBag.Title = "Basket";
@@ -35,6 +35,10 @@
                                     <li>@extraTopping.Name</li>
                                 }
                             </ul>
+                        }
+                        else
+                        {
+                            <small>No extra toppings selected.</small>
                         }
                     </div>
                 </div>

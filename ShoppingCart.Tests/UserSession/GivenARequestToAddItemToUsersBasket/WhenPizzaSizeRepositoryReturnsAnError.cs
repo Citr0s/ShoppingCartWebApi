@@ -4,7 +4,7 @@ using NUnit.Framework;
 using ShoppingCart.Core.Communication;
 using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.ToppingSize;
-using ShoppingCart.UserSession;
+using ShoppingCart.Services.UserSession;
 
 namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
 {

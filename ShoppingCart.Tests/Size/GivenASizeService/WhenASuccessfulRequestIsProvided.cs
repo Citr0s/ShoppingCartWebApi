@@ -2,7 +2,7 @@
 using Moq;
 using NUnit.Framework;
 using ShoppingCart.Data.Size;
-using ShoppingCart.Size;
+using ShoppingCart.Services.Size;
 
 namespace ShoppingCart.Tests.Size.GivenASizeService
 {

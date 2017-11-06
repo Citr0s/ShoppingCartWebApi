@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using ShoppingCart.Core.Communication;
 using ShoppingCart.Data.Topping;
-using ShoppingCart.Topping;
+using ShoppingCart.Services.Topping;
 
 namespace ShoppingCart.Tests.Topping.GivenAToppingService
 {

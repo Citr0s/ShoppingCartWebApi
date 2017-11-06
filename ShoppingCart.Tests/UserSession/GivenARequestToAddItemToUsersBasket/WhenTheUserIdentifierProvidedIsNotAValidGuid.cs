@@ -3,7 +3,7 @@ using Moq;
 using NUnit.Framework;
 using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.ToppingSize;
-using ShoppingCart.UserSession;
+using ShoppingCart.Services.UserSession;
 
 namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
 {

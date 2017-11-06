@@ -2,7 +2,7 @@
 using NUnit.Framework;
 using ShoppingCart.Core.Communication;
 using ShoppingCart.Data.Size;
-using ShoppingCart.Size;
+using ShoppingCart.Services.Size;
 
 namespace ShoppingCart.Tests.Size.GivenASizeService
 {
