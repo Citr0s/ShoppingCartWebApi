@@ -25,7 +25,7 @@ namespace ShoppingCart.Pages.UserPage
             if (Session["UserId"] == null)
                 Session["UserId"] = _userSessionService.NewUser();
 
-            var response = new LoginControllerIndexData
+            var response = new RegisterControllerIndexData
             {
                 Basket = _userSessionService.GetBasketForUser(Session["UserId"].ToString()),
                 Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString())
@@ -40,7 +40,7 @@ namespace ShoppingCart.Pages.UserPage
             if (Session["UserId"] == null)
                 Session["UserId"] = _userSessionService.NewUser();
 
-            var response = new LoginControllerIndexData
+            var response = new RegisterControllerIndexData
             {
                 Basket = _userSessionService.GetBasketForUser(Session["UserId"].ToString()),
                 Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString())
