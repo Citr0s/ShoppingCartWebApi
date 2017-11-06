@@ -42,6 +42,7 @@
   <ItemGroup>
     <Compile Include="Communication\CommunicationResponse.cs" />
     <Compile Include="Communication\Error.cs" />
+    <Compile Include="Hasher\Hasher.cs" />
     <Compile Include="Money\Money.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

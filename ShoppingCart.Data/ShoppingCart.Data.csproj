@@ -87,6 +87,11 @@
     <Compile Include="Size\GetSizesResponse.cs" />
     <Compile Include="Size\ISizeRepository.cs" />
     <Compile Include="Size\SizeRecord.cs" />
+    <Compile Include="User\GetUserResponse.cs" />
+    <Compile Include="User\SaveOrUpdateRequest.cs" />
+    <Compile Include="User\SaveOrUpdateResponse.cs" />
+    <Compile Include="User\UserRecord.cs" />
+    <Compile Include="User\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
