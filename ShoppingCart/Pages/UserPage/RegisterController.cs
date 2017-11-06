@@ -2,6 +2,7 @@
 using System.Web.WebPages;
 using ShoppingCart.Core.Email;
 using ShoppingCart.Data.User;
+using ShoppingCart.Services.User;
 using ShoppingCart.Services.UserSession;
 
 namespace ShoppingCart.Pages.UserPage
@@ -9,14 +10,14 @@ namespace ShoppingCart.Pages.UserPage
     public class  RegisterController : Controller
     {
         private readonly IUserSessionService _userSessionService;
-        private readonly IUserRepository _userRepository;
+        private readonly IUserService _userService;
 
-        public RegisterController() : this(UserSessionService.Instance(), new UserRepository()) { }
+        public RegisterController() : this(UserSessionService.Instance(), new UserService(new UserRepository())) { }
 
-        public RegisterController(IUserSessionService userSessionService, IUserRepository userRepository)
+        public RegisterController(IUserSessionService userSessionService, IUserService userService)
         {
             _userSessionService = userSessionService;
-            _userRepository = userRepository;
+            _userService = userService;
         }
 
         public ActionResult Index()
@@ -45,34 +46,12 @@ namespace ShoppingCart.Pages.UserPage
                 Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString())
             };
 
-            if (email.IsEmpty() || password.IsEmpty())
+            var registerUserResponse = _userService.Register(email, password);
+
+            if (registerUserResponse.HasError)
             {
                 response.HasError = true;
-                response.Message = "Email and password are required.";
-
-                return View("Index", response);
-            }
-
-            if(!EmailValidator.IsValid(email))
-            {
-                response.HasError = true;
-                response.Message = "Please provide a valid email address.";
-
-                return View("Index", response);
-            }
-
-            var saveOrUpdateRequest = new SaveOrUpdateRequest
-            {
-                Email = email,
-                Password = password
-            };
-            var saveOrUpdateResponse = _userRepository.SaveOrUpdate(saveOrUpdateRequest);
-
-            if (saveOrUpdateResponse.HasError)
-            {
-                response.HasError = true;
-                response.Message = "Could not create account. Please try again later.";
-
+                response.Message = registerUserResponse.Error.Message;
                 return View("Index", response);
             }
 

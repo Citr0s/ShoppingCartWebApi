@@ -36,7 +36,7 @@ namespace ShoppingCart.Data.User
             return response;
         }
 
-        public SaveOrUpdateResponse SaveOrUpdate(SaveOrUpdateRequest request)
+        public SaveOrUpdateResponse Save(SaveOrUpdateRequest request)
         {
             var response = new SaveOrUpdateResponse();
 

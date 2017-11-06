@@ -3,6 +3,6 @@
     public interface IUserRepository
     {
         GetUserResponse GetByEmail();
-        SaveOrUpdateResponse SaveOrUpdate(SaveOrUpdateRequest request);
+        SaveOrUpdateResponse Save(SaveOrUpdateRequest request);
     }
 }
