@@ -1,8 +1,8 @@
 ﻿using System.Web.Mvc;
 using Moq;
 using NUnit.Framework;
+using ShoppingCart.Controllers.Home;
 using ShoppingCart.Core.Money;
-using ShoppingCart.Pages.HomePage;
 using ShoppingCart.Services.PizzaPrice;
 using ShoppingCart.Services.Size;
 using ShoppingCart.Services.Topping;

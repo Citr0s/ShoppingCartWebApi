@@ -136,16 +136,19 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Pages\BasketPage\BasketController.cs" />
-    <Compile Include="Pages\BasketPage\DeliveryType.cs" />
-    <Compile Include="Pages\HomePage\HomeController.cs" />
-    <Compile Include="Pages\HomePage\HomeControllerIndexData.cs" />
-    <Compile Include="Pages\UserPage\LoginControllerIndexData.cs" />
-    <Compile Include="Pages\UserPage\RegisterController.cs" />
-    <Compile Include="Pages\UserPage\RegisterControllerIndexData.cs" />
+    <Compile Include="Controllers\Basket\BasketController.cs" />
+    <Compile Include="Controllers\Basket\DeliveryType.cs" />
+    <Compile Include="Controllers\Home\HomeController.cs" />
+    <Compile Include="Controllers\Home\HomeControllerIndexData.cs" />
+    <Compile Include="Controllers\User\LoginControllerIndexData.cs" />
+    <Compile Include="Controllers\User\RegisterController.cs" />
+    <Compile Include="Controllers\User\RegisterControllerIndexData.cs" />
+    <Compile Include="Services\Basket\BasketCheckoutResponse.cs" />
+    <Compile Include="Services\Basket\BasketService.cs" />
+    <Compile Include="Services\Basket\IBasketService.cs" />
     <Compile Include="Services\UserSession\UserSessionData.cs" />
     <Compile Include="Services\User\CreateUserResponse.cs" />
-    <Compile Include="Pages\UserPage\LoginController.cs" />
+    <Compile Include="Controllers\User\LoginController.cs" />
     <Compile Include="Services\User\IUserService.cs" />
     <Compile Include="Services\User\LoginUserResponse.cs" />
     <Compile Include="Services\User\UserService.cs" />
@@ -175,7 +178,7 @@
     <Compile Include="Services\Pizza\PizzaModel.cs" />
     <Compile Include="Services\Pizza\PizzaService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Pages\BasketPage\BasketControllerIndexData.cs" />
+    <Compile Include="Controllers\Basket\BasketControllerIndexData.cs" />
     <Compile Include="Views\BaseControllerData.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -3,7 +3,7 @@ using ShoppingCart.Data.User;
 using ShoppingCart.Services.User;
 using ShoppingCart.Services.UserSession;
 
-namespace ShoppingCart.Pages.UserPage
+namespace ShoppingCart.Controllers.User
 {
     public class LoginController : Controller
     {

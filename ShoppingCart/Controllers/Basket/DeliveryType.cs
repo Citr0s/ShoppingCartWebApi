@@ -1,4 +1,4 @@
-﻿namespace ShoppingCart.Pages.BasketPage
+﻿namespace ShoppingCart.Controllers.Basket
 {
     public enum DeliveryType
     {

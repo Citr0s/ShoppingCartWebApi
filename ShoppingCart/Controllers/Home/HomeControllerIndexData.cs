@@ -4,7 +4,7 @@ using ShoppingCart.Services.Size;
 using ShoppingCart.Services.Topping;
 using ShoppingCart.Views;
 
-namespace ShoppingCart.Pages.HomePage
+namespace ShoppingCart.Controllers.Home
 {
     public class HomeControllerIndexData : BaseControllerData
     {

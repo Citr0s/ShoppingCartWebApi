@@ -10,7 +10,7 @@ using ShoppingCart.Services.Size;
 using ShoppingCart.Services.Topping;
 using ShoppingCart.Services.UserSession;
 
-namespace ShoppingCart.Pages.HomePage
+namespace ShoppingCart.Controllers.Home
 {
     public class HomeController : Controller
     {

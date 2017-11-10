@@ -1,10 +1,9 @@
-﻿using ShoppingCart.Services.UserSession;
-using ShoppingCart.Views;
+﻿using ShoppingCart.Views;
 
-namespace ShoppingCart.Pages.BasketPage
+namespace ShoppingCart.Controllers.Basket
 {
     public class BasketControllerIndexData : BaseControllerData
     {
-        public Basket Basket { get; set; }
+        public Services.UserSession.Basket Basket { get; set; }
     }
 }
