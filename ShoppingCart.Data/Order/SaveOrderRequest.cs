@@ -10,6 +10,6 @@ namespace ShoppingCart.Data.Order
         }
 
         public List<Order> Orders { get; set; }
-        public int Total { get; set; }
+        public int GrandTotal { get; set; }
     }
 }

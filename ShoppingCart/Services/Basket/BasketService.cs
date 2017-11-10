@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Web.WebPages;
+﻿using System.Web.WebPages;
 using ShoppingCart.Controllers.Basket;
 using ShoppingCart.Core.Communication;
 using ShoppingCart.Data.Order;
@@ -22,7 +20,10 @@ namespace ShoppingCart.Services.Basket
             var response = new BasketCheckoutResponse();
 
             if (delivery == DeliveryType.Unknown)
-                response.AddError(new Error { Message = "Delivery type not specified." });
+            {
+                response.AddError(new Error {Message = "Delivery type not specified."});
+                return response;
+            }
 
             var userBasket = UserSessionService.Instance().GetBasketForUser(userId);
 
@@ -40,10 +41,13 @@ namespace ShoppingCart.Services.Basket
                     ExtraToppingIds = x.ExtraToppings.ConvertAll(y => y.Id),
                     SubTotal = x.Total.InPence
                 }),
-                Total = userBasket.Total.InPence
+                GrandTotal = userBasket.Total.InPence
             };
 
             var saveOrderResponse = _orderRepository.SaveOrder(orderRequest);
+
+            if (saveOrderResponse.HasError)
+                response.AddError(saveOrderResponse.Error);
 
             return response;
         }
