@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using ShoppingCart.Services.UserSession;
 
-namespace ShoppingCart.Pages.BasketPage
+namespace ShoppingCart.Controllers.Basket
 {
     public class BasketController : Controller
     {
