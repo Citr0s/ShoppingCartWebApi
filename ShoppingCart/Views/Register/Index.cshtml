@@ -42,6 +42,22 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="phone">Phone number</label>
+                                    @Html.TextBox("phone", "", new { @class = "form-control", placeholder = "Phone Number", id = "phone" })
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-group">
+                                    <label for="address">Address</label>
+                                    @Html.Password("address", "", new { @class = "form-control", placeholder = "Address", id = "address" })
+                                </div>
+                            </div>
+                            <div class="col-md-3">
                                 <div class="form-group" style="margin-top: 25px;">
                                     <button type="submit" class="btn btn-primary">Register</button>
                                 </div>

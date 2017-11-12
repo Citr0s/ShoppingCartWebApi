@@ -14,5 +14,6 @@ namespace ShoppingCart.Data.Order
         public string Voucher { get; set; }
         public List<Order> Orders { get; set; }
         public int GrandTotal { get; set; }
+        public string Status { get; set; }
     }
 }

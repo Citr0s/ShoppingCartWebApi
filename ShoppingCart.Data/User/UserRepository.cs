@@ -64,7 +64,9 @@ namespace ShoppingCart.Data.User
                 var userRecord = new UserRecord
                 {
                     Email = request.Email,
-                    Password = Hasher.Hash(request.Password)
+                    Password = Hasher.Hash(request.Password),
+                    PhoneNumber = request.PhoneNumber,
+                    Address = request.Address
                 };
                 _database.Save(userRecord);
 

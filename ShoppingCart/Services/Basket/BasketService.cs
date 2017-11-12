@@ -47,6 +47,7 @@ namespace ShoppingCart.Services.Basket
                 DeliveryType = delivery.ToString(),
                 Voucher = voucher,
                 GrandTotal = userBasket.Total.InPence,
+                Status = OrderStatus.Complete.ToString(),
                 Orders = userBasket.Items.ConvertAll(x => new Order
                 {
                     PizzaId = x.Pizza.Id,

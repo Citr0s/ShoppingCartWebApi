@@ -31,7 +31,8 @@ namespace ShoppingCart.Data.Order
                     DeliveryType = request.DeliveryType,
                     Total = request.GrandTotal,
                     Voucher = request.Voucher,
-                    User = _database.Query<UserRecord>().First(x => x.Id == request.UserId)
+                    User = _database.Query<UserRecord>().First(x => x.Id == request.UserId),
+                    Status = request.Status
                 };
                 var basketId = _database.Save(basketRecord).Id;
 

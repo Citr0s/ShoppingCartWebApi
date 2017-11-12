@@ -14,7 +14,7 @@ namespace ShoppingCart.Services.User
             _userRepository = userRepository;
         }
 
-        public CreateUserResponse Register(string email, string password)
+        public CreateUserResponse Register(string email, string password, string phone, string address)
         {
             var response = new CreateUserResponse();
 
@@ -33,7 +33,9 @@ namespace ShoppingCart.Services.User
             var saveOrUpdateRequest = new SaveOrUpdateRequest
             {
                 Email = email,
-                Password = password
+                Password = password,
+                PhoneNumber = phone,
+                Address = address
             };
             var saveOrUpdateResponse = _userRepository.Save(saveOrUpdateRequest);
 

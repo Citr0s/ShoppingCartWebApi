@@ -10,6 +10,7 @@ namespace ShoppingCart.Data.Order
         public virtual string Voucher { get; set; }
         public virtual string DeliveryType { get; set; }
         public virtual int Total { get; set; }
+        public virtual string Status { get; set; }
         public virtual UserRecord User { get; set; }
     }
 
@@ -23,6 +24,7 @@ namespace ShoppingCart.Data.Order
             Map(x => x.DeliveryType).Column("delivery_type");
             Map(x => x.Voucher);
             Map(x => x.Total);
+            Map(x => x.Status);
             References(x => x.User).Column("user_id").Not.LazyLoad();
         }
     }

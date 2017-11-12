@@ -37,7 +37,7 @@ namespace ShoppingCart.Controllers.User
         }
 
         [HttpPost]
-        public ActionResult Register(string email, string password)
+        public ActionResult Register(string email, string password, string phone, string address)
         {
             if (Session["UserId"] == null)
                 Session["UserId"] = _userSessionService.NewUser();
@@ -48,7 +48,7 @@ namespace ShoppingCart.Controllers.User
                 Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString())
             };
 
-            var registerUserResponse = _userService.Register(email, password);
+            var registerUserResponse = _userService.Register(email, password, phone, address);
 
             if (registerUserResponse.HasError)
             {

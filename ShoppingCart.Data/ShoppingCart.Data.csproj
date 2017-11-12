@@ -67,6 +67,7 @@
     <Compile Include="Order\IOrderRepository.cs" />
     <Compile Include="Order\OrderRecord.cs" />
     <Compile Include="Order\OrderRepository.cs" />
+    <Compile Include="Order\OrderStatus.cs" />
     <Compile Include="Order\SaveOrderRequest.cs" />
     <Compile Include="Order\SaveOrderResponse.cs" />
     <Compile Include="Order\Order.cs" />

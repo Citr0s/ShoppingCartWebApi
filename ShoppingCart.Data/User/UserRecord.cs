@@ -8,6 +8,8 @@ namespace ShoppingCart.Data.User
         public virtual int Id { get; set; }
         public virtual string Email { get; set; }
         public virtual string Password { get; set; }
+        public virtual string PhoneNumber { get; set; }
+        public virtual string Address { get; set; }
     }
 
     [ExcludeFromCodeCoverage]
@@ -19,6 +21,8 @@ namespace ShoppingCart.Data.User
             Id(x => x.Id);
             Map(x => x.Email);
             Map(x => x.Password);
+            Map(x => x.PhoneNumber).Column("phone_number");
+            Map(x => x.Address);
         }
     }
 }
