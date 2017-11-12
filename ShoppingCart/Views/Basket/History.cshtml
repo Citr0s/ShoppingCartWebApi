@@ -17,7 +17,7 @@
                         <h3 class="panel-title">
                             <div class="row">
                                 <div class="col-md-6">
-                                    Order <small>#@basketItem.Basket.Id</small>
+                                    Order <small>#@basketItem.Basket.Id</small> <small style="font-weight: bold; font-size: 1rem; color: #333;">@(!basketItem.Basket.Voucher.IsEmpty() ? $"VOUCHER USED: {basketItem.Basket.Voucher}" : "")</small>
                                 </div>
                                 <div class="col-md-6" style="text-align: right; font-weight: bold; color: #27ae60;">
                                     @basketItem.Total.InFull

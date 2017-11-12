@@ -1,6 +1,5 @@
 ﻿using System.Diagnostics.CodeAnalysis;
 using FluentNHibernate.Mapping;
-using ShoppingCart.Data.PizzaSize;
 
 namespace ShoppingCart.Data.Pizza
 {
@@ -8,7 +7,6 @@ namespace ShoppingCart.Data.Pizza
     {
         public virtual int Id { get; set; }
         public virtual string Name { get; set; }
-        public virtual PizzaSizeRecord PizzaSize { get; set; }
     }
 
     [ExcludeFromCodeCoverage]

@@ -43,9 +43,9 @@ namespace ShoppingCart.Services.Basket
             var userBasket = _userSessionService.GetBasketForUser(userId);
 
             if (!voucher.IsEmpty())
-            {
-                // TODO: logic for checking if order matches voucher criteria
-            }
+                userBasket.Total = VoucherHelper.Check(userBasket, delivery, voucher);
+            else
+                voucher = "";
 
 
             var orderRequest = new SaveOrderRequest
