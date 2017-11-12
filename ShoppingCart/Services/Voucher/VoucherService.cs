@@ -23,6 +23,7 @@ namespace ShoppingCart.Services.Voucher
                 return response;
             }
 
+            response.VoucherDetails = getAllVouchersResponse.VoucherDetails;
             return response;
         }
     }
