@@ -115,5 +115,13 @@ namespace ShoppingCart.Services.UserSession
 
             return _userSessions[Guid.Parse(userToken)].UserId;
         }
+
+        public void ClearBasket(string userToken)
+        {
+            if (!Guid.TryParse(userToken, out _) || !_userSessions.ContainsKey(Guid.Parse(userToken)))
+                return;
+
+            _userSessions[Guid.Parse(userToken)].Basket.Items = new List<BasketItem>();
+        }
     }
 }

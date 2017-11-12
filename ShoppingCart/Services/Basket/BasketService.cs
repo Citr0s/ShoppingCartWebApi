@@ -68,6 +68,8 @@ namespace ShoppingCart.Services.Basket
             if (saveOrderResponse.HasError)
                 response.AddError(saveOrderResponse.Error);
 
+            _userSessionService.ClearBasket(userId);
+
             return response;
         }
 

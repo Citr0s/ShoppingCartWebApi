@@ -51,7 +51,7 @@ namespace ShoppingCart.Data.Order
 
                     foreach (var toppingId in order.ExtraToppingIds)
                     {
-                        var basketToppingRecord = new BasketToppingRecord
+                        var basketToppingRecord = new OrderToppingRecord
                         {
                             Order = _database.Query<OrderRecord>().First(x => x.Id == orderId),
                             Topping = _database.Query<ToppingRecord>().First(x => x.Id == toppingId)
@@ -84,10 +84,14 @@ namespace ShoppingCart.Data.Order
                     {
                         Basket = basket,
                         Total = Money.From(basket.Total),
-                        Orders = _database.Query<OrderRecord>().Where(y => y.Basket.Id == basket.Id).ToList()
+                        Orders = _database.Query<OrderRecord>().Where(y => y.Basket.Id == basket.Id)
+                        .ToList()
+                        .ConvertAll(order => new OrderDetails
+                            {
+                                Order = order,
+                                Toppings = _database.Query<OrderToppingRecord>().Where(y => y.Order.Id == order.Id).ToList()
+                        })
                     });
-
-                // need to map the extra toppings too
             }
             catch (Exception)
             {

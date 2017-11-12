@@ -7,12 +7,23 @@ namespace ShoppingCart.Data.Order
     {
         public BasketDetails()
         {
-            Orders = new List<OrderRecord>();
+            Orders = new List<OrderDetails>();
             Total = Money.From(0);
         }
 
         public Money Total { get; set; }
         public BasketRecord Basket { get; set; }
-        public List<OrderRecord> Orders { get; set; }
+        public List<OrderDetails> Orders { get; set; }
+    }
+
+    public class OrderDetails
+    {
+        public OrderDetails()
+        {
+            Toppings = new List<OrderToppingRecord>();
+        }
+
+        public OrderRecord Order { get; set; }
+        public List<OrderToppingRecord> Toppings { get; set; }
     }
 }

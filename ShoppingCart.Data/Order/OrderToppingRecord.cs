@@ -4,7 +4,7 @@ using ShoppingCart.Data.Topping;
 
 namespace ShoppingCart.Data.Order
 {
-    public class BasketToppingRecord
+    public class OrderToppingRecord
     {
         public virtual int Id { get; set; }
         public virtual OrderRecord Order { get; set; }
@@ -12,7 +12,7 @@ namespace ShoppingCart.Data.Order
     }
 
     [ExcludeFromCodeCoverage]
-    public class BasketToppingRecordMap : ClassMap<BasketToppingRecord>
+    public class BasketToppingRecordMap : ClassMap<OrderToppingRecord>
     {
         public BasketToppingRecordMap()
         {
