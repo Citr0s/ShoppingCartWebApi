@@ -69,5 +69,45 @@ namespace ShoppingCart.Data.Order
 
             return response;
         }
+
+        public GetPreviousOrdersResponse GetPreviousOrders(int userId)
+        {
+            var response = new GetPreviousOrdersResponse();
+
+            try
+            {
+                response.Baskets = _database.Query<BasketRecord>().Where(x => x.User.Id == userId && x.Status == OrderStatus.Complete.ToString()).ToList();
+
+                // for each basket add order items
+            }
+            catch (Exception)
+            {
+                response.AddError(new Error
+                {
+                    Message = "Something went wrong when retrieving previous orders from database."
+                });
+            }
+
+            return response;
+        }
+
+        public GetPreviousOrdersResponse GetSavedOrders(int userId)
+        {
+            var response = new GetPreviousOrdersResponse();
+
+            try
+            {
+                response.Baskets = _database.Query<BasketRecord>().Where(x => x.User.Id == userId && x.Status == OrderStatus.Partial.ToString()).ToList();
+            }
+            catch (Exception)
+            {
+                response.AddError(new Error
+                {
+                    Message = "Something went wrong when retrieving saved orders from database."
+                });
+            }
+
+            return response;
+        }
     }
 }

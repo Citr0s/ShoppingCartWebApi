@@ -57,7 +57,7 @@ namespace ShoppingCart.Controllers.Basket
             var previousOrdersResponse = _basketService.GetPreviousOrders(_userSessionService.GetUserByUserToken(Session["UserId"].ToString()));
 
             if (previousOrdersResponse.HasError)
-                Redirect("/Basket");
+                Redirect("/Baskets");
 
             var response = new BasketControllerHistoryData
             {
@@ -78,7 +78,7 @@ namespace ShoppingCart.Controllers.Basket
             var savedOrdersResponse = _basketService.GetSavedOrders(_userSessionService.GetUserByUserToken(Session["UserId"].ToString()));
 
             if (savedOrdersResponse.HasError)
-                Redirect("/Basket");
+                Redirect("/Baskets");
 
             var response = new BasketControllerSavedData
             {
@@ -94,34 +94,34 @@ namespace ShoppingCart.Controllers.Basket
         public ActionResult Save()
         {
             if (Session["UserId"] == null)
-                return Redirect("/Basket");
+                return Redirect("/Baskets");
 
             var basketCheckoutResponse = _basketService.Save(Session["UserId"]?.ToString(), OrderStatus.Partial);
 
             if (!basketCheckoutResponse.HasError)
-                return Redirect("/Basket");
+                return Redirect("/Baskets");
 
             if (basketCheckoutResponse.Error.ErrorCode == ErrorCodes.UserNotLoggedIn)
                 return Redirect("/Login");
 
-            return Redirect("/Basket");
+            return Redirect("/Baskets");
         }
 
         [HttpPost]
         public ActionResult Checkout(DeliveryType delivery, string voucher)
         {
             if (Session["UserId"] == null)
-                return Redirect("/Basket");
+                return Redirect("/Baskets");
 
             var basketCheckoutResponse = _basketService.Checkout(delivery, voucher, Session["UserId"]?.ToString(), OrderStatus.Complete);
 
             if (!basketCheckoutResponse.HasError)
-                return Redirect("/Basket/Summary");
+                return Redirect("/Baskets/Summary");
 
             if (basketCheckoutResponse.Error.ErrorCode == ErrorCodes.UserNotLoggedIn)
                 return Redirect("/Login");
 
-            return Redirect("/Basket");
+            return Redirect("/Baskets");
         }
     }
 }

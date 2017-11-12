@@ -64,6 +64,7 @@
     <Compile Include="Database\NhibernateDatabase.cs" />
     <Compile Include="Order\BasketRecord.cs" />
     <Compile Include="Order\BasketToppingRecord.cs" />
+    <Compile Include="Order\GetPreviousOrdersResponse.cs" />
     <Compile Include="Order\IOrderRepository.cs" />
     <Compile Include="Order\OrderRecord.cs" />
     <Compile Include="Order\OrderRepository.cs" />

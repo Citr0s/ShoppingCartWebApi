@@ -111,5 +111,30 @@ namespace ShoppingCart.Services.Basket
 
             return response;
         }
+
+        public GetPreviousOrdersResponse GetPreviousOrders(int userId)
+        {
+            var response = new GetPreviousOrdersResponse();
+
+            var previousOrders = _orderRepository.GetPreviousOrders(userId);
+
+            if (previousOrders.HasError)
+            {
+                response.AddError(previousOrders.Error);
+                return response;
+            }
+
+            response.Basket = previousOrders.Baskets.ConvertAll(x => new Basket
+            {
+                
+            });
+
+            return response;
+        }
+
+        public GetSavedORdersResponse GetSavedOrders(int userId)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }
