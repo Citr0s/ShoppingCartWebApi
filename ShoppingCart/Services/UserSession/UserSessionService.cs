@@ -122,6 +122,7 @@ namespace ShoppingCart.Services.UserSession
                 return;
 
             _userSessions[Guid.Parse(userToken)].Basket.Items = new List<BasketItem>();
+            _userSessions[Guid.Parse(userToken)].Basket.Total = Money.From(0);
         }
 
         public void SetBasket(string userToken, Basket basket)
