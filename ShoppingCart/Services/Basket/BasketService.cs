@@ -18,7 +18,7 @@ namespace ShoppingCart.Services.Basket
             _userSessionService = userSessionService;
         }
 
-        public BasketCheckoutResponse Checkout(DeliveryType delivery, string voucher, string userId)
+        public BasketCheckoutResponse Checkout(DeliveryType delivery, string voucher, string userId, OrderStatus orderStatus)
         {
             var response = new BasketCheckoutResponse();
 
@@ -33,6 +33,13 @@ namespace ShoppingCart.Services.Basket
                 response.AddError(new Error {Message = "Delivery type not specified."});
                 return response;
             }
+
+            if (orderStatus == OrderStatus.Unknown)
+            {
+                response.AddError(new Error {Message = "Order status not specified."});
+                return response;
+            }
+
             var userBasket = _userSessionService.GetBasketForUser(userId);
 
             if (!voucher.IsEmpty())
@@ -47,7 +54,48 @@ namespace ShoppingCart.Services.Basket
                 DeliveryType = delivery.ToString(),
                 Voucher = voucher,
                 GrandTotal = userBasket.Total.InPence,
-                Status = OrderStatus.Complete.ToString(),
+                Status = orderStatus.ToString(),
+                Orders = userBasket.Items.ConvertAll(x => new Order
+                {
+                    PizzaId = x.Pizza.Id,
+                    SizeId = x.Size.Id,
+                    ExtraToppingIds = x.ExtraToppings.ConvertAll(y => y.Id),
+                    SubTotal = x.Total.InPence
+                }),
+            };
+            var saveOrderResponse = _orderRepository.SaveOrder(orderRequest);
+
+            if (saveOrderResponse.HasError)
+                response.AddError(saveOrderResponse.Error);
+
+            return response;
+        }
+
+        public BasketSaveResponse Save(string userId, OrderStatus orderStatus)
+        {
+            var response = new BasketSaveResponse();
+
+            if (!_userSessionService.IsLoggedIn(userId))
+            {
+                response.AddError(new Error { ErrorCode = ErrorCodes.UserNotLoggedIn, Message = "You have to be logged in to save your order" });
+                return response;
+            }
+
+            if (orderStatus == OrderStatus.Unknown)
+            {
+                response.AddError(new Error { Message = "Order status not specified." });
+                return response;
+            }
+
+            var userBasket = _userSessionService.GetBasketForUser(userId);
+
+            var orderRequest = new SaveOrderRequest
+            {
+                DeliveryType = DeliveryType.Unknown.ToString(),
+                Voucher = "",
+                UserId = _userSessionService.GetUserByUserToken(userId),
+                GrandTotal = userBasket.Total.InPence,
+                Status = orderStatus.ToString(),
                 Orders = userBasket.Items.ConvertAll(x => new Order
                 {
                     PizzaId = x.Pizza.Id,

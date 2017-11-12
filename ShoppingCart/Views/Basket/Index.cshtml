@@ -73,6 +73,16 @@
                             }
                         </div>
                     </div>
+                    <div class="row" style="margin-top: 15px;">
+                        <div class="col-md-12">
+                            @using (Html.BeginForm("Save", "Basket", FormMethod.Post))
+                            {
+                                <div class="form-group">
+                                    <input type="submit" value="Save" class="btn btn-default" />
+                                </div>
+                            }
+                        </div>
+                    </div>
                 </div>
                 <div class="col-md-6" style="text-align: right;">
                     <hr />

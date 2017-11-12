@@ -39,7 +39,7 @@ namespace ShoppingCart.Controllers.Basket
             if (Session["UserId"] == null)
                 Session["UserId"] = _userSessionService.NewUser();
 
-            var response = new BasketControllerIndexData
+            var response = new BasketControllerSummaryData
             {
                 Basket = _userSessionService.GetBasketForUser(Session["UserId"].ToString()),
                 Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString()),
@@ -50,12 +50,29 @@ namespace ShoppingCart.Controllers.Basket
         }
 
         [HttpPost]
+        public ActionResult Save()
+        {
+            if (Session["UserId"] == null)
+                return Redirect("/Basket");
+
+            var basketCheckoutResponse = _basketService.Save(Session["UserId"]?.ToString(), OrderStatus.Partial);
+
+            if (!basketCheckoutResponse.HasError)
+                return Redirect("/Basket");
+
+            if (basketCheckoutResponse.Error.ErrorCode == ErrorCodes.UserNotLoggedIn)
+                return Redirect("/Login");
+
+            return Redirect("/Basket");
+        }
+
+        [HttpPost]
         public ActionResult Checkout(DeliveryType delivery, string voucher)
         {
             if (Session["UserId"] == null)
                 return Redirect("/Basket");
 
-            var basketCheckoutResponse = _basketService.Checkout(delivery, voucher, Session["UserId"]?.ToString());
+            var basketCheckoutResponse = _basketService.Checkout(delivery, voucher, Session["UserId"]?.ToString(), OrderStatus.Complete);
 
             if (!basketCheckoutResponse.HasError)
                 return Redirect("/Basket/Summary");

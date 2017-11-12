@@ -145,6 +145,7 @@
     <Compile Include="Controllers\User\RegisterController.cs" />
     <Compile Include="Controllers\User\RegisterControllerIndexData.cs" />
     <Compile Include="Services\Basket\BasketCheckoutResponse.cs" />
+    <Compile Include="Services\Basket\BasketSaveResponse.cs" />
     <Compile Include="Services\Basket\BasketService.cs" />
     <Compile Include="Services\Basket\IBasketService.cs" />
     <Compile Include="Services\UserSession\UserSessionData.cs" />
