@@ -124,11 +124,7 @@ namespace ShoppingCart.Services.Basket
                 return response;
             }
 
-            response.Basket = previousOrders.Baskets.ConvertAll(x => new Basket
-            {
-                
-            });
-
+            response.BasketDetails = previousOrders.BasketDetails;
             return response;
         }
 

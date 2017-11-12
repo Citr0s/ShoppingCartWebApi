@@ -8,30 +8,38 @@
 
 <div class="row">
     <div class="col-md-12">
-        @if (Model.Basket.Items.Any())
+        @if (Model.BasketDetails.Any())
         {
-            foreach (var basketItem in Model.Basket.Items)
+            foreach (var basketItem in Model.BasketDetails)
             {
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             <div class="row">
                                 <div class="col-md-6">
-                                    @basketItem.Pizza.Name <small>@basketItem.Size.Name</small>
+                                    Orders
                                 </div>
                                 <div class="col-md-6" style="text-align: right; font-weight: bold; color: #27ae60;">
+                                    @basketItem.Total.InFull
                                 </div>
                             </div>
                         </h3>
                     </div>
                     <div class="panel-body">
-                        @if (basketItem.ExtraToppings.Count > 0)
+                        @if (basketItem.Orders.Count > 0)
                         {
-                            <p>Extra Toppings</p>
                             <ul>
-                                @foreach (var extraTopping in basketItem.ExtraToppings)
+                                @foreach (var order in basketItem.Orders)
                                 {
-                                    <li>@extraTopping.Name</li>
+                                    <li>
+                                        @order.Pizza.Name <small>@order.Size.Name</small>
+                                        @*@if (order.Basket..Count > 0)
+                                        {
+                                            <ul>
+                                                <li></li>
+                                            </ul>
+                                        }*@
+                                    </li>
                                 }
                             </ul>
                         }

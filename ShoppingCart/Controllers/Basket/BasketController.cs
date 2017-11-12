@@ -61,10 +61,10 @@ namespace ShoppingCart.Controllers.Basket
 
             var response = new BasketControllerHistoryData
             {
-                Basket = previousOrdersResponse.Basket,
-                Total = previousOrdersResponse.Total,
+                BasketDetails = previousOrdersResponse.BasketDetails,
+                Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString()),
                 LoggedIn = _userSessionService.IsLoggedIn(Session["UserId"].ToString())
-            };
+        };
 
             return View(response);
         }
@@ -83,7 +83,7 @@ namespace ShoppingCart.Controllers.Basket
             var response = new BasketControllerSavedData
             {
                 Basket = savedOrdersResponse.Basket,
-                Total = savedOrdersResponse.Total,
+                Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString()),
                 LoggedIn = _userSessionService.IsLoggedIn(Session["UserId"].ToString())
             };
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using ShoppingCart.Core.Communication;
+using ShoppingCart.Core.Money;
 using ShoppingCart.Data.Database;
 using ShoppingCart.Data.Pizza;
 using ShoppingCart.Data.Size;
@@ -76,9 +77,17 @@ namespace ShoppingCart.Data.Order
 
             try
             {
-                response.Baskets = _database.Query<BasketRecord>().Where(x => x.User.Id == userId && x.Status == OrderStatus.Complete.ToString()).ToList();
+                response.BasketDetails = _database.Query<BasketRecord>()
+                    .Where(basket => basket.User.Id == userId && basket.Status == OrderStatus.Complete.ToString())
+                    .ToList()
+                    .ConvertAll(basket => new BasketDetails
+                    {
+                        Basket = basket,
+                        Total = Money.From(basket.Total),
+                        Orders = _database.Query<OrderRecord>().Where(y => y.Basket.Id == basket.Id).ToList()
+                    });
 
-                // for each basket add order items
+                // need to map the extra toppings too
             }
             catch (Exception)
             {
@@ -97,7 +106,7 @@ namespace ShoppingCart.Data.Order
 
             try
             {
-                response.Baskets = _database.Query<BasketRecord>().Where(x => x.User.Id == userId && x.Status == OrderStatus.Partial.ToString()).ToList();
+                //response.BasketDetails = _database.Query<BasketRecord>().Where(x => x.User.Id == userId && x.Status == OrderStatus.Partial.ToString()).ToList();
             }
             catch (Exception)
             {

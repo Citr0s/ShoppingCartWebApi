@@ -29,6 +29,8 @@
 
                             @if (Model.LoggedIn)
                             {
+                                <li>@Html.ActionLink("Saved Orders", "Saved", "Basket")</li>
+                                <li>@Html.ActionLink("History", "History", "Basket")</li>
                                 <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
                             }
                             else

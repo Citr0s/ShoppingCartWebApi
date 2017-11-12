@@ -7,9 +7,9 @@ namespace ShoppingCart.Data.Order
     {
         public GetPreviousOrdersResponse()
         {
-            Baskets = new List<BasketRecord>();
+            BasketDetails = new List<BasketDetails>();    
         }
 
-        public List<BasketRecord> Baskets { get; set; }
+        public List<BasketDetails> BasketDetails { get; set; }
     }
 }
