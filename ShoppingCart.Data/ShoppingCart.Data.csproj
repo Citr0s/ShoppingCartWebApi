@@ -106,6 +106,14 @@
     <Compile Include="User\SaveUserResponse.cs" />
     <Compile Include="User\UserRecord.cs" />
     <Compile Include="User\UserRepository.cs" />
+    <Compile Include="Delivery\DeliveryTypeRecord.cs" />
+    <Compile Include="Voucher\GetAllVouchersResponse.cs" />
+    <Compile Include="Voucher\IVoucherRepository.cs" />
+    <Compile Include="Voucher\VoucherDeliveryTypeRecord.cs" />
+    <Compile Include="Voucher\VoucherDetails.cs" />
+    <Compile Include="Voucher\VoucherRecord.cs" />
+    <Compile Include="Voucher\VoucherRepository.cs" />
+    <Compile Include="Voucher\VoucherSizeRecord.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

@@ -4,6 +4,7 @@ using ShoppingCart.Core.Communication;
 using ShoppingCart.Core.Communication.ErrorCodes;
 using ShoppingCart.Data.Order;
 using ShoppingCart.Services.UserSession;
+using ShoppingCart.Services.Voucher;
 
 namespace ShoppingCart.Services.Basket
 {

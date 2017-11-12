@@ -2,7 +2,7 @@
 using ShoppingCart.Controllers.Basket;
 using ShoppingCart.Core.Money;
 
-namespace ShoppingCart.Services.Basket
+namespace ShoppingCart.Services.Voucher
 {
     public class VoucherHelper
     {
