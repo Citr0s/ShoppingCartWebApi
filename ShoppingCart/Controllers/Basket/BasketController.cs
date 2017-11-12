@@ -34,6 +34,21 @@ namespace ShoppingCart.Controllers.Basket
             return View(response);
         }
 
+        public ActionResult Summary()
+        {
+            if (Session["UserId"] == null)
+                Session["UserId"] = _userSessionService.NewUser();
+
+            var response = new BasketControllerIndexData
+            {
+                Basket = _userSessionService.GetBasketForUser(Session["UserId"].ToString()),
+                Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString()),
+                LoggedIn = _userSessionService.IsLoggedIn(Session["UserId"].ToString())
+            };
+
+            return View(response);
+        }
+
         [HttpPost]
         public ActionResult Checkout(DeliveryType delivery, string voucher)
         {
@@ -43,7 +58,7 @@ namespace ShoppingCart.Controllers.Basket
             var basketCheckoutResponse = _basketService.Checkout(delivery, voucher, Session["UserId"]?.ToString());
 
             if (!basketCheckoutResponse.HasError)
-                return Redirect("/Summary");
+                return Redirect("/Basket/Summary");
 
             if (basketCheckoutResponse.Error.ErrorCode == ErrorCodes.UserNotLoggedIn)
                 return Redirect("/Login");

@@ -137,6 +137,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\Basket\BasketController.cs" />
+    <Compile Include="Controllers\Basket\BasketControllerSummaryData.cs" />
     <Compile Include="Controllers\Basket\DeliveryType.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
     <Compile Include="Controllers\Home\HomeControllerIndexData.cs" />
@@ -219,6 +220,7 @@
     <Content Include="Views\Basket\Index.cshtml" />
     <Content Include="Views\Login\Index.cshtml" />
     <Content Include="Views\Register\Index.cshtml" />
+    <Content Include="Views\Basket\Summary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -16,7 +16,7 @@ namespace ShoppingCart.Data.Order
     {
         public BasketToppingRecordMap()
         {
-            Table("basket_toppings");
+            Table("order_toppings");
             Id(x => x.Id);
             References(x => x.Order).Column("order_id").Not.LazyLoad();
             References(x => x.Topping).Column("topping_id").Not.LazyLoad();
