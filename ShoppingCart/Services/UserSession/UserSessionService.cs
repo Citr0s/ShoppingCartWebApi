@@ -107,5 +107,13 @@ namespace ShoppingCart.Services.UserSession
 
             _userSessions[Guid.Parse(userToken)].LogOut();
         }
+
+        public int GetUserByUserToken(string userToken)
+        {
+            if (!Guid.TryParse(userToken, out _) || !_userSessions.ContainsKey(Guid.Parse(userToken)))
+                return 0;
+
+            return _userSessions[Guid.Parse(userToken)].UserId;
+        }
     }
 }

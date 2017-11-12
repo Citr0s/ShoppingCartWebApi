@@ -11,5 +11,6 @@ namespace ShoppingCart.Services.UserSession
         void LogIn(string userToken, int userId);
         bool IsLoggedIn(string toString);
         void LogOut(string toString);
+        int GetUserByUserToken(string userToken);
     }
 }

@@ -9,6 +9,9 @@ namespace ShoppingCart.Data.Order
             Orders = new List<Order>();
         }
 
+        public int UserId { get; set; }
+        public string DeliveryType { get; set; }
+        public string Voucher { get; set; }
         public List<Order> Orders { get; set; }
         public int GrandTotal { get; set; }
     }

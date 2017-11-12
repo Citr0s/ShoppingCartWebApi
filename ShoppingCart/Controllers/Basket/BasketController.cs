@@ -1,4 +1,5 @@
 ﻿using System.Web.Mvc;
+using ShoppingCart.Core.Communication.ErrorCodes;
 using ShoppingCart.Data.Order;
 using ShoppingCart.Services.Basket;
 using ShoppingCart.Services.UserSession;
@@ -10,7 +11,7 @@ namespace ShoppingCart.Controllers.Basket
         private readonly IUserSessionService _userSessionService;
         private readonly IBasketService _basketService;
 
-        public BasketController() : this(UserSessionService.Instance(), new BasketService(new OrderRepository())) { }
+        public BasketController() : this(UserSessionService.Instance(), new BasketService(new OrderRepository(), UserSessionService.Instance())) { }
 
         public BasketController(IUserSessionService userSessionService, IBasketService basketService)
         {
@@ -37,14 +38,17 @@ namespace ShoppingCart.Controllers.Basket
         public ActionResult Checkout(DeliveryType delivery, string voucher)
         {
             if (Session["UserId"] == null)
-                Redirect("Basket");
+                return Redirect("/Basket");
 
             var basketCheckoutResponse = _basketService.Checkout(delivery, voucher, Session["UserId"]?.ToString());
 
-            if (basketCheckoutResponse.HasError)
-                Redirect("Basket");
+            if (!basketCheckoutResponse.HasError)
+                return Redirect("/Summary");
 
-            throw new System.NotImplementedException();
+            if (basketCheckoutResponse.Error.ErrorCode == ErrorCodes.UserNotLoggedIn)
+                return Redirect("/Login");
+
+            return Redirect("/Basket");
         }
     }
 }

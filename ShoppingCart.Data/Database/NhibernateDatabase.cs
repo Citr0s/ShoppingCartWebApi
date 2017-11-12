@@ -40,19 +40,13 @@ namespace ShoppingCart.Data.Database
             return response;
         }
 
-        public void SaveOrUpdate<T>(T record)
-        {
-            using (var session = _sessionFactory.OpenSession())
-            {
-                session.SaveOrUpdate(record);
-            }
-        }
-
-        public void Save<T>(T record)
+        public T Save<T>(T record)
         {
             using (var session = _sessionFactory.OpenSession())
             {
                 session.Save(record);
+
+                return record;
             }
         }
     }

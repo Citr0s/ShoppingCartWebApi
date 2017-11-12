@@ -62,7 +62,9 @@
   <ItemGroup>
     <Compile Include="Database\IDatabase.cs" />
     <Compile Include="Database\NhibernateDatabase.cs" />
+    <Compile Include="Order\BasketRecord.cs" />
     <Compile Include="Order\IOrderRepository.cs" />
+    <Compile Include="Order\OrderRecord.cs" />
     <Compile Include="Order\OrderRepository.cs" />
     <Compile Include="Order\SaveOrderRequest.cs" />
     <Compile Include="Order\SaveOrderResponse.cs" />
