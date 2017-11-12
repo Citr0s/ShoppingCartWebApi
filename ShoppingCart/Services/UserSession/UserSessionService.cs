@@ -123,5 +123,13 @@ namespace ShoppingCart.Services.UserSession
 
             _userSessions[Guid.Parse(userToken)].Basket.Items = new List<BasketItem>();
         }
+
+        public void SetBasket(string userToken, Basket basket)
+        {
+            if (!Guid.TryParse(userToken, out _) || !_userSessions.ContainsKey(Guid.Parse(userToken)))
+                return;
+
+            _userSessions[Guid.Parse(userToken)].Basket = basket;
+        }
     }
 }

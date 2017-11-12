@@ -1,6 +1,7 @@
 ﻿using System.Web.Mvc;
 using ShoppingCart.Core.Communication.ErrorCodes;
 using ShoppingCart.Data.Order;
+using ShoppingCart.Data.Topping;
 using ShoppingCart.Services.Basket;
 using ShoppingCart.Services.UserSession;
 
@@ -57,7 +58,7 @@ namespace ShoppingCart.Controllers.Basket
             var previousOrdersResponse = _basketService.GetPreviousOrders(_userSessionService.GetUserByUserToken(Session["UserId"].ToString()));
 
             if (previousOrdersResponse.HasError)
-                Redirect("/Baskets");
+                Redirect("/Basket");
 
             var response = new BasketControllerHistoryData
             {
@@ -77,7 +78,7 @@ namespace ShoppingCart.Controllers.Basket
             var previousOrdersResponse = _basketService.GetSavedOrders(_userSessionService.GetUserByUserToken(Session["UserId"].ToString()));
 
             if (previousOrdersResponse.HasError)
-                Redirect("/Baskets");
+                Redirect("/Basket");
 
             var response = new BasketControllerSavedData
             {
@@ -93,34 +94,61 @@ namespace ShoppingCart.Controllers.Basket
         public ActionResult Save()
         {
             if (Session["UserId"] == null)
-                return Redirect("/Baskets");
+                return Redirect("/Basket/Saved");
 
             var basketCheckoutResponse = _basketService.Save(Session["UserId"]?.ToString(), OrderStatus.Partial);
 
             if (!basketCheckoutResponse.HasError)
-                return Redirect("/Baskets");
+                return Redirect("/Basket/Saved");
 
             if (basketCheckoutResponse.Error.ErrorCode == ErrorCodes.UserNotLoggedIn)
                 return Redirect("/Login");
 
-            return Redirect("/Baskets");
+            return Redirect("/Basket/Saved");
         }
 
         [HttpPost]
         public ActionResult Checkout(DeliveryType delivery, string voucher)
         {
             if (Session["UserId"] == null)
-                return Redirect("/Baskets");
+                return Redirect("/Basket");
 
             var basketCheckoutResponse = _basketService.Checkout(delivery, voucher, Session["UserId"]?.ToString(), OrderStatus.Complete);
 
             if (!basketCheckoutResponse.HasError)
-                return Redirect("/Baskets/Summary");
+                return Redirect("/Basket/Summary");
 
             if (basketCheckoutResponse.Error.ErrorCode == ErrorCodes.UserNotLoggedIn)
                 return Redirect("/Login");
 
-            return Redirect("/Baskets");
+            return Redirect("/Basket");
+        }
+
+        [HttpPost]
+        public ActionResult Apply(int basketId)
+        {
+            var selectedBasket = _basketService.GetBasketById(basketId);
+
+            if (selectedBasket.HasError)
+                return Redirect("/Basket");
+
+
+            var mappedBasket = new Services.UserSession.Basket
+            {
+                Total = selectedBasket.Basket.Total,
+                Items = selectedBasket.Basket.Orders.ConvertAll(orderDetails => new BasketItem
+                {
+                    Pizza = orderDetails.Order.Pizza,
+                    Size = orderDetails.Order.Size,
+                    ExtraToppings = orderDetails.Toppings.ConvertAll(x => x.Topping),
+                    Total = orderDetails.Total
+                })
+            };
+
+            _userSessionService.ClearBasket(Session["UserId"].ToString());
+            _userSessionService.SetBasket(Session["UserId"].ToString(), mappedBasket);
+
+            return Redirect("/Basket");
         }
     }
 }

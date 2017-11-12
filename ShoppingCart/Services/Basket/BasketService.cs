@@ -145,5 +145,21 @@ namespace ShoppingCart.Services.Basket
             response.BasketDetails = previousOrders.BasketDetails;
             return response;
         }
+
+        public GetBasketByIdResponse GetBasketById(int basketId)
+        {
+            var response = new GetBasketByIdResponse();
+
+            var getBasketByIdResponse = _orderRepository.GetBasketById(basketId);
+
+            if (getBasketByIdResponse.HasError)
+            {
+                response.AddError(getBasketByIdResponse.Error);
+                return response;
+            }
+
+            response.Basket = getBasketByIdResponse.BasketDetails;
+            return response;
+        }
     }
 }

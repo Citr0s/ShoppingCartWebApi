@@ -9,5 +9,6 @@ namespace ShoppingCart.Services.Basket
         BasketSaveResponse Save(string userId, OrderStatus orderStatus);
         GetPreviousOrdersResponse GetPreviousOrders(int userId);
         GetSavedOrdersResponse GetSavedOrders(int userId);
+        GetBasketByIdResponse GetBasketById(int basketId);
     }
 }

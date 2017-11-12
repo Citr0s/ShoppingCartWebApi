@@ -87,10 +87,10 @@ namespace ShoppingCart.Data.Order
                         Orders = _database.Query<OrderRecord>().Where(y => y.Basket.Id == basket.Id)
                         .ToList()
                         .ConvertAll(order => new OrderDetails
-                            {
-                                Order = order,
-                                Total = Money.From(order.Total),
-                                Toppings = _database.Query<OrderToppingRecord>().Where(y => y.Order.Id == order.Id).ToList()
+                        {
+                            Order = order,
+                            Total = Money.From(order.Total),
+                            Toppings = _database.Query<OrderToppingRecord>().Where(y => y.Order.Id == order.Id).ToList()
                         })
                     });
             }
@@ -133,6 +133,39 @@ namespace ShoppingCart.Data.Order
                 response.AddError(new Error
                 {
                     Message = "Something went wrong when retrieving partial orders from database."
+                });
+            }
+
+            return response;
+        }
+
+        public GetBasketByIdResponse GetBasketById(int basketId)
+        {
+            var response = new GetBasketByIdResponse();
+
+            try
+            {
+                var basketRecord = _database.Query<BasketRecord>().First(basket => basket.Id == basketId);
+
+                response.BasketDetails = new BasketDetails
+                {
+                    Basket = basketRecord,
+                    Total = Money.From(basketRecord.Total),
+                    Orders = _database.Query<OrderRecord>().Where(y => y.Basket.Id == basketRecord.Id)
+                        .ToList()
+                        .ConvertAll(order => new OrderDetails
+                        {
+                            Order = order,
+                            Total = Money.From(order.Total),
+                            Toppings = _database.Query<OrderToppingRecord>().Where(y => y.Order.Id == order.Id).ToList()
+                        })
+                };
+            }
+            catch (Exception)
+            {
+                response.AddError(new Error
+                {
+                    Message = "Something went wrong when retrieving previous orders from database."
                 });
             }
 

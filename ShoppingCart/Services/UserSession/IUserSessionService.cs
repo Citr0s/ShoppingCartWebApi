@@ -13,5 +13,6 @@ namespace ShoppingCart.Services.UserSession
         void LogOut(string toString);
         int GetUserByUserToken(string userToken);
         void ClearBasket(string userToken);
+        void SetBasket(string userToken, Basket basket);
     }
 }
