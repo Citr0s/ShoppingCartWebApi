@@ -17,7 +17,7 @@
                         <h3 class="panel-title">
                             <div class="row">
                                 <div class="col-md-6">
-                                    Orders <small>#@basketItem.Basket.Id</small>
+                                    Order <small>#@basketItem.Basket.Id</small>
                                 </div>
                                 <div class="col-md-6" style="text-align: right; font-weight: bold; color: #27ae60;">
                                     @basketItem.Total.InFull
@@ -32,7 +32,9 @@
                                 @foreach (var orderDetail in basketItem.Orders)
                                 {
                                     <li>
-                                        @orderDetail.Order.Pizza.Name <small style="font-weight: bold; text-transform: uppercase; font-size: 1rem;">(@orderDetail.Order.Size.Name)</small>
+                                        @orderDetail.Order.Pizza.Name
+                                        <small style="font-weight: bold; text-transform: uppercase; font-size: 1rem;">(@orderDetail.Order.Size.Name)</small>
+                                        <small style="font-weight: bold; color: #27ae60;">@orderDetail.Total.InFull</small>
                                         @if (orderDetail.Toppings.Count > 0)
                                         {
                                             <ul>

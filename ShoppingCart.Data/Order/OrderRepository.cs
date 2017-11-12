@@ -89,6 +89,7 @@ namespace ShoppingCart.Data.Order
                         .ConvertAll(order => new OrderDetails
                             {
                                 Order = order,
+                                Total = Money.From(order.Total),
                                 Toppings = _database.Query<OrderToppingRecord>().Where(y => y.Order.Id == order.Id).ToList()
                         })
                     });

@@ -15,15 +15,4 @@ namespace ShoppingCart.Data.Order
         public BasketRecord Basket { get; set; }
         public List<OrderDetails> Orders { get; set; }
     }
-
-    public class OrderDetails
-    {
-        public OrderDetails()
-        {
-            Toppings = new List<OrderToppingRecord>();
-        }
-
-        public OrderRecord Order { get; set; }
-        public List<OrderToppingRecord> Toppings { get; set; }
-    }
 }
