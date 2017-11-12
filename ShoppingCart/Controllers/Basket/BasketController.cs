@@ -49,6 +49,47 @@ namespace ShoppingCart.Controllers.Basket
             return View(response);
         }
 
+        public ActionResult History()
+        {
+            if (Session["UserId"] == null)
+                Session["UserId"] = _userSessionService.NewUser();
+
+            var previousOrdersResponse = _basketService.GetPreviousOrders(_userSessionService.GetUserByUserToken(Session["UserId"].ToString()));
+
+            if (previousOrdersResponse.HasError)
+                Redirect("/Basket");
+
+            var response = new BasketControllerHistoryData
+            {
+                Basket = previousOrdersResponse.Basket,
+                Total = previousOrdersResponse.Total,
+                LoggedIn = _userSessionService.IsLoggedIn(Session["UserId"].ToString())
+            };
+
+            return View(response);
+        }
+
+        public ActionResult Saved()
+        {
+            if (Session["UserId"] == null)
+                Session["UserId"] = _userSessionService.NewUser();
+
+
+            var savedOrdersResponse = _basketService.GetSavedOrders(_userSessionService.GetUserByUserToken(Session["UserId"].ToString()));
+
+            if (savedOrdersResponse.HasError)
+                Redirect("/Basket");
+
+            var response = new BasketControllerSavedData
+            {
+                Basket = savedOrdersResponse.Basket,
+                Total = savedOrdersResponse.Total,
+                LoggedIn = _userSessionService.IsLoggedIn(Session["UserId"].ToString())
+            };
+
+            return View(response);
+        }
+
         [HttpPost]
         public ActionResult Save()
         {

@@ -1,0 +1,55 @@
+﻿@model ShoppingCart.Controllers.Basket.BasketControllerHistoryData
+
+@{
+    ViewBag.Title = "title";
+}
+
+<h1>History</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        @if (Model.Basket.Items.Any())
+        {
+            foreach (var basketItem in Model.Basket.Items)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @basketItem.Pizza.Name <small>@basketItem.Size.Name</small>
+                                </div>
+                                <div class="col-md-6" style="text-align: right; font-weight: bold; color: #27ae60;">
+                                </div>
+                            </div>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        @if (basketItem.ExtraToppings.Count > 0)
+                        {
+                            <p>Extra Toppings</p>
+                            <ul>
+                                @foreach (var extraTopping in basketItem.ExtraToppings)
+                                {
+                                    <li>@extraTopping.Name</li>
+                                }
+                            </ul>
+                        }
+                        else
+                        {
+                            <small>No extra toppings selected.</small>
+                        }
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>There are no items in the history!</h4>
+                </div>
+            </div>
+        }
+    </div>
+</div>
