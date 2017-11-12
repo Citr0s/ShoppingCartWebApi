@@ -8,6 +8,6 @@ namespace ShoppingCart.Services.Basket
         BasketCheckoutResponse Checkout(DeliveryType delivery, string voucher, string userId, OrderStatus orderStatus);
         BasketSaveResponse Save(string userId, OrderStatus orderStatus);
         GetPreviousOrdersResponse GetPreviousOrders(int userId);
-        GetSavedORdersResponse GetSavedOrders(int userId);
+        GetSavedOrdersResponse GetSavedOrders(int userId);
     }
 }

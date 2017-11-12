@@ -8,16 +8,16 @@
 
 <div class="row">
     <div class="col-md-12">
-        @if (Model.Basket.Items.Any())
+        @if (Model.BasketDetails.Any())
         {
-            foreach (var basketItem in Model.Basket.Items)
+            foreach (var basketItem in Model.BasketDetails)
             {
                 <div class="panel panel-default">
                     <div class="panel-heading">
                         <h3 class="panel-title">
                             <div class="row">
                                 <div class="col-md-6">
-                                    @basketItem.Pizza.Name <small>@basketItem.Size.Name</small>
+                                    Order <small>#@basketItem.Basket.Id</small>
                                 </div>
                                 <div class="col-md-6" style="text-align: right; font-weight: bold; color: #27ae60;">
                                     @basketItem.Total.InFull
@@ -26,13 +26,25 @@
                         </h3>
                     </div>
                     <div class="panel-body">
-                        @if (basketItem.ExtraToppings.Count > 0)
+                        @if (basketItem.Orders.Count > 0)
                         {
-                            <p>Extra Toppings</p>
                             <ul>
-                                @foreach (var extraTopping in basketItem.ExtraToppings)
+                                @foreach (var orderDetail in basketItem.Orders)
                                 {
-                                    <li>@extraTopping.Name</li>
+                                    <li>
+                                        @orderDetail.Order.Pizza.Name
+                                        <small style="font-weight: bold; text-transform: uppercase; font-size: 1rem;">(@orderDetail.Order.Size.Name)</small>
+                                        <small style="font-weight: bold; color: #27ae60;">@orderDetail.Total.InFull</small>
+                                        @if (orderDetail.Toppings.Count > 0)
+                                        {
+                                            <ul>
+                                                @foreach (var toppingDetail in orderDetail.Toppings)
+                                                {
+                                                    <li>@toppingDetail.Topping.Name</li>
+                                                }
+                                            </ul>
+                                        }
+                                    </li>
                                 }
                             </ul>
                         }

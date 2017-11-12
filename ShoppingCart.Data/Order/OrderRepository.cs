@@ -111,13 +111,28 @@ namespace ShoppingCart.Data.Order
 
             try
             {
-                //response.BasketDetails = _database.Query<BasketRecord>().Where(x => x.User.Id == userId && x.Status == OrderStatus.Partial.ToString()).ToList();
+                response.BasketDetails = _database.Query<BasketRecord>()
+                    .Where(basket => basket.User.Id == userId && basket.Status == OrderStatus.Partial.ToString())
+                    .ToList()
+                    .ConvertAll(basket => new BasketDetails
+                    {
+                        Basket = basket,
+                        Total = Money.From(basket.Total),
+                        Orders = _database.Query<OrderRecord>().Where(y => y.Basket.Id == basket.Id)
+                            .ToList()
+                            .ConvertAll(order => new OrderDetails
+                            {
+                                Order = order,
+                                Total = Money.From(order.Total),
+                                Toppings = _database.Query<OrderToppingRecord>().Where(y => y.Order.Id == order.Id).ToList()
+                            })
+                    });
             }
             catch (Exception)
             {
                 response.AddError(new Error
                 {
-                    Message = "Something went wrong when retrieving saved orders from database."
+                    Message = "Something went wrong when retrieving partial orders from database."
                 });
             }
 

@@ -130,9 +130,20 @@ namespace ShoppingCart.Services.Basket
             return response;
         }
 
-        public GetSavedORdersResponse GetSavedOrders(int userId)
+        public GetSavedOrdersResponse GetSavedOrders(int userId)
         {
-            throw new System.NotImplementedException();
+            var response = new GetSavedOrdersResponse();
+
+            var previousOrders = _orderRepository.GetSavedOrders(userId);
+
+            if (previousOrders.HasError)
+            {
+                response.AddError(previousOrders.Error);
+                return response;
+            }
+
+            response.BasketDetails = previousOrders.BasketDetails;
+            return response;
         }
     }
 }

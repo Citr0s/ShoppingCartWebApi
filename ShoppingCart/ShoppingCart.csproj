@@ -149,7 +149,7 @@
     <Compile Include="Services\Basket\BasketSaveResponse.cs" />
     <Compile Include="Services\Basket\BasketService.cs" />
     <Compile Include="Services\Basket\GetPreviousOrdersResponse.cs" />
-    <Compile Include="Services\Basket\GetSavedORdersResponse.cs" />
+    <Compile Include="Services\Basket\GetSavedOrdersResponse.cs" />
     <Compile Include="Services\Basket\IBasketService.cs" />
     <Compile Include="Services\UserSession\UserSessionData.cs" />
     <Compile Include="Services\User\CreateUserResponse.cs" />

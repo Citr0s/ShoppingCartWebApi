@@ -74,15 +74,14 @@ namespace ShoppingCart.Controllers.Basket
             if (Session["UserId"] == null)
                 Session["UserId"] = _userSessionService.NewUser();
 
+            var previousOrdersResponse = _basketService.GetSavedOrders(_userSessionService.GetUserByUserToken(Session["UserId"].ToString()));
 
-            var savedOrdersResponse = _basketService.GetSavedOrders(_userSessionService.GetUserByUserToken(Session["UserId"].ToString()));
-
-            if (savedOrdersResponse.HasError)
+            if (previousOrdersResponse.HasError)
                 Redirect("/Baskets");
 
             var response = new BasketControllerSavedData
             {
-                Basket = savedOrdersResponse.Basket,
+                BasketDetails = previousOrdersResponse.BasketDetails,
                 Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString()),
                 LoggedIn = _userSessionService.IsLoggedIn(Session["UserId"].ToString())
             };
