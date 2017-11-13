@@ -29,8 +29,8 @@ namespace ShoppingCart.Data.Voucher
                     response.VoucherDetails.Add(new VoucherDetails
                     {
                         Voucher = voucherRecord,
-                        /*AllowedDeliveryTypes = _database.Query<VoucherDeliveryTypeRecord>().Where(x => x.Voucher.Id == voucherRecord.Id).ToList(),
-                        AllowedSizes = _database.Query<VoucherSizeRecord>().Where(x => x.Voucher.Id == voucherRecord.Id).ToList()*/
+                        AllowedDeliveryTypes = _database.Query<VoucherDeliveryTypeRecord>().Where(x => x.Voucher.Id == voucherRecord.Id).ToList(),
+                        AllowedSizes = _database.Query<VoucherSizeRecord>().Where(x => x.Voucher.Id == voucherRecord.Id).ToList()
                     });
                 }
             }

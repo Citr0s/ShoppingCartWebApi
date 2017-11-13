@@ -1,7 +1,36 @@
 ﻿@model ShoppingCart.Controllers.Deals.DealControllerIndexData
 
 @{
-    ViewBag.Title = "Vouchers";
+    ViewBag.Title = "Deals";
 }
 
-<h2>title</h2>
+<h2>Deals</h2>
+<div class="row">
+    @foreach (var voucher in Model.Vouchers)
+    {
+        <div class="col-md-4">
+            <div class="panel panel-default" style="height: 250px;">
+                <div class="panel-heading">
+                    <h3 class="panel-title">@voucher.Voucher.Title</h3>
+                </div>
+                <div class="panel-body">
+                    <p><strong>@voucher.Voucher.Code</strong></p>
+                    <p>Applied with the following delivery types: </p>
+                    <ul>
+                        @foreach (var deliveryType in voucher.AllowedDeliveryTypes)
+                        {
+                            <li>@deliveryType.DeliveryType.Name</li>
+                        }
+                    </ul>
+                    <p>Applied with the following pizza sizes: </p>
+                    <ul>
+                        @foreach (var size in voucher.AllowedSizes)
+                        {
+                            <li>@size.Size.Name</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+        </div>
+    }
+</div>
