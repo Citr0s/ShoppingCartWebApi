@@ -139,6 +139,7 @@
     <Compile Include="Controllers\Basket\BasketController.cs" />
     <Compile Include="Controllers\Basket\BasketControllerSavedData.cs" />
     <Compile Include="Controllers\Basket\BasketControllerSummaryData.cs" />
+    <Compile Include="Controllers\Basket\DeliveryTypeHelper.cs" />
     <Compile Include="Controllers\Basket\DeliveryType.cs" />
     <Compile Include="Controllers\Deals\DealsController.cs" />
     <Compile Include="Services\Voucher\GetVoucherByIdResponse.cs" />

@@ -27,9 +27,20 @@ namespace ShoppingCart.Services.Voucher
             return response;
         }
 
-        public GetVoucherByIdResponse GetById(int dealId)
+        public GetVoucherByIdResponse GetById(int voucherId)
         {
-            throw new System.NotImplementedException();
+            var response = new GetVoucherByIdResponse();
+
+            var getVoucherByIdResponse = _voucherRepository.GetVoucherById(voucherId);
+
+            if (getVoucherByIdResponse.HasError)
+            {
+                response.AddError(getVoucherByIdResponse.Error);
+                return response;
+            }
+
+            response.Voucher = getVoucherByIdResponse.Voucher;
+            return response;
         }
     }
 }

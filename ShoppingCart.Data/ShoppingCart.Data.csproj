@@ -108,6 +108,7 @@
     <Compile Include="User\UserRepository.cs" />
     <Compile Include="Delivery\DeliveryTypeRecord.cs" />
     <Compile Include="Voucher\GetAllVouchersResponse.cs" />
+    <Compile Include="Voucher\GetVoucherByIdResponse.cs" />
     <Compile Include="Voucher\IVoucherRepository.cs" />
     <Compile Include="Voucher\VoucherDeliveryTypeRecord.cs" />
     <Compile Include="Voucher\VoucherDetails.cs" />
