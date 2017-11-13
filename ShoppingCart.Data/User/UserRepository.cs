@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using ShoppingCart.Core.Communication;
+using ShoppingCart.Core.Communication.ErrorCodes;
 using ShoppingCart.Core.Hasher;
 using ShoppingCart.Data.Database;
 
@@ -9,31 +10,14 @@ namespace ShoppingCart.Data.User
     public class UserRepository : IUserRepository
     {
         private readonly IDatabase _database;
+        private readonly IHasher _hasher;
 
-        public UserRepository() : this(new NhibernateDatabase()) { }
+        public UserRepository() : this(new NhibernateDatabase(), new Hasher()) { }
 
-        public UserRepository(IDatabase database)
+        public UserRepository(IDatabase database, IHasher hasher)
         {
             _database = database;
-        }
-
-        public GetUserResponse GetByEmail()
-        {
-            var response = new GetUserResponse();
-
-            try
-            {
-                response.User = _database.Query<UserRecord>().FirstOrDefault();
-            }
-            catch (Exception)
-            {
-                response.AddError(new Error
-                {
-                    Message = "Something went wrong when retrieving UserRecords from database."
-                });
-            }
-
-            return response;
+            _hasher = hasher;
         }
 
         public GetUserResponse GetByEmail(string email, string password)
@@ -42,7 +26,19 @@ namespace ShoppingCart.Data.User
 
             try
             {
-                response.User = _database.Query<UserRecord>().First(x => x.Email == email && x.Password == Hasher.Hash(password));
+                var user = _database.Query<UserRecord>().FirstOrDefault(x => x.Email == email && x.Password == _hasher.Hash(password));
+
+                if (user == null)
+                {
+                    response.AddError(new Error
+                    {
+                        Code = ErrorCodes.UserNotFound,
+                        Message = "User with specified credentials could not be found"
+                    });
+                    return response;
+                }
+
+                response.User = user;
             }
             catch (Exception)
             {
@@ -64,7 +60,7 @@ namespace ShoppingCart.Data.User
                 var userRecord = new UserRecord
                 {
                     Email = request.Email,
-                    Password = Hasher.Hash(request.Password),
+                    Password = _hasher.Hash(request.Password),
                     PhoneNumber = request.PhoneNumber,
                     Address = request.Address
                 };

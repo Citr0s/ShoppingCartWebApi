@@ -100,7 +100,7 @@ namespace ShoppingCart.Controllers.Basket
             if (!basketCheckoutResponse.HasError)
                 return Redirect("/Basket/Saved");
 
-            if (basketCheckoutResponse.Error.ErrorCode == ErrorCodes.UserNotLoggedIn)
+            if (basketCheckoutResponse.Error.Code == ErrorCodes.UserNotLoggedIn)
                 return Redirect("/Login");
 
             return Redirect("/Basket/Saved");
@@ -117,7 +117,7 @@ namespace ShoppingCart.Controllers.Basket
             if (!basketCheckoutResponse.HasError)
                 return Redirect("/Basket/Summary");
 
-            if (basketCheckoutResponse.Error.ErrorCode == ErrorCodes.UserNotLoggedIn)
+            if (basketCheckoutResponse.Error.Code == ErrorCodes.UserNotLoggedIn)
                 return Redirect("/Login");
 
             return Redirect("/Basket");

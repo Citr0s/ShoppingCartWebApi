@@ -25,7 +25,7 @@ namespace ShoppingCart.Services.Basket
 
             if (!_userSessionService.IsLoggedIn(userId))
             {
-                response.AddError(new Error { ErrorCode =  ErrorCodes.UserNotLoggedIn, Message = "You have to be logged in to complete your order" });
+                response.AddError(new Error { Code =  ErrorCodes.UserNotLoggedIn, Message = "You have to be logged in to complete your order" });
                 return response;
             }
 
@@ -80,7 +80,7 @@ namespace ShoppingCart.Services.Basket
 
             if (!_userSessionService.IsLoggedIn(userId))
             {
-                response.AddError(new Error { ErrorCode = ErrorCodes.UserNotLoggedIn, Message = "You have to be logged in to save your order" });
+                response.AddError(new Error { Code = ErrorCodes.UserNotLoggedIn, Message = "You have to be logged in to save your order" });
                 return response;
             }
 

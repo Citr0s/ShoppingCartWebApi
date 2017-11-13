@@ -45,6 +45,7 @@
     <Compile Include="Communication\ErrorCodes\ErrorCodes.cs" />
     <Compile Include="Email\EmailValidator.cs" />
     <Compile Include="Hasher\Hasher.cs" />
+    <Compile Include="Hasher\IHasher.cs" />
     <Compile Include="Money\Money.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

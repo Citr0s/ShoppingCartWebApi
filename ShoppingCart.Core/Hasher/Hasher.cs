@@ -3,9 +3,9 @@ using System.Text;
 
 namespace ShoppingCart.Core.Hasher
 {
-    public static class Hasher
+    public class Hasher : IHasher
     {
-        public static string Hash(string inputString)
+        public string Hash(string inputString)
         {
             var sha256 = SHA256.Create();
             var bytes = Encoding.UTF8.GetBytes(inputString);
