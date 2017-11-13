@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using Moq;
 using NUnit.Framework;
 using ShoppingCart.Core.Hasher;

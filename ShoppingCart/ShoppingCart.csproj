@@ -141,6 +141,8 @@
     <Compile Include="Controllers\Basket\BasketControllerSummaryData.cs" />
     <Compile Include="Controllers\Basket\DeliveryType.cs" />
     <Compile Include="Controllers\Deals\DealsController.cs" />
+    <Compile Include="Services\Voucher\VoucherDeliveryTypeModel.cs" />
+    <Compile Include="Services\Voucher\VoucherDetailsMapper.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
     <Compile Include="Controllers\Home\HomeControllerIndexData.cs" />
     <Compile Include="Controllers\User\LoginControllerIndexData.cs" />
@@ -189,8 +191,10 @@
     <Compile Include="Services\Pizza\PizzaService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\Basket\BasketControllerIndexData.cs" />
+    <Compile Include="Services\Voucher\VoucherDetailsModel.cs" />
     <Compile Include="Services\Voucher\VoucherModel.cs" />
     <Compile Include="Services\Voucher\VoucherService.cs" />
+    <Compile Include="Services\Voucher\VoucherSizeModel.cs" />
     <Compile Include="Views\BaseControllerData.cs" />
     <Compile Include="Controllers\Basket\BasketControllerHistoryData.cs" />
   </ItemGroup>

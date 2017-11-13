@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace ShoppingCart.Core.Email
+﻿namespace ShoppingCart.Core.Email
 {
     public static class EmailValidator
     {

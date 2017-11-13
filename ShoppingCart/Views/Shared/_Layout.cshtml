@@ -25,7 +25,9 @@
                     <div class="navbar-collapse collapse">
                         <ul class="nav navbar-nav">
                             <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Deals", "Index", "Deals")</li>
                             <li>@Html.ActionLink("Basket", "Index", "Basket")</li>
+                            <li><a style="color: #fff;">|</a></li>
 
                             @if (Model.LoggedIn)
                             {

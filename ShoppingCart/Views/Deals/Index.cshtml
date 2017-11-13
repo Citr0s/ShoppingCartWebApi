@@ -9,26 +9,27 @@
     @foreach (var voucher in Model.Vouchers)
     {
         <div class="col-md-4">
-            <div class="panel panel-default" style="height: 250px;">
+            <div class="panel panel-default">
                 <div class="panel-heading">
                     <h3 class="panel-title">@voucher.Voucher.Title</h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body"  style="height: 210px;">
                     <p><strong>@voucher.Voucher.Code</strong></p>
                     <p>Applied with the following delivery types: </p>
                     <ul>
                         @foreach (var deliveryType in voucher.AllowedDeliveryTypes)
                         {
-                            <li>@deliveryType.DeliveryType.Name</li>
+                            <li>@deliveryType.Name</li>
                         }
                     </ul>
                     <p>Applied with the following pizza sizes: </p>
                     <ul>
                         @foreach (var size in voucher.AllowedSizes)
                         {
-                            <li>@size.Size.Name</li>
+                            <li>@size.Name</li>
                         }
                     </ul>
+                    <p>Cost: @(voucher.Voucher.Price.InPence == 0 ? voucher.Notes : voucher.Voucher.Price.InFull)</p>
                 </div>
                 <div class="panel-footer">
                     @using (Html.BeginForm("ApplyDeal", "Deals", FormMethod.Post))

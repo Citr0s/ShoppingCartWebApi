@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Moq;
-using NHibernate.Criterion;
 using NUnit.Framework;
 using ShoppingCart.Data.Database;
 using ShoppingCart.Data.Size;
