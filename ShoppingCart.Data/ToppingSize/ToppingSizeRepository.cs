@@ -26,7 +26,7 @@ namespace ShoppingCart.Data.ToppingSize
 
                 if (toppingSizeRecords.Count == 0)
                 {
-                    response.AddError(new Error { Code = ErrorCodes.RecordNotFound, TechnicalMessage = "Could not find matching ToppingSizeRecord." });
+                    response.AddError(new Error { Code = ErrorCodes.RecordNotFound, Message = "Could not find matching ToppingSizeRecord." });
                     return response;
                 }
 
@@ -37,7 +37,7 @@ namespace ShoppingCart.Data.ToppingSize
                 response.AddError(new Error
                 {
                     Code = ErrorCodes.DatabaseError,
-                    TechnicalMessage = "Something went wrong when retrieving ToppingRecords from database."
+                    Message = "Something went wrong when retrieving ToppingRecords from database."
                 });
             }
 

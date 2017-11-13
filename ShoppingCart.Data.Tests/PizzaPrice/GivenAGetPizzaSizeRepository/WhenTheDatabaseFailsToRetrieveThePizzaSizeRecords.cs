@@ -30,7 +30,7 @@ namespace ShoppingCart.Data.Tests.PizzaPrice.GivenAGetPizzaSizeRepository
         [Test]
         public void ThenAnErrorMessageIsReturned()
         {
-            Assert.That(_result.Error.TechnicalMessage, Is.EqualTo("Something went wrong when retrieving PizzaPriceRecords from database."));
+            Assert.That(_result.Error.Message, Is.EqualTo("Something went wrong when retrieving PizzaPriceRecords from database."));
         }
 
         [Test]

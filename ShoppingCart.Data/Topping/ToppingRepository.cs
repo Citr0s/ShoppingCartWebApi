@@ -25,7 +25,7 @@ namespace ShoppingCart.Data.Topping
             {
                 response.AddError(new Error
                 {
-                    TechnicalMessage = "Something went wrong when retrieving ToppingRecord from database."
+                    Message = "Something went wrong when retrieving ToppingRecord from database."
                 });
             }
 

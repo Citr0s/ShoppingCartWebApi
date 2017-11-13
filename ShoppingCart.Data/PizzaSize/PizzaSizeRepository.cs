@@ -28,7 +28,7 @@ namespace ShoppingCart.Data.PizzaSize
                 response.AddError(new Error
                 {
                     Code = ErrorCodes.DatabaseError,
-                    TechnicalMessage = "Something went wrong when retrieving PizzaPriceRecords from database."
+                    Message = "Something went wrong when retrieving PizzaPriceRecords from database."
                 });
             }
 
@@ -48,7 +48,7 @@ namespace ShoppingCart.Data.PizzaSize
                     response.AddError(new Error
                     {
                         Code = ErrorCodes.RecordNotFound,
-                        TechnicalMessage = "Could not find PizzaSizeRecords matching provided criteria"
+                        Message = "Could not find PizzaSizeRecords matching provided criteria"
                     });
                     return response;
                 }
@@ -60,7 +60,7 @@ namespace ShoppingCart.Data.PizzaSize
                 response.AddError(new Error
                 {
                     Code = ErrorCodes.DatabaseError,
-                    TechnicalMessage = "Something went wrong when retrieving PizzaPriceRecord from database."
+                    Message = "Something went wrong when retrieving PizzaPriceRecord from database."
                 });
             }
 

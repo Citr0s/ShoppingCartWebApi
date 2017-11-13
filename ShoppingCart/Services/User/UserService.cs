@@ -20,13 +20,13 @@ namespace ShoppingCart.Services.User
 
             if (email.IsEmpty() || password.IsEmpty())
             {
-                response.AddError(new Error{ TechnicalMessage = "Email and password are required." });
+                response.AddError(new Error{ Message = "Email and password are required." });
                 return response;
             }
 
             if (!EmailValidator.IsValid(email))
             {
-                response.AddError(new Error { TechnicalMessage = "Please provide a valid email address." });
+                response.AddError(new Error { Message = "Please provide a valid email address." });
                 return response;
             }
 
@@ -41,7 +41,7 @@ namespace ShoppingCart.Services.User
 
             if (saveOrUpdateResponse.HasError)
             {
-                response.AddError(new Error { TechnicalMessage = "Could not create account. Please try again later." });
+                response.AddError(new Error { Message = "Could not create account. Please try again later." });
                 return response;
             }
 
@@ -56,7 +56,7 @@ namespace ShoppingCart.Services.User
 
             if (email.IsEmpty() || password.IsEmpty())
             {
-                response.AddError(new Error { TechnicalMessage = "Email and password are required." });
+                response.AddError(new Error { Message = "Email and password are required." });
                 return response;
             }
 
@@ -64,7 +64,7 @@ namespace ShoppingCart.Services.User
 
             if (saveOrUpdateResponse.HasError)
             {
-                response.AddError(new Error { TechnicalMessage = "Could not find account. Please try again later." });
+                response.AddError(new Error { Message = "Could not find account. Please try again later." });
                 return response;
             }
 

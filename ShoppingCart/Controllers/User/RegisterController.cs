@@ -55,7 +55,7 @@ namespace ShoppingCart.Controllers.User
             if (registerUserResponse.HasError)
             {
                 response.HasError = true;
-                response.Message = registerUserResponse.Error.TechnicalMessage;
+                response.Message = registerUserResponse.Error.Message;
                 return View("Index", response);
             }
 

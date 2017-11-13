@@ -20,7 +20,7 @@ namespace ShoppingCart.Tests.Pizza.GivenAPizzaService
                 HasError = true,
                 Error = new Error
                 {
-                    TechnicalMessage = "Something went wrong when retrieving PizzaRecords."
+                    Message = "Something went wrong when retrieving PizzaRecords."
                 }
             });
 
@@ -37,7 +37,7 @@ namespace ShoppingCart.Tests.Pizza.GivenAPizzaService
         [Test]
         public void ThenAnErrorMessageIsReturned()
         {
-            Assert.That(_result.Error.TechnicalMessage, Is.EqualTo("Something went wrong when retrieving PizzaRecords."));
+            Assert.That(_result.Error.Message, Is.EqualTo("Something went wrong when retrieving PizzaRecords."));
         }
 
         [Test]

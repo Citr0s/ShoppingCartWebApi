@@ -25,19 +25,19 @@ namespace ShoppingCart.Services.Basket
 
             if (!_userSessionService.IsLoggedIn(userId))
             {
-                response.AddError(new Error { Code =  ErrorCodes.UserNotLoggedIn, TechnicalMessage = "You have to be logged in to complete your order" });
+                response.AddError(new Error { Code =  ErrorCodes.UserNotLoggedIn, Message = "You have to be logged in to complete your order" });
                 return response;
             }
 
             if (delivery == DeliveryType.Unknown)
             {
-                response.AddError(new Error {TechnicalMessage = "Delivery type not specified."});
+                response.AddError(new Error {Message = "Delivery type not specified."});
                 return response;
             }
 
             if (orderStatus == OrderStatus.Unknown)
             {
-                response.AddError(new Error {TechnicalMessage = "Order status not specified."});
+                response.AddError(new Error {Message = "Order status not specified."});
                 return response;
             }
 
@@ -80,13 +80,13 @@ namespace ShoppingCart.Services.Basket
 
             if (!_userSessionService.IsLoggedIn(userId))
             {
-                response.AddError(new Error { Code = ErrorCodes.UserNotLoggedIn, TechnicalMessage = "You have to be logged in to save your order" });
+                response.AddError(new Error { Code = ErrorCodes.UserNotLoggedIn, Message = "You have to be logged in to save your order" });
                 return response;
             }
 
             if (orderStatus == OrderStatus.Unknown)
             {
-                response.AddError(new Error { TechnicalMessage = "Order status not specified." });
+                response.AddError(new Error { Message = "Order status not specified." });
                 return response;
             }
 

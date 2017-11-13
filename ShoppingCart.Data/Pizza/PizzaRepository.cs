@@ -25,7 +25,7 @@ namespace ShoppingCart.Data.Pizza
             {
                 response.AddError(new Error
                 {
-                    TechnicalMessage = "Something went wrong when retrieving PizzaRecords from database."
+                    Message = "Something went wrong when retrieving PizzaRecords from database."
                 });
             }
 

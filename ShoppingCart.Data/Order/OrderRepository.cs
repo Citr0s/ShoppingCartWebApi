@@ -64,7 +64,7 @@ namespace ShoppingCart.Data.Order
             {
                 response.AddError(new Error
                 {
-                    TechnicalMessage = "Something went wrong when saving Order to database."
+                    Message = "Something went wrong when saving Order to database."
                 });
             }
 
@@ -98,7 +98,7 @@ namespace ShoppingCart.Data.Order
             {
                 response.AddError(new Error
                 {
-                    TechnicalMessage = "Something went wrong when retrieving previous orders from database."
+                    Message = "Something went wrong when retrieving previous orders from database."
                 });
             }
 
@@ -132,7 +132,7 @@ namespace ShoppingCart.Data.Order
             {
                 response.AddError(new Error
                 {
-                    TechnicalMessage = "Something went wrong when retrieving partial orders from database."
+                    Message = "Something went wrong when retrieving partial orders from database."
                 });
             }
 
@@ -165,7 +165,7 @@ namespace ShoppingCart.Data.Order
             {
                 response.AddError(new Error
                 {
-                    TechnicalMessage = "Something went wrong when retrieving previous orders from database."
+                    Message = "Something went wrong when retrieving previous orders from database."
                 });
             }
 

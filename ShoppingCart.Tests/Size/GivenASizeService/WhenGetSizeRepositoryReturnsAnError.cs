@@ -20,7 +20,7 @@ namespace ShoppingCart.Tests.Size.GivenASizeService
                 HasError = true,
                 Error = new Error
                 {
-                    TechnicalMessage = "Something went wrong when retrieving SizeRecords."
+                    Message = "Something went wrong when retrieving SizeRecords."
                 }
             });
 
@@ -37,7 +37,7 @@ namespace ShoppingCart.Tests.Size.GivenASizeService
         [Test]
         public void ThenAnErrorMessageIsReturned()
         {
-            Assert.That(_result.Error.TechnicalMessage, Is.EqualTo("Something went wrong when retrieving SizeRecords."));
+            Assert.That(_result.Error.Message, Is.EqualTo("Something went wrong when retrieving SizeRecords."));
         }
 
         [Test]

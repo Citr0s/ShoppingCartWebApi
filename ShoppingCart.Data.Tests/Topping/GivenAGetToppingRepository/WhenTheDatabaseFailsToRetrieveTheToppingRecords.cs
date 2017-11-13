@@ -30,7 +30,7 @@ namespace ShoppingCart.Data.Tests.Topping.GivenAGetToppingRepository
         [Test]
         public void ThenAnErrorMessageIsReturned()
         {
-            Assert.That(_result.Error.TechnicalMessage, Is.EqualTo("Something went wrong when retrieving ToppingRecord from database."));
+            Assert.That(_result.Error.Message, Is.EqualTo("Something went wrong when retrieving ToppingRecord from database."));
         }
 
         [Test]
