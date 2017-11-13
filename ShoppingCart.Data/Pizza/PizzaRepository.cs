@@ -1,5 +1,6 @@
 ﻿using System;
 using ShoppingCart.Core.Communication;
+using ShoppingCart.Core.Communication.ErrorCodes;
 using ShoppingCart.Data.Database;
 
 namespace ShoppingCart.Data.Pizza
@@ -21,11 +22,13 @@ namespace ShoppingCart.Data.Pizza
             {
                 response.Pizzas = _database.Query<PizzaRecord>();
             }
-            catch (Exception)
+            catch (Exception exception)
             {
                 response.AddError(new Error
                 {
-                    UserMessage = "Something went wrong when retrieving PizzaRecords from database."
+                    Code = ErrorCodes.DatabaseError,
+                    UserMessage = "Something went wrong when retrieving PizzaRecords from database.",
+                    TechnicalMessage = $"The following exception was thrown '{exception.Message}'"
                 });
             }
 
