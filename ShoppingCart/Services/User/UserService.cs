@@ -30,7 +30,7 @@ namespace ShoppingCart.Services.User
                 return response;
             }
 
-            var saveOrUpdateRequest = new SaveOrUpdateRequest
+            var saveOrUpdateRequest = new SaveUserRequest
             {
                 Email = email,
                 Password = password,

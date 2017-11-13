@@ -52,7 +52,7 @@ namespace ShoppingCart.Data.User
             return response;
         }
 
-        public SaveUserResponse Save(SaveOrUpdateRequest request)
+        public SaveUserResponse Save(SaveUserRequest request)
         {
             var response = new SaveUserResponse();
 

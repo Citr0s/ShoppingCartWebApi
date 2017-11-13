@@ -102,7 +102,7 @@
     <Compile Include="Size\SizeRecord.cs" />
     <Compile Include="User\GetUserResponse.cs" />
     <Compile Include="User\IUserRepository.cs" />
-    <Compile Include="User\SaveOrUpdateRequest.cs" />
+    <Compile Include="User\SaveUserRequest.cs" />
     <Compile Include="User\SaveUserResponse.cs" />
     <Compile Include="User\UserRecord.cs" />
     <Compile Include="User\UserRepository.cs" />
