@@ -1,4 +1,6 @@
 ﻿using System.Web.Mvc;
+using ShoppingCart.Core.Hasher;
+using ShoppingCart.Data.Database;
 using ShoppingCart.Data.User;
 using ShoppingCart.Services.User;
 using ShoppingCart.Services.UserSession;
@@ -10,7 +12,7 @@ namespace ShoppingCart.Controllers.User
         private readonly IUserSessionService _userSessionService;
         private readonly IUserService _userService;
 
-        public LoginController() : this(UserSessionService.Instance(), new UserService(new UserRepository())) { }
+        public LoginController() : this(UserSessionService.Instance(), new UserService(new UserRepository(new NhibernateDatabase(), new Hasher()))) { }
 
         public LoginController(IUserSessionService userSessionService, IUserService userService)
         {

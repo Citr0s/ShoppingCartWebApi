@@ -8,8 +8,6 @@ namespace ShoppingCart.Data.Size
     {
         private readonly IDatabase _database;
 
-        public SizeRepository() : this(new NhibernateDatabase()) { }
-
         public SizeRepository(IDatabase database)
         {
             _database = database;

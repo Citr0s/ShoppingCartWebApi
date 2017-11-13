@@ -12,8 +12,6 @@ namespace ShoppingCart.Data.User
         private readonly IDatabase _database;
         private readonly IHasher _hasher;
 
-        public UserRepository() : this(new NhibernateDatabase(), new Hasher()) { }
-
         public UserRepository(IDatabase database, IHasher hasher)
         {
             _database = database;

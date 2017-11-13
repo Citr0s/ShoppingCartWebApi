@@ -9,8 +9,6 @@ namespace ShoppingCart.Data.PizzaSize
     {
         private readonly IDatabase _database;
 
-        public PizzaSizeRepository() : this(new NhibernateDatabase()) { }
-
         public PizzaSizeRepository(IDatabase database)
         {
             _database = database;

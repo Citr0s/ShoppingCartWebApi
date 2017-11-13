@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ShoppingCart.Core.Money;
+using ShoppingCart.Data.Database;
 using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.ToppingSize;
 
@@ -24,7 +25,7 @@ namespace ShoppingCart.Services.UserSession
         public static UserSessionService Instance()
         {
             if (_instance == null)
-                _instance = new UserSessionService(new PizzaSizeRepository(), new ToppingSizeRepository());
+                _instance = new UserSessionService(new PizzaSizeRepository(new NhibernateDatabase()), new ToppingSizeRepository());
 
             return _instance;
         }
