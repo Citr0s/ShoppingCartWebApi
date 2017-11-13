@@ -15,5 +15,6 @@ namespace ShoppingCart.Services.Voucher
         public int Quantity { get; set; }
         public bool OnlyNamed { get; set; }
         public Money Price { get; set; }
+        public string Notes { get; set; }
     }
 }

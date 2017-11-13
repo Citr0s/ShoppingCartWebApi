@@ -26,5 +26,10 @@ namespace ShoppingCart.Services.Voucher
             response.VoucherDetails = getAllVouchersResponse.VoucherDetails;
             return response;
         }
+
+        public GetVoucherByIdResponse GetById(int dealId)
+        {
+            throw new System.NotImplementedException();
+        }
     }
 }

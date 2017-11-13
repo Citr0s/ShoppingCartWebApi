@@ -37,7 +37,12 @@ namespace ShoppingCart.Controllers.Deals
 
         public ActionResult ApplyDeal(int dealId)
         {
-            _userSessionService.SelectDeal(Session["UserId"].ToString(), dealId);
+            var getVoucherById = _voucherService.GetById(dealId);
+
+            if (getVoucherById.HasError)
+                return Redirect("/Deals");
+
+            _userSessionService.SelectDeal(Session["UserId"].ToString(), VoucherRecordMapper.Map(getVoucherById.Voucher));
             return Redirect("/Deals");
         }
     }

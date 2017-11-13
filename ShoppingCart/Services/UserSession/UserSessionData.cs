@@ -1,4 +1,6 @@
-﻿namespace ShoppingCart.Services.UserSession
+﻿using ShoppingCart.Services.Voucher;
+
+namespace ShoppingCart.Services.UserSession
 {
     public class UserSessionData
     {
@@ -10,7 +12,7 @@
         public int UserId { get; set; }
         public bool LoggedIn { get; set; }
         public Basket Basket { get; set; }
-        public int SelectedDeal { get; set; }
+        public VoucherModel SelectedDeal { get; set; }
 
         public void LogIn(int userId)
         {

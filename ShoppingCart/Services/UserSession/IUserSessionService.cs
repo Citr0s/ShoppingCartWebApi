@@ -1,4 +1,5 @@
 ﻿using ShoppingCart.Core.Money;
+using ShoppingCart.Services.Voucher;
 
 namespace ShoppingCart.Services.UserSession
 {
@@ -14,6 +15,7 @@ namespace ShoppingCart.Services.UserSession
         int GetUserByUserToken(string userToken);
         void ClearBasket(string userToken);
         void SetBasket(string userToken, Basket basket);
-        void SelectDeal(string userToken, int dealId);
+        void SelectDeal(string userToken, VoucherModel voucher);
+        VoucherModel GetVoucherForUser(string userToken);
     }
 }

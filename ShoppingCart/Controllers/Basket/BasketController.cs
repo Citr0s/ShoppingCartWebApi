@@ -27,6 +27,7 @@ namespace ShoppingCart.Controllers.Basket
             var response = new BasketControllerIndexData
             {
                 Basket = _userSessionService.GetBasketForUser(Session["UserId"].ToString()),
+                Voucher = _userSessionService.GetVoucherForUser(Session["UserId"].ToString()),
                 Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString()),
                 LoggedIn = _userSessionService.IsLoggedIn(Session["UserId"].ToString())
             };

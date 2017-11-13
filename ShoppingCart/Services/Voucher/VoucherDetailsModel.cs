@@ -13,6 +13,5 @@ namespace ShoppingCart.Services.Voucher
         public VoucherModel Voucher { get; set; }
         public List<VoucherDeliveryTypeModel> AllowedDeliveryTypes { get; set; }
         public List<VoucherSizeModel> AllowedSizes { get; set; }
-        public string Notes { get; set; }
     }
 }

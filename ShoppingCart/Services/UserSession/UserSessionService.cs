@@ -5,6 +5,7 @@ using ShoppingCart.Core.Money;
 using ShoppingCart.Data.Database;
 using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.ToppingSize;
+using ShoppingCart.Services.Voucher;
 
 namespace ShoppingCart.Services.UserSession
 {
@@ -137,12 +138,20 @@ namespace ShoppingCart.Services.UserSession
             _userSessions[Guid.Parse(userToken)].Basket = basket;
         }
 
-        public void SelectDeal(string userToken, int dealId)
+        public void SelectDeal(string userToken, VoucherModel voucher)
         {
             if (!UserTokenIsValid(userToken))
                 return;
 
-            _userSessions[Guid.Parse(userToken)].SelectedDeal = dealId;
+            _userSessions[Guid.Parse(userToken)].SelectedDeal = voucher;
+        }
+
+        public VoucherModel GetVoucherForUser(string userToken)
+        {
+            if (!UserTokenIsValid(userToken))
+                return new VoucherModel();
+
+            return _userSessions[Guid.Parse(userToken)].SelectedDeal;
         }
 
         private bool UserTokenIsValid(string userToken)

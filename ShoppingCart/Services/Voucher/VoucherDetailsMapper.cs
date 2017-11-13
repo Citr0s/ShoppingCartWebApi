@@ -31,7 +31,7 @@ namespace ShoppingCart.Services.Voucher
                 else
                 {
                     var pizzaCount = int.Parse(voucherDetail.Voucher.Price.Split('^')[0]);
-                    voucherDetailsModel.Notes = $"Price of {pizzaCount} most expensive pizza{(pizzaCount > 1 ? "s" : "")}.";
+                    voucherDetailsModel.Voucher.Notes = $"Price of {pizzaCount} most expensive pizza{(pizzaCount > 1 ? "s" : "")}.";
                 }
 
                 response.Add(voucherDetailsModel);

@@ -29,7 +29,7 @@
                             <li>@size.Name</li>
                         }
                     </ul>
-                    <p>Cost: @(voucher.Voucher.Price.InPence == 0 ? voucher.Notes : voucher.Voucher.Price.InFull)</p>
+                    <p>Cost: @(voucher.Voucher.Price.InPence == 0 ? voucher.Voucher.Notes : voucher.Voucher.Price.InFull)</p>
                 </div>
                 <div class="panel-footer">
                     @using (Html.BeginForm("ApplyDeal", "Deals", FormMethod.Post))
