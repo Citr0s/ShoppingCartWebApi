@@ -13,5 +13,6 @@ namespace ShoppingCart.Services.UserSession
 
         public List<BasketItem> Items { get; set; }
         public Money Total { get; set; }
+        public bool AdjustedPrice { get; set; }
     }
 }

@@ -66,7 +66,7 @@
                                     </div>
 
                                     <div class="form-group">
-                                        @Html.TextBox("voucher", "", new { @class = "form-control", placeholder = "Voucher Code" })
+                                        @Html.TextBox("voucher", Model.Voucher?.Voucher.Code, new { @class = "form-control", placeholder = "Voucher Code" })
                                     </div>
                                     <input type="submit" value="Checkout" class="btn btn-primary" />
                                 </fieldset>
@@ -87,7 +87,13 @@
                 <div class="col-md-6" style="text-align: right;">
                     <hr />
                     <h1>
-                        <small>Total</small> <span style="color: #27ae60;">@Model.Total.InFull</span>
+                        <small>Total</small>
+                        <span style="color: #27ae60; font-weight: bold;">@Model.Total.InFull</span>
+
+                        @if (Model.Basket.AdjustedPrice)
+                        {
+                            <span style="color: #999999; text-decoration: line-through">@Model.Basket.Total.InFull</span>
+                        }
                     </h1>
                 </div>
             </div>

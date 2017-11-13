@@ -80,12 +80,12 @@ namespace ShoppingCart.Services.UserSession
 
             var userSessionData = _userSessions[Guid.Parse(userToken)];
             var finalPrice = userSessionData.Basket.Total;
-            userSessionData.AdjustedPrice = false;
+            userSessionData.Basket.AdjustedPrice = false;
 
             if (userSessionData.SelectedDeal != null)
             {
                 finalPrice = VoucherHelper.Check(userSessionData.Basket, userSessionData.SelectedDeal.AllowedDeliveryTypes, userSessionData.SelectedDeal.Voucher.Code);
-                userSessionData.AdjustedPrice = true;
+                userSessionData.Basket.AdjustedPrice = true;
             }
 
             return finalPrice;
