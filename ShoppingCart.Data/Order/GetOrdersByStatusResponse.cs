@@ -3,9 +3,9 @@ using ShoppingCart.Core.Communication;
 
 namespace ShoppingCart.Data.Order
 {
-    public class GetPreviousOrdersResponse : CommunicationResponse
+    public class GetOrdersByStatusResponse : CommunicationResponse
     {
-        public GetPreviousOrdersResponse()
+        public GetOrdersByStatusResponse()
         {
             BasketDetails = new List<BasketDetails>();    
         }

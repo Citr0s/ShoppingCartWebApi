@@ -67,7 +67,7 @@
     <Compile Include="Order\GetBasketByIdResponse.cs" />
     <Compile Include="Order\OrderDetails.cs" />
     <Compile Include="Order\OrderToppingRecord.cs" />
-    <Compile Include="Order\GetPreviousOrdersResponse.cs" />
+    <Compile Include="Order\GetOrdersByStatusResponse.cs" />
     <Compile Include="Order\IOrderRepository.cs" />
     <Compile Include="Order\OrderRecord.cs" />
     <Compile Include="Order\OrderRepository.cs" />

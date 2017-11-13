@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using ShoppingCart.Core.Communication;
 using ShoppingCart.Core.Communication.ErrorCodes;
@@ -73,38 +72,34 @@ namespace ShoppingCart.Data.Order
             return response;
         }
 
-        public GetPreviousOrdersResponse GetPreviousOrders(int userId)
+        public GetOrdersByStatusResponse GetOrdersByStatus(int userId, OrderStatus orderStatus)
         {
-            var response = new GetPreviousOrdersResponse();
+            var response = new GetOrdersByStatusResponse();
 
             try
             {
-                response.BasketDetails = GetOrdersForUserByStatus(userId, OrderStatus.Complete);
+                response.BasketDetails = _database.Query<BasketRecord>()
+                    .Where(basket => basket.User.Id == userId && basket.Status == orderStatus.ToString())
+                    .ToList()
+                    .ConvertAll(basket => new BasketDetails
+                    {
+                        Basket = basket,
+                        Total = Money.From(basket.Total),
+                        Orders = _database.Query<OrderRecord>().Where(y => y.Basket.Id == basket.Id)
+                            .ToList()
+                            .ConvertAll(order => new OrderDetails
+                            {
+                                Order = order,
+                                Total = Money.From(order.Total),
+                                Toppings = _database.Query<OrderToppingRecord>().Where(y => y.Order.Id == order.Id).ToList()
+                            })
+                    });
             }
             catch (Exception)
             {
                 response.AddError(new Error
                 {
-                    UserMessage = "Something went wrong when retrieving previous orders from database."
-                });
-            }
-
-            return response;
-        }
-
-        public GetPreviousOrdersResponse GetSavedOrders(int userId)
-        {
-            var response = new GetPreviousOrdersResponse();
-
-            try
-            {
-                response.BasketDetails = GetOrdersForUserByStatus(userId, OrderStatus.Partial);
-            }
-            catch (Exception)
-            {
-                response.AddError(new Error
-                {
-                    UserMessage = "Something went wrong when retrieving partial orders from database."
+                    UserMessage = "Something went wrong when retrieving orders from database."
                 });
             }
 
@@ -142,26 +137,6 @@ namespace ShoppingCart.Data.Order
             }
 
             return response;
-        }
-
-        private List<BasketDetails> GetOrdersForUserByStatus(int userId, OrderStatus orderStatus)
-        {
-            return _database.Query<BasketRecord>()
-                .Where(basket => basket.User.Id == userId && basket.Status == orderStatus.ToString())
-                .ToList()
-                .ConvertAll(basket => new BasketDetails
-                {
-                    Basket = basket,
-                    Total = Money.From(basket.Total),
-                    Orders = _database.Query<OrderRecord>().Where(y => y.Basket.Id == basket.Id)
-                        .ToList()
-                        .ConvertAll(order => new OrderDetails
-                        {
-                            Order = order,
-                            Total = Money.From(order.Total),
-                            Toppings = _database.Query<OrderToppingRecord>().Where(y => y.Order.Id == order.Id).ToList()
-                        })
-                });
         }
     }
 }

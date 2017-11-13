@@ -120,7 +120,7 @@ namespace ShoppingCart.Services.Basket
         {
             var response = new GetPreviousOrdersResponse();
 
-            var previousOrders = _orderRepository.GetPreviousOrders(userId);
+            var previousOrders = _orderRepository.GetOrdersByStatus(userId, OrderStatus.Complete);
 
             if (previousOrders.HasError)
             {
@@ -136,7 +136,7 @@ namespace ShoppingCart.Services.Basket
         {
             var response = new GetSavedOrdersResponse();
 
-            var previousOrders = _orderRepository.GetSavedOrders(userId);
+            var previousOrders = _orderRepository.GetOrdersByStatus(userId, OrderStatus.Partial);
 
             if (previousOrders.HasError)
             {
