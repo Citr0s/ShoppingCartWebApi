@@ -27,10 +27,7 @@ namespace ShoppingCart.Data.Tests.User.GivenARequestToGetUserByEmailAddress
                 }
             });
 
-            var hasher = new Mock<IHasher>();
-            hasher.Setup(x => x.Hash(It.IsAny<string>())).Returns(() => "SOME_HASHED_PASSWORD");
-
-            var subject = new UserRepository(database.Object, hasher.Object);
+            var subject = new UserRepository(database.Object, new Mock<IHasher>().Object);
             _result = subject.GetByEmail("SOME_EMAIL", "SOME_PASSWORD");
         }
 
