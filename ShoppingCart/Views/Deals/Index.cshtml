@@ -13,7 +13,7 @@
                 <div class="panel-heading">
                     <h3 class="panel-title">@voucher.Voucher.Title</h3>
                 </div>
-                <div class="panel-body"  style="height: 210px;">
+                <div class="panel-body"  style="height: 235px;">
                     <p><strong>@voucher.Voucher.Code</strong></p>
                     <p>Applied with the following delivery types: </p>
                     <ul>
@@ -35,7 +35,7 @@
                     @using (Html.BeginForm("ApplyDeal", "Deals", FormMethod.Post))
                     {
                         <fieldset>
-                            @Html.Hidden("deal", voucher.Voucher.Id)
+                            @Html.Hidden("dealId", voucher.Voucher.Id)
                             <input type="submit" value="Select" class="btn btn-primary" />
                         </fieldset>
                     }
