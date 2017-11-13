@@ -12,7 +12,7 @@ namespace ShoppingCart.Services.UserSession
         public int UserId { get; set; }
         public bool LoggedIn { get; set; }
         public Basket Basket { get; set; }
-        public VoucherModel SelectedDeal { get; set; }
+        public VoucherDetailsModel SelectedDeal { get; set; }
 
         public void LogIn(int userId)
         {

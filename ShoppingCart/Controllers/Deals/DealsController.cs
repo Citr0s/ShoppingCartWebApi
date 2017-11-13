@@ -42,7 +42,15 @@ namespace ShoppingCart.Controllers.Deals
             if (getVoucherById.HasError)
                 return Redirect("/Deals");
 
-            _userSessionService.SelectDeal(Session["UserId"].ToString(), VoucherRecordMapper.Map(getVoucherById.Voucher));
+            _userSessionService.SelectDeal(Session["UserId"].ToString(), VoucherDetailsMapper.Map(new List<VoucherDetails>
+            {
+                new VoucherDetails
+                {
+                    Voucher = getVoucherById.Voucher,
+                    AllowedDeliveryTypes = getVoucherById.AllowedDeliveryTypes,
+                    AllowedSizes = getVoucherById.AllowedSizes
+                }
+            })[0]);
             return Redirect("/Deals");
         }
     }

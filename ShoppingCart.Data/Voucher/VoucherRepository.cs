@@ -61,6 +61,8 @@ namespace ShoppingCart.Data.Voucher
                 }
 
                 response.Voucher = voucherRecord;
+                response.AllowedDeliveryTypes = _database.Query<VoucherDeliveryTypeRecord>().Where(x => x.Voucher.Id == voucherRecord.Id).ToList();
+                response.AllowedSizes = _database.Query<VoucherSizeRecord>().Where(x => x.Voucher.Id == voucherRecord.Id).ToList();
             }
             catch (Exception)
             {

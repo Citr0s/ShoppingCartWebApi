@@ -78,6 +78,8 @@ namespace ShoppingCart.Services.UserSession
             if (!UserTokenIsValid(userToken))
                 return Money.From(0);
 
+
+
             return _userSessions[Guid.Parse(userToken)].Basket.Total;
         }
 
@@ -138,7 +140,7 @@ namespace ShoppingCart.Services.UserSession
             _userSessions[Guid.Parse(userToken)].Basket = basket;
         }
 
-        public void SelectDeal(string userToken, VoucherModel voucher)
+        public void SelectDeal(string userToken, VoucherDetailsModel voucher)
         {
             if (!UserTokenIsValid(userToken))
                 return;
@@ -146,10 +148,10 @@ namespace ShoppingCart.Services.UserSession
             _userSessions[Guid.Parse(userToken)].SelectedDeal = voucher;
         }
 
-        public VoucherModel GetVoucherForUser(string userToken)
+        public VoucherDetailsModel GetVoucherForUser(string userToken)
         {
             if (!UserTokenIsValid(userToken))
-                return new VoucherModel();
+                return new VoucherDetailsModel();
 
             return _userSessions[Guid.Parse(userToken)].SelectedDeal;
         }

@@ -40,6 +40,8 @@ namespace ShoppingCart.Services.Voucher
             }
 
             response.Voucher = getVoucherByIdResponse.Voucher;
+            response.AllowedDeliveryTypes = getVoucherByIdResponse.AllowedDeliveryTypes;
+            response.AllowedSizes = getVoucherByIdResponse.AllowedSizes;
             return response;
         }
     }
