@@ -19,16 +19,16 @@ namespace ShoppingCart.Services.Voucher
             }
 
             if (voucher.ToUpper() == "FAMFRIDAYCOLL" && userBasket.Items.Count == 4 && userBasket.Items.All(x => x.Size.Name == "Medium") && userBasket.Items.All(x => x.Pizza.Name.ToLower() != "create your own") && deliveryType.Contains(DeliveryType.Collection))
-                return Money.From(30000);
+                return Money.From(3000);
 
             if (voucher.ToUpper() == "2LARGECOLL" && userBasket.Items.Count == 2 && userBasket.Items.All(x => x.Size.Name == "Large") && userBasket.Items.All(x => x.Pizza.Name.ToLower() != "create your own") && deliveryType.Contains(DeliveryType.Collection))
-                return Money.From(25000);
+                return Money.From(2500);
 
             if (voucher.ToUpper() == "2MEDIUMCOLL" && userBasket.Items.Count == 2 && userBasket.Items.All(x => x.Size.Name == "Medium") && userBasket.Items.All(x => x.Pizza.Name.ToLower() != "create your own") && deliveryType.Contains(DeliveryType.Collection))
-                return Money.From(18000);
+                return Money.From(1800);
 
             if (voucher.ToUpper() == "2SMALLCOLL" && userBasket.Items.Count == 2 && userBasket.Items.All(x => x.Size.Name == "Small") && userBasket.Items.All(x => x.Pizza.Name.ToLower() != "create your own") && deliveryType.Contains(DeliveryType.Collection))
-                return Money.From(12000);
+                return Money.From(1200);
 
             return userBasket.Total;
         }

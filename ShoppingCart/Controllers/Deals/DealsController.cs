@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using ShoppingCart.Data.Voucher;
 using ShoppingCart.Services.UserSession;
 using ShoppingCart.Services.Voucher;
-using ShoppingCart.Views;
 
 namespace ShoppingCart.Controllers.Deals
 {
@@ -27,6 +26,7 @@ namespace ShoppingCart.Controllers.Deals
 
             var response = new DealControllerIndexData
             {
+                VoucherDetails = _userSessionService.GetVoucherForUser(Session["UserId"].ToString()),
                 Vouchers = VoucherDetailsMapper.Map(_voucherService.GetAll().VoucherDetails),
                 Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString()),
                 LoggedIn = _userSessionService.IsLoggedIn(Session["UserId"].ToString())
@@ -53,10 +53,5 @@ namespace ShoppingCart.Controllers.Deals
             })[0]);
             return Redirect("/Deals");
         }
-    }
-
-    public class DealControllerIndexData : BaseControllerData
-    {
-        public List<VoucherDetailsModel> Vouchers { get; set; }
     }
 }
