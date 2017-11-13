@@ -69,6 +69,7 @@
     <Compile Include="User\GivenARequestToGetUserByEmailAddress\WhenTheEmailIsNotFoundInTheDatabase.cs" />
     <Compile Include="User\GivenARequestToGetUserByEmailAddress\WhenEmailAndPasswordHaveBeenFoundInTheDatabase.cs" />
     <Compile Include="User\GivenARequestToSaveUser\WhenACompleteRequestIsProvided.cs" />
+    <Compile Include="User\GivenARequestToSaveUser\WhenTheDatabaseThrowsAnException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
