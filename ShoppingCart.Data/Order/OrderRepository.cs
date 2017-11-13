@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using ShoppingCart.Core.Communication;
 using ShoppingCart.Core.Communication.ErrorCodes;
@@ -78,22 +79,7 @@ namespace ShoppingCart.Data.Order
 
             try
             {
-                response.BasketDetails = _database.Query<BasketRecord>()
-                    .Where(basket => basket.User.Id == userId && basket.Status == OrderStatus.Complete.ToString())
-                    .ToList()
-                    .ConvertAll(basket => new BasketDetails
-                    {
-                        Basket = basket,
-                        Total = Money.From(basket.Total),
-                        Orders = _database.Query<OrderRecord>().Where(y => y.Basket.Id == basket.Id)
-                        .ToList()
-                        .ConvertAll(order => new OrderDetails
-                        {
-                            Order = order,
-                            Total = Money.From(order.Total),
-                            Toppings = _database.Query<OrderToppingRecord>().Where(y => y.Order.Id == order.Id).ToList()
-                        })
-                    });
+                response.BasketDetails = GetOrdersForUserByStatus(userId, OrderStatus.Complete);
             }
             catch (Exception)
             {
@@ -112,22 +98,7 @@ namespace ShoppingCart.Data.Order
 
             try
             {
-                response.BasketDetails = _database.Query<BasketRecord>()
-                    .Where(basket => basket.User.Id == userId && basket.Status == OrderStatus.Partial.ToString())
-                    .ToList()
-                    .ConvertAll(basket => new BasketDetails
-                    {
-                        Basket = basket,
-                        Total = Money.From(basket.Total),
-                        Orders = _database.Query<OrderRecord>().Where(y => y.Basket.Id == basket.Id)
-                            .ToList()
-                            .ConvertAll(order => new OrderDetails
-                            {
-                                Order = order,
-                                Total = Money.From(order.Total),
-                                Toppings = _database.Query<OrderToppingRecord>().Where(y => y.Order.Id == order.Id).ToList()
-                            })
-                    });
+                response.BasketDetails = GetOrdersForUserByStatus(userId, OrderStatus.Partial);
             }
             catch (Exception)
             {
@@ -171,6 +142,26 @@ namespace ShoppingCart.Data.Order
             }
 
             return response;
+        }
+
+        private List<BasketDetails> GetOrdersForUserByStatus(int userId, OrderStatus orderStatus)
+        {
+            return _database.Query<BasketRecord>()
+                .Where(basket => basket.User.Id == userId && basket.Status == orderStatus.ToString())
+                .ToList()
+                .ConvertAll(basket => new BasketDetails
+                {
+                    Basket = basket,
+                    Total = Money.From(basket.Total),
+                    Orders = _database.Query<OrderRecord>().Where(y => y.Basket.Id == basket.Id)
+                        .ToList()
+                        .ConvertAll(order => new OrderDetails
+                        {
+                            Order = order,
+                            Total = Money.From(order.Total),
+                            Toppings = _database.Query<OrderToppingRecord>().Where(y => y.Order.Id == order.Id).ToList()
+                        })
+                });
         }
     }
 }
