@@ -57,6 +57,9 @@
     <Compile Include="PizzaPrice\GivenAGetPizzaSizeRepository\WhenTheDatabaseFailsToRetrieveThePizzaSizeRecords.cs" />
     <Compile Include="PizzaSize\GivenARequestToGetAllPizzaSizes\WhenDatabaseThrowsAnException.cs" />
     <Compile Include="PizzaSize\GivenARequestToGetAllPizzaSizes\WhenNoErrorsOccur.cs" />
+    <Compile Include="PizzaSize\GivenARequestToGetPizzaSizeById\WhenDatabaseThrowsAnException.cs" />
+    <Compile Include="PizzaSize\GivenARequestToGetPizzaSizeById\WhenNoErrorsAreReturned.cs" />
+    <Compile Include="PizzaSize\GivenARequestToGetPizzaSizeById\WhenNoRecordsMatchProvidedCriteria.cs" />
     <Compile Include="PizzaTopping\GivenAPizzaToppingRepository\WhenARequestIsMadeToRetrieveAllPizzaToppingRecords.cs" />
     <Compile Include="PizzaTopping\GivenAPizzaToppingRepository\WhenTheDatabaseFailsToRetrieveThePizzaToppingRecords.cs" />
     <Compile Include="Topping\GivenAGetToppingRepository\WhenARequestIsMadeToRetrieveAllToppingRecords.cs" />

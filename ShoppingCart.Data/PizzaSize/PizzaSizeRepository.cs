@@ -41,12 +41,25 @@ namespace ShoppingCart.Data.PizzaSize
 
             try
             {
-                response.PizzaSize = _database.Query<PizzaSizeRecord>().First(x => x.Pizza.Id == pizzaId && x.Size.Id == sizeId);
+                var pizzaSizeRecord = _database.Query<PizzaSizeRecord>().FirstOrDefault(x => x.Pizza.Id == pizzaId && x.Size.Id == sizeId);
+
+                if (pizzaSizeRecord == null)
+                {
+                    response.AddError(new Error
+                    {
+                        Code = ErrorCodes.RecordNotFound,
+                        Message = "Could not find PizzaSizeRecords matching provided criteria"
+                    });
+                    return response;
+                }
+
+                response.PizzaSize = pizzaSizeRecord;
             }
             catch (Exception)
             {
                 response.AddError(new Error
                 {
+                    Code = ErrorCodes.DatabaseError,
                     Message = "Something went wrong when retrieving PizzaPriceRecord from database."
                 });
             }
