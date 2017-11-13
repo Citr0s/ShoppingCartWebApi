@@ -20,6 +20,7 @@ namespace ShoppingCart.Data.Tests.Order.GivenARequestToGetOrdersByStatus
             {
                 new BasketRecord
                 {
+                    Id = 1,
                     User = new UserRecord
                     {
                         Id = 1
@@ -29,6 +30,7 @@ namespace ShoppingCart.Data.Tests.Order.GivenARequestToGetOrdersByStatus
                 },
                 new BasketRecord
                 {
+                    Id = 2,
                     User = new UserRecord
                     {
                         Id = 1
@@ -38,6 +40,7 @@ namespace ShoppingCart.Data.Tests.Order.GivenARequestToGetOrdersByStatus
                 },
                 new BasketRecord
                 {
+                    Id = 3,
                     User = new UserRecord
                     {
                         Id = 2
@@ -47,6 +50,7 @@ namespace ShoppingCart.Data.Tests.Order.GivenARequestToGetOrdersByStatus
                 },
                 new BasketRecord
                 {
+                    Id = 4,
                     User = new UserRecord
                     {
                         Id = 1
@@ -55,8 +59,36 @@ namespace ShoppingCart.Data.Tests.Order.GivenARequestToGetOrdersByStatus
                     Total = 1600
                 }
             });
-            database.Setup(x => x.Query<OrderRecord>()).Returns(() => new List<OrderRecord>());
-            database.Setup(x => x.Query<OrderToppingRecord>()).Returns(() => new List<OrderToppingRecord>());
+            database.Setup(x => x.Query<OrderRecord>()).Returns(() => new List<OrderRecord>
+            {
+                new OrderRecord
+                {
+                    Id = 2,
+                    Basket = new BasketRecord
+                    {
+                        Id = 1
+                    }
+                },
+                new OrderRecord
+                {
+                    Id = 3,
+                    Basket = new BasketRecord
+                    {
+                        Id = 2
+                    }
+                }
+            });
+            database.Setup(x => x.Query<OrderToppingRecord>()).Returns(() => new List<OrderToppingRecord>
+            {
+                new OrderToppingRecord
+                {
+                    Id = 1,
+                    Order = new OrderRecord
+                    {
+                        Id = 1
+                    }
+                }
+            });
 
             var subject = new OrderRepository(database.Object);
             _result = subject.GetOrdersByStatus(1, OrderStatus.Complete);
