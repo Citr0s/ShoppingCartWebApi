@@ -44,6 +44,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Email\GivenARequestToCheckIfEmailIsValid\WhenInvalidEmailIsProvided.cs" />
+    <Compile Include="Email\GivenARequestToCheckIfEmailIsValid\WhenCorrectEmailIsProvided.cs" />
     <Compile Include="Hasher\GivenARequestToHashAString\WhenAValidStringIsProvided.cs" />
     <Compile Include="Money\GivenARequestToConvertPenceToMoney\WhenAValueGreatThanZeroIsProvided.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
