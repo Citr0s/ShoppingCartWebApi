@@ -19,7 +19,7 @@
                     <ul>
                         @foreach (var deliveryType in voucher.AllowedDeliveryTypes)
                         {
-                            <li>@deliveryType.Name</li>
+                            <li>@deliveryType.ToString()</li>
                         }
                     </ul>
                     <p>Applied with the following pizza sizes: </p>

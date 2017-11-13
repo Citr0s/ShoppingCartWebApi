@@ -1,4 +1,5 @@
-﻿using System.Web.WebPages;
+﻿using System.Collections.Generic;
+using System.Web.WebPages;
 using ShoppingCart.Controllers.Basket;
 using ShoppingCart.Core.Communication;
 using ShoppingCart.Core.Communication.ErrorCodes;
@@ -44,7 +45,7 @@ namespace ShoppingCart.Services.Basket
             var userBasket = _userSessionService.GetBasketForUser(userId);
 
             if (!voucher.IsEmpty())
-                userBasket.Total = VoucherHelper.Check(userBasket, delivery, voucher);
+                userBasket.Total = VoucherHelper.Check(userBasket, new List<DeliveryType>{ delivery }, voucher);
             else
                 voucher = "";
 

@@ -4,7 +4,7 @@ namespace ShoppingCart.Controllers.Basket
 {
     public class DeliveryTypeHelper
     {
-        public DeliveryType From(string deliveryType)
+        public static DeliveryType From(string deliveryType)
         {
             if (Enum.TryParse(deliveryType, out DeliveryType parsedEnum))
                 return parsedEnum;

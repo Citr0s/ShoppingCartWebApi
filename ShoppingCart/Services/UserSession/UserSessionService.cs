@@ -78,14 +78,22 @@ namespace ShoppingCart.Services.UserSession
             if (!UserTokenIsValid(userToken))
                 return Money.From(0);
 
+            var userSessionData = _userSessions[Guid.Parse(userToken)];
+            var finalPrice = userSessionData.Basket.Total;
+            userSessionData.AdjustedPrice = false;
 
+            if (userSessionData.SelectedDeal != null)
+            {
+                finalPrice = VoucherHelper.Check(userSessionData.Basket, userSessionData.SelectedDeal.AllowedDeliveryTypes, userSessionData.SelectedDeal.Voucher.Code);
+                userSessionData.AdjustedPrice = true;
+            }
 
-            return _userSessions[Guid.Parse(userToken)].Basket.Total;
+            return finalPrice;
         }
 
         public Basket GetBasketForUser(string userToken)
         {
-            if(!UserTokenIsValid(userToken))
+            if (!UserTokenIsValid(userToken))
                 return new Basket();
 
             return _userSessions[Guid.Parse(userToken)].Basket;

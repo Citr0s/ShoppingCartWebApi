@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using ShoppingCart.Controllers.Basket;
 using ShoppingCart.Core.Money;
 using ShoppingCart.Data.Voucher;
 
@@ -22,7 +23,7 @@ namespace ShoppingCart.Services.Voucher
                         OnlyNamed = voucherDetail.Voucher.OnlyNamed,
                         Quantity = voucherDetail.Voucher.Quantity
                     },
-                    AllowedDeliveryTypes = voucherDetail.AllowedDeliveryTypes.ConvertAll(x => new VoucherDeliveryTypeModel { Name = x.DeliveryType.Name }),
+                    AllowedDeliveryTypes = voucherDetail.AllowedDeliveryTypes.ConvertAll(x => DeliveryTypeHelper.From(x.DeliveryType.Name) ),
                     AllowedSizes = voucherDetail.AllowedSizes.ConvertAll(x => new VoucherSizeModel { Name = x.Size.Name })
                 };
 

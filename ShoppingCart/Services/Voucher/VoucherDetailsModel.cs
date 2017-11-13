@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using ShoppingCart.Controllers.Basket;
 
 namespace ShoppingCart.Services.Voucher
 {
@@ -6,12 +7,12 @@ namespace ShoppingCart.Services.Voucher
     {
         public VoucherDetailsModel()
         {
-            AllowedDeliveryTypes = new List<VoucherDeliveryTypeModel>();
+            AllowedDeliveryTypes = new List<DeliveryType>();
             AllowedSizes = new List<VoucherSizeModel>();
         }
 
         public VoucherModel Voucher { get; set; }
-        public List<VoucherDeliveryTypeModel> AllowedDeliveryTypes { get; set; }
+        public List<DeliveryType> AllowedDeliveryTypes { get; set; }
         public List<VoucherSizeModel> AllowedSizes { get; set; }
     }
 }
