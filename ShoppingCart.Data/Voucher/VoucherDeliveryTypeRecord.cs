@@ -18,8 +18,8 @@ namespace ShoppingCart.Data.Voucher
         {
             Table("voucher_delivery_types");
             Id(x => x.Id);
-            Map(x => x.Voucher).Column("voucher_id");
-            Map(x => x.DeliveryType).Column("delivery_type_id");
+            References(x => x.Voucher).Column("voucher_id").Not.LazyLoad();
+            References(x => x.DeliveryType).Column("delivery_type_id").Not.LazyLoad();
         }
     }
 }

@@ -9,6 +9,7 @@ using NHibernate;
 using NHibernate.Linq;
 using ShoppingCart.Data.Pizza;
 using ShoppingCart.Data.Size;
+using ShoppingCart.Data.Voucher;
 
 namespace ShoppingCart.Data.Database
 {
