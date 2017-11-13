@@ -25,7 +25,7 @@ namespace ShoppingCart.Services.UserSession
         public static UserSessionService Instance()
         {
             if (_instance == null)
-                _instance = new UserSessionService(new PizzaSizeRepository(new NhibernateDatabase()), new ToppingSizeRepository());
+                _instance = new UserSessionService(new PizzaSizeRepository(new NhibernateDatabase()), new ToppingSizeRepository(new NhibernateDatabase()));
 
             return _instance;
         }

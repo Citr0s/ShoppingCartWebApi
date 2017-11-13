@@ -10,8 +10,6 @@ namespace ShoppingCart.Data.ToppingSize
     {
         private readonly IDatabase _database;
 
-        public ToppingSizeRepository() : this(new NhibernateDatabase()) { }
-
         public ToppingSizeRepository(IDatabase database)
         {
             _database = database;
