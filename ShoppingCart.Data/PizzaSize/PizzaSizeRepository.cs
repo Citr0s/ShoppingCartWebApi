@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using ShoppingCart.Core.Communication;
+using ShoppingCart.Core.Communication.ErrorCodes;
 using ShoppingCart.Data.Database;
 
 namespace ShoppingCart.Data.PizzaSize
@@ -26,6 +27,7 @@ namespace ShoppingCart.Data.PizzaSize
             {
                 response.AddError(new Error
                 {
+                    Code = ErrorCodes.DatabaseError,
                     Message = "Something went wrong when retrieving PizzaPriceRecords from database."
                 });
             }
