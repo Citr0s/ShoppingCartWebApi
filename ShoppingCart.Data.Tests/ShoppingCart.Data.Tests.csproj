@@ -53,6 +53,7 @@
     <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Order\GivenARequestToSaveAnOrder\WhenACompleteRequestIsProvided.cs" />
     <Compile Include="PizzaPrice\GivenAGetPizzaSizeRepository\WhenARequestIsMadeToRetrieveAllPizzaSizeRecords.cs" />
     <Compile Include="PizzaPrice\GivenAGetPizzaSizeRepository\WhenTheDatabaseFailsToRetrieveThePizzaSizeRecords.cs" />
     <Compile Include="PizzaSize\GivenARequestToGetAllPizzaSizes\WhenDatabaseThrowsAnException.cs" />
@@ -90,6 +91,10 @@
     <ProjectReference Include="..\ShoppingCart.Data\ShoppingCart.Data.csproj">
       <Project>{E4CF6BF8-2F13-448E-8BB7-421D700B6231}</Project>
       <Name>ShoppingCart.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ShoppingCart\ShoppingCart.csproj">
+      <Project>{FE5231ED-1080-457B-A517-3619674EBE03}</Project>
+      <Name>ShoppingCart</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

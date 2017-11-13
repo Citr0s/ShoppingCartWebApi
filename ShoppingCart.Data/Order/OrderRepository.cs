@@ -14,8 +14,6 @@ namespace ShoppingCart.Data.Order
     {
         private readonly IDatabase _database;
 
-        public OrderRepository() : this(new NhibernateDatabase()) { }
-
         public OrderRepository(IDatabase database)
         {
             _database = database;
