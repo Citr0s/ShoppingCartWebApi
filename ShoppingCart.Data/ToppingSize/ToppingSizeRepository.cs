@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using ShoppingCart.Core.Communication;
+using ShoppingCart.Core.Communication.ErrorCodes;
 using ShoppingCart.Data.Database;
 
 namespace ShoppingCart.Data.ToppingSize
@@ -21,13 +22,22 @@ namespace ShoppingCart.Data.ToppingSize
 
             try
             {
-                response.ToppingSize = _database.Query<ToppingSizeRecord>().Where(x => extraToppingIds.Contains(x.Topping.Id) && x.Size.Id == sizeId).ToList();
+                var toppingSizeRecords = _database.Query<ToppingSizeRecord>().Where(x => extraToppingIds.Contains(x.Topping.Id) && x.Size.Id == sizeId).ToList();
+
+                if (toppingSizeRecords.Count == 0)
+                {
+                    response.AddError(new Error { Code = ErrorCodes.RecordNotFound, TechnicalMessage = "Could not find matching ToppingSizeRecord." });
+                    return response;
+                }
+
+                response.ToppingSize = toppingSizeRecords;
             }
             catch (Exception)
             {
                 response.AddError(new Error
                 {
-                    Message = "Something went wrong when retrieving ToppingRecords from database."
+                    Code = ErrorCodes.DatabaseError,
+                    TechnicalMessage = "Something went wrong when retrieving ToppingRecords from database."
                 });
             }
 

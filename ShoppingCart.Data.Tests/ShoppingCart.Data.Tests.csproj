@@ -62,6 +62,9 @@
     <Compile Include="PizzaSize\GivenARequestToGetPizzaSizeById\WhenNoRecordsMatchProvidedCriteria.cs" />
     <Compile Include="PizzaTopping\GivenAPizzaToppingRepository\WhenARequestIsMadeToRetrieveAllPizzaToppingRecords.cs" />
     <Compile Include="PizzaTopping\GivenAPizzaToppingRepository\WhenTheDatabaseFailsToRetrieveThePizzaToppingRecords.cs" />
+    <Compile Include="ToppingSize\GivenARequestToGetToppingSizesById\WhenDatabaseThrowsAnException.cs" />
+    <Compile Include="ToppingSize\GivenARequestToGetToppingSizesById\WhenNoMatchingRecordsAreFound.cs" />
+    <Compile Include="ToppingSize\GivenARequestToGetToppingSizesById\WhenRecordsAreFound.cs" />
     <Compile Include="Topping\GivenAGetToppingRepository\WhenARequestIsMadeToRetrieveAllToppingRecords.cs" />
     <Compile Include="Topping\GivenAGetToppingRepository\WhenTheDatabaseFailsToRetrieveTheToppingRecords.cs" />
     <Compile Include="Size\GivenAGetSizeRepository\WhenARequestIsMadeToRetrieveAllSizeRecords.cs" />
@@ -89,6 +92,7 @@
       <Name>ShoppingCart.Data</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

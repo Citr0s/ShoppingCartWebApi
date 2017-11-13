@@ -25,7 +25,7 @@ namespace ShoppingCart.Data.Size
             {
                 response.AddError(new Error
                 {
-                    Message = "Something went wrong when retrieving SizeRecords from database."
+                    TechnicalMessage = "Something went wrong when retrieving SizeRecords from database."
                 });
             }
 

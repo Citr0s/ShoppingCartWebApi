@@ -38,7 +38,7 @@ namespace ShoppingCart.Data.Voucher
             {
                 response.AddError(new Error
                 {
-                    Message = "Something went wrong when retrieving Vouchers from database."
+                    TechnicalMessage = "Something went wrong when retrieving Vouchers from database."
                 });
             }
 

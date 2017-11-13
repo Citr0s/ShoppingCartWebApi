@@ -20,7 +20,7 @@ namespace ShoppingCart.Tests.Topping.GivenAToppingService
                 HasError = true,
                 Error = new Error
                 {
-                    Message = "Something went wrong when retrieving ToppingRecords."
+                    TechnicalMessage = "Something went wrong when retrieving ToppingRecords."
                 }
             });
 
@@ -37,7 +37,7 @@ namespace ShoppingCart.Tests.Topping.GivenAToppingService
         [Test]
         public void ThenAnErrorMessageIsReturned()
         {
-            Assert.That(_result.Error.Message, Is.EqualTo("Something went wrong when retrieving ToppingRecords."));
+            Assert.That(_result.Error.TechnicalMessage, Is.EqualTo("Something went wrong when retrieving ToppingRecords."));
         }
 
         [Test]

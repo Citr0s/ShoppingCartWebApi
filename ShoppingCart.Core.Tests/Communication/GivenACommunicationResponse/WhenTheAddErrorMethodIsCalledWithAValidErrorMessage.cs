@@ -15,7 +15,7 @@ namespace ShoppingCart.Core.Tests.Communication.GivenACommunicationResponse
 
             _subject.AddError(new Error
             {
-                Message = "Some error message has occured."
+                TechnicalMessage = "Some error message has occured."
             });
         }
 
@@ -28,7 +28,7 @@ namespace ShoppingCart.Core.Tests.Communication.GivenACommunicationResponse
         [Test]
         public void ThenTheErrorMessageIsMappedCorreclty()
         {
-            Assert.That(_subject.Error.Message, Is.EqualTo("Some error message has occured."));
+            Assert.That(_subject.Error.TechnicalMessage, Is.EqualTo("Some error message has occured."));
         }
     }
 }
