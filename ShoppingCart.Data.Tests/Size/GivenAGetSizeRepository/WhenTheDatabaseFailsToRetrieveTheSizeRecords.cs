@@ -30,7 +30,7 @@ namespace ShoppingCart.Data.Tests.Size.GivenAGetSizeRepository
         [Test]
         public void ThenAnErrorMessageIsReturned()
         {
-            Assert.That(_result.Error.Message, Is.EqualTo("Something went wrong when retrieving SizeRecords from database."));
+            Assert.That(_result.Error.UserMessage, Is.EqualTo("Something went wrong when retrieving SizeRecords from database."));
         }
 
         [Test]

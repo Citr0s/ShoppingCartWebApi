@@ -39,7 +39,7 @@ namespace ShoppingCart.Data.Voucher
             {
                 response.AddError(new Error
                 {
-                    Message = "Something went wrong when retrieving Vouchers from database."
+                    UserMessage = "Something went wrong when retrieving Vouchers from database."
                 });
             }
 
@@ -56,7 +56,7 @@ namespace ShoppingCart.Data.Voucher
 
                 if (voucherRecord == null)
                 {
-                    response.AddError(new Error { Code = ErrorCodes.RecordNotFound, Message = "Could not find a VoucherRecord using provided data." });
+                    response.AddError(new Error { Code = ErrorCodes.RecordNotFound, UserMessage = "Could not find a VoucherRecord using provided data." });
                     return response;
                 }
 
@@ -68,7 +68,7 @@ namespace ShoppingCart.Data.Voucher
             {
                 response.AddError(new Error
                 {
-                    Message = "Something went wrong when retrieving Vouchers from database."
+                    UserMessage = "Something went wrong when retrieving Vouchers from database."
                 });
             }
 

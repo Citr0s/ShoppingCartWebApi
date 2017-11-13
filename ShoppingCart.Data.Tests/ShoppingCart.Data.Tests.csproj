@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Order\GivenARequestToSaveAnOrder\WhenACompleteRequestIsProvided.cs" />
+    <Compile Include="Order\GivenARequestToSaveAnOrder\WhenDatabaseThrowsAnException.cs" />
     <Compile Include="PizzaPrice\GivenAGetPizzaSizeRepository\WhenARequestIsMadeToRetrieveAllPizzaSizeRecords.cs" />
     <Compile Include="PizzaPrice\GivenAGetPizzaSizeRepository\WhenTheDatabaseFailsToRetrieveThePizzaSizeRecords.cs" />
     <Compile Include="PizzaSize\GivenARequestToGetAllPizzaSizes\WhenDatabaseThrowsAnException.cs" />

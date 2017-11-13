@@ -48,7 +48,7 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
                 HasError = true,
                 Error = new Error
                 {
-                    Message = "An Error Occurred"
+                    UserMessage = "An Error Occurred"
                 }
             });
 

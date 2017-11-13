@@ -31,7 +31,7 @@ namespace ShoppingCart.Data.User
                     response.AddError(new Error
                     {
                         Code = ErrorCodes.UserNotFound,
-                        Message = "User with specified credentials could not be found"
+                        UserMessage = "User with specified credentials could not be found"
                     });
                     return response;
                 }
@@ -43,7 +43,7 @@ namespace ShoppingCart.Data.User
                 response.AddError(new Error
                 {
                     Code = ErrorCodes.DatabaseError,
-                    Message = "Something went wrong when retrieving UserRecords from database."
+                    UserMessage = "Something went wrong when retrieving UserRecords from database."
                 });
             }
 
@@ -73,7 +73,7 @@ namespace ShoppingCart.Data.User
                 response.AddError(new Error
                 {
                     Code = ErrorCodes.DatabaseError,
-                    Message = "Something went wrong when retrieving UserRecords from database."
+                    UserMessage = "Something went wrong when retrieving UserRecords from database."
                 });
             }
 

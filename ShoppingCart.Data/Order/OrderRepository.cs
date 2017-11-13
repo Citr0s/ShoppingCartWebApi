@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq;
 using ShoppingCart.Core.Communication;
+using ShoppingCart.Core.Communication.ErrorCodes;
 using ShoppingCart.Core.Money;
 using ShoppingCart.Data.Database;
 using ShoppingCart.Data.Pizza;
@@ -58,11 +59,13 @@ namespace ShoppingCart.Data.Order
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception exception)
             {
                 response.AddError(new Error
                 {
-                    Message = "Something went wrong when saving Order to database."
+                    Code = ErrorCodes.DatabaseError,
+                    UserMessage = "Something went wrong when saving Order to database.",
+                    TechnicalMessage = $"Following exception was thrown: {exception.Message}"
                 });
             }
 
@@ -96,7 +99,7 @@ namespace ShoppingCart.Data.Order
             {
                 response.AddError(new Error
                 {
-                    Message = "Something went wrong when retrieving previous orders from database."
+                    UserMessage = "Something went wrong when retrieving previous orders from database."
                 });
             }
 
@@ -130,7 +133,7 @@ namespace ShoppingCart.Data.Order
             {
                 response.AddError(new Error
                 {
-                    Message = "Something went wrong when retrieving partial orders from database."
+                    UserMessage = "Something went wrong when retrieving partial orders from database."
                 });
             }
 
@@ -163,7 +166,7 @@ namespace ShoppingCart.Data.Order
             {
                 response.AddError(new Error
                 {
-                    Message = "Something went wrong when retrieving previous orders from database."
+                    UserMessage = "Something went wrong when retrieving previous orders from database."
                 });
             }
 
