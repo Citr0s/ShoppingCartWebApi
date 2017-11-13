@@ -28,6 +28,9 @@ namespace ShoppingCart.Services.UserSession
                 _instance = new UserSessionService(new PizzaSizeRepository(new NhibernateDatabase()), new ToppingSizeRepository(new NhibernateDatabase()));
 
             return _instance;
+
+            // add logic to logout after 5 minutes of inactivity to prevent memory leaks
+            // every action reset the timer
         }
 
         public string NewUser()
@@ -40,7 +43,7 @@ namespace ShoppingCart.Services.UserSession
 
         public void AddItemToBasket(string userToken, BasketData basket)
         {
-            if (!Guid.TryParse(userToken, out _) || !_userSessions.ContainsKey(Guid.Parse(userToken)))
+            if (!UserTokenIsValid(userToken))
                 return;
 
             var pizzaSizeResponse = _pizzaSizeRepository.GetByIds(basket.PizzaId, basket.SizeId);
@@ -71,7 +74,7 @@ namespace ShoppingCart.Services.UserSession
 
         public Money GetBasketTotalForUser(string userToken)
         {
-            if (!Guid.TryParse(userToken, out _) || !_userSessions.ContainsKey(Guid.Parse(userToken)))
+            if (!UserTokenIsValid(userToken))
                 return Money.From(0);
 
             return _userSessions[Guid.Parse(userToken)].Basket.Total;
@@ -79,7 +82,7 @@ namespace ShoppingCart.Services.UserSession
 
         public Basket GetBasketForUser(string userToken)
         {
-            if(!Guid.TryParse(userToken, out _) || !_userSessions.ContainsKey(Guid.Parse(userToken)))
+            if(!UserTokenIsValid(userToken))
                 return new Basket();
 
             return _userSessions[Guid.Parse(userToken)].Basket;
@@ -87,7 +90,7 @@ namespace ShoppingCart.Services.UserSession
 
         public void LogIn(string userToken, int userId)
         {
-            if (!Guid.TryParse(userToken, out _) || !_userSessions.ContainsKey(Guid.Parse(userToken)))
+            if (!UserTokenIsValid(userToken))
                 return;
 
             _userSessions[Guid.Parse(userToken)].LogIn(userId);
@@ -95,7 +98,7 @@ namespace ShoppingCart.Services.UserSession
 
         public bool IsLoggedIn(string userToken)
         {
-            if (!Guid.TryParse(userToken, out _) || !_userSessions.ContainsKey(Guid.Parse(userToken)))
+            if (!UserTokenIsValid(userToken))
                 return false;
 
             return _userSessions[Guid.Parse(userToken)].LoggedIn;
@@ -103,7 +106,7 @@ namespace ShoppingCart.Services.UserSession
 
         public void LogOut(string userToken)
         {
-            if (!Guid.TryParse(userToken, out _) || !_userSessions.ContainsKey(Guid.Parse(userToken)))
+            if (!UserTokenIsValid(userToken))
                 return;
 
             _userSessions[Guid.Parse(userToken)].LogOut();
@@ -111,7 +114,7 @@ namespace ShoppingCart.Services.UserSession
 
         public int GetUserByUserToken(string userToken)
         {
-            if (!Guid.TryParse(userToken, out _) || !_userSessions.ContainsKey(Guid.Parse(userToken)))
+            if (!UserTokenIsValid(userToken))
                 return 0;
 
             return _userSessions[Guid.Parse(userToken)].UserId;
@@ -119,7 +122,7 @@ namespace ShoppingCart.Services.UserSession
 
         public void ClearBasket(string userToken)
         {
-            if (!Guid.TryParse(userToken, out _) || !_userSessions.ContainsKey(Guid.Parse(userToken)))
+            if (!UserTokenIsValid(userToken))
                 return;
 
             _userSessions[Guid.Parse(userToken)].Basket.Items = new List<BasketItem>();
@@ -128,10 +131,23 @@ namespace ShoppingCart.Services.UserSession
 
         public void SetBasket(string userToken, Basket basket)
         {
-            if (!Guid.TryParse(userToken, out _) || !_userSessions.ContainsKey(Guid.Parse(userToken)))
+            if (!UserTokenIsValid(userToken))
                 return;
 
             _userSessions[Guid.Parse(userToken)].Basket = basket;
+        }
+
+        public void SelectDeal(string userToken, int dealId)
+        {
+            if (!UserTokenIsValid(userToken))
+                return;
+
+            _userSessions[Guid.Parse(userToken)].SelectedDeal = dealId;
+        }
+
+        private bool UserTokenIsValid(string userToken)
+        {
+            return Guid.TryParse(userToken, out _) && _userSessions.ContainsKey(Guid.Parse(userToken));
         }
     }
 }

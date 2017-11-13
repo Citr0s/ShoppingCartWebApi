@@ -10,6 +10,7 @@
         public int UserId { get; set; }
         public bool LoggedIn { get; set; }
         public Basket Basket { get; set; }
+        public int SelectedDeal { get; set; }
 
         public void LogIn(int userId)
         {

@@ -14,5 +14,6 @@ namespace ShoppingCart.Services.UserSession
         int GetUserByUserToken(string userToken);
         void ClearBasket(string userToken);
         void SetBasket(string userToken, Basket basket);
+        void SelectDeal(string userToken, int dealId);
     }
 }

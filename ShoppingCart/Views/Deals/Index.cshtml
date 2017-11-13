@@ -30,6 +30,15 @@
                         }
                     </ul>
                 </div>
+                <div class="panel-footer">
+                    @using (Html.BeginForm("ApplyDeal", "Deals", FormMethod.Post))
+                    {
+                        <fieldset>
+                            @Html.Hidden("deal", voucher.Voucher.Id)
+                            <input type="submit" value="Select" class="btn btn-primary" />
+                        </fieldset>
+                    }
+                </div>
             </div>
         </div>
     }

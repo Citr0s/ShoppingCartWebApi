@@ -35,6 +35,12 @@ namespace ShoppingCart.Controllers.Deals
 
             return View(response);
         }
+
+        public ActionResult ApplyDeal(int dealId)
+        {
+            _userSessionService.SelectDeal(Session["UserId"].ToString(), dealId);
+            Redirect("/Deals");
+        }
     }
 
     public class DealControllerIndexData : BaseControllerData
