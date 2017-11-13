@@ -65,6 +65,7 @@
     <Compile Include="Pizza\GivenAGetPizzaRepository\WhenTheDatabaseFailsToRetrieveThePizzaRecords.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="User\GivenARequestToGetUserByEmailAddress\WhenTheEmailIsFoundButPasswordIsIncorrect.cs" />
+    <Compile Include="User\GivenARequestToGetUserByEmailAddress\WhenDatabaseThrowsAnException.cs" />
     <Compile Include="User\GivenARequestToGetUserByEmailAddress\WhenTheEmailIsNotFoundInTheDatabase.cs" />
     <Compile Include="User\GivenARequestToGetUserByEmailAddress\WhenEmailAndPasswordHaveBeenFoundInTheDatabase.cs" />
   </ItemGroup>

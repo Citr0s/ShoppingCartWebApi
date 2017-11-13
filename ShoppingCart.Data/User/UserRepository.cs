@@ -44,6 +44,7 @@ namespace ShoppingCart.Data.User
             {
                 response.AddError(new Error
                 {
+                    Code = ErrorCodes.DatabaseError,
                     Message = "Something went wrong when retrieving UserRecords from database."
                 });
             }
