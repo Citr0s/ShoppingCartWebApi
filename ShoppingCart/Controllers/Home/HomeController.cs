@@ -44,11 +44,9 @@ namespace ShoppingCart.Controllers.Home
 
             if (Session["UserId"] == null)
                 Session["UserId"] = _userSessionService.NewUser();
-            else
-            {
-                response.Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString());
-                response.LoggedIn = _userSessionService.IsLoggedIn(Session["UserId"].ToString());
-            }
+
+            response.Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString());
+            response.LoggedIn = _userSessionService.IsLoggedIn(Session["UserId"].ToString());
 
             return View(response);
         }

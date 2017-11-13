@@ -39,7 +39,7 @@ namespace ShoppingCart.Controllers.Deals
         public ActionResult ApplyDeal(int dealId)
         {
             _userSessionService.SelectDeal(Session["UserId"].ToString(), dealId);
-            Redirect("/Deals");
+            return Redirect("/Deals");
         }
     }
 
