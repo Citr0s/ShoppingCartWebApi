@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Order\GivenARequestToGetBasketById\WhenBasketIsFoundInTheDatabase.cs" />
+    <Compile Include="Order\GivenARequestToGetBasketById\WhenDatabaseThrowsAnException.cs" />
     <Compile Include="Order\GivenARequestToGetOrdersByStatus\WhenACompleteRequestIsProvided.cs" />
     <Compile Include="Order\GivenARequestToGetOrdersByStatus\WhenDatabaseReturnsAnError.cs" />
     <Compile Include="Order\GivenARequestToSaveAnOrder\WhenACompleteRequestIsProvided.cs" />
