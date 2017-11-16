@@ -88,6 +88,7 @@
     <Compile Include="Voucher\GivenARequestToGetAVoucherById\WhenDatabaseThrowsAnException.cs" />
     <Compile Include="Voucher\GivenARequestToGetAllVouchers\WhenDatabaseReturnsNoErrors.cs" />
     <Compile Include="Voucher\GivenARequestToGetAllVouchers\WhenDatabaseThrowsAnException.cs" />
+    <Compile Include="Voucher\GivenARequestToGetAVoucherById\WhenNoMatchingRecordsAreFound.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
