@@ -3,6 +3,8 @@ using System.Linq;
 using Moq;
 using NUnit.Framework;
 using ShoppingCart.Data.Database;
+using ShoppingCart.Data.Delivery;
+using ShoppingCart.Data.Size;
 using ShoppingCart.Data.Voucher;
 
 namespace ShoppingCart.Data.Tests.Voucher.GivenARequestToGetAVoucherById
@@ -38,7 +40,8 @@ namespace ShoppingCart.Data.Tests.Voucher.GivenARequestToGetAVoucherById
                 new VoucherDeliveryTypeRecord
                 {
                     Id = 3,
-                    Voucher = new VoucherRecord{ Id = 1 }
+                    Voucher = new VoucherRecord{ Id = 1 },
+                    DeliveryType = new DeliveryTypeRecord{ Id = 1 }
                 },
                 new VoucherDeliveryTypeRecord
                 {
@@ -51,7 +54,8 @@ namespace ShoppingCart.Data.Tests.Voucher.GivenARequestToGetAVoucherById
                 new VoucherSizeRecord
                 {
                     Id = 5,
-                    Voucher = new VoucherRecord{ Id = 1 }
+                    Voucher = new VoucherRecord{ Id = 1 },
+                    Size = new SizeRecord{ Id = 1 }
                 },
                 new VoucherSizeRecord
                 {
@@ -113,11 +117,23 @@ namespace ShoppingCart.Data.Tests.Voucher.GivenARequestToGetAVoucherById
             Assert.That(_result.AllowedDeliveryTypes[index].Id, Is.EqualTo(expected));
         }
 
+        [Test]
+        public void ThenTheCorrectAllowedDeliveryTypeAreReturned()
+        {
+            Assert.That(_result.AllowedDeliveryTypes.First().DeliveryType.Id, Is.EqualTo(1));
+        }
+
         [TestCase(0, 5)]
         [TestCase(1, 6)]
         public void ThenTheCorrectAllowedSizeRecordsAreReturned(int index, int expected)
         {
             Assert.That(_result.AllowedSizes[index].Id, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void ThenTheCorrectAllowedSizeIdAreReturned()
+        {
+            Assert.That(_result.AllowedSizes.First().Size.Id, Is.EqualTo(1));
         }
     }
 }
