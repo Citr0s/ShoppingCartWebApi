@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using ShoppingCart.Data.Database;
+using System.Diagnostics.CodeAnalysis;
 
 namespace ShoppingCart.Data.IoC
 {
@@ -12,10 +12,9 @@ namespace ShoppingCart.Data.IoC
         public IoC()
         {
             _adapters = new Dictionary<Type, IAdapter>();
-
-            Register<IDatabase>(new NhibernateDatabase());
         }
 
+        [ExcludeFromCodeCoverage]
         public static IoC Instance()
         {
             if (_instance == null)
@@ -29,7 +28,7 @@ namespace ShoppingCart.Data.IoC
             return (T)_adapters[typeof(T)];
         }
 
-        private void Register<T>(IAdapter adapter)
+        public void Register<T>(IAdapter adapter)
         {
             _adapters.Add(typeof(T), adapter);
         }
