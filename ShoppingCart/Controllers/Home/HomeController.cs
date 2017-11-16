@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Web.Mvc;
 using ShoppingCart.Data.Database;
+using ShoppingCart.Data.IoC;
 using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.PizzaTopping;
 using ShoppingCart.Data.Size;
@@ -20,7 +21,7 @@ namespace ShoppingCart.Controllers.Home
         private readonly ISizeService _sizeService;
         private readonly IUserSessionService _userSessionService;
 
-        public HomeController() : this(new PizzaSizeService(new PizzaSizeRepository(new NhibernateDatabase()), new PizzaToppingRepository(new NhibernateDatabase())), new ToppingService(new ToppingRepository(new NhibernateDatabase())), new SizeService(new SizeRepository(new NhibernateDatabase())), UserSessionService.Instance()) { }
+        public HomeController() : this(new PizzaSizeService(new PizzaSizeRepository(IoC.Instance().For<IDatabase>()), new PizzaToppingRepository(IoC.Instance().For<IDatabase>())), new ToppingService(new ToppingRepository(IoC.Instance().For<IDatabase>())), new SizeService(new SizeRepository(IoC.Instance().For<IDatabase>())), UserSessionService.Instance()) { }
 
         public HomeController(IPizzaSizeService pizzaSizeService, IToppingService toppingService, ISizeService sizeService, IUserSessionService userSessionService)
         {

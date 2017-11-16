@@ -10,8 +10,6 @@ namespace ShoppingCart.Data.Voucher
     {
         private readonly IDatabase _database;
 
-        public VoucherRepository() : this(new NhibernateDatabase()) { }
-
         public VoucherRepository(IDatabase database)
         {
             _database = database;

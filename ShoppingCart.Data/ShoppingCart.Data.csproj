@@ -62,6 +62,8 @@
   <ItemGroup>
     <Compile Include="Database\IDatabase.cs" />
     <Compile Include="Database\NhibernateDatabase.cs" />
+    <Compile Include="IoC\IAdapter.cs" />
+    <Compile Include="IoC\IoC.cs" />
     <Compile Include="Order\BasketDetails.cs" />
     <Compile Include="Order\BasketRecord.cs" />
     <Compile Include="Order\GetBasketByIdResponse.cs" />
