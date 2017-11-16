@@ -33,11 +33,13 @@ namespace ShoppingCart.Data.Voucher
                     });
                 }
             }
-            catch (Exception)
+            catch (Exception exception)
             {
                 response.AddError(new Error
                 {
-                    UserMessage = "Something went wrong when retrieving Vouchers from database."
+                    Code = ErrorCodes.DatabaseError,
+                    UserMessage = "Something went wrong when retrieving Vouchers from database.",
+                    TechnicalMessage = $"The following exception was thrown ${exception.Message}"
                 });
             }
 

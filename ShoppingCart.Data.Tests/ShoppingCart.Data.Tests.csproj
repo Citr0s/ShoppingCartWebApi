@@ -85,6 +85,7 @@
     <Compile Include="User\GivenARequestToSaveUser\WhenACompleteRequestIsProvided.cs" />
     <Compile Include="User\GivenARequestToSaveUser\WhenTheDatabaseThrowsAnException.cs" />
     <Compile Include="Voucher\GivenARequestToGetAllVouchers\WhenDatabaseReturnsNoErrors.cs" />
+    <Compile Include="Voucher\GivenARequestToGetAllVouchers\WhenDatabaseThrowsAnException.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
