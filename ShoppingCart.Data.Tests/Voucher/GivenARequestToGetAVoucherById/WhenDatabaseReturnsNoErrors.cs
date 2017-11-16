@@ -41,7 +41,7 @@ namespace ShoppingCart.Data.Tests.Voucher.GivenARequestToGetAVoucherById
                 {
                     Id = 3,
                     Voucher = new VoucherRecord{ Id = 1 },
-                    DeliveryType = new DeliveryTypeRecord{ Id = 1 }
+                    DeliveryType = new DeliveryTypeRecord{ Id = 1, Name = "Collection" }
                 },
                 new VoucherDeliveryTypeRecord
                 {
@@ -118,9 +118,15 @@ namespace ShoppingCart.Data.Tests.Voucher.GivenARequestToGetAVoucherById
         }
 
         [Test]
-        public void ThenTheCorrectAllowedDeliveryTypeAreReturned()
+        public void ThenTheCorrectAllowedDeliveryTypeIdIsReturned()
         {
             Assert.That(_result.AllowedDeliveryTypes.First().DeliveryType.Id, Is.EqualTo(1));
+        }
+
+        [Test]
+        public void ThenTheCorrectAllowedDeliveryTypeNameIsReturned()
+        {
+            Assert.That(_result.AllowedDeliveryTypes.First().DeliveryType.Name, Is.EqualTo("Collection"));
         }
 
         [TestCase(0, 5)]
