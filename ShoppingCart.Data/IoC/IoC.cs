@@ -4,11 +4,6 @@ using ShoppingCart.Data.Database;
 
 namespace ShoppingCart.Data.IoC
 {
-    public interface IIoC
-    {
-        T For<T>();
-    }
-
     public class IoC : IIoC
     {
         private static IoC _instance;
@@ -19,11 +14,6 @@ namespace ShoppingCart.Data.IoC
             _adapters = new Dictionary<Type, IAdapter>();
 
             Register<IDatabase>(new NhibernateDatabase());
-        }
-
-        private void Register<T>(IAdapter adapter)
-        {
-            _adapters.Add(typeof(T), adapter);
         }
 
         public static IoC Instance()
@@ -37,6 +27,11 @@ namespace ShoppingCart.Data.IoC
         public T For<T>()
         {
             return (T)_adapters[typeof(T)];
+        }
+
+        private void Register<T>(IAdapter adapter)
+        {
+            _adapters.Add(typeof(T), adapter);
         }
     }
 }
