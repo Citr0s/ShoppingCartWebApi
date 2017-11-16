@@ -84,6 +84,7 @@
     <Compile Include="User\GivenARequestToGetUserByEmailAddress\WhenEmailAndPasswordHaveBeenFoundInTheDatabase.cs" />
     <Compile Include="User\GivenARequestToSaveUser\WhenACompleteRequestIsProvided.cs" />
     <Compile Include="User\GivenARequestToSaveUser\WhenTheDatabaseThrowsAnException.cs" />
+    <Compile Include="Voucher\GivenARequestToGetAllVouchers\WhenDatabaseReturnsNoErrors.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
