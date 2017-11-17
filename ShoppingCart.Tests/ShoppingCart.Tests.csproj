@@ -95,6 +95,8 @@
     <Compile Include="UserSession\GivenARequestToCreateANewUser\WhenTheNewUserMethodIsCalled.cs" />
     <Compile Include="UserSession\GivenARequestToGetVoucherForUser\WhenTheUserIsFound.cs" />
     <Compile Include="UserSession\GivenARequestToGetVoucherForUser\WhenTheUserTokenIsNotAValidGuid.cs" />
+    <Compile Include="UserSession\GivenARequestToSelectADeal\WhenTheUserExists.cs" />
+    <Compile Include="UserSession\GivenARequestToSelectADeal\WhenTheUserTokenIsNotValid.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
