@@ -148,7 +148,7 @@ namespace ShoppingCart.Controllers.Basket
             };
 
             _userSessionService.ClearBasket(Session["UserId"].ToString());
-            _userSessionService.SetBasket(Session["UserId"].ToString(), mappedBasket);
+            _userSessionService.SetBasketForUser(Session["UserId"].ToString(), mappedBasket);
 
             return Redirect("/Basket");
         }

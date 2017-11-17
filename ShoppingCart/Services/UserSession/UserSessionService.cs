@@ -143,7 +143,7 @@ namespace ShoppingCart.Services.UserSession
             _userSessions[Guid.Parse(userToken)].Basket.Total = Money.From(0);
         }
 
-        public void SetBasket(string userToken, Basket basket)
+        public void SetBasketForUser(string userToken, Basket basket)
         {
             if (!UserTokenIsValid(userToken))
                 return;

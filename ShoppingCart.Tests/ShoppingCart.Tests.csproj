@@ -97,6 +97,8 @@
     <Compile Include="UserSession\GivenARequestToGetVoucherForUser\WhenTheUserTokenIsNotAValidGuid.cs" />
     <Compile Include="UserSession\GivenARequestToSelectADeal\WhenTheUserExists.cs" />
     <Compile Include="UserSession\GivenARequestToSelectADeal\WhenTheUserTokenIsNotValid.cs" />
+    <Compile Include="UserSession\GivenARequestToSetBasketForUser\WhenTheUserTokenIsNotValid.cs" />
+    <Compile Include="UserSession\GivenARequestToSetBasketForUser\WheTheSuccessfulRequestIsMade.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
