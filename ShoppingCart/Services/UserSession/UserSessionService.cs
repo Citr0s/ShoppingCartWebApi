@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using ShoppingCart.Core.Money;
 using ShoppingCart.Data.Database;
@@ -24,6 +25,7 @@ namespace ShoppingCart.Services.UserSession
             _userSessions = new Dictionary<Guid, UserSessionData>();
         }
 
+        [ExcludeFromCodeCoverage]
         public static UserSessionService Instance()
         {
             if (_instance == null)
