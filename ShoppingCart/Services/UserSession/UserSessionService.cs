@@ -134,7 +134,7 @@ namespace ShoppingCart.Services.UserSession
             return _userSessions[Guid.Parse(userToken)].UserId;
         }
 
-        public void ClearBasket(string userToken)
+        public void ClearBasketForUser(string userToken)
         {
             if (!UserTokenIsValid(userToken))
                 return;
