@@ -95,6 +95,9 @@
     <Compile Include="UserSession\GivenARequestToClearUserBasket\WhenTheUserTokenProvidedIsNotValid.cs" />
     <Compile Include="UserSession\GivenARequestToClearUserBasket\WhenTheUserHasItemsInTheBasket.cs" />
     <Compile Include="UserSession\GivenARequestToCreateANewUser\WhenTheNewUserMethodIsCalled.cs" />
+    <Compile Include="UserSession\GivenARequestToGetAUserByUserToken\WhenTheProvidedUserTokenIsFound.cs" />
+    <Compile Include="UserSession\GivenARequestToGetAUserByUserToken\WhenTheProvidedUserTokenIsNotFound.cs" />
+    <Compile Include="UserSession\GivenARequestToGetAUserByUserToken\WhenTheProvidedUserTokenIsNotAValidGuid.cs" />
     <Compile Include="UserSession\GivenARequestToGetVoucherForUser\WhenTheUserIsFound.cs" />
     <Compile Include="UserSession\GivenARequestToGetVoucherForUser\WhenTheUserTokenIsNotAValidGuid.cs" />
     <Compile Include="UserSession\GivenARequestToSelectADeal\WhenTheUserExists.cs" />
