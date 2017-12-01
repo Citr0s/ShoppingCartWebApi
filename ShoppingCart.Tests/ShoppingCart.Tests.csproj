@@ -100,6 +100,9 @@
     <Compile Include="UserSession\GivenARequestToGetAUserByUserToken\WhenTheProvidedUserTokenIsNotAValidGuid.cs" />
     <Compile Include="UserSession\GivenARequestToGetVoucherForUser\WhenTheUserIsFound.cs" />
     <Compile Include="UserSession\GivenARequestToGetVoucherForUser\WhenTheUserTokenIsNotAValidGuid.cs" />
+    <Compile Include="UserSession\GivenARequestToLogAUserOut\WhenTheProvidedUserTokenIsFound.cs" />
+    <Compile Include="UserSession\GivenARequestToLogAUserOut\WhenTheProvidedUserTokenIsNotFound.cs" />
+    <Compile Include="UserSession\GivenARequestToLogAUserOut\WhenTheProvidedUserTokenIsNotValid.cs" />
     <Compile Include="UserSession\GivenARequestToSelectADeal\WhenTheUserExists.cs" />
     <Compile Include="UserSession\GivenARequestToSelectADeal\WhenTheUserTokenIsNotValid.cs" />
     <Compile Include="UserSession\GivenARequestToSetBasketForUser\WhenTheUserTokenIsNotValid.cs" />
