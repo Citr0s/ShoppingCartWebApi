@@ -129,7 +129,7 @@ namespace ShoppingCart.Services.UserSession
         public int GetUserByUserToken(string userToken)
         {
             if (!UserTokenIsValid(userToken))
-                throw new Exception("Invalid token provided.");
+                return 0;
 
             return _userSessions[Guid.Parse(userToken)].UserId;
         }
