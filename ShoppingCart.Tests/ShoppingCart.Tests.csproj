@@ -92,6 +92,10 @@
     <Compile Include="UserSession\GivenARequestToAddItemToUsersBasket\WhenPizzaSizeRepositoryReturnsAnError.cs" />
     <Compile Include="UserSession\GivenARequestToAddItemToUsersBasket\WhenToppingSizeRepositoryReturnsAnError.cs" />
     <Compile Include="UserSession\GivenARequestToAddItemToUsersBasket\WhenValidIdentifiersAreProvided.cs" />
+    <Compile Include="UserSession\GivenARequestToCheckIfUserIsLoggedIn\WhenTheProvidedUserTokenIsValidAndUserIsLoggedIn.cs" />
+    <Compile Include="UserSession\GivenARequestToCheckIfUserIsLoggedIn\WhenTheProvidedUserTokenIsValidAndUserIsNotLoggedIn.cs" />
+    <Compile Include="UserSession\GivenARequestToCheckIfUserIsLoggedIn\WhenTheProvidedUserTokenIsNotFound.cs" />
+    <Compile Include="UserSession\GivenARequestToCheckIfUserIsLoggedIn\WhenTheProvidedUserTokenIsNotAValidGuid.cs" />
     <Compile Include="UserSession\GivenARequestToClearUserBasket\WhenTheUserTokenProvidedIsNotValid.cs" />
     <Compile Include="UserSession\GivenARequestToClearUserBasket\WhenTheUserHasItemsInTheBasket.cs" />
     <Compile Include="UserSession\GivenARequestToCreateANewUser\WhenTheNewUserMethodIsCalled.cs" />
