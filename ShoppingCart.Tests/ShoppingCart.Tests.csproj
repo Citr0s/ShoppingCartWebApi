@@ -102,6 +102,10 @@
     <Compile Include="UserSession\GivenARequestToGetAUserByUserToken\WhenTheProvidedUserTokenIsFound.cs" />
     <Compile Include="UserSession\GivenARequestToGetAUserByUserToken\WhenTheProvidedUserTokenIsNotFound.cs" />
     <Compile Include="UserSession\GivenARequestToGetAUserByUserToken\WhenTheProvidedUserTokenIsNotAValidGuid.cs" />
+    <Compile Include="UserSession\GivenARequestToGetBasketTotalForUser\WhenTheProvidedUserTokenIsFoundWithBasketItems.cs" />
+    <Compile Include="UserSession\GivenARequestToGetBasketTotalForUser\WhenTheProvidedUserTokenIsFound.cs" />
+    <Compile Include="UserSession\GivenARequestToGetBasketTotalForUser\WhenTheProvidedUserTokenIsNotFound.cs" />
+    <Compile Include="UserSession\GivenARequestToGetBasketTotalForUser\WhenTheProvidedUserTokenIsNotAValidGuid.cs" />
     <Compile Include="UserSession\GivenARequestToGetVoucherForUser\WhenTheUserIsFound.cs" />
     <Compile Include="UserSession\GivenARequestToGetVoucherForUser\WhenTheUserTokenIsNotAValidGuid.cs" />
     <Compile Include="UserSession\GivenARequestToLogAUserOut\WhenTheProvidedUserTokenIsFound.cs" />
