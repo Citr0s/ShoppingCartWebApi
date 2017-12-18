@@ -44,20 +44,25 @@ namespace ShoppingCart.Services.UserSession
             if (pizzaSizeResponse.HasError)
                 return;
 
-            var toppingResponse = _toppingSizeRepository.GetByIds(basket.ExtraToppingIds, basket.SizeId);
-
-            if (toppingResponse.HasError)
-                return;
-
-            var currentItemPrice = pizzaSizeResponse.PizzaSize.Price + toppingResponse.ToppingSize.Sum(x => x.Price);
+            var currentItemPrice = pizzaSizeResponse.PizzaSize.Price;
 
             var basketItem = new BasketItem
             {
                 Pizza = pizzaSizeResponse.PizzaSize.Pizza,
                 Size = pizzaSizeResponse.PizzaSize.Size,
-                ExtraToppings = toppingResponse.ToppingSize.Select(x => x.Topping).ToList(),
                 Total = Money.From(currentItemPrice)
             };
+
+            if (basket.ExtraToppingIds.Count > 0)
+            {
+                var toppingResponse = _toppingSizeRepository.GetByIds(basket.ExtraToppingIds, basket.SizeId);
+
+                if (toppingResponse.HasError)
+                    return;
+
+                currentItemPrice += toppingResponse.ToppingSize.Sum(x => x.Price);
+                basketItem.ExtraToppings = toppingResponse.ToppingSize.Select(x => x.Topping).ToList();
+            }
 
             var userSession = _userSessions[Guid.Parse(userToken)];
 

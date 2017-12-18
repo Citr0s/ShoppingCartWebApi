@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using ShoppingCart.Core.Communication.ErrorCodes;
 using ShoppingCart.Data.Database;
 using ShoppingCart.Data.IoC;
@@ -45,9 +46,16 @@ namespace ShoppingCart.Controllers.Basket
             if (Session["UserId"] == null)
                 Session["UserId"] = _userSessionService.NewUser();
 
+            var previousOrdersResponse =
+                _basketService.GetPreviousOrders(_userSessionService.GetUserByUserToken(Session["UserId"].ToString()));
+
+            if (previousOrdersResponse.HasError)
+                Redirect("/Basket");
+
+            previousOrdersResponse.BasketDetails.Reverse();
             var response = new BasketControllerSummaryData
             {
-                Basket = _userSessionService.GetBasketForUser(Session["UserId"].ToString()),
+                BasketDetails = previousOrdersResponse.BasketDetails.FirstOrDefault(),
                 Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString()),
                 LoggedIn = _userSessionService.IsLoggedIn(Session["UserId"].ToString())
             };
