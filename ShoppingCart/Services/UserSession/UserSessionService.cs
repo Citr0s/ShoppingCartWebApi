@@ -84,8 +84,14 @@ namespace ShoppingCart.Services.UserSession
 
             if (userSessionData.SelectedDeal != null)
             {
-                finalPrice = VoucherHelper.Check(userSessionData.Basket, userSessionData.SelectedDeal.AllowedDeliveryTypes, userSessionData.SelectedDeal.Voucher.Code);
-                userSessionData.Basket.AdjustedPrice = true;
+                var dealPrice = VoucherHelper.Check(userSessionData.Basket, userSessionData.SelectedDeal.AllowedDeliveryTypes, userSessionData.SelectedDeal.Voucher.Code);
+                userSessionData.Basket.AdjustedPrice = false;
+
+                if (finalPrice != dealPrice)
+                {
+                    userSessionData.Basket.AdjustedPrice = true;
+                    finalPrice = dealPrice;
+                }
             }
 
             return finalPrice;
