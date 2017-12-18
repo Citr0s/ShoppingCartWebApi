@@ -8,7 +8,7 @@
 
         public static Money From(int priceInPence)
         {
-            var inPounds = (float)priceInPence / 100;
+            var inPounds = (float) priceInPence / 100;
 
             return new Money
             {

@@ -24,14 +24,14 @@ namespace ShoppingCart.Data.Voucher
                 var voucherRecords = _database.Query<VoucherRecord>();
 
                 foreach (var voucherRecord in voucherRecords)
-                {
                     response.VoucherDetails.Add(new VoucherDetails
                     {
                         Voucher = voucherRecord,
-                        AllowedDeliveryTypes = _database.Query<VoucherDeliveryTypeRecord>().Where(x => x.Voucher.Id == voucherRecord.Id).ToList(),
-                        AllowedSizes = _database.Query<VoucherSizeRecord>().Where(x => x.Voucher.Id == voucherRecord.Id).ToList()
+                        AllowedDeliveryTypes = _database.Query<VoucherDeliveryTypeRecord>()
+                            .Where(x => x.Voucher.Id == voucherRecord.Id).ToList(),
+                        AllowedSizes = _database.Query<VoucherSizeRecord>().Where(x => x.Voucher.Id == voucherRecord.Id)
+                            .ToList()
                     });
-                }
             }
             catch (Exception exception)
             {
@@ -56,13 +56,19 @@ namespace ShoppingCart.Data.Voucher
 
                 if (voucherRecord == null)
                 {
-                    response.AddError(new Error { Code = ErrorCodes.RecordNotFound, UserMessage = "Could not find a VoucherRecord using provided data." });
+                    response.AddError(new Error
+                    {
+                        Code = ErrorCodes.RecordNotFound,
+                        UserMessage = "Could not find a VoucherRecord using provided data."
+                    });
                     return response;
                 }
 
                 response.Voucher = voucherRecord;
-                response.AllowedDeliveryTypes = _database.Query<VoucherDeliveryTypeRecord>().Where(x => x.Voucher.Id == voucherRecord.Id).ToList();
-                response.AllowedSizes = _database.Query<VoucherSizeRecord>().Where(x => x.Voucher.Id == voucherRecord.Id).ToList();
+                response.AllowedDeliveryTypes = _database.Query<VoucherDeliveryTypeRecord>()
+                    .Where(x => x.Voucher.Id == voucherRecord.Id).ToList();
+                response.AllowedSizes = _database.Query<VoucherSizeRecord>()
+                    .Where(x => x.Voucher.Id == voucherRecord.Id).ToList();
             }
             catch (Exception exception)
             {

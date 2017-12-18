@@ -10,10 +10,13 @@ namespace ShoppingCart.Controllers.User
 {
     public class LoginController : Controller
     {
-        private readonly IUserSessionService _userSessionService;
         private readonly IUserService _userService;
+        private readonly IUserSessionService _userSessionService;
 
-        public LoginController() : this(UserSessionService.Instance(), new UserService(new UserRepository(IoC.Instance().For<IDatabase>(), new Hasher()))) { }
+        public LoginController() : this(UserSessionService.Instance(),
+            new UserService(new UserRepository(IoC.Instance().For<IDatabase>(), new Hasher())))
+        {
+        }
 
         public LoginController(IUserSessionService userSessionService, IUserService userService)
         {
@@ -29,7 +32,7 @@ namespace ShoppingCart.Controllers.User
             if (_userSessionService.IsLoggedIn(Session["UserId"].ToString()))
                 return Redirect("/");
 
-                var response = new LoginControllerIndexData
+            var response = new LoginControllerIndexData
             {
                 Basket = _userSessionService.GetBasketForUser(Session["UserId"].ToString()),
                 Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString()),

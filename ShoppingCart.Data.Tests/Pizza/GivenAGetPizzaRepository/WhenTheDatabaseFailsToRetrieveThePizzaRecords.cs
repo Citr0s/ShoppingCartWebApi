@@ -23,33 +23,35 @@ namespace ShoppingCart.Data.Tests.Pizza.GivenAGetPizzaRepository
         }
 
         [Test]
+        public void ThenAnEmptyListOfPizzaRecordsIsReturned()
+        {
+            Assert.That(_result.Pizzas.Count, Is.Zero);
+        }
+
+        [Test]
         public void ThenAnErrorIsReturned()
         {
             Assert.That(_result.HasError, Is.True);
         }
 
         [Test]
-        public void ThenTheCorrectErrorCodeIsReturned()
-        {
-            Assert.That(_result.Error.Code, Is.EqualTo(ErrorCodes.DatabaseError));
-        }
-
-        [Test]
         public void ThenAnErrorMessageIsReturned()
         {
-            Assert.That(_result.Error.UserMessage, Is.EqualTo("Something went wrong when retrieving PizzaRecords from database."));
+            Assert.That(_result.Error.UserMessage,
+                Is.EqualTo("Something went wrong when retrieving PizzaRecords from database."));
         }
 
         [Test]
         public void ThenATechnicalErrorMessageIsReturned()
         {
-            Assert.That(_result.Error.TechnicalMessage, Is.EqualTo("The following exception was thrown 'Something went wrong'"));
+            Assert.That(_result.Error.TechnicalMessage,
+                Is.EqualTo("The following exception was thrown 'Something went wrong'"));
         }
 
         [Test]
-        public void ThenAnEmptyListOfPizzaRecordsIsReturned()
+        public void ThenTheCorrectErrorCodeIsReturned()
         {
-            Assert.That(_result.Pizzas.Count, Is.Zero);
+            Assert.That(_result.Error.Code, Is.EqualTo(ErrorCodes.DatabaseError));
         }
     }
 }

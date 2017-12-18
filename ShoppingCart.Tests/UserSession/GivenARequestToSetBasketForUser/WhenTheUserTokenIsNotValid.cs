@@ -14,7 +14,7 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToSetBasketForUser
         {
             var subject = new UserSessionService(null, null);
             var userToken = subject.NewUser();
-            subject.SetBasketForUser("SOME_INVALID_USER_TOKEN", new Basket { Total = Money.From(5000) });
+            subject.SetBasketForUser("SOME_INVALID_USER_TOKEN", new Basket {Total = Money.From(5000)});
 
             _result = subject.GetBasketForUser(userToken);
         }

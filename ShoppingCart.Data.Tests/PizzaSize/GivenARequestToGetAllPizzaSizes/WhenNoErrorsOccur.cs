@@ -31,10 +31,11 @@ namespace ShoppingCart.Data.Tests.PizzaSize.GivenARequestToGetAllPizzaSizes
             _result = subject.GetAll();
         }
 
-        [Test]
-        public void ThenNoErrorsAreReturned()
+        [TestCase(0, 1)]
+        [TestCase(1, 2)]
+        public void ThenThePizzaSizeRecordsAreCorrectlyMapped(int index, int expected)
         {
-            Assert.That(_result.HasError, Is.False);
+            Assert.That(_result.PizzaSizes[index].Id, Is.EqualTo(expected));
         }
 
         [Test]
@@ -43,11 +44,10 @@ namespace ShoppingCart.Data.Tests.PizzaSize.GivenARequestToGetAllPizzaSizes
             Assert.That(_result.PizzaSizes.Count, Is.EqualTo(2));
         }
 
-        [TestCase(0, 1)]
-        [TestCase(1, 2)]
-        public void ThenThePizzaSizeRecordsAreCorrectlyMapped(int index, int expected)
+        [Test]
+        public void ThenNoErrorsAreReturned()
         {
-            Assert.That(_result.PizzaSizes[index].Id, Is.EqualTo(expected));   
+            Assert.That(_result.HasError, Is.False);
         }
     }
 }

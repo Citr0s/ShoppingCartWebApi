@@ -20,15 +20,15 @@ namespace ShoppingCart.Core.Tests.Communication.GivenACommunicationResponse
         }
 
         [Test]
-        public void ThenTheHasErrorPropertyIsSetToTrue()
-        {
-            Assert.That(_subject.HasError, Is.True);
-        }
-
-        [Test]
         public void ThenTheErrorMessageIsMappedCorreclty()
         {
             Assert.That(_subject.Error.UserMessage, Is.EqualTo("Some error message has occured."));
+        }
+
+        [Test]
+        public void ThenTheHasErrorPropertyIsSetToTrue()
+        {
+            Assert.That(_subject.HasError, Is.True);
         }
     }
 }

@@ -8,7 +8,8 @@ namespace ShoppingCart.Services.PizzaPrice
         private readonly IPizzaSizeRepository _pizzaSizeRepository;
         private readonly IPizzaToppingRepository _pizzaToppingRepository;
 
-        public PizzaSizeService(IPizzaSizeRepository pizzaSizeRepository, IPizzaToppingRepository pizzaToppingRepository)
+        public PizzaSizeService(IPizzaSizeRepository pizzaSizeRepository,
+            IPizzaToppingRepository pizzaToppingRepository)
         {
             _pizzaSizeRepository = pizzaSizeRepository;
             _pizzaToppingRepository = pizzaToppingRepository;
@@ -34,8 +35,9 @@ namespace ShoppingCart.Services.PizzaPrice
                 return response;
             }
 
-            response.Pizzas = PizzaSizeMapper.Map(getAllPizzaPricesResponse.PizzaSizes, getAllPizzaToppingsResponse.PizzaToppings);
-            
+            response.Pizzas = PizzaSizeMapper.Map(getAllPizzaPricesResponse.PizzaSizes,
+                getAllPizzaToppingsResponse.PizzaToppings);
+
             return response;
         }
     }

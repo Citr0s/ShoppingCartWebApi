@@ -34,12 +34,20 @@ namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeControllerIndex
             _sizeService = new Mock<ISizeService>();
             _sizeService.Setup(x => x.GetAll()).Returns(() => new GetAllSizesResponse());
 
-            var subject = new HomeController(_pizzaService.Object, _toppingService.Object, _sizeService.Object,  _userSessionService.Object);
+            var subject = new HomeController(_pizzaService.Object, _toppingService.Object, _sizeService.Object,
+                _userSessionService.Object);
             var context = new Mock<ControllerContext>();
             context.Setup(x => x.HttpContext.Session["UserId"]).Returns<string>(x => "SomeUserIdentifier");
             subject.ControllerContext = context.Object;
 
             subject.Index();
+        }
+
+        [Test]
+        public void ThenTheGetUserPizzaServiceIsCalledWithCorrectUserToken()
+        {
+            _userSessionService.Verify(x => x.GetBasketTotalForUser(It.Is<string>(y => y == "SomeUserIdentifier")),
+                Times.Once);
         }
 
         [Test]
@@ -49,27 +57,21 @@ namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeControllerIndex
         }
 
         [Test]
-        public void ThenTheToppingServiceIsCalled()
-        {
-            _toppingService.Verify(x => x.GetAll(), Times.Once);
-        }
-
-        [Test]
         public void ThenTheSizeServiceIsCalled()
         {
             _sizeService.Verify(x => x.GetAll(), Times.Once);
         }
 
         [Test]
-        public void ThenTheUserSessionServiceIsNeverCalled()
+        public void ThenTheToppingServiceIsCalled()
         {
-            _userSessionService.Verify(x => x.NewUser(), Times.Never);
+            _toppingService.Verify(x => x.GetAll(), Times.Once);
         }
 
         [Test]
-        public void ThenTheGetUserPizzaServiceIsCalledWithCorrectUserToken()
+        public void ThenTheUserSessionServiceIsNeverCalled()
         {
-            _userSessionService.Verify(x => x.GetBasketTotalForUser(It.Is<string>(y => y == "SomeUserIdentifier")), Times.Once);
+            _userSessionService.Verify(x => x.NewUser(), Times.Never);
         }
     }
 }

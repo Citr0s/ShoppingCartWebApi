@@ -36,17 +36,17 @@ namespace ShoppingCart.Tests.Topping.GivenAToppingService
             _result = subject.GetAll();
         }
 
-        [Test]
-        public void ThenAListOfPizzaModelsIsReturned()
-        {
-            Assert.That(_result.Toppings.Count, Is.EqualTo(2));
-        }
-
         [TestCase(0, "Onion")]
         [TestCase(1, "Ham")]
         public void ThenThePizzaNameIsMappedThroughCorrectly(int index, string name)
         {
             Assert.That(_result.Toppings[index].Name, Is.EqualTo(name));
+        }
+
+        [Test]
+        public void ThenAListOfPizzaModelsIsReturned()
+        {
+            Assert.That(_result.Toppings.Count, Is.EqualTo(2));
         }
     }
 }

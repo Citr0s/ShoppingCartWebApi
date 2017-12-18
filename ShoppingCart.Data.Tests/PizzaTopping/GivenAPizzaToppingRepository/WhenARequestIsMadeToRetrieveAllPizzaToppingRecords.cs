@@ -53,12 +53,6 @@ namespace ShoppingCart.Data.Tests.PizzaTopping.GivenAPizzaToppingRepository
             _result = subject.GetAll();
         }
 
-        [Test]
-        public void ThenAllPizzaRecordsAreReturned()
-        {
-            Assert.That(_result.PizzaToppings.Count, Is.EqualTo(2));
-        }
-
         [TestCase(0, 1)]
         [TestCase(1, 2)]
         public void ThenThePizzaPriceRecordIdentifierIsMappedCorrectly(int index, int identifier)
@@ -92,6 +86,12 @@ namespace ShoppingCart.Data.Tests.PizzaTopping.GivenAPizzaToppingRepository
         public void ThenThSizeRecordNameIsMappedCorrectly(int index, string name)
         {
             Assert.That(_result.PizzaToppings[index].Topping.Name, Is.EqualTo(name));
+        }
+
+        [Test]
+        public void ThenAllPizzaRecordsAreReturned()
+        {
+            Assert.That(_result.PizzaToppings.Count, Is.EqualTo(2));
         }
     }
 }

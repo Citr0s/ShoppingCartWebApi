@@ -23,15 +23,15 @@ namespace ShoppingCart.Data.Tests.PizzaSize.GivenARequestToGetPizzaSizeById
         }
 
         [Test]
-        public void ThenTheResponseContainsAnError()
-        {
-            Assert.That(_result.HasError, Is.True);
-        }
-
-        [Test]
         public void ThenTheCorrectErrorCodeIsReturned()
         {
             Assert.That(_result.Error.Code, Is.EqualTo(ErrorCodes.DatabaseError));
+        }
+
+        [Test]
+        public void ThenTheResponseContainsAnError()
+        {
+            Assert.That(_result.HasError, Is.True);
         }
     }
 }

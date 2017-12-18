@@ -1,4 +1,6 @@
-﻿namespace ShoppingCart.Core.Email
+﻿using System.Net.Mail;
+
+namespace ShoppingCart.Core.Email
 {
     public static class EmailValidator
     {
@@ -6,7 +8,7 @@
         {
             try
             {
-                var emailAddress = new System.Net.Mail.MailAddress(email);
+                var emailAddress = new MailAddress(email);
                 return emailAddress.Address == email;
             }
             catch

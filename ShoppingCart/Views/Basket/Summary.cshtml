@@ -5,3 +5,75 @@
 }
 
 <h2>Summary</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        @if (Model.BasketDetails.Any())
+        {
+            foreach (var basketItem in Model.BasketDetails)
+            {
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    Order <small>#@basketItem.Basket.Id</small> <small style="color: #333; font-size: 1rem; font-weight: bold;">@(!basketItem.Basket.Voucher.IsEmpty() ? $"VOUCHER USED: {basketItem.Basket.Voucher}" : "")</small>
+                                </div>
+                                <div class="col-md-6" style="color: #27ae60; font-weight: bold; text-align: right;">
+                                    @basketItem.Total.InFull
+                                </div>
+                            </div>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        @if (basketItem.Orders.Count > 0)
+                        {
+                            <ul>
+                                @foreach (var orderDetail in basketItem.Orders)
+                                {
+                                    <li>
+                                        @orderDetail.Order.Pizza.Name
+                                        <small style="font-size: 1rem; font-weight: bold; text-transform: uppercase;">(@orderDetail.Order.Size.Name)</small>
+                                        <small style="color: #27ae60; font-weight: bold;">@orderDetail.Total.InFull</small>
+                                        @if (orderDetail.Toppings.Count > 0)
+                                        {
+                                            <ul>
+                                                @foreach (var toppingDetail in orderDetail.Toppings)
+                                                {
+                                                    <li>@toppingDetail.Topping.Name</li>
+                                                }
+                                            </ul>
+                                        }
+                                    </li>
+                                }
+                            </ul>
+                        }
+                    </div>
+                    <div class="panel-footer">
+                        <h3 class="panel-title">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @using (Html.BeginForm("Apply", "Basket", FormMethod.Post))
+                                    {
+                                        <fieldset>
+                                            @Html.Hidden("basketId", basketItem.Basket.Id)
+                                            <input type="submit" value="Use" class="btn btn-primary"/>
+                                        </fieldset>
+                                    }
+                                </div>
+                            </div>
+                        </h3>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="row">
+                <div class="col-md-12">
+                    <h4>There are no items in the history!</h4>
+                </div>
+            </div>
+        }
+    </div>
+</div>

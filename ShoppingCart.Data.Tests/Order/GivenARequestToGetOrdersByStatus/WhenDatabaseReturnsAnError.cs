@@ -23,15 +23,15 @@ namespace ShoppingCart.Data.Tests.Order.GivenARequestToGetOrdersByStatus
         }
 
         [Test]
-        public void ThenErrorIsReturned()
-        {
-            Assert.That(_result.HasError, Is.True);
-        }
-
-        [Test]
         public void ThenCorrectErrorCodeIsReturned()
         {
             Assert.That(_result.Error.Code, Is.EqualTo(ErrorCodes.DatabaseError));
+        }
+
+        [Test]
+        public void ThenErrorIsReturned()
+        {
+            Assert.That(_result.HasError, Is.True);
         }
     }
 }

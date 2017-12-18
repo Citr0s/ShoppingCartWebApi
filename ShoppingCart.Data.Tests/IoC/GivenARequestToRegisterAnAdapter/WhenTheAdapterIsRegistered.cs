@@ -1,5 +1,4 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using ShoppingCart.Data.IoC;
 
 namespace ShoppingCart.Data.Tests.IoC.GivenARequestToRegisterAnAdapter
@@ -32,11 +31,11 @@ namespace ShoppingCart.Data.Tests.IoC.GivenARequestToRegisterAnAdapter
 
     public class Example : IExample
     {
-        public int Id { get; set; }
-
         public Example()
         {
             Id = 42;
         }
+
+        public int Id { get; set; }
     }
 }

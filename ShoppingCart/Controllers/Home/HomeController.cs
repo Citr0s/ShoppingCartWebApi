@@ -17,13 +17,20 @@ namespace ShoppingCart.Controllers.Home
     public class HomeController : Controller
     {
         private readonly IPizzaSizeService _pizzaSizeService;
-        private readonly IToppingService _toppingService;
         private readonly ISizeService _sizeService;
+        private readonly IToppingService _toppingService;
         private readonly IUserSessionService _userSessionService;
 
-        public HomeController() : this(new PizzaSizeService(new PizzaSizeRepository(IoC.Instance().For<IDatabase>()), new PizzaToppingRepository(IoC.Instance().For<IDatabase>())), new ToppingService(new ToppingRepository(IoC.Instance().For<IDatabase>())), new SizeService(new SizeRepository(IoC.Instance().For<IDatabase>())), UserSessionService.Instance()) { }
+        public HomeController() : this(
+            new PizzaSizeService(new PizzaSizeRepository(IoC.Instance().For<IDatabase>()),
+                new PizzaToppingRepository(IoC.Instance().For<IDatabase>())),
+            new ToppingService(new ToppingRepository(IoC.Instance().For<IDatabase>())),
+            new SizeService(new SizeRepository(IoC.Instance().For<IDatabase>())), UserSessionService.Instance())
+        {
+        }
 
-        public HomeController(IPizzaSizeService pizzaSizeService, IToppingService toppingService, ISizeService sizeService, IUserSessionService userSessionService)
+        public HomeController(IPizzaSizeService pizzaSizeService, IToppingService toppingService,
+            ISizeService sizeService, IUserSessionService userSessionService)
         {
             _pizzaSizeService = pizzaSizeService;
             _toppingService = toppingService;
@@ -44,7 +51,9 @@ namespace ShoppingCart.Controllers.Home
             };
 
             if (Session["UserId"] == null)
+            {
                 Session["UserId"] = _userSessionService.NewUser();
+            }
             else
             {
                 response.Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString());

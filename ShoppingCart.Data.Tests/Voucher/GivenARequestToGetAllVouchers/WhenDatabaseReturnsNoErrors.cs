@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Castle.Components.DictionaryAdapter;
 using Moq;
 using NUnit.Framework;
 using ShoppingCart.Data.Database;
@@ -33,12 +32,12 @@ namespace ShoppingCart.Data.Tests.Voucher.GivenARequestToGetAllVouchers
                 new VoucherDeliveryTypeRecord
                 {
                     Id = 3,
-                    Voucher = new VoucherRecord{ Id = 1 }
+                    Voucher = new VoucherRecord {Id = 1}
                 },
                 new VoucherDeliveryTypeRecord
                 {
                     Id = 4,
-                    Voucher = new VoucherRecord{ Id = 1 }
+                    Voucher = new VoucherRecord {Id = 1}
                 }
             });
             database.Setup(x => x.Query<VoucherSizeRecord>()).Returns(() => new List<VoucherSizeRecord>
@@ -46,29 +45,17 @@ namespace ShoppingCart.Data.Tests.Voucher.GivenARequestToGetAllVouchers
                 new VoucherSizeRecord
                 {
                     Id = 5,
-                    Voucher = new VoucherRecord{ Id = 1 }
+                    Voucher = new VoucherRecord {Id = 1}
                 },
                 new VoucherSizeRecord
                 {
                     Id = 6,
-                    Voucher = new VoucherRecord{ Id = 1 }
+                    Voucher = new VoucherRecord {Id = 1}
                 }
             });
 
             var subject = new VoucherRepository(database.Object);
             _result = subject.GetAllVouchers();
-        }
-
-        [Test]
-        public void ThenNoErrorsAreReturned()
-        {
-            Assert.That(_result.HasError, Is.False);
-        }
-
-        [Test]
-        public void ThenTheCorrectNumberOfVouchersIsReturned()
-        {
-            Assert.That(_result.VoucherDetails.Count, Is.EqualTo(2));
         }
 
         [TestCase(0, 1)]
@@ -90,6 +77,18 @@ namespace ShoppingCart.Data.Tests.Voucher.GivenARequestToGetAllVouchers
         public void ThenTheCorrectAllowedSizeRecordsAreReturned(int index, int expected)
         {
             Assert.That(_result.VoucherDetails.First().AllowedSizes[index].Id, Is.EqualTo(expected));
+        }
+
+        [Test]
+        public void ThenNoErrorsAreReturned()
+        {
+            Assert.That(_result.HasError, Is.False);
+        }
+
+        [Test]
+        public void ThenTheCorrectNumberOfVouchersIsReturned()
+        {
+            Assert.That(_result.VoucherDetails.Count, Is.EqualTo(2));
         }
     }
 }

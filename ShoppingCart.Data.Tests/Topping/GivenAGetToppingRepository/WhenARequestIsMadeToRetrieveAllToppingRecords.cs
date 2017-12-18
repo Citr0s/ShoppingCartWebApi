@@ -33,12 +33,6 @@ namespace ShoppingCart.Data.Tests.Topping.GivenAGetToppingRepository
             _result = subject.GetAll();
         }
 
-        [Test]
-        public void ThenAllSizeRecordsAreReturned()
-        {
-            Assert.That(_result.Toppings.Count, Is.EqualTo(2));
-        }
-
         [TestCase(0, 1)]
         [TestCase(1, 2)]
         public void ThenTheToppingRecordIdentifierIsMappedCorrectly(int index, int identifier)
@@ -51,6 +45,12 @@ namespace ShoppingCart.Data.Tests.Topping.GivenAGetToppingRepository
         public void ThenTheToppingRecordNameIsMappedCorrectly(int index, string name)
         {
             Assert.That(_result.Toppings[index].Name, Is.EqualTo(name));
+        }
+
+        [Test]
+        public void ThenAllSizeRecordsAreReturned()
+        {
+            Assert.That(_result.Toppings.Count, Is.EqualTo(2));
         }
     }
 }

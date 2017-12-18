@@ -8,12 +8,15 @@ using ShoppingCart.Services.UserSession;
 
 namespace ShoppingCart.Controllers.User
 {
-    public class  RegisterController : Controller
+    public class RegisterController : Controller
     {
-        private readonly IUserSessionService _userSessionService;
         private readonly IUserService _userService;
+        private readonly IUserSessionService _userSessionService;
 
-        public RegisterController() : this(UserSessionService.Instance(), new UserService(new UserRepository(IoC.Instance().For<IDatabase>(), new Hasher()))) { }
+        public RegisterController() : this(UserSessionService.Instance(),
+            new UserService(new UserRepository(IoC.Instance().For<IDatabase>(), new Hasher())))
+        {
+        }
 
         public RegisterController(IUserSessionService userSessionService, IUserService userService)
         {

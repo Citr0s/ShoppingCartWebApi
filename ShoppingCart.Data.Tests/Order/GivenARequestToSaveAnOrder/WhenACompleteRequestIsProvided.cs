@@ -21,16 +21,17 @@ namespace ShoppingCart.Data.Tests.Order.GivenARequestToSaveAnOrder
         public void SetUp()
         {
             _database = new Mock<IDatabase>();
-            _database.Setup(x => x.Query<UserRecord>()).Returns(new List<UserRecord>{ new UserRecord { Id = 1 } });
-            _database.Setup(x => x.Query<BasketRecord>()).Returns(new List<BasketRecord> { new BasketRecord { Id = 1 } });
-            _database.Setup(x => x.Query<PizzaRecord>()).Returns(new List<PizzaRecord> { new PizzaRecord { Id = 2 } });
-            _database.Setup(x => x.Query<SizeRecord>()).Returns(new List<SizeRecord> { new SizeRecord { Id = 3 } });
-            _database.Setup(x => x.Query<OrderRecord>()).Returns(new List<OrderRecord> { new OrderRecord { Id = 2 } });
-            _database.Setup(x => x.Query<ToppingRecord>()).Returns(new List<ToppingRecord> { new ToppingRecord { Id = 4 } });
-            
-            _database.Setup(x => x.Save(It.IsAny<BasketRecord>())).Returns(new BasketRecord { Id = 1 });
-            _database.Setup(x => x.Save(It.IsAny<OrderRecord>())).Returns(new OrderRecord { Id = 2 });
-            _database.Setup(x => x.Save(It.IsAny<OrderToppingRecord>())).Returns(new OrderToppingRecord { Id = 3 });
+            _database.Setup(x => x.Query<UserRecord>()).Returns(new List<UserRecord> {new UserRecord {Id = 1}});
+            _database.Setup(x => x.Query<BasketRecord>()).Returns(new List<BasketRecord> {new BasketRecord {Id = 1}});
+            _database.Setup(x => x.Query<PizzaRecord>()).Returns(new List<PizzaRecord> {new PizzaRecord {Id = 2}});
+            _database.Setup(x => x.Query<SizeRecord>()).Returns(new List<SizeRecord> {new SizeRecord {Id = 3}});
+            _database.Setup(x => x.Query<OrderRecord>()).Returns(new List<OrderRecord> {new OrderRecord {Id = 2}});
+            _database.Setup(x => x.Query<ToppingRecord>())
+                .Returns(new List<ToppingRecord> {new ToppingRecord {Id = 4}});
+
+            _database.Setup(x => x.Save(It.IsAny<BasketRecord>())).Returns(new BasketRecord {Id = 1});
+            _database.Setup(x => x.Save(It.IsAny<OrderRecord>())).Returns(new OrderRecord {Id = 2});
+            _database.Setup(x => x.Save(It.IsAny<OrderToppingRecord>())).Returns(new OrderToppingRecord {Id = 3});
 
             var subject = new OrderRepository(_database.Object);
             var saveOrderRequest = new SaveOrderRequest
@@ -47,17 +48,11 @@ namespace ShoppingCart.Data.Tests.Order.GivenARequestToSaveAnOrder
                         SubTotal = 1000,
                         PizzaId = 2,
                         SizeId = 3,
-                        ExtraToppingIds = new List<int> { 4 }
+                        ExtraToppingIds = new List<int> {4}
                     }
                 }
             };
             _result = subject.SaveOrder(saveOrderRequest);
-        }
-
-        [Test]
-        public void ThenNoErrorsAreReturned()
-        {
-            Assert.That(_result.HasError, Is.False);
         }
 
         [Test]
@@ -67,15 +62,15 @@ namespace ShoppingCart.Data.Tests.Order.GivenARequestToSaveAnOrder
         }
 
         [Test]
-        public void ThenDatabaseSaveBasketIsCalledWithCorrectlyMappedTotal()
+        public void ThenDatabaseSaveBasketIsCalledWithCorrectlyMappedStatus()
         {
-            _database.Verify(x => x.Save(It.Is<BasketRecord>(y => y.Total == 1200)), Times.Once);
+            _database.Verify(x => x.Save(It.Is<BasketRecord>(y => y.Status == "Complete")), Times.Once);
         }
 
         [Test]
-        public void ThenDatabaseSaveBasketIsCalledWithCorrectlyMappedVoucher()
+        public void ThenDatabaseSaveBasketIsCalledWithCorrectlyMappedTotal()
         {
-            _database.Verify(x => x.Save(It.Is<BasketRecord>(y => y.Voucher == "SOME_VOUCHER")), Times.Once);
+            _database.Verify(x => x.Save(It.Is<BasketRecord>(y => y.Total == 1200)), Times.Once);
         }
 
         [Test]
@@ -85,9 +80,9 @@ namespace ShoppingCart.Data.Tests.Order.GivenARequestToSaveAnOrder
         }
 
         [Test]
-        public void ThenDatabaseSaveBasketIsCalledWithCorrectlyMappedStatus()
+        public void ThenDatabaseSaveBasketIsCalledWithCorrectlyMappedVoucher()
         {
-            _database.Verify(x => x.Save(It.Is<BasketRecord>(y => y.Status == "Complete")), Times.Once);
+            _database.Verify(x => x.Save(It.Is<BasketRecord>(y => y.Voucher == "SOME_VOUCHER")), Times.Once);
         }
 
         [Test]
@@ -124,6 +119,12 @@ namespace ShoppingCart.Data.Tests.Order.GivenARequestToSaveAnOrder
         public void ThenDatabaseSaveToppingIsCalledWithCorrectlyMappedTopping()
         {
             _database.Verify(x => x.Save(It.Is<OrderToppingRecord>(y => y.Topping.Id == 4)), Times.Once);
+        }
+
+        [Test]
+        public void ThenNoErrorsAreReturned()
+        {
+            Assert.That(_result.HasError, Is.False);
         }
     }
 }

@@ -91,7 +91,8 @@ namespace ShoppingCart.Data.Order
                             {
                                 Order = order,
                                 Total = Money.From(order.Total),
-                                Toppings = _database.Query<OrderToppingRecord>().Where(y => y.Order.Id == order.Id).ToList()
+                                Toppings = _database.Query<OrderToppingRecord>().Where(y => y.Order.Id == order.Id)
+                                    .ToList()
                             })
                     });
             }

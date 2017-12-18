@@ -41,7 +41,8 @@ namespace ShoppingCart.Data.PizzaSize
 
             try
             {
-                var pizzaSizeRecord = _database.Query<PizzaSizeRecord>().FirstOrDefault(x => x.Pizza.Id == pizzaId && x.Size.Id == sizeId);
+                var pizzaSizeRecord = _database.Query<PizzaSizeRecord>()
+                    .FirstOrDefault(x => x.Pizza.Id == pizzaId && x.Size.Id == sizeId);
 
                 if (pizzaSizeRecord == null)
                 {

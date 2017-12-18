@@ -103,7 +103,9 @@ namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaSizeMapper
         [TestCase("Medium", 1100)]
         public void ThenTheSizePricesAreCorrectlyAddedUnderTheSamePizzaName(string sizeName, int priceInPence)
         {
-            Assert.That(_result.First(x => x.Name == "Original").Sizes.Any(x => x.Key.Name == sizeName && x.Value.InPence == priceInPence), Is.True);
+            Assert.That(
+                _result.First(x => x.Name == "Original").Sizes
+                    .Any(x => x.Key.Name == sizeName && x.Value.InPence == priceInPence), Is.True);
         }
 
         [TestCase("Cheese")]

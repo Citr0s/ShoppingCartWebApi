@@ -34,12 +34,19 @@ namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeControllerIndex
             _sizeService = new Mock<ISizeService>();
             _sizeService.Setup(x => x.GetAll()).Returns(() => new GetAllSizesResponse());
 
-            var subject = new HomeController(_pizzaService.Object, _toppingService.Object, _sizeService.Object, _userSessionService.Object);
+            var subject = new HomeController(_pizzaService.Object, _toppingService.Object, _sizeService.Object,
+                _userSessionService.Object);
             var context = new Mock<ControllerContext>();
             context.Setup(x => x.HttpContext.Session["UserId"]);
             subject.ControllerContext = context.Object;
 
             subject.Index();
+        }
+
+        [Test]
+        public void ThenTheGetUserPizzaServiceIsCalledWithCorrectUserToken()
+        {
+            _userSessionService.Verify(x => x.GetBasketForUser(It.IsAny<string>()), Times.Never);
         }
 
         [Test]
@@ -52,12 +59,6 @@ namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeControllerIndex
         public void ThenTheUserSessionServiceIsNeverCalled()
         {
             _userSessionService.Verify(x => x.NewUser(), Times.Once);
-        }
-
-        [Test]
-        public void ThenTheGetUserPizzaServiceIsCalledWithCorrectUserToken()
-        {
-            _userSessionService.Verify(x => x.GetBasketForUser(It.IsAny<string>()), Times.Never);
         }
     }
 }

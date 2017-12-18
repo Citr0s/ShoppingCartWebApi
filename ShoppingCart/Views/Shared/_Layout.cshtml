@@ -3,64 +3,68 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Top Pizza</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-10">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        @Html.ActionLink("Top Pizza", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                    </div>
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Deals", "Index", "Deals")</li>
-                            <li>@Html.ActionLink("Basket", "Index", "Basket")</li>
-                            <li><a style="color: #fff;">|</a></li>
-
-                            @if (Model.LoggedIn)
-                            {
-                                <li>@Html.ActionLink("Saved Orders", "Saved", "Basket")</li>
-                                <li>@Html.ActionLink("History", "History", "Basket")</li>
-                                <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
-                            }
-                            else
-                            {
-                                <li>@Html.ActionLink("Login", "Index", "Login")</li>
-                                <li>@Html.ActionLink("Register", "Index", "Register")</li>
-                            }
-                        </ul>
-                    </div>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("Top Pizza", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
                 </div>
-                <div class="col-md-2">
-                    <div class="basket-wrapper">
-                        @Model.Total.InFull <a href="@Url.Action("Index", "Basket")"><span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span></a>
-                    </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Deals", "Index", "Deals")</li>
+                        <li>@Html.ActionLink("Basket", "Index", "Basket")</li>
+                        <li>
+                            <a style="color: #fff;">|</a>
+                        </li>
+
+                        @if (Model.LoggedIn)
+                        {
+                            <li>@Html.ActionLink("Saved Orders", "Saved", "Basket")</li>
+                            <li>@Html.ActionLink("History", "History", "Basket")</li>
+                            <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("Login", "Index", "Login")</li>
+                            <li>@Html.ActionLink("Register", "Index", "Register")</li>
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-2">
+                <div class="basket-wrapper">
+                    @Model.Total.InFull <a href="@Url.Action("Index", "Basket")">
+                        <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                    </a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Top Pizza</p>
-        </footer>
-    </div>
+</div>
+<div class="container body-content">
+    @RenderBody()
+    <hr/>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Top Pizza</p>
+    </footer>
+</div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @RenderSection("scripts", required: false)
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", false)
 </body>
 </html>

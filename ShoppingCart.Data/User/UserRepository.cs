@@ -24,7 +24,8 @@ namespace ShoppingCart.Data.User
 
             try
             {
-                var user = _database.Query<UserRecord>().FirstOrDefault(x => x.Email == email && x.Password == _hasher.Hash(password));
+                var user = _database.Query<UserRecord>()
+                    .FirstOrDefault(x => x.Email == email && x.Password == _hasher.Hash(password));
 
                 if (user == null)
                 {

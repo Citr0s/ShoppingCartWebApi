@@ -10,7 +10,8 @@ namespace ShoppingCart.Services.PizzaPrice
 {
     public static class PizzaSizeMapper
     {
-        public static List<PizzaSizeModel> Map(List<PizzaSizeRecord> pizzaSizeRecord, List<PizzaToppingRecord> toppingRecord)
+        public static List<PizzaSizeModel> Map(List<PizzaSizeRecord> pizzaSizeRecord,
+            List<PizzaToppingRecord> toppingRecord)
         {
             var response = new List<PizzaSizeModel>();
 
@@ -29,10 +30,10 @@ namespace ShoppingCart.Services.PizzaPrice
                     var pizzaToppings = toppingRecord.Where(x => x.Pizza.Id == pizzaSizeModel.Id).ToList();
 
                     foreach (var pizzaTopping in pizzaToppings)
-                        pizzaSizeModel.Toppings.Add(new ToppingModel { Name = pizzaTopping.Topping.Name });
+                        pizzaSizeModel.Toppings.Add(new ToppingModel {Name = pizzaTopping.Topping.Name});
                 }
 
-                pizzaSizeModel.Sizes.Add(new SizeModel { Name = pizzaPrice.Size.Name }, Money.From(pizzaPrice.Price));
+                pizzaSizeModel.Sizes.Add(new SizeModel {Name = pizzaPrice.Size.Name}, Money.From(pizzaPrice.Price));
 
                 if (response.All(x => x.Id != pizzaPrice.Pizza.Id))
                     response.Add(pizzaSizeModel);

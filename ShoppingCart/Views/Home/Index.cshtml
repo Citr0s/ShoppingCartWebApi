@@ -44,29 +44,29 @@
                                     @foreach (var topping in Model.Form.ExtraToppings)
                                     {
                                         <label class="custom-control custom-checkbox" style="margin-right: 15px;">
-                                            @Html.CheckBox("extraToppings", topping.Value, new { value = topping.Key.Id, @class = "custom-control-input" })
+                                            @Html.CheckBox("extraToppings", topping.Value, new {value = topping.Key.Id, @class = "custom-control-input"})
                                             <span class="custom-control-indicator"></span>
                                             <span class="custom-control-description">@topping.Key.Name</span>
                                         </label>
                                     }
 
-                                    <br />
+                                    <br/>
 
                                     <h5>Size</h5>
                                     @foreach (var size in Model.Form.Sizes)
                                     {
                                         <label class="custom-control custom-checkbox" style="margin-right: 15px;">
-                                            @Html.RadioButton("sizeId", size.Key.Id, new { @class = "custom-control-input", @checked = true })
+                                            @Html.RadioButton("sizeId", size.Key.Id, new {@class = "custom-control-input", @checked = true})
                                             <span class="custom-control-indicator"></span>
                                             <span class="custom-control-description">@size.Key.Name</span>
                                         </label>
                                     }
                                     @Html.Hidden("pizzaId", pizza.Id)
 
-                                    <br />
-                                    <br />
+                                    <br/>
+                                    <br/>
 
-                                    <input type="submit" value="Add to Basket" class="btn btn-primary" />
+                                    <input type="submit" value="Add to Basket" class="btn btn-primary"/>
                                 </fieldset>
                             }
                         </div>

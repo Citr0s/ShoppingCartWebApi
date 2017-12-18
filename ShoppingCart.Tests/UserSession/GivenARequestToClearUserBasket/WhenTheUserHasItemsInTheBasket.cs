@@ -22,31 +22,34 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToClearUserBasket
         public void SetUp()
         {
             _pizzaSizeRepository = new Mock<IPizzaSizeRepository>();
-            _pizzaSizeRepository.Setup(x => x.GetByIds(It.IsAny<int>(), It.IsAny<int>())).Returns(() => new GetPizzaSizeResponse
-            {
-                PizzaSize = new PizzaSizeRecord
+            _pizzaSizeRepository.Setup(x => x.GetByIds(It.IsAny<int>(), It.IsAny<int>())).Returns(() =>
+                new GetPizzaSizeResponse
                 {
-                    Pizza = new PizzaRecord { Id = 1 },
-                    Size = new SizeRecord { Id = 2 }
-                }
-            });
+                    PizzaSize = new PizzaSizeRecord
+                    {
+                        Pizza = new PizzaRecord {Id = 1},
+                        Size = new SizeRecord {Id = 2}
+                    }
+                });
 
             _toppingSizeRepository = new Mock<IToppingSizeRepository>();
-            _toppingSizeRepository.Setup(x => x.GetByIds(It.IsAny<List<int>>(), It.IsAny<int>())).Returns(() => new GetToppingSizeResponse
-            {
-                ToppingSize = new List<ToppingSizeRecord>
+            _toppingSizeRepository.Setup(x => x.GetByIds(It.IsAny<List<int>>(), It.IsAny<int>())).Returns(() =>
+                new GetToppingSizeResponse
                 {
-                    new ToppingSizeRecord
+                    ToppingSize = new List<ToppingSizeRecord>
                     {
-                        Topping = new ToppingRecord { Id = 3 },
-                        Size = new SizeRecord { Id = 2 }
+                        new ToppingSizeRecord
+                        {
+                            Topping = new ToppingRecord {Id = 3},
+                            Size = new SizeRecord {Id = 2}
+                        }
                     }
-                }
-            });
+                });
 
             var subject = new UserSessionService(_pizzaSizeRepository.Object, _toppingSizeRepository.Object);
             var userToken = subject.NewUser();
-            subject.AddItemToBasket(userToken, new BasketData { PizzaId = 1, SizeId = 2, ExtraToppingIds = new List<int> { 3 } });
+            subject.AddItemToBasket(userToken,
+                new BasketData {PizzaId = 1, SizeId = 2, ExtraToppingIds = new List<int> {3}});
             subject.ClearBasketForUser(userToken);
 
             _result = subject.GetBasketForUser(userToken);
@@ -71,15 +74,18 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToClearUserBasket
         }
 
         [Test]
-        public void ThenToppingSizeRepositoryIsCalledWithCorrectlyMappedToppingId()
-        {
-            _toppingSizeRepository.Verify(x => x.GetByIds(It.Is<List<int>>(y => y.Any(z => z == 3)), It.IsAny<int>()), Times.Once);;
-        }
-        
-        [Test]
         public void ThenToppingSizeRepositoryIsCalledWithCorrectlyMappedSizeId()
         {
-            _toppingSizeRepository.Verify(x => x.GetByIds(It.IsAny<List<int>>(), It.Is<int>(y => y == 2)), Times.Once);;
+            _toppingSizeRepository.Verify(x => x.GetByIds(It.IsAny<List<int>>(), It.Is<int>(y => y == 2)), Times.Once);
+            ;
+        }
+
+        [Test]
+        public void ThenToppingSizeRepositoryIsCalledWithCorrectlyMappedToppingId()
+        {
+            _toppingSizeRepository.Verify(x => x.GetByIds(It.Is<List<int>>(y => y.Any(z => z == 3)), It.IsAny<int>()),
+                Times.Once);
+            ;
         }
     }
 }

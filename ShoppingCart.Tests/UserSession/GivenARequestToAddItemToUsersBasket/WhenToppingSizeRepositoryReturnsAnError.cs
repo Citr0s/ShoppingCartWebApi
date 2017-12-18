@@ -23,34 +23,35 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
         public void SetUp()
         {
             _pizzaSizeRepository = new Mock<IPizzaSizeRepository>();
-            _pizzaSizeRepository.Setup(x => x.GetByIds(It.IsAny<int>(), It.IsAny<int>())).Returns(() => new GetPizzaSizeResponse
-            {
-                PizzaSize = new PizzaSizeRecord
+            _pizzaSizeRepository.Setup(x => x.GetByIds(It.IsAny<int>(), It.IsAny<int>())).Returns(() =>
+                new GetPizzaSizeResponse
                 {
-                    Pizza = new PizzaRecord
+                    PizzaSize = new PizzaSizeRecord
                     {
-                        Id = 1,
-                        Name = "Original"
-                    },
-                    Size = new SizeRecord
-                    {
-                        Id = 2,
-                        Name = "Medium"
-                    },
-                    Price = 1200
-                    
-                }
-            });
+                        Pizza = new PizzaRecord
+                        {
+                            Id = 1,
+                            Name = "Original"
+                        },
+                        Size = new SizeRecord
+                        {
+                            Id = 2,
+                            Name = "Medium"
+                        },
+                        Price = 1200
+                    }
+                });
 
             _toppingSizeRepository = new Mock<IToppingSizeRepository>();
-            _toppingSizeRepository.Setup(x => x.GetByIds(It.IsAny<List<int>>(), It.IsAny<int>())).Returns(() => new GetToppingSizeResponse
-            {
-                HasError = true,
-                Error = new Error
+            _toppingSizeRepository.Setup(x => x.GetByIds(It.IsAny<List<int>>(), It.IsAny<int>())).Returns(() =>
+                new GetToppingSizeResponse
                 {
-                    UserMessage = "An Error Occurred"
-                }
-            });
+                    HasError = true,
+                    Error = new Error
+                    {
+                        UserMessage = "An Error Occurred"
+                    }
+                });
 
             _subject = new UserSessionService(_pizzaSizeRepository.Object, _toppingSizeRepository.Object);
             _result = _subject.NewUser();
@@ -69,6 +70,20 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
             _basket = _subject.GetBasketForUser(_result);
         }
 
+        [TestCase(3)]
+        [TestCase(4)]
+        public void ThenToppingSizeRepositoryIsCalledWithCorrectlyMappedToppingId(int identifier)
+        {
+            _toppingSizeRepository.Verify(
+                x => x.GetByIds(It.Is<List<int>>(y => y.Contains(identifier)), It.IsAny<int>()), Times.Once);
+        }
+
+        [Test]
+        public void ThenNoItemsAreAdded()
+        {
+            Assert.That(_basket.Items.Count, Is.Zero);
+        }
+
         [Test]
         public void ThenPizzaSizeRepositoryIsCalledWithCorrectlyMappedPizzaId()
         {
@@ -81,13 +96,6 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
             _pizzaSizeRepository.Verify(x => x.GetByIds(It.IsAny<int>(), It.Is<int>(y => y == 2)), Times.Once);
         }
 
-        [TestCase(3)]
-        [TestCase(4)]
-        public void ThenToppingSizeRepositoryIsCalledWithCorrectlyMappedToppingId(int identifier)
-        {
-            _toppingSizeRepository.Verify(x => x.GetByIds(It.Is<List<int>>(y => y.Contains(identifier)), It.IsAny<int>()), Times.Once);
-        }
-
         [Test]
         public void ThenToppingSizeRepositoryIsCalledWithCorrectlyMappedSizeId()
         {
@@ -98,12 +106,6 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
         public void ThenTotalDoesNotChange()
         {
             Assert.That(_basket.Total.InPence, Is.EqualTo(0));
-        }
-
-        [Test]
-        public void ThenNoItemsAreAdded()
-        {
-            Assert.That(_basket.Items.Count, Is.Zero);
         }
     }
 }

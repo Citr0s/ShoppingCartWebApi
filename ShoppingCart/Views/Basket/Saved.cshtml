@@ -19,7 +19,7 @@
                                 <div class="col-md-6">
                                     Order <small>#@basketItem.Basket.Id</small>
                                 </div>
-                                <div class="col-md-6" style="text-align: right; font-weight: bold; color: #27ae60;">
+                                <div class="col-md-6" style="color: #27ae60; font-weight: bold; text-align: right;">
                                     @basketItem.Total.InFull
                                 </div>
                             </div>
@@ -33,8 +33,8 @@
                                 {
                                     <li>
                                         @orderDetail.Order.Pizza.Name
-                                        <small style="font-weight: bold; text-transform: uppercase; font-size: 1rem;">(@orderDetail.Order.Size.Name)</small>
-                                        <small style="font-weight: bold; color: #27ae60;">@orderDetail.Total.InFull</small>
+                                        <small style="font-size: 1rem; font-weight: bold; text-transform: uppercase;">(@orderDetail.Order.Size.Name)</small>
+                                        <small style="color: #27ae60; font-weight: bold;">@orderDetail.Total.InFull</small>
                                         @if (orderDetail.Toppings.Count > 0)
                                         {
                                             <ul>
@@ -57,7 +57,7 @@
                                     {
                                         <fieldset>
                                             @Html.Hidden("basketId", basketItem.Basket.Id)
-                                            <input type="submit" value="Use" class="btn btn-primary" />
+                                            <input type="submit" value="Use" class="btn btn-primary"/>
                                         </fieldset>
                                     }
                                 </div>

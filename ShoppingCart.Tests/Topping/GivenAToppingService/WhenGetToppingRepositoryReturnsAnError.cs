@@ -29,6 +29,12 @@ namespace ShoppingCart.Tests.Topping.GivenAToppingService
         }
 
         [Test]
+        public void ThenAnEmptyListOfToppingModelsIsReturned()
+        {
+            Assert.That(_result.Toppings.Count, Is.Zero);
+        }
+
+        [Test]
         public void ThenAnErrorIsReturned()
         {
             Assert.That(_result.HasError, Is.True);
@@ -38,12 +44,6 @@ namespace ShoppingCart.Tests.Topping.GivenAToppingService
         public void ThenAnErrorMessageIsReturned()
         {
             Assert.That(_result.Error.UserMessage, Is.EqualTo("Something went wrong when retrieving ToppingRecords."));
-        }
-
-        [Test]
-        public void ThenAnEmptyListOfToppingModelsIsReturned()
-        {
-            Assert.That(_result.Toppings.Count, Is.Zero);
         }
     }
 }

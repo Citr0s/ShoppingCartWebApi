@@ -13,28 +13,17 @@ namespace ShoppingCart.Services.UserSession
 {
     public class UserSessionService : IUserSessionService
     {
+        private static UserSessionService _instance;
         private readonly IPizzaSizeRepository _pizzaSizeRepository;
         private readonly IToppingSizeRepository _toppingSizeRepository;
-        private static UserSessionService _instance;
         private readonly Dictionary<Guid, UserSessionData> _userSessions;
 
-        public UserSessionService(IPizzaSizeRepository pizzaSizeRepository, IToppingSizeRepository toppingSizeRepository)
+        public UserSessionService(IPizzaSizeRepository pizzaSizeRepository,
+            IToppingSizeRepository toppingSizeRepository)
         {
             _pizzaSizeRepository = pizzaSizeRepository;
             _toppingSizeRepository = toppingSizeRepository;
             _userSessions = new Dictionary<Guid, UserSessionData>();
-        }
-
-        [ExcludeFromCodeCoverage]
-        public static UserSessionService Instance()
-        {
-            if (_instance == null)
-                _instance = new UserSessionService(new PizzaSizeRepository(IoC.Instance().For<IDatabase>()), new ToppingSizeRepository(IoC.Instance().For<IDatabase>()));
-
-            return _instance;
-
-            // add logic to logout after 5 minutes of inactivity to prevent memory leaks
-            // every action reset the timer
         }
 
         public string NewUser()
@@ -87,7 +76,8 @@ namespace ShoppingCart.Services.UserSession
 
             if (userSessionData.SelectedDeal != null)
             {
-                var dealPrice = VoucherHelper.Check(userSessionData.Basket, userSessionData.SelectedDeal.AllowedDeliveryTypes, userSessionData.SelectedDeal.Voucher.Code);
+                var dealPrice = VoucherHelper.Check(userSessionData.Basket,
+                    userSessionData.SelectedDeal.AllowedDeliveryTypes, userSessionData.SelectedDeal.Voucher.Code);
                 userSessionData.Basket.AdjustedPrice = false;
 
                 if (finalPrice != dealPrice)
@@ -171,6 +161,19 @@ namespace ShoppingCart.Services.UserSession
                 return new VoucherDetailsModel();
 
             return _userSessions[Guid.Parse(userToken)].SelectedDeal;
+        }
+
+        [ExcludeFromCodeCoverage]
+        public static UserSessionService Instance()
+        {
+            if (_instance == null)
+                _instance = new UserSessionService(new PizzaSizeRepository(IoC.Instance().For<IDatabase>()),
+                    new ToppingSizeRepository(IoC.Instance().For<IDatabase>()));
+
+            return _instance;
+
+            // add logic to logout after 5 minutes of inactivity to prevent memory leaks
+            // every action reset the timer
         }
 
         private bool UserTokenIsValid(string userToken)

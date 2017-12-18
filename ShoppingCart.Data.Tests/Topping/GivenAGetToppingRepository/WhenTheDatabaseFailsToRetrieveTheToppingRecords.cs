@@ -22,6 +22,12 @@ namespace ShoppingCart.Data.Tests.Topping.GivenAGetToppingRepository
         }
 
         [Test]
+        public void ThenAnEmptyListOfToppingRecordsIsReturned()
+        {
+            Assert.That(_result.Toppings.Count, Is.Zero);
+        }
+
+        [Test]
         public void ThenAnErrorIsReturned()
         {
             Assert.That(_result.HasError, Is.True);
@@ -30,13 +36,8 @@ namespace ShoppingCart.Data.Tests.Topping.GivenAGetToppingRepository
         [Test]
         public void ThenAnErrorMessageIsReturned()
         {
-            Assert.That(_result.Error.UserMessage, Is.EqualTo("Something went wrong when retrieving ToppingRecord from database."));
-        }
-
-        [Test]
-        public void ThenAnEmptyListOfToppingRecordsIsReturned()
-        {
-            Assert.That(_result.Toppings.Count, Is.Zero);
+            Assert.That(_result.Error.UserMessage,
+                Is.EqualTo("Something went wrong when retrieving ToppingRecord from database."));
         }
     }
 }

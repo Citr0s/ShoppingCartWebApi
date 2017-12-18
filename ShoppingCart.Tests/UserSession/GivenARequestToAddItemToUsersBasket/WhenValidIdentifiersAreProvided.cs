@@ -24,60 +24,61 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
         public void SetUp()
         {
             _pizzaSizeRepository = new Mock<IPizzaSizeRepository>();
-            _pizzaSizeRepository.Setup(x => x.GetByIds(It.IsAny<int>(), It.IsAny<int>())).Returns(() => new GetPizzaSizeResponse
-            {
-                PizzaSize = new PizzaSizeRecord
+            _pizzaSizeRepository.Setup(x => x.GetByIds(It.IsAny<int>(), It.IsAny<int>())).Returns(() =>
+                new GetPizzaSizeResponse
                 {
-                    Pizza = new PizzaRecord
+                    PizzaSize = new PizzaSizeRecord
                     {
-                        Id = 1,
-                        Name = "Original"
-                    },
-                    Size = new SizeRecord
-                    {
-                        Id = 2,
-                        Name = "Medium"
-                    },
-                    Price = 1200
-                    
-                }
-            });
+                        Pizza = new PizzaRecord
+                        {
+                            Id = 1,
+                            Name = "Original"
+                        },
+                        Size = new SizeRecord
+                        {
+                            Id = 2,
+                            Name = "Medium"
+                        },
+                        Price = 1200
+                    }
+                });
 
             _toppingSizeRepository = new Mock<IToppingSizeRepository>();
-            _toppingSizeRepository.Setup(x => x.GetByIds(It.IsAny<List<int>>(), It.IsAny<int>())).Returns(() => new GetToppingSizeResponse
-            {
-                ToppingSize = new List<ToppingSizeRecord>
+            _toppingSizeRepository.Setup(x => x.GetByIds(It.IsAny<List<int>>(), It.IsAny<int>())).Returns(() =>
+                new GetToppingSizeResponse
                 {
-                    new ToppingSizeRecord
+                    ToppingSize = new List<ToppingSizeRecord>
                     {
-                        Topping = new ToppingRecord
+                        new ToppingSizeRecord
                         {
-                            Id = 3,
-                            Name = "Cheese"
+                            Topping = new ToppingRecord
+                            {
+                                Id = 3,
+                                Name = "Cheese"
+                            },
+                            Size = new SizeRecord
+                            {
+                                Id = 2,
+                                Name = "Medium"
+                            },
+                            Price = 100
                         },
-                        Size = new SizeRecord
+                        new ToppingSizeRecord
                         {
-                            Id = 2,
-                            Name = "Medium"
-                        },
-                        Price = 100
-                    },
-                    new ToppingSizeRecord
-                    {
-                        Topping = new ToppingRecord
-                        {
-                            Id = 4,
-                            Name = "Tomato Sauce"
-                        },
-                        Size = new SizeRecord
-                        {
-                            Id = 2,
-                            Name = "Medium"
-                        },
-                        Price = 100
+                            Topping = new ToppingRecord
+                            {
+                                Id = 4,
+                                Name = "Tomato Sauce"
+                            },
+                            Size = new SizeRecord
+                            {
+                                Id = 2,
+                                Name = "Medium"
+                            },
+                            Price = 100
+                        }
                     }
-                }
-            });
+                });
 
             _subject = new UserSessionService(_pizzaSizeRepository.Object, _toppingSizeRepository.Object);
             _result = _subject.NewUser();
@@ -96,6 +97,30 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
             _basket = _subject.GetBasketForUser(_result);
         }
 
+        [TestCase(3)]
+        [TestCase(4)]
+        public void ThenToppingSizeRepositoryIsCalledWithCorrectlyMappedToppingId(int identifier)
+        {
+            _toppingSizeRepository.Verify(
+                x => x.GetByIds(It.Is<List<int>>(y => y.Contains(identifier)), It.IsAny<int>()), Times.Once);
+        }
+
+        [TestCase(3, "Cheese")]
+        [TestCase(4, "Tomato Sauce")]
+        public void ThenExtraToppingsIsCorrectlyAddedUnderTheCorrectUserIdentifier(int identifier, string toppingName)
+        {
+            Assert.That(
+                _basket.Items.Any(x =>
+                    x.ExtraToppings.Any(y => y.Id == identifier) && x.ExtraToppings.Any(y => y.Name == toppingName)),
+                Is.True);
+        }
+
+        [Test]
+        public void ThenPizzaIsCorrectlyAddedUnderTheCorrectUserIdentifier()
+        {
+            Assert.That(_basket.Items.Any(x => x.Pizza.Id == 1 && x.Pizza.Name == "Original"), Is.True);
+        }
+
         [Test]
         public void ThenPizzaSizeRepositoryIsCalledWithCorrectlyMappedPizzaId()
         {
@@ -108,11 +133,10 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
             _pizzaSizeRepository.Verify(x => x.GetByIds(It.IsAny<int>(), It.Is<int>(y => y == 2)), Times.Once);
         }
 
-        [TestCase(3)]
-        [TestCase(4)]
-        public void ThenToppingSizeRepositoryIsCalledWithCorrectlyMappedToppingId(int identifier)
+        [Test]
+        public void ThenSizeIsCorrectlyAddedUnderTheCorrectUserIdentifier()
         {
-            _toppingSizeRepository.Verify(x => x.GetByIds(It.Is<List<int>>(y => y.Contains(identifier)), It.IsAny<int>()), Times.Once);
+            Assert.That(_basket.Items.Any(x => x.Size.Id == 2 && x.Size.Name == "Medium"), Is.True);
         }
 
         [Test]
@@ -122,34 +146,15 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
         }
 
         [Test]
-        public void ThenTotalIsCorrectlyAddedUnderTheCorrectUserIdentifier()
-        {
-            Assert.That(_basket.Total.InPence, Is.EqualTo(1400));
-        }
-
-        [Test]
-        public void ThenPizzaIsCorrectlyAddedUnderTheCorrectUserIdentifier()
-        {
-            Assert.That(_basket.Items.Any(x => x.Pizza.Id == 1 && x.Pizza.Name == "Original"), Is.True);
-        }
-
-        [Test]
-        public void ThenSizeIsCorrectlyAddedUnderTheCorrectUserIdentifier()
-        {
-            Assert.That(_basket.Items.Any(x => x.Size.Id == 2 && x.Size.Name == "Medium"), Is.True);
-        }
-
-        [TestCase(3, "Cheese")]
-        [TestCase(4, "Tomato Sauce")]
-        public void ThenExtraToppingsIsCorrectlyAddedUnderTheCorrectUserIdentifier(int identifier, string toppingName)
-        {
-            Assert.That(_basket.Items.Any(x => x.ExtraToppings.Any(y => y.Id == identifier) && x.ExtraToppings.Any(y => y.Name == toppingName)), Is.True);
-        }
-
-        [Test]
         public void ThenTotalIsCorrectlyAddedUnderTheCorrectBasketItem()
         {
             Assert.That(_basket.Items[0].Total.InPence, Is.EqualTo(1400));
+        }
+
+        [Test]
+        public void ThenTotalIsCorrectlyAddedUnderTheCorrectUserIdentifier()
+        {
+            Assert.That(_basket.Total.InPence, Is.EqualTo(1400));
         }
     }
 }

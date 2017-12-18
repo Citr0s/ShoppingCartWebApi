@@ -17,7 +17,7 @@ namespace ShoppingCart.Data.Tests.ToppingSize.GivenARequestToGetToppingSizesById
         public void SetUp()
         {
             var database = new Mock<IDatabase>();
-            database.Setup(x => x.Query<ToppingSizeRecord>()).Throws(new Exception("Something went wrong")); 
+            database.Setup(x => x.Query<ToppingSizeRecord>()).Throws(new Exception("Something went wrong"));
 
             var subject = new ToppingSizeRepository(database.Object);
             _result = subject.GetByIds(new List<int> {1, 2}, 1);

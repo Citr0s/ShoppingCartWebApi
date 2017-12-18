@@ -41,18 +41,18 @@ namespace ShoppingCart.Tests.Size.GivenASizeService
             _result = subject.GetAll();
         }
 
-        [Test]
-        public void ThenAListOfPizzaModelsIsReturned()
-        {
-            Assert.That(_result.Sizes.Count, Is.EqualTo(3));
-        }
-
         [TestCase(0, "Small")]
         [TestCase(1, "Medium")]
         [TestCase(2, "Large")]
         public void ThenThePizzaNameIsMappedThroughCorrectly(int index, string name)
         {
             Assert.That(_result.Sizes[index].Name, Is.EqualTo(name));
+        }
+
+        [Test]
+        public void ThenAListOfPizzaModelsIsReturned()
+        {
+            Assert.That(_result.Sizes.Count, Is.EqualTo(3));
         }
     }
 }

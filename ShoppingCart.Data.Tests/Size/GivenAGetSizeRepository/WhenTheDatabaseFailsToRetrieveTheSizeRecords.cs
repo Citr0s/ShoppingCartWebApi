@@ -22,6 +22,12 @@ namespace ShoppingCart.Data.Tests.Size.GivenAGetSizeRepository
         }
 
         [Test]
+        public void ThenAnEmptyListOfPizzaRecordsIsReturned()
+        {
+            Assert.That(_result.Sizes.Count, Is.Zero);
+        }
+
+        [Test]
         public void ThenAnErrorIsReturned()
         {
             Assert.That(_result.HasError, Is.True);
@@ -30,13 +36,8 @@ namespace ShoppingCart.Data.Tests.Size.GivenAGetSizeRepository
         [Test]
         public void ThenAnErrorMessageIsReturned()
         {
-            Assert.That(_result.Error.UserMessage, Is.EqualTo("Something went wrong when retrieving SizeRecords from database."));
-        }
-
-        [Test]
-        public void ThenAnEmptyListOfPizzaRecordsIsReturned()
-        {
-            Assert.That(_result.Sizes.Count, Is.Zero);
+            Assert.That(_result.Error.UserMessage,
+                Is.EqualTo("Something went wrong when retrieving SizeRecords from database."));
         }
     }
 }

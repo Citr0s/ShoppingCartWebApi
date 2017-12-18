@@ -13,7 +13,10 @@ namespace ShoppingCart.Controllers.Deals
         private readonly IUserSessionService _userSessionService;
         private readonly IVoucherService _voucherService;
 
-        public DealsController() : this(UserSessionService.Instance(), new VoucherService(new VoucherRepository(IoC.Instance().For<IDatabase>()))) { }
+        public DealsController() : this(UserSessionService.Instance(),
+            new VoucherService(new VoucherRepository(IoC.Instance().For<IDatabase>())))
+        {
+        }
 
         public DealsController(IUserSessionService userSessionService, IVoucherService voucherService)
         {
@@ -44,15 +47,16 @@ namespace ShoppingCart.Controllers.Deals
             if (getVoucherById.HasError)
                 return Redirect("/Deals");
 
-            _userSessionService.SelectDeal(Session["UserId"].ToString(), VoucherDetailsMapper.Map(new List<VoucherDetails>
-            {
-                new VoucherDetails
+            _userSessionService.SelectDeal(Session["UserId"].ToString(), VoucherDetailsMapper.Map(
+                new List<VoucherDetails>
                 {
-                    Voucher = getVoucherById.Voucher,
-                    AllowedDeliveryTypes = getVoucherById.AllowedDeliveryTypes,
-                    AllowedSizes = getVoucherById.AllowedSizes
-                }
-            })[0]);
+                    new VoucherDetails
+                    {
+                        Voucher = getVoucherById.Voucher,
+                        AllowedDeliveryTypes = getVoucherById.AllowedDeliveryTypes,
+                        AllowedSizes = getVoucherById.AllowedSizes
+                    }
+                })[0]);
             return Redirect("/Deals");
         }
     }

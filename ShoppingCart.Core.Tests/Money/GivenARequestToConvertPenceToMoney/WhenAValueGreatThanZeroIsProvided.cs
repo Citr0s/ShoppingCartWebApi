@@ -14,6 +14,12 @@ namespace ShoppingCart.Core.Tests.Money.GivenARequestToConvertPenceToMoney
         }
 
         [Test]
+        public void ThenThePriceInFullIsCorrectlyGenerated()
+        {
+            Assert.That(_result.InFull, Is.EqualTo("£16.50"));
+        }
+
+        [Test]
         public void ThenThePriceInPenceIsCorrectlyAssigned()
         {
             Assert.That(_result.InPence, Is.EqualTo(1650));
@@ -23,12 +29,6 @@ namespace ShoppingCart.Core.Tests.Money.GivenARequestToConvertPenceToMoney
         public void ThenThePriceInPoundsIsCorrectlyCalculated()
         {
             Assert.That(_result.InPounds, Is.EqualTo(16.50));
-        }
-
-        [Test]
-        public void ThenThePriceInFullIsCorrectlyGenerated()
-        {
-            Assert.That(_result.InFull, Is.EqualTo("£16.50"));
         }
     }
 }

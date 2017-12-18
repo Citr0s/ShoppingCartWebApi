@@ -16,15 +16,15 @@ namespace ShoppingCart.Core.Tests.Hasher.GivenARequestToHashAString
         }
 
         [Test]
-        public void ThenTheStringIsHashedCorrectly()
-        {
-            Assert.That(_result, Is.Not.EqualTo("SOME_STRING"));
-        }
-
-        [Test]
         public void ThenTheSameResultCanBeAchievedEveryTime()
         {
             Assert.That(_result, Is.EqualTo(_subject.Hash("SOME_STRING")));
+        }
+
+        [Test]
+        public void ThenTheStringIsHashedCorrectly()
+        {
+            Assert.That(_result, Is.Not.EqualTo("SOME_STRING"));
         }
     }
 }

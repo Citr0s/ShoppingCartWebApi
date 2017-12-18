@@ -1,4 +1,6 @@
 ﻿namespace ShoppingCart.Data.IoC
 {
-    public interface IAdapter { }
+    public interface IAdapter
+    {
+    }
 }

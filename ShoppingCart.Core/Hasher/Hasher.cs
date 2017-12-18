@@ -22,6 +22,5 @@ namespace ShoppingCart.Core.Hasher
 
             return result.ToString();
         }
-
     }
 }

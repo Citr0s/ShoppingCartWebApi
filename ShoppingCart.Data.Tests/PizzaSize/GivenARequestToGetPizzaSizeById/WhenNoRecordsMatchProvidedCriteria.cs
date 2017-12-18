@@ -23,14 +23,14 @@ namespace ShoppingCart.Data.Tests.PizzaSize.GivenARequestToGetPizzaSizeById
                 new PizzaSizeRecord
                 {
                     Price = 1200,
-                    Pizza = new PizzaRecord { Id = 1 },
-                    Size = new SizeRecord { Id = 1 }
+                    Pizza = new PizzaRecord {Id = 1},
+                    Size = new SizeRecord {Id = 1}
                 },
                 new PizzaSizeRecord
                 {
                     Price = 1500,
-                    Pizza = new PizzaRecord { Id = 1 },
-                    Size = new SizeRecord { Id = 2 }
+                    Pizza = new PizzaRecord {Id = 1},
+                    Size = new SizeRecord {Id = 2}
                 }
             });
 

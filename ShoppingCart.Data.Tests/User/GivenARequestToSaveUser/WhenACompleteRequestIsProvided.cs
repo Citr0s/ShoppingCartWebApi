@@ -43,15 +43,9 @@ namespace ShoppingCart.Data.Tests.User.GivenARequestToSaveUser
         }
 
         [Test]
-        public void ThenNoErrorsAreReturned()
+        public void ThenDatabaseIsCalledWithCorrectlyMappedAddress()
         {
-            Assert.That(_result.HasError, Is.False);
-        }
-
-        [Test]
-        public void ThenUserIdIsReturnedInTheResponse()
-        {
-            Assert.That(_result.UserId, Is.EqualTo(1));
+            _database.Verify(x => x.Save(It.Is<UserRecord>(y => y.Address == "SOME_ADDRESS")), Times.Once);
         }
 
         [Test]
@@ -73,9 +67,15 @@ namespace ShoppingCart.Data.Tests.User.GivenARequestToSaveUser
         }
 
         [Test]
-        public void ThenDatabaseIsCalledWithCorrectlyMappedAddress()
+        public void ThenNoErrorsAreReturned()
         {
-            _database.Verify(x => x.Save(It.Is<UserRecord>(y => y.Address == "SOME_ADDRESS")), Times.Once);
+            Assert.That(_result.HasError, Is.False);
+        }
+
+        [Test]
+        public void ThenUserIdIsReturnedInTheResponse()
+        {
+            Assert.That(_result.UserId, Is.EqualTo(1));
         }
     }
 }

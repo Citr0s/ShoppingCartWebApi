@@ -41,15 +41,15 @@ namespace ShoppingCart.Data.Tests.User.GivenARequestToGetUserByEmailAddress
         }
 
         [Test]
-        public void ThenTheCorrectErrorCodeIsReturned()
-        {
-            Assert.That(_result.Error.Code, Is.EqualTo(ErrorCodes.UserNotFound));
-        }
-
-        [Test]
         public void ThenNoUsersAreReturned()
         {
             Assert.That(_result.User, Is.Null);
+        }
+
+        [Test]
+        public void ThenTheCorrectErrorCodeIsReturned()
+        {
+            Assert.That(_result.Error.Code, Is.EqualTo(ErrorCodes.UserNotFound));
         }
     }
 }

@@ -20,13 +20,18 @@ namespace ShoppingCart.Services.Basket
             _userSessionService = userSessionService;
         }
 
-        public BasketCheckoutResponse Checkout(DeliveryType delivery, string voucher, string userId, OrderStatus orderStatus)
+        public BasketCheckoutResponse Checkout(DeliveryType delivery, string voucher, string userId,
+            OrderStatus orderStatus)
         {
             var response = new BasketCheckoutResponse();
 
             if (!_userSessionService.IsLoggedIn(userId))
             {
-                response.AddError(new Error { Code =  ErrorCodes.UserNotLoggedIn, UserMessage = "You have to be logged in to complete your order" });
+                response.AddError(new Error
+                {
+                    Code = ErrorCodes.UserNotLoggedIn,
+                    UserMessage = "You have to be logged in to complete your order"
+                });
                 return response;
             }
 
@@ -45,7 +50,7 @@ namespace ShoppingCart.Services.Basket
             var userBasket = _userSessionService.GetBasketForUser(userId);
 
             if (!voucher.IsEmpty())
-                userBasket.Total = VoucherHelper.Check(userBasket, new List<DeliveryType>{ delivery }, voucher);
+                userBasket.Total = VoucherHelper.Check(userBasket, new List<DeliveryType> {delivery}, voucher);
             else
                 voucher = "";
 
@@ -63,7 +68,7 @@ namespace ShoppingCart.Services.Basket
                     SizeId = x.Size.Id,
                     ExtraToppingIds = x.ExtraToppings.ConvertAll(y => y.Id),
                     SubTotal = x.Total.InPence
-                }),
+                })
             };
             var saveOrderResponse = _orderRepository.SaveOrder(orderRequest);
 
@@ -81,13 +86,17 @@ namespace ShoppingCart.Services.Basket
 
             if (!_userSessionService.IsLoggedIn(userId))
             {
-                response.AddError(new Error { Code = ErrorCodes.UserNotLoggedIn, UserMessage = "You have to be logged in to save your order" });
+                response.AddError(new Error
+                {
+                    Code = ErrorCodes.UserNotLoggedIn,
+                    UserMessage = "You have to be logged in to save your order"
+                });
                 return response;
             }
 
             if (orderStatus == OrderStatus.Unknown)
             {
-                response.AddError(new Error { UserMessage = "Order status not specified." });
+                response.AddError(new Error {UserMessage = "Order status not specified."});
                 return response;
             }
 
@@ -106,7 +115,7 @@ namespace ShoppingCart.Services.Basket
                     SizeId = x.Size.Id,
                     ExtraToppingIds = x.ExtraToppings.ConvertAll(y => y.Id),
                     SubTotal = x.Total.InPence
-                }),
+                })
             };
             var saveOrderResponse = _orderRepository.SaveOrder(orderRequest);
 

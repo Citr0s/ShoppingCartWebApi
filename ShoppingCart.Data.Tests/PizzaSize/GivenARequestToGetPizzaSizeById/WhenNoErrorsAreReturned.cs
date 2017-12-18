@@ -22,14 +22,14 @@ namespace ShoppingCart.Data.Tests.PizzaSize.GivenARequestToGetPizzaSizeById
                 new PizzaSizeRecord
                 {
                     Price = 1200,
-                    Pizza = new PizzaRecord { Id = 1 },
-                    Size = new SizeRecord { Id = 1 }
+                    Pizza = new PizzaRecord {Id = 1},
+                    Size = new SizeRecord {Id = 1}
                 },
                 new PizzaSizeRecord
                 {
                     Price = 1500,
-                    Pizza = new PizzaRecord { Id = 1 },
-                    Size = new SizeRecord { Id = 2 }
+                    Pizza = new PizzaRecord {Id = 1},
+                    Size = new SizeRecord {Id = 2}
                 }
             });
 
@@ -46,7 +46,7 @@ namespace ShoppingCart.Data.Tests.PizzaSize.GivenARequestToGetPizzaSizeById
         [Test]
         public void ThenTheCorrectPizzaSizeRecordIsReturned()
         {
-            Assert.That(_result.PizzaSize.Price, Is.EqualTo(1500));   
+            Assert.That(_result.PizzaSize.Price, Is.EqualTo(1500));
         }
     }
 }

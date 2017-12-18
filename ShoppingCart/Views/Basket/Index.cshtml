@@ -19,7 +19,7 @@
                                 <div class="col-md-6">
                                     @basketItem.Pizza.Name <small>@basketItem.Size.Name</small>
                                 </div>
-                                <div class="col-md-6" style="text-align: right; font-weight: bold; color: #27ae60;">
+                                <div class="col-md-6" style="color: #27ae60; font-weight: bold; text-align: right;">
                                     @basketItem.Total.InFull
                                 </div>
                             </div>
@@ -53,22 +53,22 @@
                                     <h4>Delivery</h4>
                                     <div class="form-group">
                                         <label class="custom-control custom-checkbox" style="margin-right: 15px;">
-                                            @Html.RadioButton("delivery", "delivery", new { @class = "custom-control-input", @checked = true })
+                                            @Html.RadioButton("delivery", "delivery", new {@class = "custom-control-input", @checked = true})
                                             <span class="custom-control-indicator"></span>
                                             <span class="custom-control-description">Delivery</span>
                                         </label>
 
                                         <label class="custom-control custom-checkbox" style="margin-right: 15px;">
-                                            @Html.RadioButton("delivery", "collection", new { @class = "custom-control-input", @checked = false })
+                                            @Html.RadioButton("delivery", "collection", new {@class = "custom-control-input", @checked = false})
                                             <span class="custom-control-indicator"></span>
                                             <span class="custom-control-description">Collection</span>
                                         </label>
                                     </div>
 
                                     <div class="form-group">
-                                        @Html.TextBox("voucher", Model.Voucher?.Voucher.Code, new { @class = "form-control", placeholder = "Voucher Code" })
+                                        @Html.TextBox("voucher", Model.Voucher?.Voucher.Code, new {@class = "form-control", placeholder = "Voucher Code"})
                                     </div>
-                                    <input type="submit" value="Checkout" class="btn btn-primary" />
+                                    <input type="submit" value="Checkout" class="btn btn-primary"/>
                                 </fieldset>
                             }
                         </div>
@@ -78,14 +78,14 @@
                             @using (Html.BeginForm("Save", "Basket", FormMethod.Post))
                             {
                                 <div class="form-group">
-                                    <input type="submit" value="Save" class="btn btn-default" />
+                                    <input type="submit" value="Save" class="btn btn-default"/>
                                 </div>
                             }
                         </div>
                     </div>
                 </div>
                 <div class="col-md-6" style="text-align: right;">
-                    <hr />
+                    <hr/>
                     <h1>
                         <small>Total</small>
                         <span style="color: #27ae60; font-weight: bold;">@Model.Total.InFull</span>

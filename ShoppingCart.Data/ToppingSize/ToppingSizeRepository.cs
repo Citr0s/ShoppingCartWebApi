@@ -22,11 +22,16 @@ namespace ShoppingCart.Data.ToppingSize
 
             try
             {
-                var toppingSizeRecords = _database.Query<ToppingSizeRecord>().Where(x => extraToppingIds.Contains(x.Topping.Id) && x.Size.Id == sizeId).ToList();
+                var toppingSizeRecords = _database.Query<ToppingSizeRecord>()
+                    .Where(x => extraToppingIds.Contains(x.Topping.Id) && x.Size.Id == sizeId).ToList();
 
                 if (toppingSizeRecords.Count == 0)
                 {
-                    response.AddError(new Error { Code = ErrorCodes.RecordNotFound, UserMessage = "Could not find matching ToppingSizeRecord." });
+                    response.AddError(new Error
+                    {
+                        Code = ErrorCodes.RecordNotFound,
+                        UserMessage = "Could not find matching ToppingSizeRecord."
+                    });
                     return response;
                 }
 

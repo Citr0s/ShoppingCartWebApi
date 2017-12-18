@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Moq;
 using NUnit.Framework;
 using ShoppingCart.Core.Communication;
@@ -8,7 +7,6 @@ using ShoppingCart.Data.Pizza;
 using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.PizzaTopping;
 using ShoppingCart.Data.Size;
-using ShoppingCart.Data.Topping;
 using ShoppingCart.Services.PizzaPrice;
 
 namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaPriceService

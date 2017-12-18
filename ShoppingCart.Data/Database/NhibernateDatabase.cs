@@ -22,7 +22,8 @@ namespace ShoppingCart.Data.Database
             AppDomain.CurrentDomain.AssemblyResolve += (sender, e) => Assembly.GetCallingAssembly();
 
             _sessionFactory = Fluently.Configure()
-                .Database(MySQLConfiguration.Standard.ConnectionString("server=127.0.0.1;port=3306;uid=root;pwd=;database=shoppingcart;"))
+                .Database(MySQLConfiguration.Standard.ConnectionString(
+                    "server=127.0.0.1;port=3306;uid=root;pwd=;database=shoppingcart;"))
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<PizzaRecordMap>())
                 .Mappings(m => m.FluentMappings.AddFromAssemblyOf<SizeRecordMap>())
                 .BuildSessionFactory();

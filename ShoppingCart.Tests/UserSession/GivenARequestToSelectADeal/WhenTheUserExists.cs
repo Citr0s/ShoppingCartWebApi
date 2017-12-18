@@ -1,5 +1,4 @@
-﻿using System.Runtime.InteropServices;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using ShoppingCart.Services.UserSession;
 using ShoppingCart.Services.Voucher;
 
@@ -15,7 +14,8 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToSelectADeal
         {
             var subject = new UserSessionService(null, null);
             var userToken = subject.NewUser();
-            subject.SelectDeal(userToken, new VoucherDetailsModel{ Voucher = new VoucherModel{ Code = "SOME_VOUCHER_CODE" }});
+            subject.SelectDeal(userToken,
+                new VoucherDetailsModel {Voucher = new VoucherModel {Code = "SOME_VOUCHER_CODE"}});
 
             _result = subject.GetVoucherForUser(userToken);
         }

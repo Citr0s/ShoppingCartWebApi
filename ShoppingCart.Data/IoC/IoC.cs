@@ -14,6 +14,16 @@ namespace ShoppingCart.Data.IoC
             _adapters = new Dictionary<Type, IAdapter>();
         }
 
+        public T For<T>()
+        {
+            return (T) _adapters[typeof(T)];
+        }
+
+        public void Register<T>(IAdapter adapter)
+        {
+            _adapters.Add(typeof(T), adapter);
+        }
+
         [ExcludeFromCodeCoverage]
         public static IoC Instance()
         {
@@ -21,16 +31,6 @@ namespace ShoppingCart.Data.IoC
                 _instance = new IoC();
 
             return _instance;
-        }
-
-        public T For<T>()
-        {
-            return (T)_adapters[typeof(T)];
-        }
-
-        public void Register<T>(IAdapter adapter)
-        {
-            _adapters.Add(typeof(T), adapter);
         }
     }
 }

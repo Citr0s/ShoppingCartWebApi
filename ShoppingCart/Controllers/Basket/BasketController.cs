@@ -10,10 +10,13 @@ namespace ShoppingCart.Controllers.Basket
 {
     public class BasketController : Controller
     {
-        private readonly IUserSessionService _userSessionService;
         private readonly IBasketService _basketService;
+        private readonly IUserSessionService _userSessionService;
 
-        public BasketController() : this(UserSessionService.Instance(), new BasketService(new OrderRepository(IoC.Instance().For<IDatabase>()), UserSessionService.Instance())) { }
+        public BasketController() : this(UserSessionService.Instance(),
+            new BasketService(new OrderRepository(IoC.Instance().For<IDatabase>()), UserSessionService.Instance()))
+        {
+        }
 
         public BasketController(IUserSessionService userSessionService, IBasketService basketService)
         {
@@ -57,7 +60,8 @@ namespace ShoppingCart.Controllers.Basket
             if (Session["UserId"] == null)
                 Session["UserId"] = _userSessionService.NewUser();
 
-            var previousOrdersResponse = _basketService.GetPreviousOrders(_userSessionService.GetUserByUserToken(Session["UserId"].ToString()));
+            var previousOrdersResponse =
+                _basketService.GetPreviousOrders(_userSessionService.GetUserByUserToken(Session["UserId"].ToString()));
 
             if (previousOrdersResponse.HasError)
                 Redirect("/Basket");
@@ -67,7 +71,7 @@ namespace ShoppingCart.Controllers.Basket
                 BasketDetails = previousOrdersResponse.BasketDetails,
                 Total = _userSessionService.GetBasketTotalForUser(Session["UserId"].ToString()),
                 LoggedIn = _userSessionService.IsLoggedIn(Session["UserId"].ToString())
-        };
+            };
 
             return View(response);
         }
@@ -77,7 +81,8 @@ namespace ShoppingCart.Controllers.Basket
             if (Session["UserId"] == null)
                 Session["UserId"] = _userSessionService.NewUser();
 
-            var previousOrdersResponse = _basketService.GetSavedOrders(_userSessionService.GetUserByUserToken(Session["UserId"].ToString()));
+            var previousOrdersResponse =
+                _basketService.GetSavedOrders(_userSessionService.GetUserByUserToken(Session["UserId"].ToString()));
 
             if (previousOrdersResponse.HasError)
                 Redirect("/Basket");
@@ -115,7 +120,8 @@ namespace ShoppingCart.Controllers.Basket
             if (Session["UserId"] == null)
                 return Redirect("/Basket");
 
-            var basketCheckoutResponse = _basketService.Checkout(delivery, voucher, Session["UserId"]?.ToString(), OrderStatus.Complete);
+            var basketCheckoutResponse =
+                _basketService.Checkout(delivery, voucher, Session["UserId"]?.ToString(), OrderStatus.Complete);
 
             if (!basketCheckoutResponse.HasError)
                 return Redirect("/Basket/Summary");

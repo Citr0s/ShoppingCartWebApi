@@ -1,5 +1,4 @@
-﻿using System;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using ShoppingCart.Services.UserSession;
 
 namespace ShoppingCart.Tests.UserSession.GivenARequestToLogAUserOut

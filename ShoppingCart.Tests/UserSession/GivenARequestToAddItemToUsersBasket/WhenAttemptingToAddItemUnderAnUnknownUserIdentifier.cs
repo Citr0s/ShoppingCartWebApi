@@ -38,6 +38,12 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
         }
 
         [Test]
+        public void ThenNoItemsAreAdded()
+        {
+            Assert.That(_basket.Items.Count, Is.Zero);
+        }
+
+        [Test]
         public void ThenPizzaSizeRepositoryIsNeverCalled()
         {
             _pizzaSizeRepository.Verify(x => x.GetByIds(It.IsAny<int>(), It.IsAny<int>()), Times.Never);
@@ -53,12 +59,6 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
         public void ThenTotalDoesNotChange()
         {
             Assert.That(_basket.Total.InPence, Is.EqualTo(0));
-        }
-
-        [Test]
-        public void ThenNoItemsAreAdded()
-        {
-            Assert.That(_basket.Items.Count, Is.Zero);
         }
     }
 }

@@ -38,12 +38,6 @@ namespace ShoppingCart.Data.Tests.Size.GivenAGetSizeRepository
             _result = subject.GetAll();
         }
 
-        [Test]
-        public void ThenAllSizeRecordsAreReturned()
-        {
-            Assert.That(_result.Sizes.Count, Is.EqualTo(3));
-        }
-
         [TestCase(0, 1)]
         [TestCase(1, 2)]
         [TestCase(2, 3)]
@@ -58,6 +52,12 @@ namespace ShoppingCart.Data.Tests.Size.GivenAGetSizeRepository
         public void ThenTheSizeRecordNameIsMappedCorrectly(int index, string name)
         {
             Assert.That(_result.Sizes[index].Name, Is.EqualTo(name));
+        }
+
+        [Test]
+        public void ThenAllSizeRecordsAreReturned()
+        {
+            Assert.That(_result.Sizes.Count, Is.EqualTo(3));
         }
     }
 }

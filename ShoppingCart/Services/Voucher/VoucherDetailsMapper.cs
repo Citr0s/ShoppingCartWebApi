@@ -23,16 +23,21 @@ namespace ShoppingCart.Services.Voucher
                         OnlyNamed = voucherDetail.Voucher.OnlyNamed,
                         Quantity = voucherDetail.Voucher.Quantity
                     },
-                    AllowedDeliveryTypes = voucherDetail.AllowedDeliveryTypes.ConvertAll(x => DeliveryTypeHelper.From(x.DeliveryType.Name) ),
-                    AllowedSizes = voucherDetail.AllowedSizes.ConvertAll(x => new VoucherSizeModel { Name = x.Size.Name })
+                    AllowedDeliveryTypes =
+                        voucherDetail.AllowedDeliveryTypes.ConvertAll(x =>
+                            DeliveryTypeHelper.From(x.DeliveryType.Name)),
+                    AllowedSizes = voucherDetail.AllowedSizes.ConvertAll(x => new VoucherSizeModel {Name = x.Size.Name})
                 };
 
                 if (!voucherDetail.Voucher.Price.Contains("^"))
+                {
                     voucherDetailsModel.Voucher.Price = Money.From(int.Parse(voucherDetail.Voucher.Price));
+                }
                 else
                 {
                     var pizzaCount = int.Parse(voucherDetail.Voucher.Price.Split('^')[0]);
-                    voucherDetailsModel.Voucher.Notes = $"Price of {pizzaCount} most expensive pizza{(pizzaCount > 1 ? "s" : "")}.";
+                    voucherDetailsModel.Voucher.Notes =
+                        $"Price of {pizzaCount} most expensive pizza{(pizzaCount > 1 ? "s" : "")}.";
                 }
 
                 response.Add(voucherDetailsModel);

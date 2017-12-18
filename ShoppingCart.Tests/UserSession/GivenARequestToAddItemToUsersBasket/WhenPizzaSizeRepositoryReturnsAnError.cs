@@ -21,14 +21,15 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
         public void SetUp()
         {
             _pizzaSizeRepository = new Mock<IPizzaSizeRepository>();
-            _pizzaSizeRepository.Setup(x => x.GetByIds(It.IsAny<int>(), It.IsAny<int>())).Returns(() => new GetPizzaSizeResponse
-            {
-                HasError = true,
-                Error = new Error
+            _pizzaSizeRepository.Setup(x => x.GetByIds(It.IsAny<int>(), It.IsAny<int>())).Returns(() =>
+                new GetPizzaSizeResponse
                 {
-                    UserMessage = "An error has occured"
-                }
-            });
+                    HasError = true,
+                    Error = new Error
+                    {
+                        UserMessage = "An error has occured"
+                    }
+                });
 
             _toppingSizeRepository = new Mock<IToppingSizeRepository>();
 
@@ -47,6 +48,12 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
             };
             _subject.AddItemToBasket(_result, basketData);
             _basket = _subject.GetBasketForUser(_result);
+        }
+
+        [Test]
+        public void ThenNoItemsAreAdded()
+        {
+            Assert.That(_basket.Items.Count, Is.Zero);
         }
 
         [Test]
@@ -71,12 +78,6 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
         public void ThenTotalDoesNotChange()
         {
             Assert.That(_basket.Total.InPence, Is.EqualTo(0));
-        }
-
-        [Test]
-        public void ThenNoItemsAreAdded()
-        {
-            Assert.That(_basket.Items.Count, Is.Zero);
         }
     }
 }

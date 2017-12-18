@@ -94,10 +94,11 @@ namespace ShoppingCart.Data.Tests.Order.GivenARequestToGetOrdersByStatus
             _result = subject.GetOrdersByStatus(1, OrderStatus.Complete);
         }
 
-        [Test]
-        public void ThenNoErrorsAreReturned()
+        [TestCase(0, 1200)]
+        [TestCase(1, 1000)]
+        public void ThenTheCorrectOrdersAreReturned(int index, int expected)
         {
-            Assert.That(_result.HasError, Is.False);
+            Assert.That(_result.BasketDetails[index].Total.InPence, Is.EqualTo(expected));
         }
 
         [Test]
@@ -106,11 +107,10 @@ namespace ShoppingCart.Data.Tests.Order.GivenARequestToGetOrdersByStatus
             Assert.That(_result.BasketDetails.Count, Is.EqualTo(2));
         }
 
-        [TestCase(0, 1200)]
-        [TestCase(1, 1000)]
-        public void ThenTheCorrectOrdersAreReturned(int index, int expected)
+        [Test]
+        public void ThenNoErrorsAreReturned()
         {
-            Assert.That(_result.BasketDetails[index].Total.InPence, Is.EqualTo(expected));
+            Assert.That(_result.HasError, Is.False);
         }
     }
 }

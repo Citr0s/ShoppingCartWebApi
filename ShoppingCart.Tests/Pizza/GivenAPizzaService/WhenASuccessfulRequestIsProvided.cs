@@ -28,7 +28,7 @@ namespace ShoppingCart.Tests.Pizza.GivenAPizzaService
                     {
                         Id = 2,
                         Name = "Veggie Delight"
-                    },
+                    }
                 }
             });
 
@@ -36,17 +36,17 @@ namespace ShoppingCart.Tests.Pizza.GivenAPizzaService
             _result = subject.GetAll();
         }
 
-        [Test]
-        public void ThenAListOfPizzaModelsIsReturned()
-        {
-            Assert.That(_result.Pizzas.Count, Is.EqualTo(2));
-        }
-
         [TestCase(0, "Original")]
         [TestCase(1, "Veggie Delight")]
         public void ThenThePizzaNameIsMappedThroughCorrectly(int index, string name)
         {
             Assert.That(_result.Pizzas[index].Name, Is.EqualTo(name));
+        }
+
+        [Test]
+        public void ThenAListOfPizzaModelsIsReturned()
+        {
+            Assert.That(_result.Pizzas.Count, Is.EqualTo(2));
         }
     }
 }

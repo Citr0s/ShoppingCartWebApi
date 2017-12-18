@@ -7,7 +7,7 @@ namespace ShoppingCart.Data.Order
     {
         public GetOrdersByStatusResponse()
         {
-            BasketDetails = new List<BasketDetails>();    
+            BasketDetails = new List<BasketDetails>();
         }
 
         public List<BasketDetails> BasketDetails { get; set; }

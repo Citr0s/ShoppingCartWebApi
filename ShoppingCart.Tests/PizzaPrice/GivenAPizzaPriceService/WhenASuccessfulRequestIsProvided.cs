@@ -93,12 +93,6 @@ namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaPriceService
             _result = subject.GetAll();
         }
 
-        [Test]
-        public void ThenAListOfPizzaModelsIsReturned()
-        {
-            Assert.That(_result.Pizzas.Count, Is.EqualTo(2));
-        }
-
         [TestCase(0, "Original")]
         [TestCase(1, "Veggie Delight")]
         public void ThenThePizzaNameIsMappedThroughCorrectly(int index, string name)
@@ -125,6 +119,12 @@ namespace ShoppingCart.Tests.PizzaPrice.GivenAPizzaPriceService
         public void ThenThePizzaToppingIsMappedThroughCorrectly(string name)
         {
             Assert.That(_result.Pizzas[0].Toppings.Any(x => x.Name == name), Is.True);
+        }
+
+        [Test]
+        public void ThenAListOfPizzaModelsIsReturned()
+        {
+            Assert.That(_result.Pizzas.Count, Is.EqualTo(2));
         }
     }
 }
