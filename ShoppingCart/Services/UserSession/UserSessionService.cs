@@ -49,8 +49,7 @@ namespace ShoppingCart.Services.UserSession
             var basketItem = new BasketItem
             {
                 Pizza = pizzaSizeResponse.PizzaSize.Pizza,
-                Size = pizzaSizeResponse.PizzaSize.Size,
-                Total = Money.From(currentItemPrice)
+                Size = pizzaSizeResponse.PizzaSize.Size
             };
 
             if (basket.ExtraToppingIds.Count > 0)
@@ -64,6 +63,7 @@ namespace ShoppingCart.Services.UserSession
                 basketItem.ExtraToppings = toppingResponse.ToppingSize.Select(x => x.Topping).ToList();
             }
 
+            basketItem.Total = Money.From(currentItemPrice);
             var userSession = _userSessions[Guid.Parse(userToken)];
 
             userSession.Basket.Total = Money.From(userSession.Basket.Total.InPence + currentItemPrice);
