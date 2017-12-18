@@ -76,6 +76,7 @@
     <Compile Include="Controllers\GiveARequestToAHomeControllerAddPizzaToBasket\WhenSuccessfulRequestIsProvided.cs" />
     <Compile Include="Controllers\GivenARequestToAHomeControllerIndex\WhenRequestContainsSessionToken.cs" />
     <Compile Include="Controllers\GivenARequestToAHomeControllerIndex\WhenRequestDoesNotContainSessionToken.cs" />
+    <Compile Include="PizzaPrice\GivenAPizzaPriceService\WhenGetPizzaToppingsRepositoryReturnsAnError.cs" />
     <Compile Include="PizzaPrice\GivenAPizzaPriceService\WhenASuccessfulRequestIsProvided.cs" />
     <Compile Include="PizzaPrice\GivenAPizzaPriceService\WhenGetPizzaPriceRepositoryReturnsAnError.cs" />
     <Compile Include="PizzaPrice\GivenAPizzaSizeMapper\WhenAListOfPizzaSizeRecordsIsProvided.cs" />
@@ -91,7 +92,32 @@
     <Compile Include="UserSession\GivenARequestToAddItemToUsersBasket\WhenPizzaSizeRepositoryReturnsAnError.cs" />
     <Compile Include="UserSession\GivenARequestToAddItemToUsersBasket\WhenToppingSizeRepositoryReturnsAnError.cs" />
     <Compile Include="UserSession\GivenARequestToAddItemToUsersBasket\WhenValidIdentifiersAreProvided.cs" />
+    <Compile Include="UserSession\GivenARequestToCheckIfUserIsLoggedIn\WhenTheProvidedUserTokenIsValidAndUserIsLoggedIn.cs" />
+    <Compile Include="UserSession\GivenARequestToCheckIfUserIsLoggedIn\WhenTheProvidedUserTokenIsValidAndUserIsNotLoggedIn.cs" />
+    <Compile Include="UserSession\GivenARequestToCheckIfUserIsLoggedIn\WhenTheProvidedUserTokenIsNotFound.cs" />
+    <Compile Include="UserSession\GivenARequestToCheckIfUserIsLoggedIn\WhenTheProvidedUserTokenIsNotAValidGuid.cs" />
+    <Compile Include="UserSession\GivenARequestToClearUserBasket\WhenTheUserTokenProvidedIsNotValid.cs" />
+    <Compile Include="UserSession\GivenARequestToClearUserBasket\WhenTheUserHasItemsInTheBasket.cs" />
     <Compile Include="UserSession\GivenARequestToCreateANewUser\WhenTheNewUserMethodIsCalled.cs" />
+    <Compile Include="UserSession\GivenARequestToGetAUserByUserToken\WhenTheProvidedUserTokenIsFound.cs" />
+    <Compile Include="UserSession\GivenARequestToGetAUserByUserToken\WhenTheProvidedUserTokenIsNotFound.cs" />
+    <Compile Include="UserSession\GivenARequestToGetAUserByUserToken\WhenTheProvidedUserTokenIsNotAValidGuid.cs" />
+    <Compile Include="UserSession\GivenARequestToGetBasketTotalForUser\WhenTheProvidedUserTokenIsFoundWithBasketItems.cs" />
+    <Compile Include="UserSession\GivenARequestToGetBasketTotalForUser\WhenTheProvidedUserTokenIsFound.cs" />
+    <Compile Include="UserSession\GivenARequestToGetBasketTotalForUser\WhenTheProvidedUserTokenIsNotFound.cs" />
+    <Compile Include="UserSession\GivenARequestToGetBasketTotalForUser\WhenTheProvidedUserTokenIsNotAValidGuid.cs" />
+    <Compile Include="UserSession\GivenARequestToGetVoucherForUser\WhenTheUserIsFound.cs" />
+    <Compile Include="UserSession\GivenARequestToGetVoucherForUser\WhenTheUserTokenIsNotAValidGuid.cs" />
+    <Compile Include="UserSession\GivenARequestToLogAUserOut\WhenTheProvidedUserTokenIsFound.cs" />
+    <Compile Include="UserSession\GivenARequestToLogAUserOut\WhenTheProvidedUserTokenIsNotFound.cs" />
+    <Compile Include="UserSession\GivenARequestToLogAUserOut\WhenTheProvidedUserTokenIsNotValid.cs" />
+    <Compile Include="UserSession\GivenARequestToLogUserIn\WhenTheUserTokenIsFound.cs" />
+    <Compile Include="UserSession\GivenARequestToLogUserIn\WhenTheUserTokenIsNotFound.cs" />
+    <Compile Include="UserSession\GivenARequestToLogUserIn\WhenTheUserTokenIsNotValid.cs" />
+    <Compile Include="UserSession\GivenARequestToSelectADeal\WhenTheUserExists.cs" />
+    <Compile Include="UserSession\GivenARequestToSelectADeal\WhenTheUserTokenIsNotValid.cs" />
+    <Compile Include="UserSession\GivenARequestToSetBasketForUser\WhenTheUserTokenIsNotValid.cs" />
+    <Compile Include="UserSession\GivenARequestToSetBasketForUser\WheTheSuccessfulRequestIsMade.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -111,6 +137,7 @@
       <Name>ShoppingCart</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

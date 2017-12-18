@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using ShoppingCart.Core.Money;
 using ShoppingCart.Data.Database;
+using ShoppingCart.Data.IoC;
 using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.ToppingSize;
 using ShoppingCart.Services.Voucher;
@@ -23,10 +25,11 @@ namespace ShoppingCart.Services.UserSession
             _userSessions = new Dictionary<Guid, UserSessionData>();
         }
 
+        [ExcludeFromCodeCoverage]
         public static UserSessionService Instance()
         {
             if (_instance == null)
-                _instance = new UserSessionService(new PizzaSizeRepository(new NhibernateDatabase()), new ToppingSizeRepository(new NhibernateDatabase()));
+                _instance = new UserSessionService(new PizzaSizeRepository(IoC.Instance().For<IDatabase>()), new ToppingSizeRepository(IoC.Instance().For<IDatabase>()));
 
             return _instance;
 
@@ -137,7 +140,7 @@ namespace ShoppingCart.Services.UserSession
             return _userSessions[Guid.Parse(userToken)].UserId;
         }
 
-        public void ClearBasket(string userToken)
+        public void ClearBasketForUser(string userToken)
         {
             if (!UserTokenIsValid(userToken))
                 return;
@@ -146,7 +149,7 @@ namespace ShoppingCart.Services.UserSession
             _userSessions[Guid.Parse(userToken)].Basket.Total = Money.From(0);
         }
 
-        public void SetBasket(string userToken, Basket basket)
+        public void SetBasketForUser(string userToken, Basket basket)
         {
             if (!UserTokenIsValid(userToken))
                 return;

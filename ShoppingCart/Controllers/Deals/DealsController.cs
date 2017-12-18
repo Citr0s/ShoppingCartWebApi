@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Web.Mvc;
+using ShoppingCart.Data.Database;
+using ShoppingCart.Data.IoC;
 using ShoppingCart.Data.Voucher;
 using ShoppingCart.Services.UserSession;
 using ShoppingCart.Services.Voucher;
@@ -11,7 +13,7 @@ namespace ShoppingCart.Controllers.Deals
         private readonly IUserSessionService _userSessionService;
         private readonly IVoucherService _voucherService;
 
-        public DealsController() : this(UserSessionService.Instance(), new VoucherService(new VoucherRepository())) { }
+        public DealsController() : this(UserSessionService.Instance(), new VoucherService(new VoucherRepository(IoC.Instance().For<IDatabase>()))) { }
 
         public DealsController(IUserSessionService userSessionService, IVoucherService voucherService)
         {

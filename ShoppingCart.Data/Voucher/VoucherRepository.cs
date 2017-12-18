@@ -10,8 +10,6 @@ namespace ShoppingCart.Data.Voucher
     {
         private readonly IDatabase _database;
 
-        public VoucherRepository() : this(new NhibernateDatabase()) { }
-
         public VoucherRepository(IDatabase database)
         {
             _database = database;
@@ -35,11 +33,13 @@ namespace ShoppingCart.Data.Voucher
                     });
                 }
             }
-            catch (Exception)
+            catch (Exception exception)
             {
                 response.AddError(new Error
                 {
-                    UserMessage = "Something went wrong when retrieving Vouchers from database."
+                    Code = ErrorCodes.DatabaseError,
+                    UserMessage = "Something went wrong when retrieving Vouchers from database.",
+                    TechnicalMessage = $"The following exception was thrown ${exception.Message}"
                 });
             }
 
@@ -64,11 +64,13 @@ namespace ShoppingCart.Data.Voucher
                 response.AllowedDeliveryTypes = _database.Query<VoucherDeliveryTypeRecord>().Where(x => x.Voucher.Id == voucherRecord.Id).ToList();
                 response.AllowedSizes = _database.Query<VoucherSizeRecord>().Where(x => x.Voucher.Id == voucherRecord.Id).ToList();
             }
-            catch (Exception)
+            catch (Exception exception)
             {
                 response.AddError(new Error
                 {
-                    UserMessage = "Something went wrong when retrieving Vouchers from database."
+                    Code = ErrorCodes.DatabaseError,
+                    UserMessage = "Something went wrong when retrieving Vouchers from database.",
+                    TechnicalMessage = $"The following exception was thrown ${exception.Message}"
                 });
             }
 

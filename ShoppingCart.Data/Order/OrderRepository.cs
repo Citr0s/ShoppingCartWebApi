@@ -130,11 +130,13 @@ namespace ShoppingCart.Data.Order
                         })
                 };
             }
-            catch (Exception)
+            catch (Exception exception)
             {
                 response.AddError(new Error
                 {
-                    UserMessage = "Something went wrong when retrieving previous orders from database."
+                    Code = ErrorCodes.DatabaseError,
+                    UserMessage = "Something went wrong when retrieving previous orders from database.",
+                    TechnicalMessage = $"The following exception was thrown '{exception.Message}'"
                 });
             }
 
