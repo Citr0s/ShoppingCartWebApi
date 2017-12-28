@@ -131,6 +131,8 @@
     <Compile Include="Services\User\GivenARequestToRegisterAUser\WhenTheRequestDoesNotHaveAPassword.cs" />
     <Compile Include="Services\User\GivenARequestToRegisterAUser\WhenTheRequestDoesNotHaveAValidEmailAddress.cs" />
     <Compile Include="Services\User\GivenARequestToRegisterAUser\WhenUserRepositoryReturnsAnError.cs" />
+    <Compile Include="Services\Voucher\GivenARequestToGetAllVouchers\WhenVoucherRepositoryReturnsAnError.cs" />
+    <Compile Include="Services\Voucher\GivenARequestToGetAllVouchers\WhenVouchersAreFoundInTheDatabase.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
