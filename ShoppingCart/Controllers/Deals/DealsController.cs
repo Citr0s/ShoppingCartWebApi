@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc;
 using ShoppingCart.Data.Database;
 using ShoppingCart.Data.IoC;
@@ -13,6 +14,7 @@ namespace ShoppingCart.Controllers.Deals
         private readonly IUserSessionService _userSessionService;
         private readonly IVoucherService _voucherService;
 
+        [ExcludeFromCodeCoverage]
         public DealsController() : this(UserSessionService.Instance(),
             new VoucherService(new VoucherRepository(IoC.Instance().For<IDatabase>())))
         {

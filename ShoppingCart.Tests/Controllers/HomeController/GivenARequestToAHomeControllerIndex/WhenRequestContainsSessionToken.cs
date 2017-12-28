@@ -1,17 +1,16 @@
 ﻿using System.Web.Mvc;
 using Moq;
 using NUnit.Framework;
-using ShoppingCart.Controllers.Home;
 using ShoppingCart.Core.Money;
 using ShoppingCart.Services.PizzaPrice;
 using ShoppingCart.Services.Size;
 using ShoppingCart.Services.Topping;
 using ShoppingCart.Services.UserSession;
 
-namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeControllerIndex
+namespace ShoppingCart.Tests.Controllers.HomeController.GivenARequestToAHomeControllerIndex
 {
     [TestFixture]
-    public class WhenRequestDoesNotContainSessionToken
+    public class WhenRequestContainsSessionToken
     {
         private Mock<IPizzaSizeService> _pizzaService;
         private Mock<IUserSessionService> _userSessionService;
@@ -34,10 +33,10 @@ namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeControllerIndex
             _sizeService = new Mock<ISizeService>();
             _sizeService.Setup(x => x.GetAll()).Returns(() => new GetAllSizesResponse());
 
-            var subject = new HomeController(_pizzaService.Object, _toppingService.Object, _sizeService.Object,
+            var subject = new ShoppingCart.Controllers.Home.HomeController(_pizzaService.Object, _toppingService.Object, _sizeService.Object,
                 _userSessionService.Object);
             var context = new Mock<ControllerContext>();
-            context.Setup(x => x.HttpContext.Session["UserId"]);
+            context.Setup(x => x.HttpContext.Session["UserId"]).Returns<string>(x => "SomeUserIdentifier");
             subject.ControllerContext = context.Object;
 
             subject.Index();
@@ -46,7 +45,8 @@ namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeControllerIndex
         [Test]
         public void ThenTheGetUserPizzaServiceIsCalledWithCorrectUserToken()
         {
-            _userSessionService.Verify(x => x.GetBasketForUser(It.IsAny<string>()), Times.Never);
+            _userSessionService.Verify(x => x.GetBasketTotalForUser(It.Is<string>(y => y == "SomeUserIdentifier")),
+                Times.Once);
         }
 
         [Test]
@@ -56,9 +56,21 @@ namespace ShoppingCart.Tests.Controllers.GivenARequestToAHomeControllerIndex
         }
 
         [Test]
+        public void ThenTheSizeServiceIsCalled()
+        {
+            _sizeService.Verify(x => x.GetAll(), Times.Once);
+        }
+
+        [Test]
+        public void ThenTheToppingServiceIsCalled()
+        {
+            _toppingService.Verify(x => x.GetAll(), Times.Once);
+        }
+
+        [Test]
         public void ThenTheUserSessionServiceIsNeverCalled()
         {
-            _userSessionService.Verify(x => x.NewUser(), Times.Once);
+            _userSessionService.Verify(x => x.NewUser(), Times.Never);
         }
     }
 }

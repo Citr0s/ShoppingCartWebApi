@@ -73,9 +73,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\GiveARequestToAHomeControllerAddPizzaToBasket\WhenSuccessfulRequestIsProvided.cs" />
-    <Compile Include="Controllers\GivenARequestToAHomeControllerIndex\WhenRequestContainsSessionToken.cs" />
-    <Compile Include="Controllers\GivenARequestToAHomeControllerIndex\WhenRequestDoesNotContainSessionToken.cs" />
+    <Compile Include="Controllers\DealsController\GivenARequestToADealsControllerApplyDeal\WhenRequestContainsSessionToken.cs" />
+    <Compile Include="Controllers\DealsController\GivenARequestToADealsControllerApplyDeal\WhenRequestDoesNotContainSessionToken.cs" />
+    <Compile Include="Controllers\HomeController\GiveARequestToAHomeControllerAddPizzaToBasket\WhenSuccessfulRequestIsProvided.cs" />
+    <Compile Include="Controllers\DealsController\GivenARequestToADealsControllerIndex\WhenRequestContainsSessionToken.cs" />
+    <Compile Include="Controllers\DealsController\GivenARequestToADealsControllerIndex\WhenRequestDoesNotContainSessionToken.cs" />
+    <Compile Include="Controllers\HomeController\GivenARequestToAHomeControllerIndex\WhenRequestContainsSessionToken.cs" />
+    <Compile Include="Controllers\HomeController\GivenARequestToAHomeControllerIndex\WhenRequestDoesNotContainSessionToken.cs" />
     <Compile Include="PizzaPrice\GivenAPizzaPriceService\WhenGetPizzaToppingsRepositoryReturnsAnError.cs" />
     <Compile Include="PizzaPrice\GivenAPizzaPriceService\WhenASuccessfulRequestIsProvided.cs" />
     <Compile Include="PizzaPrice\GivenAPizzaPriceService\WhenGetPizzaPriceRepositoryReturnsAnError.cs" />

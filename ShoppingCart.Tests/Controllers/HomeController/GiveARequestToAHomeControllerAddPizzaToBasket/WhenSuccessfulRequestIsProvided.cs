@@ -2,10 +2,9 @@
 using System.Web.Mvc;
 using Moq;
 using NUnit.Framework;
-using ShoppingCart.Controllers.Home;
 using ShoppingCart.Services.UserSession;
 
-namespace ShoppingCart.Tests.Controllers.GiveARequestToAHomeControllerAddPizzaToBasket
+namespace ShoppingCart.Tests.Controllers.HomeController.GiveARequestToAHomeControllerAddPizzaToBasket
 {
     [TestFixture]
     public class WhenSuccessfulRequestIsProvided
@@ -18,7 +17,7 @@ namespace ShoppingCart.Tests.Controllers.GiveARequestToAHomeControllerAddPizzaTo
             _userSessionService = new Mock<IUserSessionService>();
             _userSessionService.Setup(x => x.AddItemToBasket(It.IsAny<string>(), It.IsAny<BasketData>()));
 
-            var subject = new HomeController(null, null, null, _userSessionService.Object);
+            var subject = new ShoppingCart.Controllers.Home.HomeController(null, null, null, _userSessionService.Object);
             var context = new Mock<ControllerContext>();
             context.Setup(x => x.HttpContext.Session["UserId"]).Returns<string>(x => "SomeUserIdentifier");
             subject.ControllerContext = context.Object;
