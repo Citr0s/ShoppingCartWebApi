@@ -85,6 +85,9 @@
     <Compile Include="Services\Basket\GivenARequestToCheckout\WhenOrderStatusIsUnknown.cs" />
     <Compile Include="Services\Basket\GivenARequestToCheckout\WhenUserIsNotLoggedIn.cs" />
     <Compile Include="Services\Basket\GivenARequestToCheckout\WhenValidRequestIsProvided.cs" />
+    <Compile Include="Services\Basket\GivenARequestToGetBasketById\WhenValidUserIdIsProvided.cs" />
+    <Compile Include="Services\Basket\GivenARequestToGetSavedOrders\WhenValidUserIdIsProvided.cs" />
+    <Compile Include="Services\Basket\GivenARequestToGetPreviousOrders\WhenValidUserIdIsProvided.cs" />
     <Compile Include="Services\Basket\GivenARequestToSave\WhenValidRequestIsSupplied.cs" />
     <Compile Include="Services\PizzaPrice\GivenAPizzaPriceService\WhenGetPizzaToppingsRepositoryReturnsAnError.cs" />
     <Compile Include="Services\PizzaPrice\GivenAPizzaPriceService\WhenASuccessfulRequestIsProvided.cs" />
