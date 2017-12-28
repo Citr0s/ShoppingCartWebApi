@@ -133,6 +133,8 @@
     <Compile Include="Services\User\GivenARequestToRegisterAUser\WhenUserRepositoryReturnsAnError.cs" />
     <Compile Include="Services\Voucher\GivenARequestToGetAllVouchers\WhenVoucherRepositoryReturnsAnError.cs" />
     <Compile Include="Services\Voucher\GivenARequestToGetAllVouchers\WhenVouchersAreFoundInTheDatabase.cs" />
+    <Compile Include="Services\Voucher\GivenARequestToGetAVoucherById\WhenRepositoryReturnsAnError.cs" />
+    <Compile Include="Services\Voucher\GivenARequestToGetAVoucherById\WhenVoucherIsFound.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
