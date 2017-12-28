@@ -6,6 +6,7 @@ using ShoppingCart.Controllers.Basket;
 using ShoppingCart.Core.Communication;
 using ShoppingCart.Core.Money;
 using ShoppingCart.Data.Voucher;
+using ShoppingCart.Services.Voucher.Filters;
 
 namespace ShoppingCart.Services.Voucher
 {
@@ -64,51 +65,36 @@ namespace ShoppingCart.Services.Voucher
                 return response;
             }
 
-            var voucher = getAllVouchersResponse.VoucherDetails.FirstOrDefault(x => x.Voucher.Code == voucherCode && x.Voucher.Quantity == userBasket.Items.Count);
+            var voucherPipeline = new VoucherPipeline();
 
-            if (voucher == null)
+            voucherPipeline
+                .Register(new VoucherCodeFilter(voucherCode))
+                .Register(new VoucherQuantityFilter(userBasket.Items.Count))
+                .Register(new VoucherDeliveryTypeFilter(deliveryTypes))
+                .Register(new VoucherSizeFilter(userBasket.Items));
+
+            var vouchers = voucherPipeline.Process(getAllVouchersResponse.VoucherDetails);
+
+            if (vouchers.Count == 0)
             {
-                response.AddError(new Error { UserMessage = $"Voucher with the code of '{voucherCode}' does not exist." });
+                response.AddError(new Error { UserMessage = "No vouchers matched provided criteria" });
                 return response;
             }
 
-            var matchFound = false;
-            foreach (var allowedDeliveryType in voucher.AllowedDeliveryTypes)
-            {
-                if (Enum.TryParse(allowedDeliveryType.DeliveryType.Name, out DeliveryType deliveryType))
-                {
-                    if (deliveryTypes.Contains(deliveryType))
-                        matchFound = true;
+            var finalVoucher = vouchers.First();
 
-                }
-            }
-
-            if (!matchFound)
+            if (int.TryParse(finalVoucher.Voucher.Price, out var price))
             {
-                response.AddError(new Error { UserMessage = $"Voucher does not apply for selected delivery type." });
+                response.Total = Money.From(price);
                 return response;
             }
 
-            foreach (var basketItem in userBasket.Items)
-            {
-                if (voucher.AllowedSizes.All(x => x.Size.Name != basketItem.Size.Name))
-                    continue;
+            var topQuantity = Regex.Match(finalVoucher.Voucher.Price, "[0-9]?").Value;
 
-                if (int.TryParse(voucher.Voucher.Price, out var price))
-                {
-                    response.Total = Money.From(price);
-                    return response;
-                }
-
-                var topQuantity = Regex.Match(voucher.Voucher.Price, "[0-9]?").Value;
-
-                if (!int.TryParse(topQuantity, out var quantity))
-                    continue;
-
-                response.Total = Money.From(userBasket.Items.Take(quantity).Sum(x => x.Total.InPence));
+            if (!int.TryParse(topQuantity, out var quantity))
                 return response;
-            }
 
+            response.Total = Money.From(userBasket.Items.Take(quantity).Sum(x => x.Total.InPence));
             return response;
         }
     }

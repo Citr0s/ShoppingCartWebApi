@@ -143,6 +143,13 @@
     <Compile Include="Controllers\Basket\DeliveryType.cs" />
     <Compile Include="Controllers\Deals\DealControllerIndexData.cs" />
     <Compile Include="Controllers\Deals\DealsController.cs" />
+    <Compile Include="Services\Filter\IFilter.cs" />
+    <Compile Include="Services\Filter\Pipeline.cs" />
+    <Compile Include="Services\Voucher\Filters\VoucherCodeFilter.cs" />
+    <Compile Include="Services\Voucher\Filters\VoucherDeliveryTypeFilter.cs" />
+    <Compile Include="Services\Voucher\Filters\VoucherPipeline.cs" />
+    <Compile Include="Services\Voucher\Filters\VoucherQuantityFilter.cs" />
+    <Compile Include="Services\Voucher\Filters\VoucherSizeFilter.cs" />
     <Compile Include="Services\Voucher\GetVoucherByIdResponse.cs" />
     <Compile Include="Services\Voucher\VerifyVoucherResponse.cs" />
     <Compile Include="Services\Voucher\VoucherDeliveryTypeModel.cs" />
