@@ -8,5 +8,6 @@
         public static int RecordNotFound = 4;
         public static int CredentialsAreIncomplete = 4;
         public static int EmailAddressIsNotValid = 5;
+        public static int NoMatchingVoucherFound = 6;
     }
 }

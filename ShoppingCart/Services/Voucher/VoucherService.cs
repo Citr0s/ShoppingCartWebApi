@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using ShoppingCart.Controllers.Basket;
 using ShoppingCart.Core.Communication;
+using ShoppingCart.Core.Communication.ErrorCodes;
 using ShoppingCart.Core.Money;
 using ShoppingCart.Data.Voucher;
 using ShoppingCart.Services.Voucher.Filters;
@@ -13,10 +14,12 @@ namespace ShoppingCart.Services.Voucher
     public class VoucherService : IVoucherService
     {
         private readonly IVoucherRepository _voucherRepository;
+        private readonly VoucherPipeline _voucherPipeline;
 
         public VoucherService(IVoucherRepository voucherRepository)
         {
             _voucherRepository = voucherRepository;
+            _voucherPipeline = new VoucherPipeline();
         }
 
         public GetAllVouchersResponse GetAll()
@@ -65,19 +68,17 @@ namespace ShoppingCart.Services.Voucher
                 return response;
             }
 
-            var voucherPipeline = new VoucherPipeline();
+            _voucherPipeline
+                .With(new VoucherCodeFilter(voucherCode))
+                .With(new VoucherQuantityFilter(userBasket.Items.Count))
+                .With(new VoucherDeliveryTypeFilter(deliveryTypes))
+                .With(new VoucherSizeFilter(userBasket.Items));
 
-            voucherPipeline
-                .Register(new VoucherCodeFilter(voucherCode))
-                .Register(new VoucherQuantityFilter(userBasket.Items.Count))
-                .Register(new VoucherDeliveryTypeFilter(deliveryTypes))
-                .Register(new VoucherSizeFilter(userBasket.Items));
-
-            var vouchers = voucherPipeline.Process(getAllVouchersResponse.VoucherDetails);
+            var vouchers = _voucherPipeline.Process(getAllVouchersResponse.VoucherDetails);
 
             if (vouchers.Count == 0)
             {
-                response.AddError(new Error { UserMessage = "No vouchers matched provided criteria" });
+                response.AddError(new Error { Code = ErrorCodes.NoMatchingVoucherFound, UserMessage = "No vouchers matched provided criteria" });
                 return response;
             }
 
@@ -92,7 +93,10 @@ namespace ShoppingCart.Services.Voucher
             var topQuantity = Regex.Match(finalVoucher.Voucher.Price, "[0-9]?").Value;
 
             if (!int.TryParse(topQuantity, out var quantity))
+            {
+                response.AddError(new Error { Code = ErrorCodes.DatabaseError, UserMessage = "No vouchers matched provided criteria" });
                 return response;
+            }
 
             response.Total = Money.From(userBasket.Items.Take(quantity).Sum(x => x.Total.InPence));
             return response;

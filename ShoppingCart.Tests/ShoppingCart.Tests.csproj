@@ -135,6 +135,11 @@
     <Compile Include="Services\Voucher\GivenARequestToGetAllVouchers\WhenVouchersAreFoundInTheDatabase.cs" />
     <Compile Include="Services\Voucher\GivenARequestToGetAVoucherById\WhenRepositoryReturnsAnError.cs" />
     <Compile Include="Services\Voucher\GivenARequestToGetAVoucherById\WhenVoucherIsFound.cs" />
+    <Compile Include="Services\Voucher\GivenARequestToVerifyUserBasket\WhenNoVouchersMatchProvidedCriteria.cs" />
+    <Compile Include="Services\Voucher\GivenARequestToVerifyUserBasket\WhenValidRequestIsSupplied.cs" />
+    <Compile Include="Services\Voucher\GivenARequestToVerifyUserBasket\WhenVoucherHasInvalidPrice.cs" />
+    <Compile Include="Services\Voucher\GivenARequestToVerifyUserBasket\WhenVoucherHasSpecialPrice.cs" />
+    <Compile Include="Services\Voucher\GivenARequestToVerifyUserBasket\WhenVoucherRepositoryReturnsAnError.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

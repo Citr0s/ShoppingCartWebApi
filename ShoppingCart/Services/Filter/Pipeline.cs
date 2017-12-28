@@ -6,7 +6,7 @@ namespace ShoppingCart.Services.Filter
     {
         protected readonly List<IFilter<T>> Filters = new List<IFilter<T>>();
 
-        public Pipeline<T> Register(IFilter<T> filter)
+        public Pipeline<T> With(IFilter<T> filter)
         {
             Filters.Add(filter);
             return this;
