@@ -74,7 +74,8 @@ namespace ShoppingCart.Data.User
                 response.AddError(new Error
                 {
                     Code = ErrorCodes.DatabaseError,
-                    UserMessage = "Something went wrong when retrieving UserRecords from database."
+                    UserMessage = "Could not create account. Please try again later.",
+                    TechnicalMessage = "Something went wrong when retrieving UserRecords from database."
                 });
             }
 

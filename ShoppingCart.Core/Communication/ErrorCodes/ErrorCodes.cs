@@ -6,5 +6,7 @@
         public static int UserNotFound = 2;
         public static int DatabaseError = 3;
         public static int RecordNotFound = 4;
+        public static int CredentialsAreIncomplete = 4;
+        public static int EmailAddressIsNotValid = 5;
     }
 }

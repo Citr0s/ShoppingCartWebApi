@@ -122,6 +122,15 @@
     <Compile Include="Services\UserSession\GivenARequestToSelectADeal\WhenTheUserTokenIsNotValid.cs" />
     <Compile Include="Services\UserSession\GivenARequestToSetBasketForUser\WhenTheUserTokenIsNotValid.cs" />
     <Compile Include="Services\UserSession\GivenARequestToSetBasketForUser\WheTheSuccessfulRequestIsMade.cs" />
+    <Compile Include="Services\User\GivenARequestToLoginAUser\WhenEmailAddressIsNotProvided.cs" />
+    <Compile Include="Services\User\GivenARequestToLoginAUser\WhenPasswordIsNotProvided.cs" />
+    <Compile Include="Services\User\GivenARequestToLoginAUser\WhenUserRepositoryReturnsAnError.cs" />
+    <Compile Include="Services\User\GivenARequestToLoginAUser\WhenValidRequestIsProvided.cs" />
+    <Compile Include="Services\User\GivenARequestToRegisterAUser\WhenAllPropertiesAreValid.cs" />
+    <Compile Include="Services\User\GivenARequestToRegisterAUser\WhenTheRequestDoesNotHaveAnEmailAddress.cs" />
+    <Compile Include="Services\User\GivenARequestToRegisterAUser\WhenTheRequestDoesNotHaveAPassword.cs" />
+    <Compile Include="Services\User\GivenARequestToRegisterAUser\WhenTheRequestDoesNotHaveAValidEmailAddress.cs" />
+    <Compile Include="Services\User\GivenARequestToRegisterAUser\WhenUserRepositoryReturnsAnError.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />

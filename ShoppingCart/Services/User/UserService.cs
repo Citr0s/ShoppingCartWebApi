@@ -1,5 +1,6 @@
 ﻿using System.Web.WebPages;
 using ShoppingCart.Core.Communication;
+using ShoppingCart.Core.Communication.ErrorCodes;
 using ShoppingCart.Core.Email;
 using ShoppingCart.Data.User;
 
@@ -20,13 +21,13 @@ namespace ShoppingCart.Services.User
 
             if (email.IsEmpty() || password.IsEmpty())
             {
-                response.AddError(new Error {UserMessage = "Email and password are required."});
+                response.AddError(new Error {Code = ErrorCodes.CredentialsAreIncomplete, UserMessage = "Email and password are required."});
                 return response;
             }
 
             if (!EmailValidator.IsValid(email))
             {
-                response.AddError(new Error {UserMessage = "Please provide a valid email address."});
+                response.AddError(new Error {Code = ErrorCodes.EmailAddressIsNotValid, UserMessage = "Please provide a valid email address."});
                 return response;
             }
 
@@ -41,7 +42,7 @@ namespace ShoppingCart.Services.User
 
             if (saveOrUpdateResponse.HasError)
             {
-                response.AddError(new Error {UserMessage = "Could not create account. Please try again later."});
+                response.AddError(saveOrUpdateResponse.Error);
                 return response;
             }
 
@@ -56,7 +57,7 @@ namespace ShoppingCart.Services.User
 
             if (email.IsEmpty() || password.IsEmpty())
             {
-                response.AddError(new Error {UserMessage = "Email and password are required."});
+                response.AddError(new Error {Code = ErrorCodes.CredentialsAreIncomplete, UserMessage = "Email and password are required."});
                 return response;
             }
 
@@ -64,7 +65,7 @@ namespace ShoppingCart.Services.User
 
             if (saveOrUpdateResponse.HasError)
             {
-                response.AddError(new Error {UserMessage = "Could not find account. Please try again later."});
+                response.AddError(saveOrUpdateResponse.Error);
                 return response;
             }
 
