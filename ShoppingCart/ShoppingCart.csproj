@@ -144,6 +144,7 @@
     <Compile Include="Controllers\Deals\DealControllerIndexData.cs" />
     <Compile Include="Controllers\Deals\DealsController.cs" />
     <Compile Include="Services\Voucher\GetVoucherByIdResponse.cs" />
+    <Compile Include="Services\Voucher\VerifyVoucherResponse.cs" />
     <Compile Include="Services\Voucher\VoucherDeliveryTypeModel.cs" />
     <Compile Include="Services\Voucher\VoucherDetailsMapper.cs" />
     <Compile Include="Controllers\Home\HomeController.cs" />
@@ -160,7 +161,6 @@
     <Compile Include="Services\Basket\IBasketService.cs" />
     <Compile Include="Services\Voucher\GetAllVouchersResponse.cs" />
     <Compile Include="Services\Voucher\IVoucherService.cs" />
-    <Compile Include="Services\Voucher\VoucherHelper.cs" />
     <Compile Include="Services\UserSession\UserSessionData.cs" />
     <Compile Include="Services\User\CreateUserResponse.cs" />
     <Compile Include="Controllers\User\LoginController.cs" />

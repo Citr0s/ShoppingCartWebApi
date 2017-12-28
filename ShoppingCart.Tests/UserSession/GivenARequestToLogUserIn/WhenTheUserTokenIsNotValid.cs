@@ -11,7 +11,7 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToLogUserIn
         [OneTimeSetUp]
         public void SetUp()
         {
-            var subject = new UserSessionService(null, null);
+            var subject = new UserSessionService(null, null, null);
             var userToken = subject.NewUser();
 
             subject.LogIn("NOT_A_VALID_GUID", 1);

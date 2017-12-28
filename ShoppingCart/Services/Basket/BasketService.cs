@@ -13,11 +13,13 @@ namespace ShoppingCart.Services.Basket
     {
         private readonly IOrderRepository _orderRepository;
         private readonly IUserSessionService _userSessionService;
+        private readonly IVoucherService _voucherService;
 
-        public BasketService(IOrderRepository orderRepository, IUserSessionService userSessionService)
+        public BasketService(IOrderRepository orderRepository, IUserSessionService userSessionService, IVoucherService voucherService)
         {
             _orderRepository = orderRepository;
             _userSessionService = userSessionService;
+            _voucherService = voucherService;
         }
 
         public BasketCheckoutResponse Checkout(DeliveryType delivery, string voucher, string userId,
@@ -50,7 +52,12 @@ namespace ShoppingCart.Services.Basket
             var userBasket = _userSessionService.GetBasketForUser(userId);
 
             if (!voucher.IsEmpty())
-                userBasket.Total = VoucherHelper.Check(userBasket, new List<DeliveryType> {delivery}, voucher);
+            {
+                var verifyVoucherResponse = _voucherService.Verify(userBasket, new List<DeliveryType> {delivery}, voucher);
+
+                if(!verifyVoucherResponse.HasError)
+                    userBasket.Total = verifyVoucherResponse.Total;
+            }
             else
                 voucher = "";
 

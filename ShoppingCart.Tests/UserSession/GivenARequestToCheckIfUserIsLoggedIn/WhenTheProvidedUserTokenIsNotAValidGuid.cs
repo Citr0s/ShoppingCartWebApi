@@ -11,7 +11,7 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToCheckIfUserIsLoggedIn
         [OneTimeSetUp]
         public void SetUp()
         {
-            var subject = new UserSessionService(null, null);
+            var subject = new UserSessionService(null, null, null);
             _result = subject.IsLoggedIn("NOT_A_VALID_GUID");
         }
 

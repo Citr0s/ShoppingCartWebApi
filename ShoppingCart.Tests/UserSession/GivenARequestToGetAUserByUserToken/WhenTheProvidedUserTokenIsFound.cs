@@ -11,7 +11,7 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToGetAUserByUserToken
         [OneTimeSetUp]
         public void SetUp()
         {
-            var subject = new UserSessionService(null, null);
+            var subject = new UserSessionService(null, null, null);
             var userToken = subject.NewUser();
 
             _result = subject.GetUserByUserToken(userToken);

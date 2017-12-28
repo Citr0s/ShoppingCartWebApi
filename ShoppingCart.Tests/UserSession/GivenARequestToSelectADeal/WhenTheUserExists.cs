@@ -12,7 +12,7 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToSelectADeal
         [OneTimeSetUp]
         public void SetUp()
         {
-            var subject = new UserSessionService(null, null);
+            var subject = new UserSessionService(null, null, null);
             var userToken = subject.NewUser();
             subject.SelectDeal(userToken,
                 new VoucherDetailsModel {Voucher = new VoucherModel {Code = "SOME_VOUCHER_CODE"}});

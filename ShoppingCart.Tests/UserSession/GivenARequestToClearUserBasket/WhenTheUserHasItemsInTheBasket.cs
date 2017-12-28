@@ -8,6 +8,7 @@ using ShoppingCart.Data.Size;
 using ShoppingCart.Data.Topping;
 using ShoppingCart.Data.ToppingSize;
 using ShoppingCart.Services.UserSession;
+using ShoppingCart.Services.Voucher;
 
 namespace ShoppingCart.Tests.UserSession.GivenARequestToClearUserBasket
 {
@@ -17,6 +18,7 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToClearUserBasket
         private Basket _result;
         private Mock<IPizzaSizeRepository> _pizzaSizeRepository;
         private Mock<IToppingSizeRepository> _toppingSizeRepository;
+        private Mock<IVoucherService> _voucherService;
 
         [OneTimeSetUp]
         public void SetUp()
@@ -46,7 +48,9 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToClearUserBasket
                     }
                 });
 
-            var subject = new UserSessionService(_pizzaSizeRepository.Object, _toppingSizeRepository.Object);
+            _voucherService = new Mock<IVoucherService>();
+
+            var subject = new UserSessionService(_pizzaSizeRepository.Object, _toppingSizeRepository.Object, _voucherService.Object);
             var userToken = subject.NewUser();
             subject.AddItemToBasket(userToken,
                 new BasketData {PizzaId = 1, SizeId = 2, ExtraToppingIds = new List<int> {3}});

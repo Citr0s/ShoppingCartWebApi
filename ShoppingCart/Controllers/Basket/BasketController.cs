@@ -4,8 +4,10 @@ using ShoppingCart.Core.Communication.ErrorCodes;
 using ShoppingCart.Data.Database;
 using ShoppingCart.Data.IoC;
 using ShoppingCart.Data.Order;
+using ShoppingCart.Data.Voucher;
 using ShoppingCart.Services.Basket;
 using ShoppingCart.Services.UserSession;
+using ShoppingCart.Services.Voucher;
 
 namespace ShoppingCart.Controllers.Basket
 {
@@ -15,7 +17,7 @@ namespace ShoppingCart.Controllers.Basket
         private readonly IUserSessionService _userSessionService;
 
         public BasketController() : this(UserSessionService.Instance(),
-            new BasketService(new OrderRepository(IoC.Instance().For<IDatabase>()), UserSessionService.Instance()))
+            new BasketService(new OrderRepository(IoC.Instance().For<IDatabase>()), UserSessionService.Instance(), new VoucherService(new VoucherRepository(IoC.Instance().For<IDatabase>()))))
         {
         }
 

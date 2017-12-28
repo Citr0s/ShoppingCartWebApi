@@ -12,7 +12,7 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToSetBasketForUser
         [OneTimeSetUp]
         public void SetUp()
         {
-            var subject = new UserSessionService(null, null);
+            var subject = new UserSessionService(null, null, null);
             var userToken = subject.NewUser();
 
             subject.SetBasketForUser(userToken, new Basket {Total = Money.From(5000)});

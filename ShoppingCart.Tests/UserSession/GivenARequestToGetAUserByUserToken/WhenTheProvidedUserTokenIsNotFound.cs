@@ -13,7 +13,7 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToGetAUserByUserToken
         [OneTimeSetUp]
         public void SetUp()
         {
-            _subject = new UserSessionService(null, null);
+            _subject = new UserSessionService(null, null, null);
             _subject.NewUser();
 
             _result = _subject.GetUserByUserToken(Guid.NewGuid().ToString());

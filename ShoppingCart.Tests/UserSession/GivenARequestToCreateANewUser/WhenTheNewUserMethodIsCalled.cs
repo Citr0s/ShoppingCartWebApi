@@ -13,7 +13,7 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToCreateANewUser
         [OneTimeSetUp]
         public void SetUp()
         {
-            _subject = new UserSessionService(null, null);
+            _subject = new UserSessionService(null, null, null);
             _result = _subject.NewUser();
         }
 

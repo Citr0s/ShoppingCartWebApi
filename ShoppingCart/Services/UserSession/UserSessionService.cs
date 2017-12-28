@@ -7,6 +7,7 @@ using ShoppingCart.Data.Database;
 using ShoppingCart.Data.IoC;
 using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.ToppingSize;
+using ShoppingCart.Data.Voucher;
 using ShoppingCart.Services.Voucher;
 
 namespace ShoppingCart.Services.UserSession
@@ -16,13 +17,15 @@ namespace ShoppingCart.Services.UserSession
         private static UserSessionService _instance;
         private readonly IPizzaSizeRepository _pizzaSizeRepository;
         private readonly IToppingSizeRepository _toppingSizeRepository;
+        private readonly IVoucherService _voucherService;
         private readonly Dictionary<Guid, UserSessionData> _userSessions;
 
         public UserSessionService(IPizzaSizeRepository pizzaSizeRepository,
-            IToppingSizeRepository toppingSizeRepository)
+            IToppingSizeRepository toppingSizeRepository, IVoucherService voucherService)
         {
             _pizzaSizeRepository = pizzaSizeRepository;
             _toppingSizeRepository = toppingSizeRepository;
+            _voucherService = voucherService;
             _userSessions = new Dictionary<Guid, UserSessionData>();
         }
 
@@ -79,18 +82,23 @@ namespace ShoppingCart.Services.UserSession
             var finalPrice = userSessionData.Basket.Total;
             userSessionData.Basket.AdjustedPrice = false;
 
-            if (userSessionData.SelectedDeal != null)
-            {
-                var dealPrice = VoucherHelper.Check(userSessionData.Basket,
-                    userSessionData.SelectedDeal.AllowedDeliveryTypes, userSessionData.SelectedDeal.Voucher.Code);
-                userSessionData.Basket.AdjustedPrice = false;
+            if (userSessionData.SelectedDeal == null)
+                return finalPrice;
 
-                if (finalPrice != dealPrice)
-                {
-                    userSessionData.Basket.AdjustedPrice = true;
-                    finalPrice = dealPrice;
-                }
-            }
+            var verifyVoucherResponse = _voucherService.Verify(userSessionData.Basket,
+                userSessionData.SelectedDeal.AllowedDeliveryTypes, userSessionData.SelectedDeal.Voucher.Code);
+
+            if (verifyVoucherResponse.HasError)
+                return finalPrice;
+
+            var dealPrice = verifyVoucherResponse.Total;
+            userSessionData.Basket.AdjustedPrice = false;
+
+            if (finalPrice == dealPrice)
+                return finalPrice;
+
+            userSessionData.Basket.AdjustedPrice = true;
+            finalPrice = dealPrice;
 
             return finalPrice;
         }
@@ -173,7 +181,7 @@ namespace ShoppingCart.Services.UserSession
         {
             if (_instance == null)
                 _instance = new UserSessionService(new PizzaSizeRepository(IoC.Instance().For<IDatabase>()),
-                    new ToppingSizeRepository(IoC.Instance().For<IDatabase>()));
+                    new ToppingSizeRepository(IoC.Instance().For<IDatabase>()), new VoucherService(new VoucherRepository(IoC.Instance().For<IDatabase>())));
 
             return _instance;
 

@@ -5,6 +5,7 @@ using ShoppingCart.Core.Money;
 using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.ToppingSize;
 using ShoppingCart.Services.UserSession;
+using ShoppingCart.Services.Voucher;
 
 namespace ShoppingCart.Tests.UserSession.GivenARequestToGetBasketTotalForUser
 {
@@ -24,7 +25,9 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToGetBasketTotalForUser
             toppingSizeRepository.Setup(x => x.GetByIds(It.IsAny<List<int>>(), It.IsAny<int>()))
                 .Returns(() => new GetToppingSizeResponse());
 
-            var subject = new UserSessionService(pizzaSizeRepository.Object, toppingSizeRepository.Object);
+            var voucherService = new Mock<IVoucherService>();
+
+            var subject = new UserSessionService(pizzaSizeRepository.Object, toppingSizeRepository.Object, voucherService.Object);
             var userToken = subject.NewUser();
             subject.AddItemToBasket(userToken, new BasketData {PizzaId = 1, SizeId = 1});
 

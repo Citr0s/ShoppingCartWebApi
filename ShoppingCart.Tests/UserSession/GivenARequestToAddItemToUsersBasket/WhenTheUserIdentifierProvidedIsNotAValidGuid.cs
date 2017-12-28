@@ -4,6 +4,7 @@ using NUnit.Framework;
 using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.ToppingSize;
 using ShoppingCart.Services.UserSession;
+using ShoppingCart.Services.Voucher;
 
 namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
 {
@@ -14,14 +15,16 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToAddItemToUsersBasket
         private Mock<IPizzaSizeRepository> _pizzaSizeRepository;
         private Mock<IToppingSizeRepository> _toppingSizeRepository;
         private Basket _basket;
+        private Mock<IVoucherService> _voucherService;
 
         [OneTimeSetUp]
         public void SetUp()
         {
             _pizzaSizeRepository = new Mock<IPizzaSizeRepository>();
             _toppingSizeRepository = new Mock<IToppingSizeRepository>();
+            _voucherService = new Mock<IVoucherService>();
 
-            _subject = new UserSessionService(_pizzaSizeRepository.Object, _toppingSizeRepository.Object);
+            _subject = new UserSessionService(_pizzaSizeRepository.Object, _toppingSizeRepository.Object, _voucherService.Object);
             _subject.NewUser();
 
             var basketData = new BasketData

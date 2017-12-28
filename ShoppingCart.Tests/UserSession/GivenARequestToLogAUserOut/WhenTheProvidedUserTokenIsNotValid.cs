@@ -12,7 +12,7 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToLogAUserOut
         [OneTimeSetUp]
         public void SetUp()
         {
-            _subject = new UserSessionService(null, null);
+            _subject = new UserSessionService(null, null, null);
             _userToken = _subject.NewUser();
             _subject.LogIn(_userToken, 1);
 

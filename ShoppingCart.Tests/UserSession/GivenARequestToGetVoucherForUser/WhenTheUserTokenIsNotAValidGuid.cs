@@ -12,7 +12,7 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToGetVoucherForUser
         [OneTimeSetUp]
         public void SetUp()
         {
-            var subject = new UserSessionService(null, null);
+            var subject = new UserSessionService(null, null, null);
             _result = subject.GetVoucherForUser("NOT_A_VALID_GUID");
         }
 

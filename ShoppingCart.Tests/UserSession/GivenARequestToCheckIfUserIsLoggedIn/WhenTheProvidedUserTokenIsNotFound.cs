@@ -12,7 +12,7 @@ namespace ShoppingCart.Tests.UserSession.GivenARequestToCheckIfUserIsLoggedIn
         [OneTimeSetUp]
         public void SetUp()
         {
-            var subject = new UserSessionService(null, null);
+            var subject = new UserSessionService(null, null, null);
             subject.NewUser();
 
             _result = subject.IsLoggedIn(Guid.NewGuid().ToString());
