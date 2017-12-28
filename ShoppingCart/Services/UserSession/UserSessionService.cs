@@ -184,9 +184,6 @@ namespace ShoppingCart.Services.UserSession
                     new ToppingSizeRepository(IoC.Instance().For<IDatabase>()), new VoucherService(new VoucherRepository(IoC.Instance().For<IDatabase>())));
 
             return _instance;
-
-            // add logic to logout after 5 minutes of inactivity to prevent memory leaks
-            // every action reset the timer
         }
 
         private bool UserTokenIsValid(string userToken)
