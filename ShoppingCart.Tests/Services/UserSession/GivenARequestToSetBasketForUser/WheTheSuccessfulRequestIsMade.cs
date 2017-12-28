@@ -7,7 +7,7 @@ namespace ShoppingCart.Tests.Services.UserSession.GivenARequestToSetBasketForUse
     [TestFixture]
     public class WheTheSuccessfulRequestIsMade
     {
-        private Basket _result;
+        private ShoppingCart.Services.UserSession.Basket _result;
 
         [OneTimeSetUp]
         public void SetUp()
@@ -15,7 +15,7 @@ namespace ShoppingCart.Tests.Services.UserSession.GivenARequestToSetBasketForUse
             var subject = new UserSessionService(null, null, null);
             var userToken = subject.NewUser();
 
-            subject.SetBasketForUser(userToken, new Basket {Total = Money.From(5000)});
+            subject.SetBasketForUser(userToken, new ShoppingCart.Services.UserSession.Basket {Total = Money.From(5000)});
             _result = subject.GetBasketForUser(userToken);
         }
 

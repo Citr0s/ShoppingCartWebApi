@@ -15,7 +15,7 @@ namespace ShoppingCart.Tests.Services.UserSession.GivenARequestToClearUserBasket
     [TestFixture]
     public class WhenTheUserHasItemsInTheBasket
     {
-        private Basket _result;
+        private ShoppingCart.Services.UserSession.Basket _result;
         private Mock<IPizzaSizeRepository> _pizzaSizeRepository;
         private Mock<IToppingSizeRepository> _toppingSizeRepository;
         private Mock<IVoucherService> _voucherService;

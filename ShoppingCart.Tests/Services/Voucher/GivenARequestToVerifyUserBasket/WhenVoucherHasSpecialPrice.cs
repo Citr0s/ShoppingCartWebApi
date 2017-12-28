@@ -89,7 +89,7 @@ namespace ShoppingCart.Tests.Services.Voucher.GivenARequestToVerifyUserBasket
 
             var subject = new VoucherService(_voucherRepository.Object);
 
-            var userBasket = new Basket
+            var userBasket = new ShoppingCart.Services.UserSession.Basket
             {
                 Items = new List<BasketItem>
                 {

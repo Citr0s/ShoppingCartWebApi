@@ -5,7 +5,6 @@ using ShoppingCart.Controllers.Basket;
 using ShoppingCart.Core.Communication;
 using ShoppingCart.Core.Communication.ErrorCodes;
 using ShoppingCart.Data.Voucher;
-using ShoppingCart.Services.UserSession;
 using ShoppingCart.Services.Voucher;
 using GetAllVouchersResponse = ShoppingCart.Data.Voucher.GetAllVouchersResponse;
 
@@ -31,7 +30,7 @@ namespace ShoppingCart.Tests.Services.Voucher.GivenARequestToVerifyUserBasket
             });
 
             var subject = new VoucherService(_voucherRepository.Object);
-            _result = subject.Verify(new Basket(), new List<DeliveryType>(), "VOUCHER_CODE");
+            _result = subject.Verify(new ShoppingCart.Services.UserSession.Basket(), new List<DeliveryType>(), "VOUCHER_CODE");
         }
 
         [Test]

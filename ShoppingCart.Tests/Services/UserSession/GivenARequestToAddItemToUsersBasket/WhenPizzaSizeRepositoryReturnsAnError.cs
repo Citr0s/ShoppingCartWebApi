@@ -16,7 +16,7 @@ namespace ShoppingCart.Tests.Services.UserSession.GivenARequestToAddItemToUsersB
         private UserSessionService _subject;
         private Mock<IPizzaSizeRepository> _pizzaSizeRepository;
         private Mock<IToppingSizeRepository> _toppingSizeRepository;
-        private Basket _basket;
+        private ShoppingCart.Services.UserSession.Basket _basket;
         private Mock<IVoucherService> _voucherService;
 
         [OneTimeSetUp]

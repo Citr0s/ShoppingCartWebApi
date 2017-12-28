@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-using Moq;
+﻿using Moq;
 using NUnit.Framework;
 using ShoppingCart.Core.Communication;
 using ShoppingCart.Core.Communication.ErrorCodes;
-using ShoppingCart.Data.Delivery;
-using ShoppingCart.Data.Size;
 using ShoppingCart.Data.Voucher;
 using ShoppingCart.Services.Voucher;
 using GetAllVouchersResponse = ShoppingCart.Services.Voucher.GetAllVouchersResponse;

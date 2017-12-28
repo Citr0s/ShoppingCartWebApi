@@ -7,14 +7,14 @@ namespace ShoppingCart.Tests.Services.UserSession.GivenARequestToSetBasketForUse
     [TestFixture]
     public class WhenTheUserTokenIsNotValid
     {
-        private Basket _result;
+        private ShoppingCart.Services.UserSession.Basket _result;
 
         [OneTimeSetUp]
         public void SetUp()
         {
             var subject = new UserSessionService(null, null, null);
             var userToken = subject.NewUser();
-            subject.SetBasketForUser("SOME_INVALID_USER_TOKEN", new Basket {Total = Money.From(5000)});
+            subject.SetBasketForUser("SOME_INVALID_USER_TOKEN", new ShoppingCart.Services.UserSession.Basket {Total = Money.From(5000)});
 
             _result = subject.GetBasketForUser(userToken);
         }

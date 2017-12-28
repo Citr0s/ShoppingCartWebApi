@@ -3,7 +3,6 @@ using System.Web.Mvc;
 using Moq;
 using NUnit.Framework;
 using ShoppingCart.Core.Money;
-using ShoppingCart.Data.Voucher;
 using ShoppingCart.Services.UserSession;
 using ShoppingCart.Services.Voucher;
 using GetAllVouchersResponse = ShoppingCart.Services.Voucher.GetAllVouchersResponse;

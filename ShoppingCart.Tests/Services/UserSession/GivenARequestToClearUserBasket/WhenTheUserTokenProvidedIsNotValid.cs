@@ -16,7 +16,7 @@ namespace ShoppingCart.Tests.Services.UserSession.GivenARequestToClearUserBasket
     [TestFixture]
     public class WhenTheUserTokenProvidedIsNotValid
     {
-        private Basket _result;
+        private ShoppingCart.Services.UserSession.Basket _result;
         private Mock<IToppingSizeRepository> _toppingSizeRepository;
         private Mock<IPizzaSizeRepository> _pizzaSizeRepository;
         private Mock<IVoucherService> _voucherService;

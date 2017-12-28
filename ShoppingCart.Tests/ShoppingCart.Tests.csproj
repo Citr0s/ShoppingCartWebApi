@@ -80,6 +80,7 @@
     <Compile Include="Controllers\DealsController\GivenARequestToADealsControllerIndex\WhenRequestDoesNotContainSessionToken.cs" />
     <Compile Include="Controllers\HomeController\GivenARequestToAHomeControllerIndex\WhenRequestContainsSessionToken.cs" />
     <Compile Include="Controllers\HomeController\GivenARequestToAHomeControllerIndex\WhenRequestDoesNotContainSessionToken.cs" />
+    <Compile Include="Services\Basket\GivenARequestToCheckout\WhenValidRequestIsProvided.cs" />
     <Compile Include="Services\PizzaPrice\GivenAPizzaPriceService\WhenGetPizzaToppingsRepositoryReturnsAnError.cs" />
     <Compile Include="Services\PizzaPrice\GivenAPizzaPriceService\WhenASuccessfulRequestIsProvided.cs" />
     <Compile Include="Services\PizzaPrice\GivenAPizzaPriceService\WhenGetPizzaPriceRepositoryReturnsAnError.cs" />
