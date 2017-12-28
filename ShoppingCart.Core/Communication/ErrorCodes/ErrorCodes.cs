@@ -9,5 +9,7 @@
         public static int CredentialsAreIncomplete = 4;
         public static int EmailAddressIsNotValid = 5;
         public static int NoMatchingVoucherFound = 6;
+        public static int DeliveryTypeUnknown = 7;
+        public static int OrderStatusUnkown = 8;
     }
 }

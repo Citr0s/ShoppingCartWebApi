@@ -22,8 +22,7 @@ namespace ShoppingCart.Services.Basket
             _voucherService = voucherService;
         }
 
-        public BasketCheckoutResponse Checkout(DeliveryType delivery, string voucher, string userId,
-            OrderStatus orderStatus)
+        public BasketCheckoutResponse Checkout(DeliveryType delivery, string voucher, string userId, OrderStatus orderStatus)
         {
             var response = new BasketCheckoutResponse();
 
@@ -39,13 +38,21 @@ namespace ShoppingCart.Services.Basket
 
             if (delivery == DeliveryType.Unknown)
             {
-                response.AddError(new Error {UserMessage = "Delivery type not specified."});
+                response.AddError(new Error
+                {
+                    Code = ErrorCodes.DeliveryTypeUnknown,
+                    UserMessage = "Delivery type not specified."
+                });
                 return response;
             }
 
             if (orderStatus == OrderStatus.Unknown)
             {
-                response.AddError(new Error {UserMessage = "Order status not specified."});
+                response.AddError(new Error
+                {
+                    Code = ErrorCodes.OrderStatusUnkown,
+                    UserMessage = "Order status not specified."
+                });
                 return response;
             }
 
@@ -58,9 +65,6 @@ namespace ShoppingCart.Services.Basket
                 if(!verifyVoucherResponse.HasError)
                     userBasket.Total = verifyVoucherResponse.Total;
             }
-            else
-                voucher = "";
-
 
             var orderRequest = new SaveOrderRequest
             {
