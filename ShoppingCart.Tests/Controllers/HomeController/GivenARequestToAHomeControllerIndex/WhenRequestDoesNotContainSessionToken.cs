@@ -2,10 +2,10 @@
 using Moq;
 using NUnit.Framework;
 using ShoppingCart.Core.Money;
-using ShoppingCart.Services.PizzaPrice;
-using ShoppingCart.Services.Size;
-using ShoppingCart.Services.Topping;
-using ShoppingCart.Services.UserSession;
+using ShoppingCart.Data.Services.PizzaPrice;
+using ShoppingCart.Data.Services.Size;
+using ShoppingCart.Data.Services.Topping;
+using ShoppingCart.Data.Services.UserSession;
 
 namespace ShoppingCart.Tests.Controllers.HomeController.GivenARequestToAHomeControllerIndex
 {

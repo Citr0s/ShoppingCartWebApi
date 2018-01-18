@@ -3,9 +3,9 @@ using System.Diagnostics.CodeAnalysis;
 using System.Web.Mvc;
 using ShoppingCart.Data.Database;
 using ShoppingCart.Data.IoC;
+using ShoppingCart.Data.Services.UserSession;
+using ShoppingCart.Data.Services.Voucher;
 using ShoppingCart.Data.Voucher;
-using ShoppingCart.Services.UserSession;
-using ShoppingCart.Services.Voucher;
 
 namespace ShoppingCart.Controllers.Deals
 {

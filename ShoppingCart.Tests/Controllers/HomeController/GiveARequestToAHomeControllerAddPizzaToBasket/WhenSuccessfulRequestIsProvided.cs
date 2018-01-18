@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using Moq;
 using NUnit.Framework;
-using ShoppingCart.Services.UserSession;
+using ShoppingCart.Data.Services.UserSession;
 
 namespace ShoppingCart.Tests.Controllers.HomeController.GiveARequestToAHomeControllerAddPizzaToBasket
 {

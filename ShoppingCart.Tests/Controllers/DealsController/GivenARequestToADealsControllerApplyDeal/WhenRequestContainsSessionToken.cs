@@ -1,10 +1,10 @@
 ﻿using System.Web.Mvc;
 using Moq;
 using NUnit.Framework;
+using ShoppingCart.Data.Services.UserSession;
+using ShoppingCart.Data.Services.Voucher;
 using ShoppingCart.Data.Voucher;
-using ShoppingCart.Services.UserSession;
-using ShoppingCart.Services.Voucher;
-using GetVoucherByIdResponse = ShoppingCart.Services.Voucher.GetVoucherByIdResponse;
+using GetVoucherByIdResponse = ShoppingCart.Data.Services.Voucher.GetVoucherByIdResponse;
 
 namespace ShoppingCart.Tests.Controllers.DealsController.GivenARequestToADealsControllerApplyDeal
 {

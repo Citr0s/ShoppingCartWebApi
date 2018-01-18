@@ -2,9 +2,9 @@
 using ShoppingCart.Core.Hasher;
 using ShoppingCart.Data.Database;
 using ShoppingCart.Data.IoC;
+using ShoppingCart.Data.Services.User;
+using ShoppingCart.Data.Services.UserSession;
 using ShoppingCart.Data.User;
-using ShoppingCart.Services.User;
-using ShoppingCart.Services.UserSession;
 
 namespace ShoppingCart.Controllers.User
 {

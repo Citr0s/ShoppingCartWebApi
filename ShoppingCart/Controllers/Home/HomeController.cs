@@ -5,12 +5,12 @@ using ShoppingCart.Data.Database;
 using ShoppingCart.Data.IoC;
 using ShoppingCart.Data.PizzaSize;
 using ShoppingCart.Data.PizzaTopping;
+using ShoppingCart.Data.Services.PizzaPrice;
+using ShoppingCart.Data.Services.Size;
+using ShoppingCart.Data.Services.Topping;
+using ShoppingCart.Data.Services.UserSession;
 using ShoppingCart.Data.Size;
 using ShoppingCart.Data.Topping;
-using ShoppingCart.Services.PizzaPrice;
-using ShoppingCart.Services.Size;
-using ShoppingCart.Services.Topping;
-using ShoppingCart.Services.UserSession;
 
 namespace ShoppingCart.Controllers.Home
 {

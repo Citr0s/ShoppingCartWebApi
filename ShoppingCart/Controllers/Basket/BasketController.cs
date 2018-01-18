@@ -4,10 +4,10 @@ using ShoppingCart.Core.Communication.ErrorCodes;
 using ShoppingCart.Data.Database;
 using ShoppingCart.Data.IoC;
 using ShoppingCart.Data.Order;
+using ShoppingCart.Data.Services.Basket;
+using ShoppingCart.Data.Services.UserSession;
+using ShoppingCart.Data.Services.Voucher;
 using ShoppingCart.Data.Voucher;
-using ShoppingCart.Services.Basket;
-using ShoppingCart.Services.UserSession;
-using ShoppingCart.Services.Voucher;
 
 namespace ShoppingCart.Controllers.Basket
 {
@@ -151,7 +151,7 @@ namespace ShoppingCart.Controllers.Basket
                 return Redirect("/Basket");
 
 
-            var mappedBasket = new Services.UserSession.Basket
+            var mappedBasket = new Data.Services.UserSession.Basket
             {
                 Total = selectedBasket.Basket.Total,
                 Items = selectedBasket.Basket.Orders.ConvertAll(orderDetails => new BasketItem

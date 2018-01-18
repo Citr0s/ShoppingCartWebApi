@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using ShoppingCart.Services.Voucher;
+using ShoppingCart.Data.Services.Voucher;
 using ShoppingCart.Views;
 
 namespace ShoppingCart.Controllers.Deals

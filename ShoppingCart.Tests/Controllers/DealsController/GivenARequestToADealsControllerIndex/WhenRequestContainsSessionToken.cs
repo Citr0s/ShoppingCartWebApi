@@ -2,8 +2,8 @@
 using Moq;
 using NUnit.Framework;
 using ShoppingCart.Core.Money;
-using ShoppingCart.Services.UserSession;
-using ShoppingCart.Services.Voucher;
+using ShoppingCart.Data.Services.UserSession;
+using ShoppingCart.Data.Services.Voucher;
 
 namespace ShoppingCart.Tests.Controllers.DealsController.GivenARequestToADealsControllerIndex
 {

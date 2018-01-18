@@ -1,7 +1,7 @@
 using System.Collections.Generic;
-using ShoppingCart.Services.PizzaPrice;
-using ShoppingCart.Services.Size;
-using ShoppingCart.Services.Topping;
+using ShoppingCart.Data.Services.PizzaPrice;
+using ShoppingCart.Data.Services.Size;
+using ShoppingCart.Data.Services.Topping;
 using ShoppingCart.Views;
 
 namespace ShoppingCart.Controllers.Home

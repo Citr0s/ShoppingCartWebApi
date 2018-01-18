@@ -1,10 +1,10 @@
 ﻿using System.Collections.Generic;
 using Moq;
 using NUnit.Framework;
-using ShoppingCart.Controllers.Basket;
 using ShoppingCart.Data.Database;
 using ShoppingCart.Data.Order;
 using ShoppingCart.Data.Pizza;
+using ShoppingCart.Data.Services.Basket;
 using ShoppingCart.Data.Size;
 using ShoppingCart.Data.Topping;
 using ShoppingCart.Data.User;

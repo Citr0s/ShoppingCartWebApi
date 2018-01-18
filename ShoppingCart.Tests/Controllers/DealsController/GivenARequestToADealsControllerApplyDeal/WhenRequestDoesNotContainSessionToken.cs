@@ -3,10 +3,10 @@ using System.Web.Mvc;
 using Moq;
 using NUnit.Framework;
 using ShoppingCart.Core.Money;
-using ShoppingCart.Services.UserSession;
-using ShoppingCart.Services.Voucher;
-using GetAllVouchersResponse = ShoppingCart.Services.Voucher.GetAllVouchersResponse;
-using GetVoucherByIdResponse = ShoppingCart.Services.Voucher.GetVoucherByIdResponse;
+using ShoppingCart.Data.Services.UserSession;
+using ShoppingCart.Data.Services.Voucher;
+using GetAllVouchersResponse = ShoppingCart.Data.Services.Voucher.GetAllVouchersResponse;
+using GetVoucherByIdResponse = ShoppingCart.Data.Services.Voucher.GetVoucherByIdResponse;
 
 namespace ShoppingCart.Tests.Controllers.DealsController.GivenARequestToADealsControllerApplyDeal
 {
