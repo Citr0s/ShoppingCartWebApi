@@ -39,21 +39,15 @@
                             <br/>
 
                             <h5>Size</h5>
-                            <!--
-                            @foreach (var size in Model.Form.Sizes)
-                            {
-                            <label class="custom-control custom-checkbox" style="margin-right: 15px;">
-                                @Html.RadioButton("sizeId", size.Key.Id, new {@class = "custom-control-input", @checked
-                                = true})
+                            <label class="custom-control custom-checkbox" style="margin-right: 15px;"
+                                   *ngFor="let size of model.sizes">
+                                <input type="radio" name="size" value="{{ size.id }}" [checked]="size.id == 1"/>
                                 <span class="custom-control-indicator"></span>
-                                <span class="custom-control-description">@size.Key.Name</span>
+                                <span class="custom-control-description">{{ size.name }}</span>
                             </label>
-                            }
-                            @Html.Hidden("pizzaId", pizza.Id)
-
+                            <!--@Html.Hidden("pizzaId", pizza.Id)-->
                             <br/>
                             <br/>
-                            -->
                             <input type="submit" value="Add to Basket" class="btn btn-primary"/>
                         </fieldset>
                         <!--}-->

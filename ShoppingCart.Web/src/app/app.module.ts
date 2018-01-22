@@ -11,6 +11,8 @@ import {PizzaService} from '../shared/services/pizza/pizza.service';
 import {PizzaRepository} from '../shared/repositories/pizza/pizza.repository';
 import {ToppingService} from '../shared/services/topping/topping.service';
 import {ToppingRepository} from '../shared/repositories/topping/topping.repository';
+import {SizeService} from '../shared/services/size/size.service';
+import {SizeRepository} from '../shared/repositories/size/size.repository';
 
 
 @NgModule({
@@ -27,7 +29,9 @@ import {ToppingRepository} from '../shared/repositories/topping/topping.reposito
         PizzaService,
         PizzaRepository,
         ToppingService,
-        ToppingRepository
+        ToppingRepository,
+        SizeService,
+        SizeRepository
     ],
     bootstrap: [AppComponent]
 })
