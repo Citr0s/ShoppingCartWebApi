@@ -1,7 +1,7 @@
 export class Pizza {
     id: number;
     name: string;
-    sizes: {
+    sizes: [{
         size: {
             id: number;
             name: string;
@@ -11,9 +11,9 @@ export class Pizza {
             inPence: number;
             inPounds: number;
         }
-        toppings: {
-            id: number;
-            name: string;
-        }
-    };
+    }];
+  toppings: [{
+    id: number;
+    name: string;
+  }];
 }
