@@ -1,9 +1,9 @@
 export class Pizza {
-    id: string;
+    id: number;
     name: string;
     sizes: {
         size: {
-            id: string;
+            id: number;
             name: string;
         },
         price: {
@@ -12,7 +12,7 @@ export class Pizza {
             inPounds: number;
         }
         toppings: {
-            id: string;
+            id: number;
             name: string;
         }
     };

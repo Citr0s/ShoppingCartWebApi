@@ -48,7 +48,7 @@
     <Compile Include="Hasher\IHasher.cs" />
     <Compile Include="Money\Money.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="User\User.cs" />
+    <Compile Include="Account\User.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

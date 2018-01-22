@@ -1,4 +1,4 @@
-﻿namespace ShoppingCart.Core.User
+﻿namespace ShoppingCart.Core.Account
 {
     public class User
     {
