@@ -3,7 +3,7 @@ import {environment} from '../../../environments/environment';
 import {Injectable} from '@angular/core';
 
 @Injectable()
-export class PizzaRepository {
+export class ToppingRepository {
     private _httpClient: HttpClient;
 
     constructor(httpClient: HttpClient) {
@@ -11,6 +11,6 @@ export class PizzaRepository {
     }
 
     public getAll() {
-        return this._httpClient.get(`${environment.backendUrl}/api/v1/pizza`);
+        return this._httpClient.get(`${environment.backendUrl}/api/v1/topping`);
     }
 }

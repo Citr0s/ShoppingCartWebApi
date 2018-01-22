@@ -9,6 +9,8 @@ import {RouterModule} from '@angular/router';
 import {appRoutes} from './app.routes';
 import {PizzaService} from '../shared/services/pizza/pizza.service';
 import {PizzaRepository} from '../shared/repositories/pizza/pizza.repository';
+import {ToppingService} from '../shared/services/topping/topping.service';
+import {ToppingRepository} from '../shared/repositories/topping/topping.repository';
 
 
 @NgModule({
@@ -23,7 +25,9 @@ import {PizzaRepository} from '../shared/repositories/pizza/pizza.repository';
     ],
     providers: [
         PizzaService,
-        PizzaRepository
+        PizzaRepository,
+        ToppingService,
+        ToppingRepository
     ],
     bootstrap: [AppComponent]
 })

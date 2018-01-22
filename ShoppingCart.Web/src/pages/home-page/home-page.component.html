@@ -26,23 +26,20 @@
                 </div>
                 <div class="row">
                     <div class="col-md-12">
-                        <!--@using (Html.BeginForm("AddPizzaToBasket", "Home", FormMethod.Post))
-                        {
+                        <!--@using (Html.BeginForm("AddPizzaToBasket", "Home", FormMethod.Post))-->
                         <fieldset>
                             <h5>Extra Toppings</h5>
-                            @foreach (var topping in Model.Form.ExtraToppings)
-                            {
-                            <label class="custom-control custom-checkbox" style="margin-right: 15px;">
-                                @Html.CheckBox("extraToppings", topping.Value, new {value = topping.Key.Id, @class =
-                                "custom-control-input"})
+                            <label class="custom-control custom-checkbox" style="margin-right: 15px;"
+                                   *ngFor="let topping of model.toppings">
+                                <input type="checkbox" value="{{ topping.id }}" class="custom-control-input"/>
                                 <span class="custom-control-indicator"></span>
-                                <span class="custom-control-description">@topping.Key.Name</span>
+                                <span class="custom-control-description">{{ topping.name }}</span>
                             </label>
-                            }
 
                             <br/>
 
                             <h5>Size</h5>
+                            <!--
                             @foreach (var size in Model.Form.Sizes)
                             {
                             <label class="custom-control custom-checkbox" style="margin-right: 15px;">
@@ -56,10 +53,10 @@
 
                             <br/>
                             <br/>
-
+                            -->
                             <input type="submit" value="Add to Basket" class="btn btn-primary"/>
                         </fieldset>
-                        }-->
+                        <!--}-->
                     </div>
                 </div>
             </div>
