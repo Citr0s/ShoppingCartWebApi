@@ -1,1 +1,31 @@
-/* You can add global styles to this file, and also import other style files */
+.basket-wrapper {
+  color: #fff;
+  text-align: right;
+}
+
+.basket-wrapper a {
+  color: #fff;
+}
+
+.basket-wrapper span {
+  cursor: pointer;
+  margin-top: 7px;
+  padding: 10px;
+}
+
+.basket-wrapper span:hover {
+  background-color: #ffffff;
+  color: #000;
+}
+
+.navbar-nav {
+  a {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}
+
+.body-content {
+  margin-top: 50px;
+}

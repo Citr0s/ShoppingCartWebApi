@@ -30,10 +30,19 @@ namespace ShoppingCart.Data.Services.PizzaPrice
                     var pizzaToppings = toppingRecord.Where(x => x.Pizza.Id == pizzaSizeModel.Id).ToList();
 
                     foreach (var pizzaTopping in pizzaToppings)
-                        pizzaSizeModel.Toppings.Add(new ToppingModel {Name = pizzaTopping.Topping.Name});
+                        pizzaSizeModel.Toppings.Add(new ToppingModel { Name = pizzaTopping.Topping.Name });
                 }
 
-                pizzaSizeModel.Sizes.Add(new SizeModel {Name = pizzaPrice.Size.Name}, Money.From(pizzaPrice.Price));
+                pizzaSizeModel.Sizes.Add(new SizeModel { Name = pizzaPrice.Size.Name }, Money.From(pizzaPrice.Price));
+                pizzaSizeModel.ApiSizes.Add(new ApiSizeModel
+                {
+                    Size = new SizeModel
+                    {
+                        Id = pizzaPrice.Size.Id,
+                        Name = pizzaPrice.Size.Name
+                    },
+                    Price = Money.From(pizzaPrice.Price)
+                });
 
                 if (response.All(x => x.Id != pizzaPrice.Pizza.Id))
                     response.Add(pizzaSizeModel);

@@ -1,24 +1,25 @@
 import {Component, OnInit} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
-import {environment} from '../../environments/environment';
+import {PizzaService} from '../../shared/services/pizza/pizza.service';
+import {HomePageModel} from './home-page.model';
 
 @Component({
-  selector: 'home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss']
+    selector: 'home-page',
+    templateUrl: './home-page.component.html',
+    styleUrls: ['./home-page.component.scss']
 })
 
 export class HomePageComponent implements OnInit {
-  private _httpClient: HttpClient;
+    public model: HomePageModel;
+    private _pizzaService: PizzaService;
 
-  constructor(httpClient: HttpClient) {
-    this._httpClient = httpClient;
-  }
+    constructor(pizzaService: PizzaService) {
+        this._pizzaService = pizzaService;
+        this.model = new HomePageModel();
+    }
 
-  ngOnInit(): void {
-    this._httpClient.get(`${environment.backendUrl}/api/v1/pizza`)
-      .subscribe((data) => {
-        console.log(data);
-      });
-  }
+    ngOnInit(): void {
+        this._pizzaService.getAll().then((payload) => {
+            this.model.pizzas = payload;
+        });
+    }
 }
