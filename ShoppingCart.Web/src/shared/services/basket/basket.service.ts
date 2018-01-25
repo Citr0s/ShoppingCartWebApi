@@ -18,6 +18,15 @@ export class BasketService {
             sizeId: sizeId,
             toppingIds: toppingIds
         };
-        this._basketRepository.addToBasket(request);
+
+      return new Promise((resolve, reject) => {
+        this._basketRepository.addToBasket(request)
+          .subscribe((payload) => {
+            resolve(payload);
+          }, (error) => {
+            reject(error);
+          });
+      });
+
     }
 }

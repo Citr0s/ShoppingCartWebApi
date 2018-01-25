@@ -30,7 +30,7 @@
                             <h5>Extra Toppings</h5>
                             <label class="custom-control custom-checkbox" style="margin-right: 15px;"
                                    *ngFor="let topping of model.toppings">
-                                <input type="checkbox" value="{{ topping.id }}" class="custom-control-input"
+                                <input type="checkbox" name="extra-toppings-{{pizza.id}}" value="{{ topping.id }}" class="custom-control-input"
                                 />
                                 <span class="custom-control-indicator"></span>
                                 <span class="custom-control-description">{{ topping.name }}</span>
@@ -41,7 +41,7 @@
                             <h5>Size</h5>
                             <label class="custom-control custom-checkbox" style="margin-right: 15px;"
                                    *ngFor="let size of model.sizes">
-                                <input type="radio" name="size" value="{{ size.id }}"/>
+                                <input type="radio" name="size-{{pizza.id}}" value="{{ size.id }}" />
                                 <span class="custom-control-indicator"></span>
                                 <span class="custom-control-description">{{ size.name }}</span>
                             </label>
