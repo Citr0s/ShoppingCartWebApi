@@ -17,7 +17,7 @@ namespace ShoppingCart.Data.Services.UserSession
         private readonly IPizzaSizeRepository _pizzaSizeRepository;
         private readonly IToppingSizeRepository _toppingSizeRepository;
         private readonly IVoucherService _voucherService;
-        private static readonly Dictionary<Guid, UserSessionData> _userSessions = new Dictionary<Guid, UserSessionData>();
+        private static readonly Dictionary<Guid, UserSessionData> UserSessions = new Dictionary<Guid, UserSessionData>();
 
         public UserSessionService(IPizzaSizeRepository pizzaSizeRepository,
             IToppingSizeRepository toppingSizeRepository, IVoucherService voucherService)
@@ -30,7 +30,7 @@ namespace ShoppingCart.Data.Services.UserSession
         public string NewUser()
         {
             var userToken = Guid.NewGuid();
-            _userSessions.Add(userToken, new UserSessionData());
+            UserSessions.Add(userToken, new UserSessionData());
 
             return userToken.ToString();
         }
@@ -65,7 +65,7 @@ namespace ShoppingCart.Data.Services.UserSession
             }
 
             basketItem.Total = Money.From(currentItemPrice);
-            var userSession = _userSessions[Guid.Parse(userToken)];
+            var userSession = UserSessions[Guid.Parse(userToken)];
 
             userSession.Basket.Total = Money.From(userSession.Basket.Total.InPence + currentItemPrice);
             userSession.Basket.Items.Add(basketItem);
@@ -76,7 +76,7 @@ namespace ShoppingCart.Data.Services.UserSession
             if (!UserTokenIsValid(userToken))
                 return Money.From(0);
 
-            var userSessionData = _userSessions[Guid.Parse(userToken)];
+            var userSessionData = UserSessions[Guid.Parse(userToken)];
             var finalPrice = userSessionData.Basket.Total;
             userSessionData.Basket.AdjustedPrice = false;
 
@@ -106,7 +106,7 @@ namespace ShoppingCart.Data.Services.UserSession
             if (!UserTokenIsValid(userToken))
                 return new Basket();
 
-            return _userSessions[Guid.Parse(userToken)].Basket;
+            return UserSessions[Guid.Parse(userToken)].Basket;
         }
 
         public void LogIn(string userToken, int userId)
@@ -114,7 +114,7 @@ namespace ShoppingCart.Data.Services.UserSession
             if (!UserTokenIsValid(userToken))
                 return;
 
-            _userSessions[Guid.Parse(userToken)].LogIn(userId);
+            UserSessions[Guid.Parse(userToken)].LogIn(userId);
         }
 
         public bool IsLoggedIn(string userToken)
@@ -122,7 +122,7 @@ namespace ShoppingCart.Data.Services.UserSession
             if (!UserTokenIsValid(userToken))
                 return false;
 
-            return _userSessions[Guid.Parse(userToken)].LoggedIn;
+            return UserSessions[Guid.Parse(userToken)].LoggedIn;
         }
 
         public void LogOut(string userToken)
@@ -130,7 +130,7 @@ namespace ShoppingCart.Data.Services.UserSession
             if (!UserTokenIsValid(userToken))
                 return;
 
-            _userSessions[Guid.Parse(userToken)].LogOut();
+            UserSessions[Guid.Parse(userToken)].LogOut();
         }
 
         public int GetUserByUserToken(string userToken)
@@ -138,7 +138,7 @@ namespace ShoppingCart.Data.Services.UserSession
             if (!UserTokenIsValid(userToken))
                 return 0;
 
-            return _userSessions[Guid.Parse(userToken)].UserId;
+            return UserSessions[Guid.Parse(userToken)].UserId;
         }
 
         public void ClearBasketForUser(string userToken)
@@ -146,8 +146,8 @@ namespace ShoppingCart.Data.Services.UserSession
             if (!UserTokenIsValid(userToken))
                 return;
 
-            _userSessions[Guid.Parse(userToken)].Basket.Items = new List<BasketItem>();
-            _userSessions[Guid.Parse(userToken)].Basket.Total = Money.From(0);
+            UserSessions[Guid.Parse(userToken)].Basket.Items = new List<BasketItem>();
+            UserSessions[Guid.Parse(userToken)].Basket.Total = Money.From(0);
         }
 
         public void SetBasketForUser(string userToken, Basket basket)
@@ -155,7 +155,7 @@ namespace ShoppingCart.Data.Services.UserSession
             if (!UserTokenIsValid(userToken))
                 return;
 
-            _userSessions[Guid.Parse(userToken)].Basket = basket;
+            UserSessions[Guid.Parse(userToken)].Basket = basket;
         }
 
         public void SelectDeal(string userToken, VoucherDetailsModel voucher)
@@ -163,7 +163,7 @@ namespace ShoppingCart.Data.Services.UserSession
             if (!UserTokenIsValid(userToken))
                 return;
 
-            _userSessions[Guid.Parse(userToken)].SelectedDeal = voucher;
+            UserSessions[Guid.Parse(userToken)].SelectedDeal = voucher;
         }
 
         public VoucherDetailsModel GetVoucherForUser(string userToken)
@@ -171,7 +171,7 @@ namespace ShoppingCart.Data.Services.UserSession
             if (!UserTokenIsValid(userToken))
                 return new VoucherDetailsModel();
 
-            return _userSessions[Guid.Parse(userToken)].SelectedDeal;
+            return UserSessions[Guid.Parse(userToken)].SelectedDeal;
         }
 
         [ExcludeFromCodeCoverage]
@@ -186,7 +186,7 @@ namespace ShoppingCart.Data.Services.UserSession
 
         private bool UserTokenIsValid(string userToken)
         {
-            return Guid.TryParse(userToken, out _) && _userSessions.ContainsKey(Guid.Parse(userToken));
+            return Guid.TryParse(userToken, out _) && UserSessions.ContainsKey(Guid.Parse(userToken));
         }
     }
 }

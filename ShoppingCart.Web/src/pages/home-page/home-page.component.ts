@@ -52,7 +52,7 @@ export class HomePageComponent implements OnInit {
       extraToppingIds.push($(y).val());
     });
 
-    this._basketService.addToBasket(pizzaId, $(`input[name=size-${pizzaId}]:checked`).val(), extraToppingIds, this.model.user.token)
+    this._basketService.addToBasket(pizzaId, +$(`input[name=size-${pizzaId}]:checked`).val(), extraToppingIds, this.model.user.token)
       .then((payload) => {
         console.log(payload);
       });
