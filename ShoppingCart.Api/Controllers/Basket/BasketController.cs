@@ -22,7 +22,7 @@ namespace ShoppingCart.Api.Controllers.Basket
 
         [HttpPost]
         [Route("add")]
-        public IHttpActionResult GetAll([FromBody] AddToBasketRequest request)
+        public IHttpActionResult AddToBasket([FromBody] AddToBasketRequest request)
         {
             if (request.PizzaId == 0 || request.SizeId == 0 || request.User == null)
                 return BadRequest();
@@ -31,7 +31,7 @@ namespace ShoppingCart.Api.Controllers.Basket
             {
                 PizzaId = request.PizzaId,
                 SizeId = request.SizeId,
-                ExtraToppingIds = request.ExtraToppings
+                ExtraToppingIds = request.ToppingIds
             };
 
             _userSessionService.AddItemToBasket(request.User.Token, basketItem);

@@ -17,7 +17,7 @@ namespace ShoppingCart.Data.Services.UserSession
         private readonly IPizzaSizeRepository _pizzaSizeRepository;
         private readonly IToppingSizeRepository _toppingSizeRepository;
         private readonly IVoucherService _voucherService;
-        private readonly Dictionary<Guid, UserSessionData> _userSessions;
+        private static readonly Dictionary<Guid, UserSessionData> _userSessions = new Dictionary<Guid, UserSessionData>();
 
         public UserSessionService(IPizzaSizeRepository pizzaSizeRepository,
             IToppingSizeRepository toppingSizeRepository, IVoucherService voucherService)
@@ -25,7 +25,6 @@ namespace ShoppingCart.Data.Services.UserSession
             _pizzaSizeRepository = pizzaSizeRepository;
             _toppingSizeRepository = toppingSizeRepository;
             _voucherService = voucherService;
-            _userSessions = new Dictionary<Guid, UserSessionData>();
         }
 
         public string NewUser()
