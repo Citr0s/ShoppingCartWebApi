@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
+import {Basket, UserBasketService} from '../shared/services/user-basket/user-basket.service';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  private _userBasketService: UserBasketService;
+  public basket: Basket;
+
+  constructor(userBasketService: UserBasketService) {
+    this._userBasketService = userBasketService;
+    this._userBasketService.onChange
+      .subscribe(() => {
+        this.basket = this._userBasketService.getBasket();
+      });
+  }
 }

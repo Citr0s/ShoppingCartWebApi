@@ -18,6 +18,7 @@ import {UserRepository} from '../shared/repositories/user/user.repository';
 import {FormsModule} from '@angular/forms';
 import {BasketService} from '../shared/services/basket/basket.service';
 import {BasketRepository} from '../shared/repositories/basket/basket.repository';
+import {UserBasketService} from '../shared/services/user-basket/user-basket.service';
 
 
 @NgModule({
@@ -41,7 +42,8 @@ import {BasketRepository} from '../shared/repositories/basket/basket.repository'
         UserService,
         UserRepository,
         BasketService,
-        BasketRepository
+        BasketRepository,
+        UserBasketService
     ],
     bootstrap: [AppComponent]
 })

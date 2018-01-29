@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {PizzaService} from '../../shared/services/pizza/pizza.service';
 import {HomePageModel} from './home-page.model';
 import {ToppingService} from '../../shared/services/topping/topping.service';
@@ -6,6 +6,7 @@ import {SizeService} from '../../shared/services/size/size.service';
 import {UserService} from '../../shared/services/user/user.service';
 import {BasketService} from '../../shared/services/basket/basket.service';
 import * as $ from 'jquery';
+import {UserBasketService} from '../../shared/services/user-basket/user-basket.service';
 
 @Component({
   selector: 'home-page',
@@ -20,13 +21,15 @@ export class HomePageComponent implements OnInit {
   private _sizeService: SizeService;
   private _userService: UserService;
   private _basketService: BasketService;
+  private _userBasketSerice: UserBasketService;
 
-  constructor(pizzaService: PizzaService, toppingService: ToppingService, sizeService: SizeService, userService: UserService, basketService: BasketService) {
+  constructor(pizzaService: PizzaService, toppingService: ToppingService, sizeService: SizeService, userService: UserService, basketService: BasketService, userBasketSerice: UserBasketService) {
     this._pizzaService = pizzaService;
     this._toppingService = toppingService;
     this._sizeService = sizeService;
     this._userService = userService;
     this._basketService = basketService;
+    this._userBasketSerice = userBasketSerice;
     this.model = new HomePageModel();
   }
 
@@ -54,7 +57,7 @@ export class HomePageComponent implements OnInit {
 
     this._basketService.addToBasket(pizzaId, +$(`input[name=size-${pizzaId}]:checked`).val(), extraToppingIds, this.model.user.token)
       .then((payload) => {
-        console.log(payload);
+        this._userBasketSerice.setBasket(payload);
       });
   }
 }
