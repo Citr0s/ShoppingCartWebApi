@@ -19,12 +19,16 @@ import {FormsModule} from '@angular/forms';
 import {BasketService} from '../shared/services/basket/basket.service';
 import {BasketRepository} from '../shared/repositories/basket/basket.repository';
 import {UserBasketService} from '../shared/services/user-basket/user-basket.service';
+import {DealsPageComponent} from '../pages/deals-page/deals-page.component';
+import {DealsService} from '../shared/services/deals/deals.service';
+import {DealsRepository} from '../shared/repositories/deals/deals.repository';
 
 
 @NgModule({
     declarations: [
         AppComponent,
-        HomePageComponent
+        HomePageComponent,
+        DealsPageComponent
     ],
     imports: [
         BrowserModule,
@@ -43,7 +47,9 @@ import {UserBasketService} from '../shared/services/user-basket/user-basket.serv
         UserRepository,
         BasketService,
         BasketRepository,
-        UserBasketService
+        UserBasketService,
+        DealsService,
+        DealsRepository
     ],
     bootstrap: [AppComponent]
 })

@@ -1,0 +1,30 @@
+<h2>Deals</h2>
+<div class="row">
+    <div class="col-md-4" *ngFor="let deal of deals">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{{deal.title}}</h3>
+            </div>
+            <div class="panel-body" style="height: 235px;">
+                <p>
+                    <strong>{{deal.code}}</strong>
+                </p>
+                <p>Applied with the following delivery types: </p>
+                <ul>
+                    <li *ngFor="let deliveryType of deal.allowedDeliveryTypes">{{ deliveryType }}</li>
+                </ul>
+                <p>Applied with the following pizza sizes: </p>
+                <ul>
+                    <li *ngFor="let size of deal.allowedSizes">{{ size }}</li>
+                </ul>
+                <p>Cost: {{ deal.price.inPence === 0 ? deal.notes : deal.price.inFull }}</p>
+            </div>
+            <div class="panel-footer">
+                <fieldset>
+                    <input type="submit" value="Selected" class="btn btn-primary"
+                           [disabled]="selectedDealCode ===  deal.code" (click)="applyDeal(deal.id)"/>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+</div>
