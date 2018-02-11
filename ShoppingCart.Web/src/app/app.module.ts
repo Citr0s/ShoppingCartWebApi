@@ -24,6 +24,7 @@ import {DealsRepository} from '../shared/repositories/deals/deals.repository';
 import {BasketPageComponent} from '../pages/basket-page/basket-page.component';
 import {LoginPageComponent} from '../pages/login-page/login-page.component';
 import {RegisterPageComponent} from '../pages/register-page/register-page.component';
+import {LogoutPageComponent} from '../pages/logout-page/logout-page.component';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import {RegisterPageComponent} from '../pages/register-page/register-page.compon
         DealsPageComponent,
         BasketPageComponent,
         LoginPageComponent,
-        RegisterPageComponent
+        RegisterPageComponent,
+        LogoutPageComponent
     ],
     imports: [
         BrowserModule,

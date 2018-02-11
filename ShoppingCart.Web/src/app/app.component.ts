@@ -12,6 +12,7 @@ import {Money} from '../shared/common/money';
 })
 export class AppComponent {
     public total: Money;
+    public isLoggedIn: boolean;
     private _userService: UserService;
     private _basketService: BasketService;
 
@@ -30,6 +31,16 @@ export class AppComponent {
                     .subscribe((total: Money) => {
                         this.total = total;
                     });
+            });
+
+        this._userService.isLoggedIn()
+            .then((payload) => {
+                this.isLoggedIn = payload;
+            });
+
+        this._userService.onChange
+            .subscribe((payload: boolean) => {
+                this.isLoggedIn = payload;
             });
     }
 }

@@ -1,4 +1,6 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {UserService} from '../../shared/services/user/user.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'login-page',
@@ -8,8 +10,15 @@ import {Component, OnInit} from '@angular/core';
 
 export class LoginPageComponent implements OnInit {
     model: any;
+    private _userService: UserService;
+    @Input() username: string;
+    @Input() password: string;
+    private _router: Router;
 
-    constructor() {
+
+    constructor(userService: UserService, router: Router) {
+        this._userService = userService;
+        this._router = router;
         this.model = {};
     }
 
@@ -17,6 +26,12 @@ export class LoginPageComponent implements OnInit {
     }
 
     login() {
-        // TODO: Needs implementing
+        this._userService.login(this.username, this.password)
+            .then((payload) => {
+                if (typeof payload === 'boolean' && payload === true)
+                    this._router.navigate(['basket']);
+                else
+                    this.model.errorMessage = payload;
+            });
     }
 }

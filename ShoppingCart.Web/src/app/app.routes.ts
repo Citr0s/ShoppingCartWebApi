@@ -4,6 +4,7 @@ import {DealsPageComponent} from '../pages/deals-page/deals-page.component';
 import {BasketPageComponent} from '../pages/basket-page/basket-page.component';
 import {LoginPageComponent} from '../pages/login-page/login-page.component';
 import {RegisterPageComponent} from '../pages/register-page/register-page.component';
+import {LogoutPageComponent} from '../pages/logout-page/logout-page.component';
 
 export const appRoutes: Routes = [
     {
@@ -19,11 +20,15 @@ export const appRoutes: Routes = [
         component: BasketPageComponent
     },
     {
+        path: 'register',
+        component: RegisterPageComponent
+    },
+    {
         path: 'login',
         component: LoginPageComponent
     },
     {
-        path: 'register',
-        component: RegisterPageComponent
+        path: 'logout',
+        component: LogoutPageComponent
     }
 ];
