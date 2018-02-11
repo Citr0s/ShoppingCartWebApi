@@ -39,4 +39,8 @@ export class HistoryPageComponent implements OnInit {
                     });
             });
     }
+
+    applyBasket(orderId: number) {
+        // TODO: implement this feature
+    }
 }

@@ -38,7 +38,7 @@ export class DealsPageComponent implements OnInit {
             .then((payload: User) => {
                 this._dealsService.getSelected(payload.token)
                     .then((deal: Deal) => {
-                        this.selectedDealCode = deal === null ? '' : deal.code;
+                        this.selectedDealCode = deal === null || deal === undefined ? '' : deal.code;
                     });
             });
 
