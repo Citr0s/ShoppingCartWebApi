@@ -1,22 +1,33 @@
-import {EventEmitter, Injectable, Output} from '@angular/core';
+import {EventEmitter, Output} from '@angular/core';
 import {BasketMapper} from './basket.mapper';
 import {Basket} from './basket';
 
-@Injectable()
 export class UserBasketService {
+    private static _instance: UserBasketService;
     @Output() onChange: EventEmitter<any> = new EventEmitter<any>();
     private _basket: Basket;
 
-    constructor() {
-        this._basket = new Basket();
+    private constructor() {
+        if (localStorage.getItem('basket') === null) {
+            this._basket = new Basket();
+            localStorage.setItem('basket', JSON.stringify(this._basket));
+        }
+    }
+
+    static instance() {
+        if (this._instance === undefined)
+            this._instance = new UserBasketService();
+
+        return this._instance;
     }
 
     setBasket(payload: any) {
         this._basket = BasketMapper.map(payload);
+        localStorage.setItem('basket', JSON.stringify(this._basket));
         this.onChange.emit();
     }
 
-    getBasket() {
-        return this._basket;
+    getBasket(): Basket {
+        return JSON.parse(localStorage.getItem('basket'));
     }
 }

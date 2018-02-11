@@ -20,9 +20,9 @@ export class DealsPageComponent implements OnInit {
     private selectedDealCode: string;
     private _userService: UserService;
 
-    constructor(dealsService: DealsService, userBasketService: UserBasketService, userService: UserService) {
+    constructor(dealsService: DealsService, userService: UserService) {
         this._dealsService = dealsService;
-        this._userBasketService = userBasketService;
+        this._userBasketService = UserBasketService.instance();
         this._userService = userService;
     }
 

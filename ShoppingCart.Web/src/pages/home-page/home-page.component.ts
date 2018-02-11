@@ -9,55 +9,55 @@ import * as $ from 'jquery';
 import {UserBasketService} from '../../shared/services/user-basket/user-basket.service';
 
 @Component({
-  selector: 'home-page',
-  templateUrl: './home-page.component.html',
-  styleUrls: ['./home-page.component.scss']
+    selector: 'home-page',
+    templateUrl: './home-page.component.html',
+    styleUrls: ['./home-page.component.scss']
 })
 
 export class HomePageComponent implements OnInit {
-  public model: HomePageModel;
-  private _pizzaService: PizzaService;
-  private _toppingService: ToppingService;
-  private _sizeService: SizeService;
-  private _userService: UserService;
-  private _basketService: BasketService;
-  private _userBasketSerice: UserBasketService;
+    public model: HomePageModel;
+    private _pizzaService: PizzaService;
+    private _toppingService: ToppingService;
+    private _sizeService: SizeService;
+    private _userService: UserService;
+    private _basketService: BasketService;
+    private _userBasketSerice: UserBasketService;
 
-  constructor(pizzaService: PizzaService, toppingService: ToppingService, sizeService: SizeService, userService: UserService, basketService: BasketService, userBasketSerice: UserBasketService) {
-    this._pizzaService = pizzaService;
-    this._toppingService = toppingService;
-    this._sizeService = sizeService;
-    this._userService = userService;
-    this._basketService = basketService;
-    this._userBasketSerice = userBasketSerice;
-    this.model = new HomePageModel();
-  }
+    constructor(pizzaService: PizzaService, toppingService: ToppingService, sizeService: SizeService, userService: UserService, basketService: BasketService) {
+        this._pizzaService = pizzaService;
+        this._toppingService = toppingService;
+        this._sizeService = sizeService;
+        this._userService = userService;
+        this._basketService = basketService;
+        this._userBasketSerice = UserBasketService.instance();
+        this.model = new HomePageModel();
+    }
 
-  ngOnInit(): void {
-    this._pizzaService.getAll().then((payload) => {
-      this.model.pizzas = payload;
-    });
-    this._toppingService.getAll().then((payload) => {
-      this.model.toppings = payload;
-    });
-    this._sizeService.getAll().then((payload) => {
-      this.model.sizes = payload;
-    });
-    this._userService.getUser().then((payload) => {
-      this.model.user = payload;
-    });
-  }
+    ngOnInit(): void {
+        this._pizzaService.getAll().then((payload) => {
+            this.model.pizzas = payload;
+        });
+        this._toppingService.getAll().then((payload) => {
+            this.model.toppings = payload;
+        });
+        this._sizeService.getAll().then((payload) => {
+            this.model.sizes = payload;
+        });
+        this._userService.getUser().then((payload) => {
+            this.model.user = payload;
+        });
+    }
 
-  addToBasket(pizzaId: number) {
-    const extraToppingIds = [];
+    addToBasket(pizzaId: number) {
+        const extraToppingIds = [];
 
-    $(`input[name=extra-toppings-${pizzaId}]:checked`).map((x, y) => {
-      extraToppingIds.push($(y).val());
-    });
+        $(`input[name=extra-toppings-${pizzaId}]:checked`).map((x, y) => {
+            extraToppingIds.push($(y).val());
+        });
 
-    this._basketService.addToBasket(pizzaId, +$(`input[name=size-${pizzaId}]:checked`).val(), extraToppingIds, this.model.user.token)
-      .then((payload) => {
-        this._userBasketSerice.setBasket(payload);
-      });
-  }
+        this._basketService.addToBasket(pizzaId, +$(`input[name=size-${pizzaId}]:checked`).val(), extraToppingIds, this.model.user.token)
+            .then((payload) => {
+                this._userBasketSerice.setBasket(payload);
+            });
+    }
 }

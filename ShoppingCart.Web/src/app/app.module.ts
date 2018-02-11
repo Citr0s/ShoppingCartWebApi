@@ -18,7 +18,6 @@ import {UserRepository} from '../shared/repositories/user/user.repository';
 import {FormsModule} from '@angular/forms';
 import {BasketService} from '../shared/services/basket/basket.service';
 import {BasketRepository} from '../shared/repositories/basket/basket.repository';
-import {UserBasketService} from '../shared/services/user-basket/user-basket.service';
 import {DealsPageComponent} from '../pages/deals-page/deals-page.component';
 import {DealsService} from '../shared/services/deals/deals.service';
 import {DealsRepository} from '../shared/repositories/deals/deals.repository';
@@ -53,7 +52,6 @@ import {RegisterPageComponent} from '../pages/register-page/register-page.compon
         UserRepository,
         BasketService,
         BasketRepository,
-        UserBasketService,
         DealsService,
         DealsRepository
     ],

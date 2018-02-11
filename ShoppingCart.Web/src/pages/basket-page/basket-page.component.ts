@@ -12,8 +12,8 @@ export class BasketPageComponent implements OnInit {
     private basket: Basket;
     private _userBasketService: UserBasketService;
 
-    constructor(userBasketService: UserBasketService) {
-        this._userBasketService = userBasketService;
+    constructor() {
+        this._userBasketService = UserBasketService.instance();
     }
 
     ngOnInit(): void {
