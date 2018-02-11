@@ -10,6 +10,7 @@ export class SavedOrdersMapper {
                     inPounds: x.Total.InPounds,
                     inFull: x.Total.InFull
                 },
+                voucher: x.Basket.Voucher,
                 orders: x.Orders.map((y) => {
                     return {
                         pizza: {

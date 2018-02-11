@@ -28,6 +28,9 @@ import {LogoutPageComponent} from '../pages/logout-page/logout-page.component';
 import {SavedPageComponent} from '../pages/saved-page/saved-page.component';
 import {SavedOrdersService} from '../shared/services/saved-orders/saved-orders.service';
 import {SavedOrdersRepository} from '../shared/repositories/saved-orders/saved-orders.repository';
+import {HistoryPageComponent} from '../pages/history-page/history-page.component';
+import {HistoryService} from '../shared/services/history/history.service';
+import {HistoryRepository} from '../shared/repositories/history/history.repository';
 
 
 @NgModule({
@@ -39,7 +42,8 @@ import {SavedOrdersRepository} from '../shared/repositories/saved-orders/saved-o
         LoginPageComponent,
         RegisterPageComponent,
         LogoutPageComponent,
-        SavedPageComponent
+        SavedPageComponent,
+        HistoryPageComponent
     ],
     imports: [
         BrowserModule,
@@ -61,7 +65,9 @@ import {SavedOrdersRepository} from '../shared/repositories/saved-orders/saved-o
         DealsService,
         DealsRepository,
         SavedOrdersService,
-        SavedOrdersRepository
+        SavedOrdersRepository,
+        HistoryService,
+        HistoryRepository
     ],
     bootstrap: [AppComponent]
 })
