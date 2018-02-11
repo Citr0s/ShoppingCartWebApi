@@ -4,7 +4,8 @@ export class UserMapper {
 
     static map(payload: any): User {
         return {
-            token: payload
+            id: payload.UserId,
+            token: payload.UserToken
         };
     }
 }

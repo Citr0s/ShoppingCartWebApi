@@ -55,12 +55,13 @@ export class UserService {
                 .subscribe((user) => {
                     this._userRepository.login(UserMapper.map(user).token, username, password)
                         .subscribe((payload: any) => {
-                            if (typeof payload === 'boolean') {
+                            if (payload.IsLoggedIn) {
                                 const userData = JSON.parse(localStorage.getItem('user'));
-                                userData.isLoggedIn = payload;
+                                userData.isLoggedIn = payload.IsLoggedIn;
+                                userData.id = payload.UserId;
                                 localStorage.setItem('user', JSON.stringify(userData));
-                                this.onChange.emit(payload);
-                                resolve(payload);
+                                this.onChange.emit(payload.IsLoggedIn);
+                                resolve(payload.IsLoggedIn);
                             } else {
                                 resolve(payload.UserMessage);
                             }

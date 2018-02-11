@@ -1,0 +1,50 @@
+<h1>Saved Orders</h1>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-default" *ngFor="let order of savedOrders">
+            <div class="panel-heading">
+                <h3 class="panel-title">
+                    <div class="row">
+                        <div class="col-md-6">
+                            Order
+                            <small>#{{ order.id }}</small>
+                        </div>
+                        <div class="col-md-6" style="color: #27ae60; font-weight: bold; text-align: right;">
+                            {{ order.total.inFull }}
+                        </div>
+                    </div>
+                </h3>
+            </div>
+            <div class="panel-body">
+                <ul>
+                    <li *ngFor="let item of order.orders">
+                        {{ item.pizza.name }}
+                        <small style="font-size: 1rem; font-weight: bold; text-transform: uppercase;">
+                            ({{ item.size.name }})
+                        </small>
+                        <small style="color: #27ae60; font-weight: bold;">{{ item.total.inFull }}</small>
+                        <ul>
+                            <li *ngFor="let topping of item.toppings">{{ topping.name }}</li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <div class="panel-footer">
+                <h3 class="panel-title">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <fieldset>
+                                <input type="submit" value="Use" class="btn btn-primary"
+                                       (click)="applyBasket(order.id)"/>
+                            </fieldset>
+                        </div>
+                    </div>
+                </h3>
+            </div>
+        </div>
+        <div class="row" *ngIf="savedOrders.length === 0">
+            <div class="col-md-12">
+                <h4>There are no saved items!</h4>
+            </div>
+        </div>
+    </div>

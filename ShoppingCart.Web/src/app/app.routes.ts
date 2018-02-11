@@ -5,6 +5,7 @@ import {BasketPageComponent} from '../pages/basket-page/basket-page.component';
 import {LoginPageComponent} from '../pages/login-page/login-page.component';
 import {RegisterPageComponent} from '../pages/register-page/register-page.component';
 import {LogoutPageComponent} from '../pages/logout-page/logout-page.component';
+import {SavedPageComponent} from '../pages/saved-page/saved-page.component';
 
 export const appRoutes: Routes = [
     {
@@ -30,5 +31,9 @@ export const appRoutes: Routes = [
     {
         path: 'logout',
         component: LogoutPageComponent
+    },
+    {
+        path: 'saved',
+        component: SavedPageComponent
     }
 ];

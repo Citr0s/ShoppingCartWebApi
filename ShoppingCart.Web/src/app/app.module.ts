@@ -25,6 +25,9 @@ import {BasketPageComponent} from '../pages/basket-page/basket-page.component';
 import {LoginPageComponent} from '../pages/login-page/login-page.component';
 import {RegisterPageComponent} from '../pages/register-page/register-page.component';
 import {LogoutPageComponent} from '../pages/logout-page/logout-page.component';
+import {SavedPageComponent} from '../pages/saved-page/saved-page.component';
+import {SavedOrdersService} from '../shared/services/saved-orders/saved-orders.service';
+import {SavedOrdersRepository} from '../shared/repositories/saved-orders/saved-orders.repository';
 
 
 @NgModule({
@@ -35,7 +38,8 @@ import {LogoutPageComponent} from '../pages/logout-page/logout-page.component';
         BasketPageComponent,
         LoginPageComponent,
         RegisterPageComponent,
-        LogoutPageComponent
+        LogoutPageComponent,
+        SavedPageComponent
     ],
     imports: [
         BrowserModule,
@@ -56,6 +60,8 @@ import {LogoutPageComponent} from '../pages/logout-page/logout-page.component';
         BasketRepository,
         DealsService,
         DealsRepository,
+        SavedOrdersService,
+        SavedOrdersRepository
     ],
     bootstrap: [AppComponent]
 })
