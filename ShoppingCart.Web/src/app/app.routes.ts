@@ -3,6 +3,7 @@ import {HomePageComponent} from '../pages/home-page/home-page.component';
 import {DealsPageComponent} from '../pages/deals-page/deals-page.component';
 import {BasketPageComponent} from '../pages/basket-page/basket-page.component';
 import {LoginPageComponent} from '../pages/login-page/login-page.component';
+import {RegisterPageComponent} from '../pages/register-page/register-page.component';
 
 export const appRoutes: Routes = [
     {
@@ -20,5 +21,9 @@ export const appRoutes: Routes = [
     {
         path: 'login',
         component: LoginPageComponent
+    },
+    {
+        path: 'register',
+        component: RegisterPageComponent
     }
 ];
