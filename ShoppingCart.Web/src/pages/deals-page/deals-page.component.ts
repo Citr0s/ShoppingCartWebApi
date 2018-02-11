@@ -35,10 +35,12 @@ export class DealsPageComponent implements OnInit {
         this.selectedDealCode = this._userBasketService.getBasket().deal.code;
     }
 
-    applyDeal(dealId: number) {
+    applyDeal(dealId: number, dealCode: string) {
         this._userService.getUser()
             .then((payload: User) => {
                 this._dealsService.applyDeal(payload.token, dealId);
+                this._userBasketService.setDealCode(dealCode);
+                this.selectedDealCode = dealCode;
             });
     }
 }

@@ -27,6 +27,12 @@ export class UserBasketService {
         this.onChange.emit();
     }
 
+    setDealCode(dealCode: string) {
+        const basket = JSON.parse(localStorage.getItem('basket'));
+        basket.deal.code = dealCode;
+        localStorage.setItem('basket', JSON.stringify(basket));
+    }
+
     getBasket(): Basket {
         return JSON.parse(localStorage.getItem('basket'));
     }
