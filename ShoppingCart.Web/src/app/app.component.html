@@ -15,11 +15,16 @@
                         <li><a routerLink="/">Home</a></li>
                         <li><a routerLink="/deals">Deals</a></li>
                         <li><a routerLink="/basket">Basket</a></li>
+
                         <li>
                             <a style="color: #fff;">|</a>
                         </li>
+
                         <li *ngIf="!isLoggedIn"><a routerLink="/login">Login</a></li>
                         <li *ngIf="!isLoggedIn"><a routerLink="/register">Register</a></li>
+
+                        <li *ngIf="isLoggedIn"><a routerLink="/saved">Saved</a></li>
+                        <li *ngIf="isLoggedIn"><a routerLink="/saved">History</a></li>
                         <li *ngIf="isLoggedIn"><a routerLink="/logout">Logout</a></li>
                     </ul>
                 </div>

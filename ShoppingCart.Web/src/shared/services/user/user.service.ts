@@ -31,6 +31,11 @@ export class UserService {
 
     isLoggedIn(): Promise<boolean> {
         return new Promise((resolve, reject) => {
+            if (localStorage.getItem('user') !== null) {
+                resolve(JSON.parse(localStorage.getItem('user')).isLoggedIn);
+                return;
+            }
+
             this._userRepository.getToken()
                 .subscribe((user) => {
                     this._userRepository.isLoggedIn(UserMapper.map(user).token)
@@ -72,6 +77,9 @@ export class UserService {
                 .subscribe((user) => {
                     this._userRepository.logout(UserMapper.map(user).token)
                         .subscribe((payload) => {
+                            const userData = JSON.parse(localStorage.getItem('user'));
+                            userData.isLoggedIn = false;
+                            localStorage.setItem('user', JSON.stringify(userData));
                             resolve(payload);
                             this.onChange.emit(false);
                         }, (error) => {
