@@ -1,8 +1,12 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import {BasketRepository} from '../../repositories/basket/basket.repository';
+import {BasketMapper} from './basket.mapper';
+import {MoneyMapper} from '../../common/money.mapper';
+import {Money} from '../../common/money';
 
 @Injectable()
 export class BasketService {
+    @Output() onChange: EventEmitter<Money> = new EventEmitter<Money>();
     private _basketRepository: BasketRepository;
 
     constructor(basketRepository: BasketRepository) {
@@ -22,11 +26,41 @@ export class BasketService {
         return new Promise((resolve, reject) => {
             this._basketRepository.addToBasket(request)
                 .subscribe((payload) => {
-                    resolve(payload);
+                    this.getTotal(request.user.token)
+                        .then((total: Money) => {
+                            this.onChange.emit(total);
+                        });
+                    resolve(BasketMapper.map(payload));
                 }, (error) => {
                     reject(error);
                 });
         });
 
+    }
+
+    getBasket(userToken: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this._basketRepository.getBasket(userToken)
+                .subscribe((payload) => {
+                    resolve(BasketMapper.map(payload));
+                    this.getTotal(userToken)
+                        .then((total: Money) => {
+                            this.onChange.emit(total);
+                        });
+                }, (error) => {
+                    reject(error);
+                });
+        });
+    }
+
+    getTotal(userToken: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this._basketRepository.getTotal(userToken)
+                .subscribe((payload: any) => {
+                    resolve(MoneyMapper.map(payload));
+                }, (error) => {
+                    reject(error);
+                });
+        });
     }
 }

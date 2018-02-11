@@ -1,3 +1,5 @@
+import {Money} from '../../common/money';
+
 export class Pizza {
     id: number;
     name: string;
@@ -5,16 +7,13 @@ export class Pizza {
         id: number;
         name: string;
     };
+    total: Money;
     sizes: [{
         size: {
             id: number;
             name: string;
         },
-        price: {
-            inFull: string;
-            inPence: number;
-            inPounds: number;
-        }
+        price: Money
     }];
     toppings: [{
         id: number;

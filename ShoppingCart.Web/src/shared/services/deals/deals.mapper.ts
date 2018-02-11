@@ -6,6 +6,9 @@ export class DealsMapper {
         const response = [];
 
         for (let i = 0; i < payload.length; i++) {
+            if (payload[i] === null)
+                continue;
+
             response.push({
                 id: payload[i].Voucher.Id,
                 code: payload[i].Voucher.Code,

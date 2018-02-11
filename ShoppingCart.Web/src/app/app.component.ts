@@ -1,6 +1,9 @@
 import {Component} from '@angular/core';
-import {UserBasketService} from '../shared/services/user-basket/user-basket.service';
-import {Basket} from '../shared/services/user-basket/basket';
+import {Basket} from '../shared/services/basket/basket';
+import {UserService} from '../shared/services/user/user.service';
+import {User} from '../shared/services/user/user';
+import {BasketService} from '../shared/services/basket/basket.service';
+import {Money} from '../shared/common/money';
 
 @Component({
     selector: 'app-root',
@@ -8,15 +11,25 @@ import {Basket} from '../shared/services/user-basket/basket';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    private _userBasketService: UserBasketService;
-    public basket: Basket;
+    public total: Money;
+    private _userService: UserService;
+    private _basketService: BasketService;
 
-    constructor() {
-        this._userBasketService = UserBasketService.instance();
-        this.basket = this._userBasketService.getBasket();
-        this._userBasketService.onChange
-            .subscribe(() => {
-                this.basket = this._userBasketService.getBasket();
+    constructor(userService: UserService, basketService: BasketService) {
+        this._basketService = basketService;
+        this._userService = userService;
+
+        this._userService.getUser()
+            .then((user: User) => {
+                this._basketService.getBasket(user.token)
+                    .then((basket: Basket) => {
+                        this.total = basket.total;
+                    });
+
+                this._basketService.onChange
+                    .subscribe((total: Money) => {
+                        this.total = total;
+                    });
             });
     }
 }

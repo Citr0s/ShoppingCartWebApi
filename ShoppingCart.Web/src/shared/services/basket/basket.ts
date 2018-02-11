@@ -1,4 +1,4 @@
-import {Money} from './money';
+import {Money} from '../../common/money';
 import {Pizza} from '../pizza/pizza';
 
 export class Basket {
@@ -14,8 +14,5 @@ export class Basket {
 
     adjustedPrice: boolean;
     total: Money;
-    deal: {
-        code: string;
-    };
     items: Pizza[];
 }

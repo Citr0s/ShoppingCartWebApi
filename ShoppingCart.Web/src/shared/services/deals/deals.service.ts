@@ -23,7 +23,25 @@ export class DealsService {
         });
     }
 
-    applyDeal(userToken: string, dealId: number) {
-        this._dealsRepository.applyDeal({userToken: userToken, dealId: dealId});
+    getSelected(userToken: string): Promise<Deal> {
+        return new Promise((resolve, reject) => {
+            this._dealsRepository.getSelected(userToken)
+                .subscribe((payload: any) => {
+                    resolve(DealsMapper.map([payload])[0]);
+                }, (error) => {
+                    reject(error);
+                });
+        });
+    }
+
+    applyDeal(userToken: string, dealId: number): Promise<Deal> {
+        return new Promise((resolve, reject) => {
+            this._dealsRepository.applyDeal({userToken: userToken, dealId: dealId})
+                .subscribe((payload: any) => {
+                    resolve(DealsMapper.map([payload])[0]);
+                }, (error) => {
+                    reject(error);
+                });
+        });
     }
 }

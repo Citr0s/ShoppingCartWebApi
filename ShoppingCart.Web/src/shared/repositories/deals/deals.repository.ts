@@ -15,6 +15,10 @@ export class DealsRepository {
         return this._httpClient.get(`${environment.backendUrl}/api/v1/deal`);
     }
 
+    getSelected(userToken: string) {
+        return this._httpClient.get(`${environment.backendUrl}/api/v1/deal/${userToken}`);
+    }
+
     applyDeal(request: ApplyDealRequest) {
         return this._httpClient.post(`${environment.backendUrl}/api/v1/deal/apply`, request);
     }

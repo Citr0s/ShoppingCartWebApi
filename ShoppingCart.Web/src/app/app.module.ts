@@ -53,7 +53,7 @@ import {RegisterPageComponent} from '../pages/register-page/register-page.compon
         BasketService,
         BasketRepository,
         DealsService,
-        DealsRepository
+        DealsRepository,
     ],
     bootstrap: [AppComponent]
 })

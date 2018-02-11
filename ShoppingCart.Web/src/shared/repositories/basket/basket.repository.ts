@@ -14,4 +14,12 @@ export class BasketRepository {
     addToBasket(payload: AddToBasketRequest) {
         return this._httpClient.post(`${environment.backendUrl}/api/v1/basket/add`, payload);
     }
+
+    getBasket(userToken: string) {
+        return this._httpClient.get(`${environment.backendUrl}/api/v1/basket/${userToken}`);
+    }
+
+    getTotal(userToken: string) {
+        return this._httpClient.get(`${environment.backendUrl}/api/v1/basket/${userToken}/total`);
+    }
 }

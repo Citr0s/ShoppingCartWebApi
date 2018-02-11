@@ -11,7 +11,7 @@
                                 <small>{{ pizza.selectedSize.name }}</small>
                             </div>
                             <div class="col-md-6" style="color: #27ae60; font-weight: bold; text-align: right;">
-                                {{ basket.total.inFull }}
+                                {{ pizza.total.inFull }}
                             </div>
                         </div>
                     </h3>
@@ -48,7 +48,7 @@
 
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Voucher Code"
-                                           value="{{ basket.deal.code }}"/>
+                                           value="{{ deal.code }}"/>
                                 </div>
                                 <input type="submit" value="Checkout" class="btn btn-primary" (click)="checkout()"/>
                             </fieldset>
@@ -66,8 +66,8 @@
                     <hr/>
                     <h1>
                         <small>Total</small>
-                        <span style="color: #27ae60; font-weight: bold;">{{ basket.total.inFull }}</span>
-                        <span style="color: #999999; text-decoration: line-through" *ngIf="basket.adjustedPrice">@Model.Basket.Total.InFull</span>
+                        <span style="color: #27ae60; font-weight: bold;">{{ total.inFull }}</span>
+                        <span style="color: #999999; text-decoration: line-through" *ngIf="basket.adjustedPrice">{{ basket.total.inFull }}</span>
                     </h1>
                 </div>
             </div>

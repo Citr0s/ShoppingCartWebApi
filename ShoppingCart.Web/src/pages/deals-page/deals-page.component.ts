@@ -2,8 +2,10 @@ import {Component, OnInit} from '@angular/core';
 import {DealsService} from '../../shared/services/deals/deals.service';
 import {Deal} from '../../shared/services/deals/deal';
 import {User} from '../../shared/services/user/user';
-import {UserBasketService} from '../../shared/services/user-basket/user-basket.service';
+import {UserBasketService} from '../../shared/services/user-total/user-total.service';
 import {UserService} from '../../shared/services/user/user.service';
+import {Basket} from '../../shared/services/basket/basket';
+import {BasketService} from '../../shared/services/basket/basket.service';
 
 @Component({
     selector: 'deals-page',
@@ -16,14 +18,14 @@ export class DealsPageComponent implements OnInit {
     public user: User;
 
     private _dealsService: DealsService;
-    private _userBasketService: UserBasketService;
     private selectedDealCode: string;
     private _userService: UserService;
+    private _basketService: BasketService;
 
-    constructor(dealsService: DealsService, userService: UserService) {
+    constructor(dealsService: DealsService, userService: UserService, basketService: BasketService) {
         this._dealsService = dealsService;
-        this._userBasketService = UserBasketService.instance();
         this._userService = userService;
+        this._basketService = basketService;
     }
 
     ngOnInit(): void {
@@ -32,15 +34,24 @@ export class DealsPageComponent implements OnInit {
                 this.deals = payload;
             });
 
-        this.selectedDealCode = this._userBasketService.getBasket().deal.code;
-    }
-
-    applyDeal(dealId: number, dealCode: string) {
         this._userService.getUser()
             .then((payload: User) => {
-                this._dealsService.applyDeal(payload.token, dealId);
-                this._userBasketService.setDealCode(dealCode);
-                this.selectedDealCode = dealCode;
+                this._dealsService.getSelected(payload.token)
+                    .then((deal: Deal) => {
+                        this.selectedDealCode = deal === null ? '' : deal.code;
+                    });
+            });
+
+    }
+
+    applyDeal(dealId: number) {
+        this._userService.getUser()
+            .then((payload: User) => {
+                this._dealsService.applyDeal(payload.token, dealId)
+                    .then((deal: Deal) => {
+                        this.selectedDealCode = deal.code;
+                        this._basketService.getBasket(payload.token);
+                    });
             });
     }
 }

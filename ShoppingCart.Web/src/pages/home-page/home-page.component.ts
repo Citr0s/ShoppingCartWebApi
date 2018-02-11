@@ -6,7 +6,7 @@ import {SizeService} from '../../shared/services/size/size.service';
 import {UserService} from '../../shared/services/user/user.service';
 import {BasketService} from '../../shared/services/basket/basket.service';
 import * as $ from 'jquery';
-import {UserBasketService} from '../../shared/services/user-basket/user-basket.service';
+import {UserBasketService} from '../../shared/services/user-total/user-total.service';
 
 @Component({
     selector: 'home-page',
@@ -21,7 +21,6 @@ export class HomePageComponent implements OnInit {
     private _sizeService: SizeService;
     private _userService: UserService;
     private _basketService: BasketService;
-    private _userBasketSerice: UserBasketService;
 
     constructor(pizzaService: PizzaService, toppingService: ToppingService, sizeService: SizeService, userService: UserService, basketService: BasketService) {
         this._pizzaService = pizzaService;
@@ -29,7 +28,6 @@ export class HomePageComponent implements OnInit {
         this._sizeService = sizeService;
         this._userService = userService;
         this._basketService = basketService;
-        this._userBasketSerice = UserBasketService.instance();
         this.model = new HomePageModel();
     }
 
@@ -55,9 +53,6 @@ export class HomePageComponent implements OnInit {
             extraToppingIds.push($(y).val());
         });
 
-        this._basketService.addToBasket(pizzaId, +$(`input[name=size-${pizzaId}]:checked`).val(), extraToppingIds, this.model.user.token)
-            .then((payload) => {
-                this._userBasketSerice.setBasket(payload);
-            });
+        this._basketService.addToBasket(pizzaId, +$(`input[name=size-${pizzaId}]:checked`).val(), extraToppingIds, this.model.user.token);
     }
 }
