@@ -7,8 +7,10 @@ import {Component, OnInit} from '@angular/core';
 })
 
 export class RegisterPageComponent implements OnInit {
+    model: any;
 
     constructor() {
+        this.model = {};
     }
 
     ngOnInit(): void {
