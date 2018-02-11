@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {PizzaService} from '../../shared/services/pizza/pizza.service';
 import {HomePageModel} from './home-page.model';
 import {ToppingService} from '../../shared/services/topping/topping.service';

@@ -12,11 +12,16 @@ export class UserService {
     }
 
     public getUser(): Promise<User> {
-        // TODO: check local storage for token, otherwise get new one from backend
         return new Promise((resolve, reject) => {
+            if (localStorage.getItem('user') !== null) {
+                resolve(JSON.parse(localStorage.getItem('user')));
+                return;
+            }
+
             this._userRepository.getToken()
                 .subscribe((payload) => {
                     resolve(UserMapper.map(payload));
+                    localStorage.setItem('user', JSON.stringify(UserMapper.map(payload)));
                 }, (error) => {
                     reject(error);
                 });

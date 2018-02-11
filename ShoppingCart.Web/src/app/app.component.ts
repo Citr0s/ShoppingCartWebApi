@@ -8,12 +8,12 @@ import {Basket} from '../shared/services/user-basket/basket';
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-    title = 'app';
     private _userBasketService: UserBasketService;
     public basket: Basket;
 
     constructor() {
         this._userBasketService = UserBasketService.instance();
+        this.basket = this._userBasketService.getBasket();
         this._userBasketService.onChange
             .subscribe(() => {
                 this.basket = this._userBasketService.getBasket();
