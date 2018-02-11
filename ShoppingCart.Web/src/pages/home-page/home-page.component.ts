@@ -43,7 +43,7 @@ export class HomePageComponent implements OnInit {
     this._sizeService.getAll().then((payload) => {
       this.model.sizes = payload;
     });
-    this._userService.getToken().then((payload) => {
+    this._userService.getUser().then((payload) => {
       this.model.user = payload;
     });
   }

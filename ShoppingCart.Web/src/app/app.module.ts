@@ -22,13 +22,15 @@ import {UserBasketService} from '../shared/services/user-basket/user-basket.serv
 import {DealsPageComponent} from '../pages/deals-page/deals-page.component';
 import {DealsService} from '../shared/services/deals/deals.service';
 import {DealsRepository} from '../shared/repositories/deals/deals.repository';
+import {BasketPageComponent} from '../pages/basket-page/basket-page.component';
 
 
 @NgModule({
     declarations: [
         AppComponent,
         HomePageComponent,
-        DealsPageComponent
+        DealsPageComponent,
+        BasketPageComponent
     ],
     imports: [
         BrowserModule,

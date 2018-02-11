@@ -19,14 +19,14 @@ export class BasketService {
             toppingIds: toppingIds
         };
 
-      return new Promise((resolve, reject) => {
-        this._basketRepository.addToBasket(request)
-          .subscribe((payload) => {
-            resolve(payload);
-          }, (error) => {
-            reject(error);
-          });
-      });
+        return new Promise((resolve, reject) => {
+            this._basketRepository.addToBasket(request)
+                .subscribe((payload) => {
+                    resolve(payload);
+                }, (error) => {
+                    reject(error);
+                });
+        });
 
     }
 }

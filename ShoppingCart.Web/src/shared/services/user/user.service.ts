@@ -11,7 +11,8 @@ export class UserService {
         this._userRepository = userRepository;
     }
 
-    public getToken(): Promise<User> {
+    public getUser(): Promise<User> {
+        // TODO: check local storage for token, otherwise get new one from backend
         return new Promise((resolve, reject) => {
             this._userRepository.getToken()
                 .subscribe((payload) => {

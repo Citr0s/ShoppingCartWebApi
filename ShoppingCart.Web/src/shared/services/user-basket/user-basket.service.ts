@@ -1,4 +1,6 @@
 import {EventEmitter, Injectable, Output} from '@angular/core';
+import {BasketMapper} from './basket.mapper';
+import {Basket} from './basket';
 
 @Injectable()
 export class UserBasketService {
@@ -18,32 +20,3 @@ export class UserBasketService {
         return this._basket;
     }
 }
-
-export class Basket {
-    total: Money;
-    deal: {
-        code: string;
-    };
-}
-
-export class Money {
-    inPence: number;
-    inPounds: number;
-    inFull: string;
-}
-
-export class BasketMapper {
-
-    static map(payload: any) {
-        return {
-            total: {
-                inPence: payload.Total.InPence,
-                inPounds: payload.Total.InPounds,
-                inFull: payload.Total.InFull
-            }
-        };
-    }
-}
-
-
-

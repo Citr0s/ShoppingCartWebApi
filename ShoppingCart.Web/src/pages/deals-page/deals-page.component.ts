@@ -36,7 +36,7 @@ export class DealsPageComponent implements OnInit {
     }
 
     applyDeal(dealId: number) {
-        this._userService.getToken()
+        this._userService.getUser()
             .then((payload: User) => {
                 this._dealsService.applyDeal(payload.token, dealId);
             });

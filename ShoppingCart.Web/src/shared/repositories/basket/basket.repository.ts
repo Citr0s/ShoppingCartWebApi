@@ -12,6 +12,6 @@ export class BasketRepository {
     }
 
     addToBasket(payload: AddToBasketRequest) {
-      return this._httpClient.post(`${environment.backendUrl}/api/v1/basket/add`, payload);
+        return this._httpClient.post(`${environment.backendUrl}/api/v1/basket/add`, payload);
     }
 }

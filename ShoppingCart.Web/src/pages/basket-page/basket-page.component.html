@@ -1,0 +1,81 @@
+<h1>Basket</h1>
+<div class="row">
+    <div class="col-md-12">
+        <div class="item-wrapper" *ngIf="basket.items.length > 0">
+            <div class="panel panel-default" *ngFor="let pizza of basket.items">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <div class="row">
+                            <div class="col-md-6">
+                                {{ pizza.name }}
+                                <small>{{ pizza.selectedSize.name }}</small>
+                            </div>
+                            <div class="col-md-6" style="color: #27ae60; font-weight: bold; text-align: right;">
+                                {{ basket.total.inFull }}
+                            </div>
+                        </div>
+                    </h3>
+                </div>
+                <div class="panel-body">
+                    <p>Extra Toppings</p>
+                    <ul>
+                        <li *ngFor="let topping of pizza.toppings">{{ topping.name }}</li>
+                    </ul>
+                    <small *ngIf="pizza.toppings.length === 0">No extra toppings selected.</small>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <fieldset>
+                                <h4>Delivery</h4>
+                                <div class="form-group">
+                                    <label class="custom-control custom-checkbox" style="margin-right: 15px;">
+                                        <input type="radio" name="delivery" value="delivery"
+                                               class="custom-control-input" checked="checked"/>
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Delivery</span>
+                                    </label>
+
+                                    <label class="custom-control custom-checkbox" style="margin-right: 15px;">
+                                        <input type="radio" name="delivery" value="collection"
+                                               class="custom-control-input"/>
+                                        <span class="custom-control-indicator"></span>
+                                        <span class="custom-control-description">Collection</span>
+                                    </label>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="Voucher Code"
+                                           value="{{ basket.deal.code }}"/>
+                                </div>
+                                <input type="submit" value="Checkout" class="btn btn-primary" (click)="checkout()"/>
+                            </fieldset>
+                        </div>
+                    </div>
+                    <div class="row" style="margin-top: 15px;">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <input type="submit" value="Save" class="btn btn-default" (click)="saveBasket()"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6" style="text-align: right;">
+                    <hr/>
+                    <h1>
+                        <small>Total</small>
+                        <span style="color: #27ae60; font-weight: bold;">{{ basket.total.inFull }}</span>
+                        <span style="color: #999999; text-decoration: line-through" *ngIf="basket.adjustedPrice">@Model.Basket.Total.InFull</span>
+                    </h1>
+                </div>
+            </div>
+        </div>
+        <div class="row" *ngIf="basket.items.length === 0">
+            <div class="col-md-12">
+                <h4>There are no items in the basket!</h4>
+            </div>
+        </div>
+    </div>
+</div>
