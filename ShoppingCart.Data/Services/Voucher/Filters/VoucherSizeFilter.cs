@@ -20,11 +20,15 @@ namespace ShoppingCart.Data.Services.Voucher.Filters
             var response = new List<VoucherDetails>();
             foreach (var voucher in vouchers)
             {
+                var allItemsAreValid = true;
                 foreach (var basketItem in _basketItems)
                 {
                     if (voucher.AllowedSizes.All(x => x.Size.Name != basketItem.Size.Name))
-                        break;
+                        allItemsAreValid = false;
                 }
+
+                if(allItemsAreValid)
+                    response.Add(voucher);
             }
             return response;
         }
