@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Basket} from '../../shared/services/basket/basket';
 import {UserService} from '../../shared/services/user/user.service';
 import {User} from '../../shared/services/user/user';
@@ -8,6 +8,7 @@ import {Deal} from '../../shared/services/deals/deal';
 import {Money} from '../../shared/common/money';
 import {SaveOrderService} from '../../shared/services/save/save-order.service';
 import {Router} from '@angular/router';
+import {DeliveryType} from '../../shared/services/basket/delivery-type';
 
 @Component({
     selector: 'basket-page',
@@ -16,6 +17,8 @@ import {Router} from '@angular/router';
 })
 
 export class BasketPageComponent implements OnInit {
+    @Input() deliveryType: DeliveryType;
+    @Input() voucher: string;
     private basket: Basket;
     private _userService: UserService;
     private _basketService: BasketService;
@@ -38,6 +41,8 @@ export class BasketPageComponent implements OnInit {
         this.total = new Money();
         this.successMessage = '';
         this.errorMessage = '';
+        this.deliveryType = DeliveryType.Unknown;
+        this.voucher = '';
     }
 
     ngOnInit(): void {
@@ -51,6 +56,7 @@ export class BasketPageComponent implements OnInit {
                 this._dealService.getSelected(user.token)
                     .then((deal: Deal) => {
                         this.deal = deal;
+                        this.voucher = this.deal.code;
                     });
 
 
@@ -62,7 +68,24 @@ export class BasketPageComponent implements OnInit {
     }
 
     checkout() {
-        // TODO: needs implementing
+        this._userService.isLoggedIn()
+            .then((payload) => {
+                if (!payload) {
+                    this._router.navigate(['login']);
+                    return;
+                }
+                this._userService.getUser()
+                    .then((user: User) => {
+                        console.log(user.token, this.deliveryType, this.voucher);
+                        this._basketService.checkout(user.token, this.deliveryType, this.voucher)
+                            .then(() => {
+                                this.successMessage = 'Order has been saved successfully.';
+                            })
+                            .catch(() => {
+                                this.errorMessage = 'Something went wrong when attempting to save the order. Please try again later.';
+                            });
+                    });
+            });
     }
 
     saveBasket() {

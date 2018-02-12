@@ -4,6 +4,7 @@ import {BasketMapper} from './basket.mapper';
 import {MoneyMapper} from '../../common/money.mapper';
 import {Money} from '../../common/money';
 import {AddToBasketRequest} from './add-to-basket-request';
+import {DeliveryType} from './delivery-type';
 
 @Injectable()
 export class BasketService {
@@ -71,6 +72,18 @@ export class BasketService {
             this._basketRepository.getTotal(userToken)
                 .subscribe((payload: any) => {
                     resolve(MoneyMapper.map(payload));
+                }, (error) => {
+                    reject(error);
+                });
+        });
+    }
+
+    checkout(userToken: string, deliveryType: DeliveryType, voucher: string): Promise<any> {
+        return new Promise((resolve, reject) => {
+            this._basketRepository.checkout(userToken, {deliveryType: deliveryType, voucher: voucher})
+                .subscribe((payload: any) => {
+                    resolve(payload);
+                    this.getBasket(userToken);
                 }, (error) => {
                     reject(error);
                 });

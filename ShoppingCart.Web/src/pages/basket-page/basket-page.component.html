@@ -38,15 +38,16 @@
                                 <h4>Delivery</h4>
                                 <div class="form-group">
                                     <label class="custom-control custom-checkbox" style="margin-right: 15px;">
-                                        <input type="radio" name="delivery" value="delivery"
-                                               class="custom-control-input" checked="checked"/>
+                                        <input type="radio" name="delivery" value="Delivery"
+                                               class="custom-control-input" checked="checked"
+                                               [(ngModel)]="deliveryType"/>
                                         <span class="custom-control-indicator"></span>
                                         <span class="custom-control-description">Delivery</span>
                                     </label>
 
                                     <label class="custom-control custom-checkbox" style="margin-right: 15px;">
-                                        <input type="radio" name="delivery" value="collection"
-                                               class="custom-control-input"/>
+                                        <input type="radio" name="delivery" value="Collection"
+                                               class="custom-control-input" [(ngModel)]="deliveryType"/>
                                         <span class="custom-control-indicator"></span>
                                         <span class="custom-control-description">Collection</span>
                                     </label>
@@ -54,7 +55,7 @@
 
                                 <div class="form-group">
                                     <input type="text" class="form-control" placeholder="Voucher Code"
-                                           value="{{ deal.code }}"/>
+                                           [(ngModel)]="voucher"/>
                                 </div>
                                 <input type="submit" value="Checkout" class="btn btn-primary" (click)="checkout()"/>
                             </fieldset>

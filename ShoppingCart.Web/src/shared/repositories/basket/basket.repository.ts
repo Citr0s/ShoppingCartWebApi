@@ -26,4 +26,8 @@ export class BasketRepository {
     loadBasket(userToken: string, basketId: number) {
         return this._httpClient.post(`${environment.backendUrl}/api/v1/user/${userToken}/order/${basketId}/apply`, {});
     }
+
+    checkout(userToken: string, request: any) {
+        return this._httpClient.post(`${environment.backendUrl}/api/v1/basket/${userToken}/checkout`, request);
+    }
 }

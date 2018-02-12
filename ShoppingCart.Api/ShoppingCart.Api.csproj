@@ -95,6 +95,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Basket\AddToBasketRequest.cs" />
     <Compile Include="Controllers\Basket\BasketController.cs" />
+    <Compile Include="Controllers\Basket\CheckoutRequest.cs" />
     <Compile Include="Controllers\Deals\ApplyDealRequest.cs" />
     <Compile Include="Controllers\Deals\DealsController.cs" />
     <Compile Include="Controllers\Pizza\PizzaController.cs" />
