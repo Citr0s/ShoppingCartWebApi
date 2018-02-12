@@ -2,9 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {DealsService} from '../../shared/services/deals/deals.service';
 import {Deal} from '../../shared/services/deals/deal';
 import {User} from '../../shared/services/user/user';
-import {UserBasketService} from '../../shared/services/user-total/user-total.service';
 import {UserService} from '../../shared/services/user/user.service';
-import {Basket} from '../../shared/services/basket/basket';
 import {BasketService} from '../../shared/services/basket/basket.service';
 
 @Component({

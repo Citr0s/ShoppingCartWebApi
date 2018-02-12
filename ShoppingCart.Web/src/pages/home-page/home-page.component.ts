@@ -6,7 +6,6 @@ import {SizeService} from '../../shared/services/size/size.service';
 import {UserService} from '../../shared/services/user/user.service';
 import {BasketService} from '../../shared/services/basket/basket.service';
 import * as $ from 'jquery';
-import {UserBasketService} from '../../shared/services/user-total/user-total.service';
 
 @Component({
     selector: 'home-page',

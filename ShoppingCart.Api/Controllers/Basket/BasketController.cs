@@ -37,5 +37,25 @@ namespace ShoppingCart.Api.Controllers.Basket
             _userSessionService.AddItemToBasket(request.User.Token, basketItem);
             return Ok(_userSessionService.GetBasketForUser(request.User.Token));
         }
+
+        [HttpGet]
+        [Route("{userToken}")]
+        public IHttpActionResult GetBasket(string userToken)
+        {
+            if (userToken == null)
+                return BadRequest();
+
+            return Ok(_userSessionService.GetBasketForUser(userToken));
+        }
+
+        [HttpGet]
+        [Route("{userToken}/total")]
+        public IHttpActionResult GetBasketTotal(string userToken)
+        {
+            if (userToken == null)
+                return BadRequest();
+
+            return Ok(_userSessionService.GetBasketTotalForUser(userToken));
+        }
     }
 }

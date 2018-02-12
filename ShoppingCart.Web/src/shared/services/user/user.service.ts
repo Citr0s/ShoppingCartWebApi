@@ -1,7 +1,6 @@
 import {UserRepository} from '../../repositories/user/user.repository';
 import {EventEmitter, Injectable, Output} from '@angular/core';
 import {User} from './user';
-import {UserMapper} from './user.mapper';
 
 @Injectable()
 export class UserService {
@@ -20,9 +19,9 @@ export class UserService {
             }
 
             this._userRepository.getToken()
-                .subscribe((payload) => {
-                    resolve(UserMapper.map(payload));
-                    localStorage.setItem('user', JSON.stringify(UserMapper.map(payload)));
+                .subscribe((token: string) => {
+                    localStorage.setItem('user', JSON.stringify({token: token}));
+                    resolve({token: token, id: 0});
                 }, (error) => {
                     reject(error);
                 });
@@ -36,9 +35,9 @@ export class UserService {
                 return;
             }
 
-            this._userRepository.getToken()
-                .subscribe((user) => {
-                    this._userRepository.isLoggedIn(UserMapper.map(user).token)
+            this.getUser()
+                .then((user: User) => {
+                    this._userRepository.isLoggedIn(user.token)
                         .subscribe((payload: boolean) => {
                             this.onChange.emit(payload);
                             resolve(payload);
@@ -51,9 +50,9 @@ export class UserService {
 
     login(username: string, password: string) {
         return new Promise((resolve, reject) => {
-            this._userRepository.getToken()
-                .subscribe((user) => {
-                    this._userRepository.login(UserMapper.map(user).token, username, password)
+            this.getUser()
+                .then((user: User) => {
+                    this._userRepository.login(user.token, username, password)
                         .subscribe((payload: any) => {
                             if (payload.IsLoggedIn) {
                                 const userData = JSON.parse(localStorage.getItem('user'));
@@ -74,9 +73,9 @@ export class UserService {
 
     logout() {
         return new Promise((resolve, reject) => {
-            this._userRepository.getToken()
-                .subscribe((user) => {
-                    this._userRepository.logout(UserMapper.map(user).token)
+            this.getUser()
+                .then((user: User) => {
+                    this._userRepository.logout(user.token)
                         .subscribe((payload) => {
                             const userData = JSON.parse(localStorage.getItem('user'));
                             userData.isLoggedIn = false;

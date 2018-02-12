@@ -31,6 +31,8 @@ import {SavedOrdersRepository} from '../shared/repositories/saved-orders/saved-o
 import {HistoryPageComponent} from '../pages/history-page/history-page.component';
 import {HistoryService} from '../shared/services/history/history.service';
 import {HistoryRepository} from '../shared/repositories/history/history.repository';
+import {SaveOrderService} from '../shared/services/save/save-order.service';
+import {SaveOrderRepository} from '../shared/repositories/save/save-order.repository';
 
 
 @NgModule({
@@ -67,7 +69,9 @@ import {HistoryRepository} from '../shared/repositories/history/history.reposito
         SavedOrdersService,
         SavedOrdersRepository,
         HistoryService,
-        HistoryRepository
+        HistoryRepository,
+        SaveOrderService,
+        SaveOrderRepository
     ],
     bootstrap: [AppComponent]
 })

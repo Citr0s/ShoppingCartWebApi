@@ -22,8 +22,8 @@ namespace ShoppingCart.Data.Services.Voucher.Filters
             {
                 foreach (var basketItem in _basketItems)
                 {
-                    if (voucher.AllowedSizes.Any(x => x.Size.Name == basketItem.Size.Name))
-                        response.Add(voucher);
+                    if (voucher.AllowedSizes.All(x => x.Size.Name != basketItem.Size.Name))
+                        break;
                 }
             }
             return response;

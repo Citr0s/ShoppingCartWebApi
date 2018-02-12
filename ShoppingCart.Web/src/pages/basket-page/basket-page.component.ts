@@ -6,6 +6,8 @@ import {BasketService} from '../../shared/services/basket/basket.service';
 import {DealsService} from '../../shared/services/deals/deals.service';
 import {Deal} from '../../shared/services/deals/deal';
 import {Money} from '../../shared/common/money';
+import {SaveOrderService} from '../../shared/services/save/save-order.service';
+import {Router} from '@angular/router';
 
 @Component({
     selector: 'basket-page',
@@ -20,14 +22,22 @@ export class BasketPageComponent implements OnInit {
     private _dealService: DealsService;
     private deal: Deal;
     private total: Money;
+    private _saveOrderService: SaveOrderService;
+    private successMessage: string;
+    private errorMessage: string;
+    private _router: Router;
 
-    constructor(userService: UserService, basketService: BasketService, dealService: DealsService) {
+    constructor(userService: UserService, basketService: BasketService, dealService: DealsService, saveOrderService: SaveOrderService, router: Router) {
         this._userService = userService;
         this._basketService = basketService;
         this._dealService = dealService;
+        this._saveOrderService = saveOrderService;
+        this._router = router;
         this.deal = new Deal();
         this.basket = new Basket();
         this.total = new Money();
+        this.successMessage = '';
+        this.errorMessage = '';
     }
 
     ngOnInit(): void {
@@ -56,6 +66,22 @@ export class BasketPageComponent implements OnInit {
     }
 
     saveBasket() {
-        // TODO: needs implementing
+        this._userService.isLoggedIn()
+            .then((payload) => {
+                if (!payload) {
+                    this._router.navigate(['login']);
+                    return;
+                }
+                this._userService.getUser()
+                    .then((user: User) => {
+                        this._saveOrderService.save(user.token)
+                            .then(() => {
+                                this.successMessage = 'Order has been saved successfully.';
+                            })
+                            .catch(() => {
+                                this.errorMessage = 'Something went wrong when attempting to save the order. Please try again later.';
+                            });
+                    });
+            });
     }
 }

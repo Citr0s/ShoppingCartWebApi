@@ -95,9 +95,13 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\Basket\AddToBasketRequest.cs" />
     <Compile Include="Controllers\Basket\BasketController.cs" />
+    <Compile Include="Controllers\Deals\ApplyDealRequest.cs" />
+    <Compile Include="Controllers\Deals\DealsController.cs" />
     <Compile Include="Controllers\Pizza\PizzaController.cs" />
     <Compile Include="Controllers\Size\SizeController.cs" />
     <Compile Include="Controllers\Topping\ToppingController.cs" />
+    <Compile Include="Controllers\User\LoginRequest.cs" />
+    <Compile Include="Controllers\User\LoginResponse.cs" />
     <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -115,7 +119,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\ShoppingCart.Core\ShoppingCart.Core.csproj">

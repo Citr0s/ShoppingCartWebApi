@@ -93,11 +93,11 @@ namespace ShoppingCart.Data.Services.Basket
             return response;
         }
 
-        public BasketSaveResponse Save(string userId, OrderStatus orderStatus)
+        public BasketSaveResponse Save(string userToken, OrderStatus orderStatus)
         {
             var response = new BasketSaveResponse();
 
-            if (!_userSessionService.IsLoggedIn(userId))
+            if (!_userSessionService.IsLoggedIn(userToken))
             {
                 response.AddError(new Error
                 {
@@ -113,13 +113,13 @@ namespace ShoppingCart.Data.Services.Basket
                 return response;
             }
 
-            var userBasket = _userSessionService.GetBasketForUser(userId);
+            var userBasket = _userSessionService.GetBasketForUser(userToken);
 
             var orderRequest = new SaveOrderRequest
             {
                 DeliveryType = DeliveryType.Unknown.ToString(),
                 Voucher = "",
-                UserId = _userSessionService.GetUserByUserToken(userId),
+                UserId = _userSessionService.GetUserByUserToken(userToken),
                 GrandTotal = userBasket.Total.InPence,
                 Status = orderStatus.ToString(),
                 Orders = userBasket.Items.ConvertAll(x => new Order.Order

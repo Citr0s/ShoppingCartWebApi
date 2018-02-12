@@ -45,9 +45,9 @@ namespace ShoppingCart.Data.Database
             using (var session = _sessionFactory.OpenSession())
             {
                 session.Save(record);
-
-                return record;
             }
+
+            return record;
         }
     }
 }

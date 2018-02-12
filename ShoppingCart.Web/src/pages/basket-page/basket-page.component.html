@@ -1,6 +1,12 @@
 <h1>Basket</h1>
 <div class="row">
     <div class="col-md-12">
+        <div class="alert alert-danger" role="alert" *ngIf="errorMessage !== ''">
+            {{ errorMessage }}
+        </div>
+        <div class="alert alert-success" role="alert" *ngIf="successMessage !== ''">
+            {{ successMessage }}
+        </div>
         <div class="item-wrapper" *ngIf="basket.items.length > 0">
             <div class="panel panel-default" *ngFor="let pizza of basket.items">
                 <div class="panel-heading">

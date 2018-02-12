@@ -23,9 +23,8 @@ namespace ShoppingCart.Data.Services.Voucher
                         OnlyNamed = voucherDetail.Voucher.OnlyNamed,
                         Quantity = voucherDetail.Voucher.Quantity
                     },
-                    AllowedDeliveryTypes =
-                        voucherDetail.AllowedDeliveryTypes.ConvertAll(x =>
-                            DeliveryTypeHelper.From(x.DeliveryType.Name)),
+                    AllowedDeliveryTypes = voucherDetail.AllowedDeliveryTypes.ConvertAll(x => DeliveryTypeHelper.From(x.DeliveryType.Name)),
+                    AllowedDeliveryTypesApi = voucherDetail.AllowedDeliveryTypes.ConvertAll(x => DeliveryTypeHelper.From(x.DeliveryType.Name).ToString()),
                     AllowedSizes = voucherDetail.AllowedSizes.ConvertAll(x => new VoucherSizeModel {Name = x.Size.Name})
                 };
 

@@ -3,6 +3,7 @@ import {BasketRepository} from '../../repositories/basket/basket.repository';
 import {BasketMapper} from './basket.mapper';
 import {MoneyMapper} from '../../common/money.mapper';
 import {Money} from '../../common/money';
+import {AddToBasketRequest} from './add-to-basket-request';
 
 @Injectable()
 export class BasketService {
@@ -14,7 +15,7 @@ export class BasketService {
     }
 
     addToBasket(pizzaId: number, sizeId: number, toppingIds: number[], userToken: string) {
-        const request = {
+        const request: any = {
             user: {
                 token: userToken
             },

@@ -6,7 +6,10 @@ export class DealsMapper {
         const response = [];
 
         for (let i = 0; i < payload.length; i++) {
-            if (payload[i] === null)
+            if (payload[i] === null || payload[i] === undefined)
+                continue;
+
+            if (payload[i].Voucher === null || payload[i].Voucher === undefined)
                 continue;
 
             response.push({
