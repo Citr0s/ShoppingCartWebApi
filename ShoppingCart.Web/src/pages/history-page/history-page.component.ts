@@ -3,6 +3,7 @@ import {UserService} from '../../shared/services/user/user.service';
 import {Router} from '@angular/router';
 import {SavedOrder} from '../../shared/services/saved-orders/saved-order';
 import {HistoryService} from '../../shared/services/history/history.service';
+import {BasketService} from '../../shared/services/basket/basket.service';
 
 @Component({
     selector: 'history-page',
@@ -15,12 +16,14 @@ export class HistoryPageComponent implements OnInit {
     private _router: Router;
     private _historyService: HistoryService;
     private previousOrders: SavedOrder[];
+    private _basketService: BasketService;
 
 
-    constructor(userService: UserService, router: Router, historyService: HistoryService) {
+    constructor(userService: UserService, router: Router, historyService: HistoryService, basketService: BasketService) {
         this._userService = userService;
         this._router = router;
         this._historyService = historyService;
+        this._basketService = basketService;
         this.previousOrders = [];
 
         this._userService.isLoggedIn()
@@ -41,6 +44,9 @@ export class HistoryPageComponent implements OnInit {
     }
 
     applyBasket(orderId: number) {
-        // TODO: implement this feature
+        this._userService.getUser()
+            .then((user) => {
+                this._basketService.loadBasket(user.token, orderId);
+            });
     }
 }

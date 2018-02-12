@@ -22,4 +22,8 @@ export class BasketRepository {
     getTotal(userToken: string) {
         return this._httpClient.get(`${environment.backendUrl}/api/v1/basket/${userToken}/total`);
     }
+
+    loadBasket(userToken: string, basketId: number) {
+        return this._httpClient.post(`${environment.backendUrl}/api/v1/user/${userToken}/order/${basketId}/apply`, {});
+    }
 }

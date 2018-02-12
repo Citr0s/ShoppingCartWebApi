@@ -52,7 +52,7 @@ namespace ShoppingCart.Api.Controllers.User
             var userServiceResponse = _userService.Login(request.Username, request.Password);
 
             if (userServiceResponse.HasError)
-                return Ok(userServiceResponse.Error);
+                return Ok(userServiceResponse);
 
             _userSessionService.LogIn(request.UserToken, userServiceResponse.UserId);
 
@@ -104,6 +104,34 @@ namespace ShoppingCart.Api.Controllers.User
         public IHttpActionResult SaveOrder(string userToken)
         {
             return Ok(_basketService.Save(userToken, OrderStatus.Partial));
+        }
+
+        [HttpPost]
+        [Route("{userToken}/order/{orderId}/apply")]
+        public IHttpActionResult Apply(string userToken, int orderId)
+        {
+            var selectedBasket = _basketService.GetBasketById(orderId);
+
+            if (selectedBasket.HasError)
+                return Ok(selectedBasket);
+
+
+            var mappedBasket = new Data.Services.UserSession.Basket
+            {
+                Total = selectedBasket.Basket.Total,
+                Items = selectedBasket.Basket.Orders.ConvertAll(orderDetails => new BasketItem
+                {
+                    Pizza = orderDetails.Order.Pizza,
+                    Size = orderDetails.Order.Size,
+                    ExtraToppings = orderDetails.Toppings.ConvertAll(x => x.Topping),
+                    Total = orderDetails.Total
+                })
+            };
+
+            _userSessionService.ClearBasketForUser(userToken);
+            _userSessionService.SetBasketForUser(userToken, mappedBasket);
+
+            return Ok();
         }
     }
 }

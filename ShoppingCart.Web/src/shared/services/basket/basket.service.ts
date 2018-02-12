@@ -54,6 +54,18 @@ export class BasketService {
         });
     }
 
+    loadBasket(userToken: string, basketId: number) {
+        return new Promise((resolve, reject) => {
+            this._basketRepository.loadBasket(userToken, basketId)
+                .subscribe((payload: any) => {
+                    this.getBasket(userToken);
+                    resolve(payload);
+                }, (error) => {
+                    reject(error);
+                });
+        });
+    }
+
     getTotal(userToken: string): Promise<any> {
         return new Promise((resolve, reject) => {
             this._basketRepository.getTotal(userToken)
