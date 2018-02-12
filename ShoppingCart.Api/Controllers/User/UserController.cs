@@ -22,10 +22,14 @@ namespace ShoppingCart.Api.Controllers.User
         private readonly IBasketService _basketService;
 
         public UserController() : this(
-            new UserSessionService(new PizzaSizeRepository(IoC.Instance().For<IDatabase>()), new ToppingSizeRepository(IoC.Instance().For<IDatabase>()), new VoucherService(new VoucherRepository(IoC.Instance().For<IDatabase>()))),
+            new UserSessionService(new PizzaSizeRepository(IoC.Instance().For<IDatabase>()),
+                new ToppingSizeRepository(IoC.Instance().For<IDatabase>()),
+                new VoucherService(new VoucherRepository(IoC.Instance().For<IDatabase>()))),
             new UserService(new UserRepository(IoC.Instance().For<IDatabase>(), new Hasher())),
-            new BasketService(new OrderRepository(IoC.Instance().For<IDatabase>()), UserSessionService.Instance(), new VoucherService(new VoucherRepository(IoC.Instance().For<IDatabase>()))))
-            { }
+            new BasketService(new OrderRepository(IoC.Instance().For<IDatabase>()), UserSessionService.Instance(),
+                new VoucherService(new VoucherRepository(IoC.Instance().For<IDatabase>()))))
+        {
+        }
 
         public UserController(IUserSessionService userSessionService, IUserService userService,
             IBasketService basketService)
@@ -60,6 +64,29 @@ namespace ShoppingCart.Api.Controllers.User
             {
                 IsLoggedIn = _userSessionService.IsLoggedIn(request.UserToken),
                 UserId = userServiceResponse.UserId
+            };
+            return Ok(loginResponse);
+        }
+
+        [HttpPost]
+        [Route("register")]
+        public IHttpActionResult Register([FromBody] RegisterRequest request)
+        {
+            if (request.UserToken == null || request.Email == null || request.Password == null ||
+                request.Phone == null || request.Address == null)
+                return BadRequest();
+
+            var registerUserResponse = _userService.Register(request.Email, request.Password, request.Phone, request.Address);
+
+            if (registerUserResponse.HasError)
+                return Ok(registerUserResponse);
+
+            _userSessionService.LogIn(request.UserToken, registerUserResponse.UserId);
+
+            var loginResponse = new LoginResponse
+            {
+                IsLoggedIn = _userSessionService.IsLoggedIn(request.UserToken),
+                UserId = registerUserResponse.UserId
             };
             return Ok(loginResponse);
         }

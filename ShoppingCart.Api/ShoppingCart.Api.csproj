@@ -103,6 +103,7 @@
     <Compile Include="Controllers\Topping\ToppingController.cs" />
     <Compile Include="Controllers\User\LoginRequest.cs" />
     <Compile Include="Controllers\User\LoginResponse.cs" />
+    <Compile Include="Controllers\User\RegisterRequest.cs" />
     <Compile Include="Controllers\User\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

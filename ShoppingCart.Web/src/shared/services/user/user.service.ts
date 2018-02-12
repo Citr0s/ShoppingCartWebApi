@@ -71,6 +71,29 @@ export class UserService {
         });
     }
 
+    register(username: string, password: string, phone: string, address: string) {
+        return new Promise((resolve, reject) => {
+            this.getUser()
+                .then((user: User) => {
+                    this._userRepository.register(user.token, username, password, phone, address)
+                        .subscribe((payload: any) => {
+                            if (payload.IsLoggedIn) {
+                                const userData = JSON.parse(localStorage.getItem('user'));
+                                userData.isLoggedIn = payload.IsLoggedIn;
+                                userData.id = payload.UserId;
+                                localStorage.setItem('user', JSON.stringify(userData));
+                                this.onChange.emit(payload.IsLoggedIn);
+                                resolve(payload.IsLoggedIn);
+                            } else {
+                                resolve(payload.UserMessage);
+                            }
+                        }, (error) => {
+                            reject(error);
+                        });
+                });
+        });
+    }
+
     logout() {
         return new Promise((resolve, reject) => {
             this.getUser()
