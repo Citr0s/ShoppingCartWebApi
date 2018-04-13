@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using FluentNHibernate.Conventions;
 using ShoppingCart.Core.Communication;
 using ShoppingCart.Core.Communication.ErrorCodes;
@@ -150,7 +151,7 @@ namespace ShoppingCart.Data.Services.Basket
                 return response;
             }
 
-            response.BasketDetails = previousOrders.BasketDetails;
+            response.BasketDetails = previousOrders.BasketDetails.Where(x => x.Orders.Count > 0).ToList();
             return response;
         }
 
@@ -166,7 +167,7 @@ namespace ShoppingCart.Data.Services.Basket
                 return response;
             }
 
-            response.BasketDetails = previousOrders.BasketDetails;
+            response.BasketDetails = previousOrders.BasketDetails.Where(x => x.Orders.Count > 0).ToList();
             return response;
         }
 

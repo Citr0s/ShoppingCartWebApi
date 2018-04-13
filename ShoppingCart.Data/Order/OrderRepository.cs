@@ -34,7 +34,10 @@ namespace ShoppingCart.Data.Order
                     User = _database.Query<UserRecord>().First(x => x.Id == request.UserId),
                     Status = request.Status
                 };
-                var basketId = _database.Save(basketRecord).Id;
+
+                _database.Save(basketRecord);
+
+                var basketId = _database.Query<BasketRecord>().OrderByDescending(x => x.Id).FirstOrDefault()?.Id;
 
                 foreach (var order in request.Orders)
                 {
@@ -46,7 +49,9 @@ namespace ShoppingCart.Data.Order
                         Total = order.SubTotal
                     };
 
-                    var orderId = _database.Save(orderRecord).Id;
+                    _database.Save(orderRecord);
+
+                    var orderId = _database.Query<OrderRecord>().OrderByDescending(x => x.Id).FirstOrDefault()?.Id;
 
                     foreach (var toppingId in order.ExtraToppingIds)
                     {
