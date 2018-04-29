@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
 using System.Web.Http;
 using ShoppingCart.Data.Database;
 using ShoppingCart.Data.IoC;
@@ -30,13 +32,13 @@ namespace ShoppingCart.Api.Controllers.Deals
         }
 
         [HttpGet]
-        [Route("")]
+        [Route("{userToken}")]
         public IHttpActionResult GetSelectedDeal(string userToken)
         {
             if (Request.Headers.Authorization == null)
                 return Unauthorized();
 
-        return Ok(_userSessionService.GetVoucherForUser(userToken));
+            return Ok(_userSessionService.GetVoucherForUser(Encoding.UTF8.GetString(Convert.FromBase64String(Request.Headers.Authorization.Parameter))));
         }
 
         [HttpPost]

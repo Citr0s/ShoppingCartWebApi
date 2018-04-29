@@ -17,7 +17,7 @@ export class DealsRepository {
 
     getSelected(userToken: string) {
         const headers = new HttpHeaders({'Authorization': `Basic ${btoa(userToken)}`});
-        return this._httpClient.get(`${environment.backendUrl}/api/v1/deal`, {headers: headers});
+        return this._httpClient.get(`${environment.backendUrl}/api/v1/deal/${userToken}`, {headers: headers});
     }
 
     applyDeal(request: ApplyDealRequest) {

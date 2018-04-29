@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Injectable} from '@angular/core';
 
@@ -15,28 +15,32 @@ export class UserRepository {
     }
 
     login(userToken: string, username: string, password: string) {
+        const headers = new HttpHeaders({'Authorization': `Basic ${btoa(userToken)}`});
         return this._httpClient.post(`${environment.backendUrl}/api/v1/user/login`, {
             userToken: userToken,
             username: username,
             password: password
-        });
+        }, {headers: headers});
     }
 
     register(userToken: string, username: string, password: string, phone: string, address: string) {
+        const headers = new HttpHeaders({'Authorization': `Basic ${btoa(userToken)}`});
         return this._httpClient.post(`${environment.backendUrl}/api/v1/user/register`, {
             userToken: userToken,
             email: username,
             password: password,
             phone: phone,
             address: address
-        });
+        }, {headers: headers});
     }
 
     isLoggedIn(userToken: string) {
-        return this._httpClient.get(`${environment.backendUrl}/api/v1/user/${userToken}/loggedIn`);
+        const headers = new HttpHeaders({'Authorization': `Basic ${btoa(userToken)}`});
+        return this._httpClient.get(`${environment.backendUrl}/api/v1/user/${userToken}/loggedIn`, {headers: headers});
     }
 
     logout(userToken: string) {
-        return this._httpClient.get(`${environment.backendUrl}/api/v1/user/${userToken}/logout`);
+        const headers = new HttpHeaders({'Authorization': `Basic ${btoa(userToken)}`});
+        return this._httpClient.get(`${environment.backendUrl}/api/v1/user/${userToken}/logout`, {headers: headers});
     }
 }

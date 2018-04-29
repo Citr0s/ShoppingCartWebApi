@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using System.Web.Http;
 using ShoppingCart.Core.Communication.ErrorCodes;
 using ShoppingCart.Data.Database;
@@ -48,34 +49,37 @@ namespace ShoppingCart.Api.Controllers.Basket
         [Route("{userToken}")]
         public IHttpActionResult GetBasket(string userToken)
         {
-            if (userToken == null)
-                return BadRequest();
+            if (Request.Headers.Authorization == null)
+                return Unauthorized();
 
-            return Ok(_userSessionService.GetBasketForUser(userToken));
+            return Ok(_userSessionService.GetBasketForUser(Encoding.UTF8.GetString(Convert.FromBase64String(Request.Headers.Authorization.Parameter))));
         }
 
         [HttpGet]
         [Route("{userToken}/total")]
         public IHttpActionResult GetBasketTotal(string userToken)
         {
-            if (userToken == null)
-                return BadRequest();
+            if (Request.Headers.Authorization == null)
+                return Unauthorized();
 
-            return Ok(_userSessionService.GetBasketTotalForUser(userToken));
+            return Ok(_userSessionService.GetBasketTotalForUser(Encoding.UTF8.GetString(Convert.FromBase64String(Request.Headers.Authorization.Parameter))));
         }
 
         [HttpPost]
         [Route("{userToken}/checkout")]
         public IHttpActionResult Checkout(string userToken, [FromBody]CheckoutRequest request)
         {
-            if (userToken == null || request.DeliveryType == null)
+            if (Request.Headers.Authorization == null)
+                return Unauthorized();
+
+            if (request.DeliveryType == null)
                 return BadRequest();
 
             var deliveryType = DeliveryTypeHelper.From(request.DeliveryType);
             if (deliveryType == DeliveryType.Unknown)
                 return BadRequest();
 
-            var basketCheckoutResponse = _basketService.Checkout(deliveryType, request.Voucher, userToken, OrderStatus.Complete);
+            var basketCheckoutResponse = _basketService.Checkout(deliveryType, request.Voucher, Encoding.UTF8.GetString(Convert.FromBase64String(Request.Headers.Authorization.Parameter)), OrderStatus.Complete);
 
             if (!basketCheckoutResponse.HasError)
                 return Ok();

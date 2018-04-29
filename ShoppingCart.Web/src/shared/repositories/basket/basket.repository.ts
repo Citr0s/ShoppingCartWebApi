@@ -1,4 +1,4 @@
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {Injectable} from '@angular/core';
 import {AddToBasketRequest} from '../../services/basket/add-to-basket-request';
@@ -16,18 +16,22 @@ export class BasketRepository {
     }
 
     getBasket(userToken: string) {
-        return this._httpClient.get(`${environment.backendUrl}/api/v1/basket/${userToken}`);
+        const headers = new HttpHeaders({'Authorization': `Basic ${btoa(userToken)}`});
+        return this._httpClient.get(`${environment.backendUrl}/api/v1/basket/${userToken}`, {headers: headers});
     }
 
     getTotal(userToken: string) {
-        return this._httpClient.get(`${environment.backendUrl}/api/v1/basket/${userToken}/total`);
+        const headers = new HttpHeaders({'Authorization': `Basic ${btoa(userToken)}`});
+        return this._httpClient.get(`${environment.backendUrl}/api/v1/basket/${userToken}/total`, {headers: headers});
     }
 
     loadBasket(userToken: string, basketId: number) {
-        return this._httpClient.post(`${environment.backendUrl}/api/v1/user/${userToken}/order/${basketId}/apply`, {});
+        const headers = new HttpHeaders({'Authorization': `Basic ${btoa(userToken)}`});
+        return this._httpClient.post(`${environment.backendUrl}/api/v1/user/${userToken}/order/${basketId}/apply`, {}, {headers: headers});
     }
 
     checkout(userToken: string, request: any) {
-        return this._httpClient.post(`${environment.backendUrl}/api/v1/basket/${userToken}/checkout`, request);
+        const headers = new HttpHeaders({'Authorization': `Basic ${btoa(userToken)}`});
+        return this._httpClient.post(`${environment.backendUrl}/api/v1/basket/${userToken}/checkout`, request, {headers: headers});
     }
 }

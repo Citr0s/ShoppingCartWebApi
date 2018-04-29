@@ -1,4 +1,6 @@
-﻿using System.Web.Http;
+﻿using System;
+using System.Text;
+using System.Web.Http;
 using ShoppingCart.Core.Hasher;
 using ShoppingCart.Data.Database;
 using ShoppingCart.Data.IoC;
@@ -95,21 +97,21 @@ namespace ShoppingCart.Api.Controllers.User
         [Route("{userToken}/loggedIn")]
         public IHttpActionResult LoggedIn(string userToken)
         {
-            if (userToken == null)
-                return BadRequest();
+            if (Request.Headers.Authorization == null)
+                return Unauthorized();
 
-            return Ok(_userSessionService.IsLoggedIn(userToken));
+            return Ok(_userSessionService.IsLoggedIn(Encoding.UTF8.GetString(Convert.FromBase64String(Request.Headers.Authorization.Parameter))));
         }
 
         [HttpGet]
         [Route("{userToken}/logout")]
         public IHttpActionResult Logout(string userToken)
         {
-            if (userToken == null)
-                return BadRequest();
+            if (Request.Headers.Authorization == null)
+                return Unauthorized();
 
-            _userSessionService.LogOut(userToken);
-            return Ok(_userSessionService.IsLoggedIn(userToken));
+            _userSessionService.LogOut(Encoding.UTF8.GetString(Convert.FromBase64String(Request.Headers.Authorization.Parameter)));
+            return Ok(_userSessionService.IsLoggedIn(Encoding.UTF8.GetString(Convert.FromBase64String(Request.Headers.Authorization.Parameter))));
         }
 
         [HttpGet]
@@ -130,13 +132,19 @@ namespace ShoppingCart.Api.Controllers.User
         [Route("{userToken}/order/save")]
         public IHttpActionResult SaveOrder(string userToken)
         {
-            return Ok(_basketService.Save(userToken, OrderStatus.Partial));
+            if (Request.Headers.Authorization == null)
+                return Unauthorized();
+
+            return Ok(_basketService.Save(Encoding.UTF8.GetString(Convert.FromBase64String(Request.Headers.Authorization.Parameter)), OrderStatus.Partial));
         }
 
         [HttpPost]
         [Route("{userToken}/order/{orderId}/apply")]
         public IHttpActionResult Apply(string userToken, int orderId)
         {
+            if (Request.Headers.Authorization == null)
+                return Unauthorized();
+
             var selectedBasket = _basketService.GetBasketById(orderId);
 
             if (selectedBasket.HasError)
@@ -155,8 +163,8 @@ namespace ShoppingCart.Api.Controllers.User
                 })
             };
 
-            _userSessionService.ClearBasketForUser(userToken);
-            _userSessionService.SetBasketForUser(userToken, mappedBasket);
+            _userSessionService.ClearBasketForUser(Encoding.UTF8.GetString(Convert.FromBase64String(Request.Headers.Authorization.Parameter)));
+            _userSessionService.SetBasketForUser(Encoding.UTF8.GetString(Convert.FromBase64String(Request.Headers.Authorization.Parameter)), mappedBasket);
 
             return Ok();
         }

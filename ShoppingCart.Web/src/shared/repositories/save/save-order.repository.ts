@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 
 @Injectable()
@@ -11,6 +11,7 @@ export class SaveOrderRepository {
     }
 
     save(userToken: string) {
-        return this._httpClient.post(`${environment.backendUrl}/api/v1/user/${userToken}/order/save`, {});
+        const headers = new HttpHeaders({'Authorization': `Basic ${btoa(userToken)}`});
+        return this._httpClient.post(`${environment.backendUrl}/api/v1/user/${userToken}/order/save`, {}, {headers: headers});
     }
 }

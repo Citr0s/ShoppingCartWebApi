@@ -56,6 +56,10 @@ export class BasketPageComponent implements OnInit {
                 this._dealService.getSelected(user.token)
                     .then((deal: Deal) => {
                         this.deal = deal;
+
+                        if (this.deal == null)
+                            return;
+
                         this.voucher = this.deal.code;
                     });
 
@@ -80,7 +84,7 @@ export class BasketPageComponent implements OnInit {
                             .then(() => {
                                 this.successMessage = 'Order has been saved successfully.';
                             })
-                            .catch(() => {
+                            .catch((error) => {
                                 this.errorMessage = 'Something went wrong when attempting to save the order. Please try again later.';
                             });
                     });
