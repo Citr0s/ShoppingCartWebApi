@@ -18,14 +18,16 @@ namespace ShoppingCart.Data.Tests.User.GivenARequestToSaveUser
         {
             _database = new Mock<IDatabase>();
             _database.Setup(x => x.Save(It.IsAny<UserRecord>()));
-            _database.Setup(x => x.Query<UserRecord>()).Returns(() => new List<UserRecord>
-            {
-                new UserRecord
+            _database.SetupSequence(x => x.Query<UserRecord>())
+                .Returns(new List<UserRecord>())
+                .Returns(new List<UserRecord>
                 {
-                    Id = 1,
-                    Email = "SOME_EMAIL_ADDRESS"
-                }
-            });
+                    new UserRecord
+                    {
+                        Id = 1,
+                        Email = "SOME_EMAIL_ADDRESS"
+                    }
+                });
 
             var hasher = new Mock<IHasher>();
             hasher.Setup(x => x.Hash(It.IsAny<string>())).Returns(() => "SOME_HASHED_PASSWORD");

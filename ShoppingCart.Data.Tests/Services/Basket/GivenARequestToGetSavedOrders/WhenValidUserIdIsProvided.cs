@@ -23,7 +23,11 @@ namespace ShoppingCart.Data.Tests.Services.Basket.GivenARequestToGetSavedOrders
                 {
                     new BasketDetails
                     {
-                        Total = Money.From(1200)
+                        Total = Money.From(1200),
+                        Orders = new List<OrderDetails>
+                        {
+                            new OrderDetails()
+                        }
                     }
                 }
             });
