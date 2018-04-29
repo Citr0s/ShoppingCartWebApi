@@ -30,10 +30,13 @@ namespace ShoppingCart.Api.Controllers.Deals
         }
 
         [HttpGet]
-        [Route("{userToken}")]
+        [Route("")]
         public IHttpActionResult GetSelectedDeal(string userToken)
         {
-            return Ok(_userSessionService.GetVoucherForUser(userToken));
+            if (Request.Headers.Authorization == null)
+                return Unauthorized();
+
+        return Ok(_userSessionService.GetVoucherForUser(userToken));
         }
 
         [HttpPost]

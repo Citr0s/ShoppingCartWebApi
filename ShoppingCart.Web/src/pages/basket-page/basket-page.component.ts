@@ -76,7 +76,6 @@ export class BasketPageComponent implements OnInit {
                 }
                 this._userService.getUser()
                     .then((user: User) => {
-                        console.log(user.token, this.deliveryType, this.voucher);
                         this._basketService.checkout(user.token, this.deliveryType, this.voucher)
                             .then(() => {
                                 this.successMessage = 'Order has been saved successfully.';

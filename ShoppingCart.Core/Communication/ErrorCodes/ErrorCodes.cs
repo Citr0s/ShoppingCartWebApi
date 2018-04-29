@@ -11,5 +11,6 @@
         public static int NoMatchingVoucherFound = 6;
         public static int DeliveryTypeUnknown = 7;
         public static int OrderStatusUnkown = 8;
+        public static int UserAlreadyRegistered = 9;
     }
 }

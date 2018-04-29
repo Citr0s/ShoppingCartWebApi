@@ -57,6 +57,19 @@ namespace ShoppingCart.Data.User
 
             try
             {
+                var user = _database.Query<UserRecord>()
+                    .FirstOrDefault(x => x.Email == request.Email);
+
+                if (user != null)
+                {
+                    response.AddError(new Error
+                    {
+                        Code = ErrorCodes.UserAlreadyRegistered,
+                        UserMessage = "User with specified credentials already exists"
+                    });
+                    return response;
+                }
+
                 var userRecord = new UserRecord
                 {
                     Email = request.Email,
@@ -69,13 +82,13 @@ namespace ShoppingCart.Data.User
                 var userData = _database.Query<UserRecord>().First(x => x.Email == request.Email);
                 response.UserId = userData.Id;
             }
-            catch (Exception)
+            catch (Exception exception)
             {
                 response.AddError(new Error
                 {
                     Code = ErrorCodes.DatabaseError,
                     UserMessage = "Could not create account. Please try again later.",
-                    TechnicalMessage = "Something went wrong when retrieving UserRecords from database."
+                    TechnicalMessage = $"Something went wrong when retrieving UserRecords from database. The following exception was thrown: {exception}"
                 });
             }
 

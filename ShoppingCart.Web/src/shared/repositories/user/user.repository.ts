@@ -23,16 +23,6 @@ export class UserRepository {
     }
 
     register(userToken: string, username: string, password: string, phone: string, address: string) {
-        var x = {
-            userToken: userToken,
-            email: username,
-            password: password,
-            phone: phone,
-            address: address
-        };
-
-        console.log(x);
-
         return this._httpClient.post(`${environment.backendUrl}/api/v1/user/register`, {
             userToken: userToken,
             email: username,

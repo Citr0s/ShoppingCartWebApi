@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {environment} from '../../../environments/environment';
 import {ApplyDealRequest} from '../../services/deals/apply-deal-request';
 
@@ -16,7 +16,8 @@ export class DealsRepository {
     }
 
     getSelected(userToken: string) {
-        return this._httpClient.get(`${environment.backendUrl}/api/v1/deal/${userToken}`);
+        const headers = new HttpHeaders({'Authorization': `Basic ${btoa(userToken)}`});
+        return this._httpClient.get(`${environment.backendUrl}/api/v1/deal`, {headers: headers});
     }
 
     applyDeal(request: ApplyDealRequest) {
