@@ -12,6 +12,6 @@ export class SaveOrderRepository {
 
     save(userToken: string) {
         const headers = new HttpHeaders({'Authorization': `Basic ${btoa(userToken)}`});
-        return this._httpClient.post(`${environment.backendUrl}/api/v1/user/${userToken}/order/save`, {}, {headers: headers});
+        return this._httpClient.post(`${environment.backendUrl}/api/v1/user/order/save`, {}, {headers: headers});
     }
 }

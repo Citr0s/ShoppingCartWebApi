@@ -46,8 +46,8 @@ namespace ShoppingCart.Api.Controllers.Basket
         }
 
         [HttpGet]
-        [Route("{userToken}")]
-        public IHttpActionResult GetBasket(string userToken)
+        [Route("")]
+        public IHttpActionResult GetBasket()
         {
             if (Request.Headers.Authorization == null)
                 return Unauthorized();
@@ -56,8 +56,8 @@ namespace ShoppingCart.Api.Controllers.Basket
         }
 
         [HttpGet]
-        [Route("{userToken}/total")]
-        public IHttpActionResult GetBasketTotal(string userToken)
+        [Route("total")]
+        public IHttpActionResult GetBasketTotal()
         {
             if (Request.Headers.Authorization == null)
                 return Unauthorized();
@@ -66,8 +66,8 @@ namespace ShoppingCart.Api.Controllers.Basket
         }
 
         [HttpPost]
-        [Route("{userToken}/checkout")]
-        public IHttpActionResult Checkout(string userToken, [FromBody]CheckoutRequest request)
+        [Route("checkout")]
+        public IHttpActionResult Checkout([FromBody]CheckoutRequest request)
         {
             if (Request.Headers.Authorization == null)
                 return Unauthorized();

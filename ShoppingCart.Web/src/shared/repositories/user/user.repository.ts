@@ -36,11 +36,11 @@ export class UserRepository {
 
     isLoggedIn(userToken: string) {
         const headers = new HttpHeaders({'Authorization': `Basic ${btoa(userToken)}`});
-        return this._httpClient.get(`${environment.backendUrl}/api/v1/user/${userToken}/loggedIn`, {headers: headers});
+        return this._httpClient.get(`${environment.backendUrl}/api/v1/user/loggedIn`, {headers: headers});
     }
 
     logout(userToken: string) {
         const headers = new HttpHeaders({'Authorization': `Basic ${btoa(userToken)}`});
-        return this._httpClient.get(`${environment.backendUrl}/api/v1/user/${userToken}/logout`, {headers: headers});
+        return this._httpClient.get(`${environment.backendUrl}/api/v1/user/logout`, {headers: headers});
     }
 }

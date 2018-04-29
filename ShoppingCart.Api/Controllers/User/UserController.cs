@@ -94,8 +94,8 @@ namespace ShoppingCart.Api.Controllers.User
         }
 
         [HttpGet]
-        [Route("{userToken}/loggedIn")]
-        public IHttpActionResult LoggedIn(string userToken)
+        [Route("loggedIn")]
+        public IHttpActionResult LoggedIn()
         {
             if (Request.Headers.Authorization == null)
                 return Unauthorized();
@@ -104,8 +104,8 @@ namespace ShoppingCart.Api.Controllers.User
         }
 
         [HttpGet]
-        [Route("{userToken}/logout")]
-        public IHttpActionResult Logout(string userToken)
+        [Route("logout")]
+        public IHttpActionResult Logout()
         {
             if (Request.Headers.Authorization == null)
                 return Unauthorized();
@@ -129,8 +129,8 @@ namespace ShoppingCart.Api.Controllers.User
         }
 
         [HttpPost]
-        [Route("{userToken}/order/save")]
-        public IHttpActionResult SaveOrder(string userToken)
+        [Route("order/save")]
+        public IHttpActionResult SaveOrder()
         {
             if (Request.Headers.Authorization == null)
                 return Unauthorized();
@@ -139,8 +139,8 @@ namespace ShoppingCart.Api.Controllers.User
         }
 
         [HttpPost]
-        [Route("{userToken}/order/{orderId}/apply")]
-        public IHttpActionResult Apply(string userToken, int orderId)
+        [Route("order/{orderId}/apply")]
+        public IHttpActionResult Apply(int orderId)
         {
             if (Request.Headers.Authorization == null)
                 return Unauthorized();

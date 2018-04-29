@@ -17,21 +17,21 @@ export class BasketRepository {
 
     getBasket(userToken: string) {
         const headers = new HttpHeaders({'Authorization': `Basic ${btoa(userToken)}`});
-        return this._httpClient.get(`${environment.backendUrl}/api/v1/basket/${userToken}`, {headers: headers});
+        return this._httpClient.get(`${environment.backendUrl}/api/v1/basket`, {headers: headers});
     }
 
     getTotal(userToken: string) {
         const headers = new HttpHeaders({'Authorization': `Basic ${btoa(userToken)}`});
-        return this._httpClient.get(`${environment.backendUrl}/api/v1/basket/${userToken}/total`, {headers: headers});
+        return this._httpClient.get(`${environment.backendUrl}/api/v1/basket/total`, {headers: headers});
     }
 
     loadBasket(userToken: string, basketId: number) {
         const headers = new HttpHeaders({'Authorization': `Basic ${btoa(userToken)}`});
-        return this._httpClient.post(`${environment.backendUrl}/api/v1/user/${userToken}/order/${basketId}/apply`, {}, {headers: headers});
+        return this._httpClient.post(`${environment.backendUrl}/api/v1/user/order/${basketId}/apply`, {}, {headers: headers});
     }
 
     checkout(userToken: string, request: any) {
         const headers = new HttpHeaders({'Authorization': `Basic ${btoa(userToken)}`});
-        return this._httpClient.post(`${environment.backendUrl}/api/v1/basket/${userToken}/checkout`, request, {headers: headers});
+        return this._httpClient.post(`${environment.backendUrl}/api/v1/basket/checkout`, request, {headers: headers});
     }
 }
